@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  postgis:
+    image: postgis/postgis
+    restart: always
+    environment:
+      POSTGRES_DB: esida
+      POSTGRES_USER: esida
+      POSTGRES_PASSWORD: esida
+      PGDATA: /var/lib/postgresql/data/pgdat
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
