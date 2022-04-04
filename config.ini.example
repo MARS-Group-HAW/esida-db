@@ -1,0 +1,6 @@
+[postgis]
+hostname=localhost
+database=esida
+username=esida
+password=esida
+port=5432
