@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Parameters{% endblock %}
+
+{% block content %}
+  <h1>Parameters</h1>
+
+  <table class="table table-sm table-striped" id="shapes">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th class="no-sort">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for parameter in parameters %}
+      <tr>
+        <td class="align-middle">{{ parameter['name'] }}</td>
+        <td>
+          <a href="{{ url_for('parameter', parameter_name=parameter['name']) }}"  class="btn btn-sm btn-link">Details</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+
+  </table>
+{% endblock %}
+
+{% block footer %}
+<script>
+$(document).ready(function() {
+    $('#shapes').DataTable({
+      columnDefs: [
+        {targets: 'no-sort', orderable: false }
+    ]
+    });
+} );
+</script>
+
+{% endblock %}

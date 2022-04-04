@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Overview{% endblock %}
+
+{% block content %}
+  <h1>Overview</h1>
+
+  <table class="table table-sm table-striped" id="shapes">
+
+    <thead>
+      <tr>
+        <th>Region</th>
+        <th>Name</th>
+        <th class="no-sort">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for shape in shapes %}
+      <tr>
+        <td class="align-middle">{{ shape['region'] }}</td>
+        <td class="align-middle">{{ shape['name'] }}</td>
+        <td>
+          <a href="{{ url_for('download_csv', shape_id=shape['gid']) }}" download class="btn btn-sm btn-outline-primary">Parameters as CSV</a>
+          <a href="{{ url_for('shape', shape_id=shape['gid']) }}" class="btn btn-sm btn-link">Details</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+
+  </table>
+{% endblock %}
+
+{% block footer %}
+<script>
+$(document).ready(function() {
+    $('#shapes').DataTable({
+      columnDefs: [
+        {targets: 'no-sort', orderable: false }
+    ]
+    });
+} );
+</script>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Map{% endblock %}
+
+
+{% block content %}
+  <div id="map" style="width: 100%; height: 800px"></div>
+{% endblock %}
+
+{% block footer %}
+<script>
+
+var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+
+var map_position = {lat: -6, lng: 35, zoom: 6};
+
+var map = L.map('map', {
+  preferCanvas: true
+}).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
+
+shapes=[]
+{% for shape in shapes %}
+  var s = L.geoJSON({{ shape['geojson']|safe }} )
+  .bindPopup(`<h4>{{ shape['name'] }}</h4>  <a href="{{ url_for('shape', shape_id=shape['gid']) }}" class="btn btn-link">Details</a>`);
+
+  shapes.push(s);
+{% endfor %}
+var group_districts = L.featureGroup(shapes).addTo(map);
+
+weatherstations=[]
+{% for station in meteostat %}
+  var s = L.geoJSON({{ station['geojson']|safe }} )
+  .bindPopup(`<h4>{{ station['name'] }}</h4>`);
+
+  weatherstations.push(s);
+{% endfor %}
+var group_stations = L.featureGroup(weatherstations).addTo(map);
+
+
+var layerControl = L.control.layers().addTo(map);
+layerControl.addBaseLayer(osm, 'OSM');
+layerControl.addOverlay(group_districts, 'Districts');
+layerControl.addOverlay(group_stations, 'Weather stations (Meteostat)');
+
+</script>
+
+{% endblock %}

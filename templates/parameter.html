@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ parameter['name']}} - Parameters{% endblock %}
+
+{% block content %}
+  <h1>{{ parameter['name'] }} </h1>
+
+  <div>
+    {{ parameter['description_html']|safe }}
+  </div>
+
+{% endblock %}
+
+
