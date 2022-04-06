@@ -3,7 +3,7 @@
 {% block title %}Overview{% endblock %}
 
 {% block content %}
-  <h1>Overview</h1>
+  <h1>List</h1>
 
   <table class="table table-sm table-striped" id="shapes">
 
@@ -35,6 +35,7 @@
 <script>
 $(document).ready(function() {
     $('#shapes').DataTable({
+      paging: false,
       columnDefs: [
         {targets: 'no-sort', orderable: false }
     ]

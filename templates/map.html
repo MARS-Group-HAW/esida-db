@@ -4,6 +4,9 @@
 
 
 {% block content %}
+  <h1>Map</h1>
+
+
   <div id="map" style="width: 100%; height: 800px"></div>
 {% endblock %}
 
@@ -31,10 +34,13 @@ var group_districts = L.featureGroup(shapes).addTo(map);
 
 weatherstations=[]
 {% for station in meteostat %}
+{% if station['count'] > 0 %}
   var s = L.geoJSON({{ station['geojson']|safe }} )
-  .bindPopup(`<h4>{{ station['name'] }}</h4>`);
+  .bindPopup(`<h4>{{ station['name'] }} ({{station['id'] }})</h4> <p>Daily measurements: {{station['count'] }}</p>`);
 
   weatherstations.push(s);
+
+  {% endif %}
 {% endfor %}
 var group_stations = L.featureGroup(weatherstations).addTo(map);
 
