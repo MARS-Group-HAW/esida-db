@@ -39,7 +39,7 @@ def map():
         for row in rs:
             shapes.append(dict(row))
 
-        rs = con.execute('SELECT name, ST_AsGeoJSON(geometry) AS geojson FROM meteostat_stations')
+        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
         for row in rs:
             meteostat.append(dict(row))
 
