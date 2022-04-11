@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Cases{% endblock %}
+
+
+{% block content %}
+  <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
+    <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('case')}}">Add new case</a>
+    <h1 class="bd-title" id="content">Cases</h1>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-12 col-md-6">
+      <table class="table table-sm">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Reported</th>
+            <th>Sex</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for case in cases %}
+            <tr>
+              <td>{{ case.id }}</td>
+              <td>{{ case.report_date }}</td>
+              <td>{{ case.sex }}</td>
+              <td>{{ case.age }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div id="map" style="width: 100%; height: 800px"></div>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block footer %}
+<script>
+  var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+  var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+
+  var map_position = {lat: -6, lng: 35, zoom: 6};
+
+  var map = L.map('map', {
+    preferCanvas: true
+  }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
+
+  cases=[]
+  {% for c in cases %}
+    var m = L.marker([{{ c.point().y}}, {{ c.point().x}}] )
+    .bindPopup(`<h4>Case: {{ c.id }}</h4>`);
+
+    cases.push(m);
+  {% endfor %}
+  var group_markers = L.featureGroup(cases).addTo(map);
+
+  var layerControl = L.control.layers().addTo(map);
+  layerControl.addBaseLayer(osm, 'OSM');
+  layerControl.addOverlay(group_markers, 'Cases');
+
+</script>
+{% endblock %}

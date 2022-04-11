@@ -1,8 +1,19 @@
 from flask import Flask
-from flask import render_template, make_response, abort
+from flask import render_template, make_response, abort, request, redirect, url_for
+
+from sqlalchemy.sql import func
+from geoalchemy2.types import Geometry
+from geoalchemy2.shape import to_shape
+
 
 from dbconf import get_engine, get_conn_string
 import pandas as pd
+
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+
+import datetime as dt
 
 import pkgutil
 import importlib
@@ -12,7 +23,31 @@ import markdown
 from slugify import slugify
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = get_conn_string()
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+
+class Case(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
+    edited_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
+
+    age = db.Column(db.Integer, nullable=False)
+    report_date = db.Column(db.Date, nullable=False)
+    sex = db.Column(db.String(255), nullable=False)
+    geometry = db.Column(Geometry('POINT'), nullable=False)
+
+
+    def point(self):
+        return to_shape(self.geometry)
+
+
 
 @app.route("/")
 def index():
@@ -39,7 +74,7 @@ def map():
         for row in rs:
             shapes.append(dict(row))
 
-        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
+        rs = con.execute('SELECT id, meteostat_id, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
         for row in rs:
             meteostat.append(dict(row))
 
@@ -101,7 +136,6 @@ def parameters():
 
     return render_template('parameters.html', parameters=parameters)
 
-@app.route('/')
 @app.route("/parameter/<string:parameter_name>")
 def parameter(parameter_name):
 
@@ -117,6 +151,32 @@ def parameter(parameter_name):
 
     return render_template('parameter.html', parameter=parameter)
 
+@app.route('/cases')
+def cases():
+    cases = Case.query.all()
+    return render_template('case/index.html', cases=cases)
+
+@app.route('/case', methods = ['POST', 'GET'])
+def case():
+
+    if request.method == 'POST':
+
+        case  = Case(age=int(request.form['age']),
+            report_date=dt.datetime.strptime(request.form['report_date'], '%Y-%m-%d').date(),
+            sex=request.form['sex'],
+            geometry='POINT({} {})'.format(request.form['lng'], request.form['lat'])
+        )
+
+        db.session.add(case)
+        db.session.commit()
+
+        return redirect(url_for('foo'))
+
+    return render_template('case/create.html')
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
+
+

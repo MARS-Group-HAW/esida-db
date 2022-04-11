@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Add new case{% endblock %}
+
+
+{% block content %}
+  <h1>Add new case</h1>
+
+  <div class="row">
+
+    <div class="col-md-6">
+
+      <p>
+          Patient details:
+      </p>
+
+      <form action="{{ url_for('case') }}" method="POST" class="mb-3">
+        <div class="mb-3">
+          <label for="age">Age</label>
+          <input type="number" class="form-control" id="age" name="age" min="0" placeholder="Age" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="age">Date</label>
+          <input type="date" class="form-control" id="report_date" name="report_date" required>
+        </div>
+
+        <div class="row">
+          <div class="col-6 mb-3">
+            <label for="lat">Latitude</label>
+            <input type="number" class="form-control" id="lat" name="lat" step="any"  min="-90" max="90" placeholder="Latitude" required>
+          </div>
+          <div class="mb-3 col-6">
+            <label for="inputPassword4">Longitude</label>
+            <input type="number" class="form-control" id="lng" name="lng" step="any" min="-180" max="180" placeholder="Longitude" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Sex</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="sex_unknown" value="unknown" checked>
+              <label class="form-check-label" for="sex_unknown">Unknown</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="sex_female" value="female">
+              <label class="form-check-label" for="sex_female">Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="sex_male" value="male">
+              <label class="form-check-label" for="sex_male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="sex" id="sex_diverse" value="diverse">
+              <label class="form-check-label" for="sex_diverse">Diverse</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
+
+    <div class="col-md-6">
+      <div id="map" style="width: 100%; height: 400px"></div>
+      <div class="form-text">Click on the map to set coordinates in the form.</div>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+<script>
+
+var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+
+var map_position = {lat: -6, lng: 35, zoom: 6};
+
+var map = L.map('map', {
+  preferCanvas: true
+}).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
+
+
+var marker = false;
+map.on("click", function (event) {
+  if (marker) {
+    map.removeLayer(marker)
+  }
+
+  document.getElementById('lat').value = event.latlng.lat;
+  document.getElementById('lng').value = event.latlng.lng;
+
+
+  marker = L.marker(event.latlng).addTo(map);
+});
+
+</script>
+
+{% endblock %}
