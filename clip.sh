@@ -13,7 +13,7 @@ do
     filename=${shp##*/}
     basename="${filename%.shp}"
 
-    tiffdirs=("worldpop_popc" "worldpop_pd" "worldpop_bsgme")
+    tiffdirs=("worldpop_popc" "worldpop_pd" "worldpop_bsgme" "malaria")
 
     # loop over different geotiff features
     for tiff in "${tiffdirs[@]}"
@@ -22,7 +22,7 @@ do
         mkdir -p "$outdir"
 
         # loop over each file (i.e. different years) in each feature
-        for tifffile in ./input/data/"$tiff"/*.tiff; do
+        for tifffile in ./input/data/"$tiff"/*.{tiff,tif}; do
             outname=${tifffile##*/}
 
             # only clip if target file does not exist

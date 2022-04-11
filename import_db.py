@@ -8,7 +8,7 @@ from dbconf import get_engine
 engine  = get_engine()
 outputs = sorted(os.listdir("./output/"))
 params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
-params  = ['worldpop_bsgme']
+params  = ['malaria']
 
 
 cwd = os.getcwd()
@@ -31,7 +31,8 @@ for p in params:
 
         if os.path.isdir(param_dir):
             # multiple files per parameter for multiple years
-            files = sorted(os.listdir(param_dir))
+            files = sorted([s for s in os.listdir(param_dir) if s.rpartition('.')[2] in ('tiff','tif')])
+            print(files)
             for f in files:
                 s  = pm.consume(os.path.join(param_dir, f))
                 s['district_id'] = row['gid']
