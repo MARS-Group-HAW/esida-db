@@ -1,7 +1,7 @@
 from meteostat import Stations, Daily
 import geopandas
 import pandas as pd
-from db import get_engine
+from dbconf import get_engine
 import datetime as dt
 
 

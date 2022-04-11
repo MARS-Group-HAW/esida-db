@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template, make_response, abort
 
-from db import get_engine
+from dbconf import get_engine, get_conn_string
 import pandas as pd
 
 import pkgutil

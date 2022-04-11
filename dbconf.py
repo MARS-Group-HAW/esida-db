@@ -4,17 +4,20 @@
 from sqlalchemy import create_engine
 from config import config
 
+def get_conn_string():
+    try:
+        # read connection params
+        params = config()
+        return f"postgresql://{params['username']}:{params['password']}@{params['hostname']}:{params['port']}/{params['database']}"
+    except:
+        return print("Could not build connection string.")
+
 def get_engine():
     """ Create engine to the PostgreSQL database server """
 
     try:
-        # read connection params
-        params = config()
-
-        conn_string = f"postgresql://{params['username']}:{params['password']}@{params['hostname']}:{params['port']}/{params['database']}"
-
         # connect to PostgreSQL server
-        engine = create_engine(conn_string)
+        engine = create_engine(get_conn_string())
 
         return engine
     except:
@@ -27,8 +30,6 @@ def connect():
     try:
         # read connection params
         params = config()
-
-        conn_string = f"postgresql://{params['username']}:{params['password']}@{params['hostname']}:{params['port']}/{params['database']}"
 
         # connect to PostgreSQL server
         engine = create_engine(conn_string)
