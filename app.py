@@ -31,7 +31,7 @@ migrate = Migrate(app, db)
 
 params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
-class Case(db.Model):
+class Signal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
@@ -68,17 +68,22 @@ def map():
     engine = get_engine()
 
     shapes=[]
+    regions=[]
     meteostat=[]
     with engine.connect() as con:
         rs = con.execute('SELECT gid, newdist20 AS name, ST_AsGeoJSON(geom) AS geojson FROM districts')
         for row in rs:
             shapes.append(dict(row))
 
+        rs = con.execute('SELECT gid, region_nam AS name, ST_AsGeoJSON(geom) AS geojson FROM regions')
+        for row in rs:
+            regions.append(dict(row))
+
         rs = con.execute('SELECT id, meteostat_id, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
         for row in rs:
             meteostat.append(dict(row))
 
-    return render_template('map.html', shapes=shapes, meteostat=meteostat)
+    return render_template('map.html', shapes=shapes, meteostat=meteostat, regions=regions)
 
 
 @app.route("/shape/<int:shape_id>")
@@ -151,28 +156,28 @@ def parameter(parameter_name):
 
     return render_template('parameter.html', parameter=parameter)
 
-@app.route('/cases')
-def cases():
-    cases = Case.query.all()
-    return render_template('case/index.html', cases=cases)
+@app.route('/signals')
+def signals():
+    signals = Signal.query.all()
+    return render_template('signal/index.html', signals=signals)
 
-@app.route('/case', methods = ['POST', 'GET'])
-def case():
+@app.route('/signal', methods = ['POST', 'GET'])
+def signal():
 
     if request.method == 'POST':
 
-        case  = Case(age=int(request.form['age']),
+        signal = Signal(age=int(request.form['age']),
             report_date=dt.datetime.strptime(request.form['report_date'], '%Y-%m-%d').date(),
             sex=request.form['sex'],
             geometry='POINT({} {})'.format(request.form['lng'], request.form['lat'])
         )
 
-        db.session.add(case)
+        db.session.add(signal)
         db.session.commit()
 
-        return redirect(url_for('foo'))
+        return redirect(url_for('signals'))
 
-    return render_template('case/create.html')
+    return render_template('signal/create.html')
 
 
 

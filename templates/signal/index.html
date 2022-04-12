@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Cases{% endblock %}
+{% block title %}Signals{% endblock %}
 
 
 {% block content %}
   <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-    <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('case')}}">Add new case</a>
-    <h1 class="bd-title" id="content">Cases</h1>
+    <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('signal')}}">Add new signal</a>
+    <h1 class="bd-title" id="content">Signals</h1>
   </div>
 
+  <div class="alert alert-info">
+    This is just intended to allow entering temporal and spatially qualified signals for testing the pipeline.
+  </div>
 
   <div class="row">
 
@@ -25,12 +28,12 @@
         </thead>
 
         <tbody>
-          {% for case in cases %}
+          {% for s in signals %}
             <tr>
-              <td>{{ case.id }}</td>
-              <td>{{ case.report_date }}</td>
-              <td>{{ case.sex }}</td>
-              <td>{{ case.age }}</td>
+              <td>{{ s.id }}</td>
+              <td>{{ s.report_date }}</td>
+              <td>{{ s.sex }}</td>
+              <td>{{ s.age }}</td>
             </tr>
           {% endfor %}
         </tbody>
@@ -56,18 +59,18 @@
     preferCanvas: true
   }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
 
-  cases=[]
-  {% for c in cases %}
-    var m = L.marker([{{ c.point().y}}, {{ c.point().x}}] )
-    .bindPopup(`<h4>Case: {{ c.id }}</h4>`);
+  var signals=[]
+  {% for s in signals %}
+    var s = L.marker([{{ s.point().y}}, {{ s.point().x}}] )
+    .bindPopup(`<h4>Signal: {{ s.id }}</h4>`);
 
-    cases.push(m);
+    signals.push(s);
   {% endfor %}
-  var group_markers = L.featureGroup(cases).addTo(map);
+  var group_signals = L.featureGroup(signals).addTo(map);
 
   var layerControl = L.control.layers().addTo(map);
   layerControl.addBaseLayer(osm, 'OSM');
-  layerControl.addOverlay(group_markers, 'Cases');
+  layerControl.addOverlay(group_signals, 'Signals');
 
 </script>
 {% endblock %}
