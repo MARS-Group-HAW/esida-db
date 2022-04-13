@@ -112,8 +112,9 @@ def download_csv(shape_id):
     dfs = []
 
     for p in params:
-        dfs.append(pd.read_sql_query('SELECT year, value as {} FROM {} WHERE district_id={}'.format(p, p, int(shape_id)), con=engine))
-
+        pm = importlib.import_module('parameters.{}'.format(p))
+        dfs.append(pm.download(int(shape_id), engine))
+        # dfs.append(pd.read_sql_query('SELECT year, value as {} FROM {} WHERE district_id={}'.format(p, p, int(shape_id)), con=engine))
 
     df = dfs[0]
     for i in range(1, len(dfs)):

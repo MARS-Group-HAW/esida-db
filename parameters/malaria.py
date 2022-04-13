@@ -1,12 +1,5 @@
 """
-Demographic	Population counts
-
-
-- tiff 100 x 100 m
-- sum total number
-- Annualy (2010-2020)
-- [Worldpop](https://www.worldpop.org/geodata/listing?id=69)
-
+Malaria incidence found by Juliane.
 """
 
 import rasterio
@@ -15,20 +8,20 @@ import os
 import numpy as np
 import pandas as pd
 
-parameter_id = 'worldpop_popc'
+parameter_id = 'malaria'
 
 def consume(file):
-    x = re.search(r'[0-9]+', os.path.basename(file))
+    x = re.search(r'[0-9]{4}', os.path.basename(file))
     year = int(x[0])
 
     dataset = rasterio.open(file)
     band1 = dataset.read(1, masked=True)
 
-    return {'value': np.nansum(band1), 'year': year}
+    return {'value': np.nanmean(band1), 'year': year}
 
 def to_sql(rows, engine):
     df = pd.DataFrame(rows)
-    df.to_sql(parameter_id, engine)
+    df.to_sql(parameter_id, engine, if_exists='replace')
 
 def download(shape_id, engine):
     sql = "SELECT year, value as {} FROM {} WHERE district_id = {}".format(
