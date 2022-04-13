@@ -31,6 +31,15 @@ shapes=[]
 {% endfor %}
 var group_districts = L.featureGroup(shapes).addTo(map);
 
+regions=[]
+{% for region in regions %}
+  var s = L.geoJSON({{ region['geojson']|safe }} )
+  .bindPopup(`<h4>{{ region['name'] }}</h4>`);
+
+  regions.push(s);
+{% endfor %}
+var group_regions = L.featureGroup(regions).addTo(map);
+
 weatherstations=[]
 {% for station in meteostat %}
 {% if station['count'] > 0 %}
@@ -47,6 +56,8 @@ var group_stations = L.featureGroup(weatherstations).addTo(map);
 var layerControl = L.control.layers().addTo(map);
 layerControl.addBaseLayer(osm, 'OSM');
 layerControl.addOverlay(group_districts, 'Districts');
+layerControl.addOverlay(group_regions, 'Regions');
+
 layerControl.addOverlay(group_stations, 'Weather stations (Meteostat)');
 
 </script>
