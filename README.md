@@ -10,6 +10,9 @@ Import shape files with:
 
     $ shp2pgsql "./input/shapes/Districts_Shapefiles_2019/Districts and TC as 2020 FIXED.shp" districts | psql -h localhost -d esida -U esida
 
+    $ shp2pgsql "./input/shapes/Districts_Shapefiles_2019/Regions based on Distrcits.shp" regions | psql -h localhost -d esida -U esida
+
+
 
 Start Flask web-interface:
 
