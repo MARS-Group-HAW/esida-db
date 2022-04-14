@@ -164,3 +164,4 @@ pgdata/
 /input/data/
 /config.ini
 .DS_Store
+/.vscode
