@@ -9,7 +9,8 @@
 
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Key</th>
+        <th>Summary</th>
         <th class="no-sort">Actions</th>
       </tr>
     </thead>
@@ -18,6 +19,7 @@
       {% for parameter in parameters %}
       <tr>
         <td class="align-middle">{{ parameter['name'] }}</td>
+        <td>-</td>
         <td>
           <a href="{{ url_for('parameter', parameter_name=parameter['name']) }}"  class="btn btn-sm btn-link">Details</a>
         </td>
