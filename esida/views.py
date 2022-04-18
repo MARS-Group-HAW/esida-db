@@ -1,53 +1,16 @@
-from flask import Flask
-from flask import render_template, make_response, abort, request, redirect, url_for
-
-from sqlalchemy.sql import func
-from geoalchemy2.types import Geometry
-from geoalchemy2.shape import to_shape
-
-
-from dbconf import get_engine, get_conn_string
-import pandas as pd
-
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-
-import datetime as dt
-
-import pkgutil
 import importlib
 
+from esida import app, params
+from flask import render_template, make_response, abort, request, redirect, url_for
 import markdown
-
 from slugify import slugify
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = get_conn_string()
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+from dbconf import get_engine
+from esida.models import Signal
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
-
-class Signal(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime(timezone=True),
-                           server_default=func.now())
-    edited_at = db.Column(db.DateTime(timezone=True),
-                           server_default=func.now())
-
-    age = db.Column(db.Integer, nullable=False)
-    report_date = db.Column(db.Date, nullable=False)
-    sex = db.Column(db.String(255), nullable=False)
-    geometry = db.Column(Geometry('POINT'), nullable=False)
-
-
-    def point(self):
-        return to_shape(self.geometry)
-
-
+@app.route("/test")
+def test():
+    return str(params)
 
 @app.route("/")
 def index():
@@ -132,15 +95,17 @@ def download_csv(shape_id):
 
 @app.route('/parameter')
 def parameters():
-    parameters = []
+    print(params)
+    pars = []
     for p in params:
+        print(p)
         pm = importlib.import_module('parameters.{}'.format(p))
-        parameters.append({
+        pars.append({
             'name': pm.__name__.split('.')[1],
             'description': pm.__doc__,
         })
 
-    return render_template('parameters.html', parameters=parameters)
+    return render_template('parameters.html', parameters=pars)
 
 @app.route("/parameter/<string:parameter_name>")
 def parameter(parameter_name):
