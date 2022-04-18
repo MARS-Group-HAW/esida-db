@@ -24,7 +24,7 @@ def compute(df):
     return df
 
 def download(shape_id, engine):
-    sql = "SELECT year, avg as {} FROM {} WHERE region_id = (SELECT region_cod FROM districts WHERE gid = {})".format(
+    sql = "SELECT year, avg as {} FROM {} WHERE region_id = (SELECT region_id FROM district WHERE id = {})".format(
         parameter_id, parameter_id,
         shape_id
     )

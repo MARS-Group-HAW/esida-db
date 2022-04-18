@@ -6,7 +6,7 @@ import markdown
 from slugify import slugify
 
 from dbconf import get_engine
-from esida.models import Signal
+from esida.models import Region, District, Signal
 
 @app.route("/test")
 def test():
@@ -14,16 +14,8 @@ def test():
 
 @app.route("/")
 def index():
-    engine = get_engine()
-
-    shapes=[]
-    meteostat=[]
-    with engine.connect() as con:
-        rs = con.execute('SELECT gid, region_nam as region, newdist20 AS name, ST_AsGeoJSON(geom) AS geojson, ST_AsText(geom) as wkt FROM districts')
-        for row in rs:
-            shapes.append(dict(row))
-
-    return render_template('table.html', shapes=shapes)
+    districts = District.query.all()
+    return render_template('table.html', shapes=districts)
 
 @app.route("/map")
 def map():
@@ -34,11 +26,11 @@ def map():
     regions=[]
     meteostat=[]
     with engine.connect() as con:
-        rs = con.execute('SELECT gid, newdist20 AS name, ST_AsGeoJSON(geom) AS geojson FROM districts')
+        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson FROM district')
         for row in rs:
             shapes.append(dict(row))
 
-        rs = con.execute('SELECT gid, region_nam AS name, ST_AsGeoJSON(geom) AS geojson FROM regions')
+        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson FROM region')
         for row in rs:
             regions.append(dict(row))
 
@@ -56,7 +48,7 @@ def shape(shape_id):
     shape=None
     with engine.connect() as con:
         # well this not good style...
-        rs = con.execute('SELECT gid, newdist20 AS name, ST_AsGeoJSON(geom) AS geojson,  ST_AsText(geom) as wkt FROM districts WHERE gid={}'.format(int(shape_id)))
+        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson, ST_AsText(geometry) as wkt FROM district WHERE id={}'.format(int(shape_id)))
         shape = rs.fetchone()
 
 
@@ -69,7 +61,7 @@ def download_csv(shape_id):
     shape=None
     with engine.connect() as con:
         # well this not good style...
-        rs = con.execute('SELECT gid, newdist20 AS name, ST_AsGeoJSON(geom) AS geojson FROM districts WHERE gid={}'.format(int(shape_id)))
+        rs = con.execute('SELECT id, name FROM district WHERE id={}'.format(int(shape_id)))
         shape = rs.fetchone()
 
     dfs = []

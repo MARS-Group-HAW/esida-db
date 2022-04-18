@@ -18,11 +18,11 @@
     <tbody>
       {% for shape in shapes %}
       <tr>
-        <td class="align-middle">{{ shape['region'] }}</td>
-        <td class="align-middle">{{ shape['name'] }}</td>
+        <td class="align-middle">{{ shape.region_name }}</td>
+        <td class="align-middle">{{ shape.name }}</td>
         <td>
-          <a href="{{ url_for('download_csv', shape_id=shape['gid']) }}" download class="btn btn-sm btn-outline-primary">Parameters as CSV</a>
-          <a href="{{ url_for('shape', shape_id=shape['gid']) }}" class="btn btn-sm btn-link">Details</a>
+          <a href="{{ url_for('download_csv', shape_id=shape.id) }}" download class="btn btn-sm btn-outline-primary">Parameters as CSV</a>
+          <a href="{{ url_for('shape', shape_id=shape.id) }}" class="btn btn-sm btn-link">Details</a>
         </td>
       </tr>
     {% endfor %}

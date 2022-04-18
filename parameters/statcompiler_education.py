@@ -8,8 +8,6 @@
 import os
 import pandas as pd
 
-from app import shape
-
 indicators = ['ED_EDUC_W_MYR', 'ED_EDUC_M_MYR']
 parameter_id = 'statcompiler_education'
 
@@ -27,7 +25,7 @@ def compute(df):
 
 
 def download(shape_id, engine):
-    sql = "SELECT year, avg as {} FROM {} WHERE region_id = (SELECT region_cod FROM districts WHERE gid = {})".format(
+    sql = "SELECT year, avg as {} FROM {} WHERE region_id = (SELECT region_id FROM district WHERE id = {})".format(
         parameter_id, parameter_id,
         shape_id
     )
