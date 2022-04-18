@@ -2,13 +2,12 @@
 # provides a connect() function that returns a SQLAlchemy connection to the database passed to config(); sample uses config() defaults.
 
 from sqlalchemy import create_engine
-from config import config
+from decouple import config
 
 def get_conn_string():
     try:
         # read connection params
-        params = config()
-        return f"postgresql://{params['username']}:{params['password']}@{params['hostname']}:{params['port']}/{params['database']}"
+        return f"postgresql://{config('POSTGIS_USER')}:{config('POSTGIS_PASS')}@{config('POSTGIS_HOST')}:{config('POSTGIS_PORT')}/{config('POSTGIS_DB')}"
     except:
         return print("Could not build connection string.")
 
@@ -28,11 +27,8 @@ def connect():
     """ Connect to the PostgreSQL database server """
 
     try:
-        # read connection params
-        params = config()
-
         # connect to PostgreSQL server
-        engine = create_engine(conn_string)
+        engine = get_engine()
 
         connection = engine.connect()
 
