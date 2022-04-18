@@ -7,6 +7,7 @@ import pkgutil
 import click
 import pandas as pd
 import geopandas
+from meteostat import Stations, Daily
 
 import esida.statcompiler as stc
 from dbconf import get_engine
@@ -60,7 +61,7 @@ def statcompiler(parameter):
 
         # safe raw data
         output_dir = Path(f'input/data/{p}/')
-        output_file = '{}_data.csv'.format(dt.datetime.today().strftime('%Y-%m-%d_%H-%M-%S'))
+        output_file = '{}_data_{}.csv'.format(dt.datetime.today().strftime('%Y-%m-%d_%H-%M-%S'), p)
         output_dir.mkdir(parents=True, exist_ok=True)
         df.to_csv(output_dir / output_file, index=False)
 
@@ -79,6 +80,54 @@ def statcompiler(parameter):
         df = pm.compute(df)
 
         pm.to_sql(df, engine)
+
+
+@cli.command()
+def meteostat():
+    """ Fetch meteostat stations and data. """
+
+    # Database access
+    engine  = get_engine()
+
+    # fetch Meteostat weather stations for TZ
+    stations = Stations()
+    stations = stations.region('TZ')
+    print('Stations in Tanzania:', stations.count())
+
+    df = stations.fetch()
+
+    # Meteostat ID is not always numerical. Safe the internal Meteostat ID
+    # but add an numerical index for smooth PostGis access
+    df['meteostat_id'] = df.index
+    df.insert(0, 'meteostat_id', df.pop('meteostat_id')) # move meteostat ID to second column (directly ≤after index)
+
+    df['id'] = range(1, len(df)+1)
+    df.insert(0, 'id', df.pop('id'))
+
+    gdf = geopandas.GeoDataFrame(
+        df, geometry=geopandas.points_from_xy(df.longitude, df.latitude))
+
+
+    gdf.to_postgis("meteostat_stations", engine, if_exists='replace')
+
+
+    # loop over all stations and collect daily values
+    start = dt.datetime(2000, 1, 1)
+    end = dt.datetime(2021, 3, 31)
+
+    dfs = []
+
+    for i, row in gdf.iterrows():
+        print("Fetching {} ({})".format(row['name'], row['meteostat_id']))
+        data = Daily(row['meteostat_id'], start, end)
+        data = data.fetch()
+
+        print("Found {} rows".format(len(data)))
+        data['meteostat_station_id'] = row['id']
+        dfs.append(data)
+
+    merged_df = pd.concat(dfs)
+    merged_df.to_sql("meteostat_data", engine, if_exists='replace')
 
 
 
