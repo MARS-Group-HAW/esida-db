@@ -14,14 +14,16 @@ parameter_id = 'statcompiler_education'
 def consume(file):
     pass
 
+
+def compute(df):
+    df['avg'] = df[indicators].mean(axis=1)
+    return df
+
+
 def to_sql(df, engine):
     df.to_sql(parameter_id, engine)
 
-def compute(df):
-    df['sum'] = df[indicators].sum(axis=1, min_count=1)
-    df['avg'] = df[indicators].mean(axis=1)
 
-    return df
 
 
 def download(shape_id, engine):
