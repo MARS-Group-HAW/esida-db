@@ -87,10 +87,8 @@ def download_csv(shape_id):
 
 @app.route('/parameter')
 def parameters():
-    print(params)
     pars = []
     for p in params:
-        print(p)
         pm = importlib.import_module('parameters.{}'.format(p))
         pars.append({
             'name': pm.__name__.split('.')[1],
