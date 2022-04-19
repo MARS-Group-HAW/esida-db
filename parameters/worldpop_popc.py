@@ -9,6 +9,7 @@ Demographic	Population counts
 
 """
 
+import subprocess
 import rasterio
 import re
 import os
@@ -39,3 +40,8 @@ def download(shape_id, engine):
     df = pd.read_sql_query(sql, con=engine)
 
     return df
+
+def get():
+    for y in range(2010, 2020+1):
+        url = f"https://data.worldpop.org/GIS/Population/Global_2000_2020/{y}/TZA/tza_ppp_{y}_UNadj.tif"
+        print(subprocess.check_output(['wget', url, "-P", "./input/data/worldpop_popc"]))

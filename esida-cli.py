@@ -41,6 +41,15 @@ def init():
     districts_gdf.to_postgis('district', get_engine(), if_exists='append')
 
 @cli.command()
+def get():
+    """ Download input from sources to local store. """
+    params  = ['worldpop_poverty', 'worldpop_popc']
+
+    params  = ['worldpop_popc']
+    for p in params:
+        pm = importlib.import_module('parameters.{}'.format(p))
+        pm.get()
+@cli.command()
 @click.option('-p', '--parameter', default=None, type=str)
 def statcompiler(parameter):
     """ Import statcompiler sources. """
