@@ -49,6 +49,53 @@ def get():
     for p in params:
         pm = importlib.import_module('parameters.{}'.format(p))
         pm.get()
+
+@cli.command()
+@click.option('-p', '--parameter', default=None, type=str)
+def regiontiffs(parameter):
+    """ Import locally prepared regional GeoTiffs with individual logic. """
+    params  = ['worldpop_bsgme', 'worldpop_pd', 'worldpop_popc', 'malaria']
+    if parameter is not None:
+        params = [parameter]
+
+    engine  = get_engine()
+    outputs = sorted(os.listdir("./output/"))
+
+    cwd = os.getcwd()
+    df = pd.read_sql_query('SELECT id, name FROM district', con=engine)
+
+    # loop over all defined parameters
+    for p in params:
+        pm = importlib.import_module('parameters.{}'.format(p))
+
+        rows = []
+
+        for _, row in df.iterrows():
+            shape=row['name'] # reconstruct output folder name
+            shape_out_dir = os.path.join(cwd, 'output', shape)
+
+            if not os.path.isdir(shape_out_dir):
+                continue
+
+            param_dir = os.path.join(shape_out_dir, p)
+
+            if os.path.isdir(param_dir):
+                # multiple files per parameter for multiple years
+                files = sorted([s for s in os.listdir(param_dir) if s.rpartition('.')[2] in ('tiff','tif')])
+                print(files)
+                for f in files:
+                    s  = pm.consume(os.path.join(param_dir, f), district_id=row['id'])
+                    s['district_id'] = row['id']
+
+                    rows.append(s)
+                    print("\t{} - ".format(f) + str(s))
+            else:
+                print("no feature for {}".format(shape))
+
+        pm.to_sql(rows, engine)
+
+
+
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)
 def statcompiler(parameter):
