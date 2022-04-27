@@ -1,5 +1,19 @@
 # ESIDA DB GIS Data
 
+
+## Development
+
+Build Docker container:
+
+    $ docker build -t esida-db .
+
+Run docker container locally:
+
+    $ docker run -e -p 8080:80 esida-db
+
+The database now runs at http://localhost:8080/ (but with no database)
+
+
 ## Setup
 
 Install postgis with

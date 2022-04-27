@@ -5,7 +5,6 @@ RUN mkdir -p /app
 # We copy just the requirements.txt first to leverage Docker cache
 COPY ./requirements.txt /app/requirements.txt
 
-
 # install pip and postgresql binaries so pycog2 will install
 RUN apt-get update && apt-get install -y \
     python3-pip \
@@ -23,4 +22,5 @@ RUN export FLASK_APP=esida
 
 EXPOSE 80
 
-ENTRYPOINT gunicorn --bind 0.0.0.0:80 esida:app
+# parameter for ENTRYPOINT (i.e. docker run <image> <cmd> can be used to overwrite this)
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "esida:app"]
