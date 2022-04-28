@@ -8,9 +8,6 @@ from slugify import slugify
 from dbconf import get_engine
 from esida.models import Region, District, Signal
 
-@app.route("/test")
-def test():
-    return str(params)
 
 @app.route("/")
 def index():
