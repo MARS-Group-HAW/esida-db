@@ -54,6 +54,9 @@ def download(shape_id, engine):
 
     return df
 
-def get():
-    #subprocess.check_output(['ls', '-l'])  # All that is technically needed...
-    print(subprocess.check_output(['wget', 'https://data.worldpop.org/GIS/Development_and_health_indicators/Individual_countries/Poverty/TZA/80.7z', "-P", "./input/data/worldpop_poverty"]))
+def extract():
+    """ Download needed files, since this is 7z archive and we don't want
+    to clutter out container with many tools, and die actual files are
+    not that large, we also have those files in the git repository"""
+    pass
+    #subprocess.check_output(['wget', 'https://data.worldpop.org/GIS/Development_and_health_indicators/Individual_countries/Poverty/TZA/80.7z', "-P", "./input/data/worldpop_poverty"])

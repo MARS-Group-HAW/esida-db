@@ -4,6 +4,8 @@ from pathlib import Path
 import importlib
 import pkgutil
 
+import logging
+
 import click
 import pandas as pd
 import geopandas
@@ -11,7 +13,10 @@ from meteostat import Stations, Daily
 
 import esida.statcompiler as stc
 from dbconf import get_engine
+import log
 
+
+logger = log.setup_custom_logger('root')
 
 @click.group()
 def cli():
@@ -41,14 +46,20 @@ def init():
     districts_gdf.to_postgis('district', get_engine(), if_exists='append')
 
 @cli.command()
-def get():
+@click.option('-p', '--parameter', default=None, type=str)
+def extract(parameter):
     """ Download input from sources to local store. """
-    params  = ['worldpop_poverty', 'worldpop_popc']
+    params  = ['worldpop_poverty', 'worldpop_popc', 'worldpop_pd',
+    'worldpop_bsgme']
 
-    params  = ['worldpop_popc']
+    if parameter is not None:
+        params = [parameter]
+
     for p in params:
-        pm = importlib.import_module('parameters.{}'.format(p))
-        pm.get()
+        logger.info(f"Calling EXTRACT for parameter {p}")
+        pm = importlib.import_module(f'parameters.{p}')
+        pm.extract()
+
 
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)
