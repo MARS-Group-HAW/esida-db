@@ -21,7 +21,7 @@ from urllib.parse import urlparse
 parameter_id = 'worldpop_pd'
 logger = logging.getLogger('root')
 
-def consume(file):
+def consume(file, district_id=None):
     x = re.search(r'[0-9]+', os.path.basename(file))
     year = int(x[0])
 

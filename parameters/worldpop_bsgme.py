@@ -28,7 +28,7 @@ parameter_id = 'worldpop_bsgme'
 logger = logging.getLogger('root')
 
 
-def consume(file):
+def consume(file, district_id=None):
     x = re.search(r'[0-9]{4}', os.path.basename(file))
     year = int(x[0])
 

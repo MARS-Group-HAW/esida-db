@@ -10,7 +10,7 @@ import pandas as pd
 
 parameter_id = 'malaria'
 
-def consume(file):
+def consume(file, district_id=None):
     x = re.search(r'[0-9]{4}', os.path.basename(file))
     year = int(x[0])
 
