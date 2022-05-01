@@ -4,7 +4,8 @@ FROM osgeo/gdal:ubuntu-small-3.4.2
 RUN apt-get update && apt-get install -y \
     python3-pip \
     libpq-dev \
-    rsync
+    rsync \
+    wget
 
 RUN mkdir -p /app
 
