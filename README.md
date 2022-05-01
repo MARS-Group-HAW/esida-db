@@ -1,5 +1,15 @@
-# ESIDA DB GIS Data
+# ESIDA DB Pipeline
 
+
+
+
+## Initial setup
+
+After initial starting of the system, you need to-to the following steps:
+
+    $ flask init-db # setup required database columns
+    $ python esida-cli.py init # import region/district shape files into db
+    $ python esida-cli.py meteostat # import Metestat stations for tanzania
 
 ## Development
 
@@ -13,6 +23,43 @@ Run docker container locally:
 
 The database now runs at http://localhost:8080/ (but with no database)
 
+
+## HAW ICC Deployment
+
+Create Kubernetes (k8s) space:
+
+    $ kubectl apply -f ./k8s/space-esida.yaml
+
+Access for further HAW users can be added with the `k8s/rolebinding.yaml`.
+
+Create PersistentVolumeClaim's (PVC) for permanent storage independed of container life-cycle:
+
+    $ kubectl apply -f ./k8s/pvc-postgis.yaml        # Storage of PostGis database
+    $ kubectl apply -f ./k8s/pvc-esidadb-input.yaml  # Storage of input data of the pipeline
+    $ kubectl apply -f ./k8s/pvc-esidadb-output.yaml # Storage of output files (per district files i.e.)
+
+Create Service and Deployment for PostGIS database and ESIDA DB pipeline/flask app:
+
+
+Login to the pods:
+
+    $ kubectl exec -it <Name des Pods> -n <space-name> -- bash
+    $ kubectl exec -it $(kubectl -n esida get pod | grep esida-db | awk '{ print $1 }') -n esida -- bash
+
+Port forwarding to access pod:e
+
+    $ kubectl port-forward <pod> -n esida 8432:80
+
+
+Delete something
+
+    $ kubectl delete -f ./k8s/<file.yaml>
+
+Debugging:
+
+    $ kubectl describe pods -n esida # might hint deploymentment issues
+
+---
 
 ## Setup
 
