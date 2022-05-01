@@ -1,6 +1,8 @@
 import importlib
+import datetime as dt
 
-from esida import app, params
+
+from esida import app, params, db
 from flask import render_template, make_response, abort, request, redirect, url_for
 import markdown
 from slugify import slugify
@@ -116,7 +118,6 @@ def signals():
 
 @app.route('/signal', methods = ['POST', 'GET'])
 def signal():
-
     if request.method == 'POST':
 
         signal = Signal(age=int(request.form['age']),
@@ -136,5 +137,3 @@ def signal():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
-
-
