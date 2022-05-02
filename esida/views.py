@@ -25,6 +25,8 @@ def map():
     shapes=[]
     regions=[]
     meteostat=[]
+    tza_hfr=[]
+    tza_hfr_categories=[]
     with engine.connect() as con:
         rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson FROM district')
         for row in rs:
@@ -38,7 +40,17 @@ def map():
         for row in rs:
             meteostat.append(dict(row))
 
-    return render_template('map.html', shapes=shapes, meteostat=meteostat, regions=regions)
+        rs = con.execute('SELECT t."ID", t."Facility Name", t."Facility Type", t."Latitude", t."Longitude" FROM tza_hfr_healthfacilities t')
+        for row in rs:
+            tza_hfr.append(dict(row))
+
+        rs = con.execute('SELECT t."Facility Type", COUNT(*) as count FROM tza_hfr_healthfacilities t WHERE t."Facility Type" IS NOT NULL GROUP BY t."Facility Type" ORDER BY count DESC;')
+        for row in rs:
+            tza_hfr_categories.append(dict(row))
+
+
+
+    return render_template('map.html', shapes=shapes, meteostat=meteostat, regions=regions, tza_hfr=tza_hfr, tza_hfr_categories=tza_hfr_categories)
 
 
 @app.route("/shape/<int:shape_id>")
