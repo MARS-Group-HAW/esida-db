@@ -22,14 +22,6 @@ var map = L.map('map', {
   preferCanvas: true
 }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
 
-shapes=[]
-{% for shape in shapes %}
-  var s = L.geoJSON({{ shape['geojson']|safe }} )
-  .bindPopup(`<h4>{{ shape['name'] }}</h4>  <a href="{{ url_for('shape', shape_id=shape['id']) }}" class="btn btn-link">Details</a>`);
-
-  shapes.push(s);
-{% endfor %}
-var group_districts = L.featureGroup(shapes).addTo(map);
 
 regions=[]
 {% for region in regions %}
@@ -39,6 +31,15 @@ regions=[]
   regions.push(s);
 {% endfor %}
 var group_regions = L.featureGroup(regions).addTo(map);
+
+shapes=[]
+{% for shape in shapes %}
+  var s = L.geoJSON({{ shape['geojson']|safe }} )
+  .bindPopup(`<h4>{{ shape['name'] }}</h4>  <a href="{{ url_for('shape', shape_id=shape['id']) }}" class="btn btn-link">Details</a>`);
+
+  shapes.push(s);
+{% endfor %}
+var group_districts = L.featureGroup(shapes).addTo(map);
 
 weatherstations=[]
 {% for station in meteostat %}
@@ -55,9 +56,8 @@ var group_stations = L.featureGroup(weatherstations).addTo(map);
 
 var layerControl = L.control.layers().addTo(map);
 layerControl.addBaseLayer(osm, 'OSM');
-layerControl.addOverlay(group_districts, 'Districts');
 layerControl.addOverlay(group_regions, 'Regions');
-
+layerControl.addOverlay(group_districts, 'Districts');
 layerControl.addOverlay(group_stations, 'Weather stations (Meteostat)');
 
 </script>
