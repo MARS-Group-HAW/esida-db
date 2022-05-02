@@ -10,6 +10,7 @@ from slugify import slugify
 from dbconf import get_engine
 from esida.models import Region, District, Signal
 
+import pandas as pd
 
 @app.route("/")
 def index():
@@ -51,7 +52,23 @@ def shape(shape_id):
         shape = rs.fetchone()
 
 
-    return render_template('shape.html', shape=shape)
+    return render_template('shape.html', shape=shape, params=params, data=_get_parameters_for_district(shape_id))
+
+def _get_parameters_for_district(district_id) -> pd.DataFrame:
+    dfs = []
+
+    for p in params:
+        pm = importlib.import_module('parameters.{}'.format(p))
+        dfs.append(pm.download(int(district_id), get_engine()))
+
+    df = dfs[0]
+    for i in range(1, len(dfs)):
+        df = df.merge(dfs[i], how='outer', on='year')
+
+    df = df.sort_values(by=['year']).reset_index()
+
+    return df
+
 
 @app.route('/shape/<int:shape_id>/parameters')
 def download_csv(shape_id):

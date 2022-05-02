@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='Highcharts/css/highcharts.css') }}">
 
     <title>{% block title %}{% endblock %} - ESIDA DB</title>
   </head>
@@ -55,6 +56,9 @@
     <script src="{{ url_for('static', filename='leaflet/leaflet.js') }}"></script>
     <script src="{{ url_for('static', filename='jQuery/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='DataTables/datatables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Highcharts/highcharts.js') }}"></script>
+
+
     {% block footer %}{% endblock %}
 
   </body>

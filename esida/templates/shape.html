@@ -29,9 +29,109 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-12">
+      <h3>Data visualization</h3>
+      <p>
+        You can toggle the different parameters on the left pane to show them inside the line-chart.
+      </p>
+    </div>
+
+    <div class="col-3">
+
+      {% for p in data.columns[2:] %}
+        <button type="button" data-bs-toggle="button" class="btn btn-sm btn-outline-secondary js-highchart-add-series mb-1" data-id="{{ p }}">{{ p }}</button>
+
+      {% endfor %}
+
+    </div>
+    <div class="col-9">
+      <div id="chart"></div>
+    </div>
+
+  </div>
+
 {% endblock %}
 
 {% block footer %}
+<script>
+
+var data = {{ data.to_json(orient="columns")|safe }}
+
+var chart = Highcharts.chart('chart', {
+  chart: {
+    type: 'spline'
+  },
+
+  title: {
+    text: 'Parameter values for {{ shape['name'] }}'
+  },
+  yAxis: {
+    title: {
+      text: 'Value of parameter'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    title: {
+      text: 'Date'
+    }
+  },
+
+  plotOptions: {
+    series: {
+      marker: {
+        enabled: true
+      }
+    }
+  },
+
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+  },
+
+  responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+  }
+});
+
+$('.js-highchart-add-series').on('click', function() {
+  var id = $(this).data('id');
+  var becameActive = $(this).hasClass('active');
+
+  if (becameActive) {
+    var values = [];
+    for(var k in data[id]) {
+      values.push([Date.UTC(data['year'][k]), data[id][k]]);
+    }
+
+    chart.addSeries({
+      id: id,
+      name: id,
+      data: values
+    });
+  } else {
+    series = chart.get(id);
+    if (series) {
+      series.remove();
+    }
+  }
+});
+</script>
+
 <script>
   var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
