@@ -50,6 +50,8 @@ Port forwarding to access pod:e
 
     $ kubectl port-forward <pod> -n esida 8432:80
 
+    $ kubectl exec -it $(kubectl -n esida get pod | grep postgis | awk '{ print $1 }') -n esida 5432:5432
+
 
 Delete something
 

@@ -63,9 +63,38 @@ def extract(parameter):
 
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)
+def transform(parameter):
+    """ Download input from sources to local store. """
+    params  = ['tza_hfr']
+
+    if parameter is not None:
+        params = [parameter]
+
+    for p in params:
+        logger.info("Calling TRANSFORM for parameter %s", p)
+        pm = importlib.import_module(f'parameters.{p}')
+        pm.transform()
+
+@cli.command()
+@click.option('-p', '--parameter', default=None, type=str)
+def load(parameter):
+    """ Download input from sources to local store. """
+    params  = ['tza_hfr']
+
+    if parameter is not None:
+        params = [parameter]
+
+    for p in params:
+        logger.info("Calling LOAD for parameter %s", p)
+        pm = importlib.import_module(f'parameters.{p}')
+        pm.load()
+
+
+@cli.command()
+@click.option('-p', '--parameter', default=None, type=str)
 def regiontiffs(parameter):
     """ Import locally prepared regional GeoTiffs with individual logic. """
-    params  = ['worldpop_bsgme', 'worldpop_pd', 'worldpop_popc', 'malaria']
+    params  = ['worldpop_bsgme', 'worldpop_pd', 'worldpop_popc', 'worldpop_poverty', 'malaria']
     if parameter is not None:
         params = [parameter]
 
