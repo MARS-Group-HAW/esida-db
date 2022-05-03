@@ -128,11 +128,22 @@ def parameter(parameter_name):
     if parameter_name not in params:
         abort(500)
 
-    pm = importlib.import_module('parameters.{}'.format(parameter_name))
+    pm = importlib.import_module(f'parameters.{parameter_name}')
+    docblock = pm.__doc__ or "*please add docstring to module*"
+
+    # check meta data directory
+    docfile = f"input/meta_data/{parameter_name}.md"
+    if os.path.isfile(docfile):
+        with open(docfile) as f:
+            docblock = f.read()
+
+    docmd = markdown.markdown(docblock, extensions=['tables'])
+    docmd = docmd.replace('<table>', '<table class="table table-sm table-meta_data">')
+
     parameter = {
         'name': pm.__name__.split('.')[1],
         'description': pm.__doc__,
-        'description_html': markdown.markdown(pm.__doc__ or "*please add docstring to module*", extensions=['tables']),
+        'description_html': docmd,
     }
 
     return render_template('parameter.html', parameter=parameter)

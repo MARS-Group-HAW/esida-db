@@ -1,3 +1,8 @@
 .footer-copy {
   border-top: 1px solid var(--bs-gray-200);
 }
+
+
+.table-meta_data thead th:first-child {
+  width: 33%;
+}
