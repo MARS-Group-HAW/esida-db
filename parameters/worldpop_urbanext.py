@@ -24,7 +24,7 @@ from urllib.parse import urlparse
 import numpy as np
 import pandas as pd
 
-parameter_id = 'worldpop_bsgme'
+parameter_id = 'worldpop_urbanext'
 logger = logging.getLogger('root')
 
 
@@ -38,14 +38,14 @@ def consume(file, district_id=None):
     total_cells = band1.count()
     set_cells = np.count_nonzero(band1==1)
 
-    return {'value': set_cells / total_cells, 'year': year}
+    return {parameter_id: set_cells / total_cells, 'year': year}
 
 def to_sql(rows, engine):
     df = pd.DataFrame(rows)
     df.to_sql(parameter_id, engine)
 
 def download(shape_id, engine):
-    sql = "SELECT year, value as {} FROM {} WHERE district_id = {}".format(
+    sql = "SELECT year, {} FROM {} WHERE district_id = {}".format(
         parameter_id, parameter_id,
         shape_id
     )
@@ -70,11 +70,11 @@ def _download_file(url):
     a = urlparse(url)
     f = os.path.basename(a.path)
 
-    if os.path.isfile(f"./input/data/worldpop_bsgme/{f}"):
+    if os.path.isfile(f"./input/data/worldpop_urbanext/{f}"):
         logger.debug("Skipping b/c already downloaded %s", url)
         return
 
     try:
-        subprocess.check_output(['wget', url, "-P", "./input/data/worldpop_bsgme"])
+        subprocess.check_output(['wget', url, "-P", "./input/data/worldpop_urbanext"])
     except Exception as e:
         logger.warning("Could not download file: %s, %s", url, e)

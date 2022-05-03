@@ -68,7 +68,10 @@ def _get_parameters_for_district(district_id) -> pd.DataFrame:
 
     for p in params:
         pm = importlib.import_module('parameters.{}'.format(p))
-        dfs.append(pm.download(int(district_id), get_engine()))
+
+        rdf = pm.download(int(district_id), get_engine())
+        if not rdf.empty:
+            dfs.append(rdf)
 
     df = dfs[0]
     for i in range(1, len(dfs)):
@@ -89,18 +92,7 @@ def download_csv(shape_id):
         rs = con.execute('SELECT id, name FROM district WHERE id={}'.format(int(shape_id)))
         shape = rs.fetchone()
 
-    dfs = []
-
-    for p in params:
-        pm = importlib.import_module('parameters.{}'.format(p))
-        dfs.append(pm.download(int(shape_id), engine))
-        # dfs.append(pd.read_sql_query('SELECT year, value as {} FROM {} WHERE district_id={}'.format(p, p, int(shape_id)), con=engine))
-
-    df = dfs[0]
-    for i in range(1, len(dfs)):
-        df = df.merge(dfs[i], how='outer', on='year')
-
-    df = df.sort_values(by=['year'])
+    df = _get_parameters_for_district(shape_id)
 
     filename="esida_{}.csv".format(slugify(shape['name']))
 

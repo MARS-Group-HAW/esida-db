@@ -59,8 +59,8 @@ def init():
 @click.option('-p', '--parameter', default=None, type=str)
 def extract(parameter):
     """ Download input from sources to local store. """
-    params  = ['worldpop_poverty', 'worldpop_popc', 'worldpop_pd',
-    'worldpop_bsgme']
+    params  = ['worldpop_poverty', 'worldpop_popc', 'worldpop_popd',
+    'worldpop_urbanext']
 
     if parameter is not None:
         params = [parameter]
@@ -104,7 +104,7 @@ def load(parameter):
 @click.option('-p', '--parameter', default=None, type=str)
 def regiontiffs(parameter):
     """ Import locally prepared regional GeoTiffs with individual logic. """
-    params  = ['worldpop_bsgme', 'worldpop_pd', 'worldpop_popc', 'worldpop_poverty', 'malaria']
+    params  = ['worldpop_urbanext', 'worldpop_popd', 'worldpop_popc', 'worldpop_poverty', 'malariaatlas_incidence']
     if parameter is not None:
         params = [parameter]
 
