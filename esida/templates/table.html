@@ -10,7 +10,8 @@
     <thead>
       <tr>
         <th>Region</th>
-        <th>Name</th>
+        <th>District</th>
+        <th>Area</th>
         <th class="no-sort">Actions</th>
       </tr>
     </thead>
@@ -20,6 +21,8 @@
       <tr>
         <td class="align-middle">{{ shape.region_name }}</td>
         <td class="align-middle">{{ shape.name }}</td>
+        <td class="align-middle" data-order="{{ shape.area_sqm }}">{{ shape.human_readable_area() }} km<sup>2</sup></td>
+
         <td>
           <a href="{{ url_for('download_csv', shape_id=shape.id) }}" download class="btn btn-sm btn-outline-primary">Parameters as CSV</a>
           <a href="{{ url_for('shape', shape_id=shape.id) }}" class="btn btn-sm btn-link">Details</a>

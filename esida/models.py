@@ -2,6 +2,10 @@ from sqlalchemy.sql import func
 from geoalchemy2.types import Geometry
 from geoalchemy2.shape import to_shape
 
+import shapely.geometry
+import json
+import humanize
+
 from esida import app, db
 
 
@@ -31,9 +35,18 @@ class District(db.Model):
 
     geometry = db.Column(Geometry(srid=4326), nullable=False)
 
+    area_sqm = db.Column(db.Float, nullable=True)
+
+    def human_readable_area(self) -> str:
+        if not self.area_sqm:
+            return '-'
+        return humanize.intcomma(round(self.area_sqm/1000000, 2))
+
     def geom(self):
         return to_shape(self.geometry)
 
+    def geojson(self) -> str:
+        return json.dumps(shapely.geometry.mapping(self.geom()))
 
 class Signal(db.Model):
     id = db.Column(db.Integer, primary_key=True)

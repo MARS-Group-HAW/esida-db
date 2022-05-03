@@ -13,6 +13,30 @@
 
       <a href="{{ url_for('download_csv', shape_id=shape['id']) }}" download class="btn btn-primary">Parameters as CSV</a>
 
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Information</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Region</th>
+            <td>{{ shape.region_name }}</td>
+          </tr>
+          <tr>
+            <th>District</th>
+            <td>{{ shape.name }}</td>
+          </tr>
+          <tr>
+            <th>Area</th>
+            <td>{{ shape.human_readable_area() }} km<sup>2</sup></td>
+          </tr>
+        </tbody>
+      </table>
+
+
     </div>
 
     <div class="col col-md-6">
@@ -21,7 +45,7 @@
       <div class="mb-3">
         <label for="copy-wkt" class="form-label">Copy <abbr title="Well-known text">WKT</abbr>:</label>
         <div class="input-group">
-          <input type="text" id="copy-wkt" class="form-control" value="{{ shape['wkt']|safe }}">
+          <input type="text" id="copy-wkt" class="form-control" value="{{ shape.geom().wkt|safe }}">
           <!-- <button class="btn btn-outline-secondary" type="button" id="copy-button">Copy</button> -->
         </div>
       </div>
@@ -144,7 +168,7 @@ $('.js-highchart-add-series').on('click', function() {
   }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
 
   shapes=[]
-  var s = L.geoJSON({{ shape['geojson']|safe }} );
+  var s = L.geoJSON({{ shape.geojson()|safe }} );
   shapes.push(s);
   var group_districts = L.featureGroup(shapes).addTo(map);
   map.fitBounds(group_districts.getBounds());

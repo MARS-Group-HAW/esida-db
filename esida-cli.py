@@ -45,6 +45,16 @@ def init():
 
     districts_gdf.to_postgis('district', get_engine(), if_exists='append')
 
+    # calculate district area
+    # Date are in ESPG:4326 (deg based), so for ST_Area() to produce m2
+    # we need to convert to a meters based system. With utmzone() we identify
+    # the resp. used UTM Zone that is m based.
+    engine = get_engine()
+    with engine.connect() as con:
+        con.execute('UPDATE district SET area_sqm = \
+          ST_Area(ST_Transform(geometry, utmzone(ST_Centroid(geometry))))')
+
+
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)
 def extract(parameter):
