@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                           |
 |:----------------------------|:--------------------------------------|
 | Category                    | Health                                |
@@ -13,7 +14,9 @@
 | Temporal details            | Annualy (2000-2020)                   |
 | Source                      | Malaria Atlas Project                 |
 | Link                        | https://malariaatlas.org/explorer/#/  |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                               |
 |:--------------------------|:------------------------------------------|
 | Category                  | Health                                    |

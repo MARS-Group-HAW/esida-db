@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                  | Description                                                           |
 |:-----------------|:----------------------------------------------------------------------|
 | Category         | Enviromental                                                          |
@@ -11,7 +12,9 @@
 | Source           | Literature-based                                                      |
 | Link             | https://datadryad.org/stash/404                                       |
 | Comment          | Link is currently down, I already wrote the authors                   |
-# Data quality information 
+
+## Data quality information 
+
 |                          | Description                                                           |
 |:-------------------------|:----------------------------------------------------------------------|
 | Category                 | Enviromental                                                          |

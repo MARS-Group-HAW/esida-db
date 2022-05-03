@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                  | Description             |
 |:-----------------|:------------------------|
 | Category         | Infrastructure          |
@@ -9,7 +10,9 @@
 | Operation        | tbd                     |
 | Temporal details | up to 2012 (Census)     |
 | Source           | DHS Program             |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                  |
 |:--------------------------|:---------------------------------------------|
 | Category                  | Infrastructure                               |

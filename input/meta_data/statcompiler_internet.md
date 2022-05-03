@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                      | Description                                                          |
 |:---------------------|:---------------------------------------------------------------------|
 | Category             | Infrastructure                                                       |
@@ -13,7 +14,9 @@
 | Source               | DHS Program                                                          |
 | Link                 | https://www.statcompiler.com/en/                                     |
 | Comment              | Data set is split for men and women, we just need to combine it      |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                  |
 |:--------------------------|:---------------------------------------------|
 | Category                  | Infrastructure                               |

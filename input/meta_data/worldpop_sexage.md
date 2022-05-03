@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                      | Description                                       |
 |:---------------------|:--------------------------------------------------|
 | Category             | Demographic                                       |
@@ -12,7 +13,9 @@
 | Temporal details     | 2010 - 2020, annually                             |
 | Source               | Worldpop data                                     |
 | Link                 | https://www.worldpop.org/geodata/summary?id=50564 |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                       |
 |:--------------------------|:--------------------------------------------------|
 | Category                  | Demographic                                       |

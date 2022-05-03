@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                      | Description                                  |
 |:---------------------|:---------------------------------------------|
 | Category             | Infrastructure                               |
@@ -12,7 +13,9 @@
 | Temporal details     | up to 2017                                   |
 | Source               | DHS Program                                  |
 | Link                 | https://www.statcompiler.com/en/             |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                  |
 |:--------------------------|:---------------------------------------------|
 | Category                  | Infrastructure                               |

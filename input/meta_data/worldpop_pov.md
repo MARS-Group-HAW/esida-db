@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                                                                                         |
 |:----------------------------|:----------------------------------------------------------------------------------------------------|
 | Category                    | Demographic                                                                                         |
@@ -14,7 +15,9 @@
 | Source                      | Worldpop                                                                                            |
 | Link                        | https://www.worldpop.org/geodata/summary?id=1273                                                    |
 | Comment                     | There several files, for now use tza10povcons200.tif, there is also a laer for 1.25 dollars per day |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                      |
 |:--------------------------|:-------------------------------------------------|
 | Category                  | Demographic                                      |

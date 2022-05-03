@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                      | Description                                             |
 |:---------------------|:--------------------------------------------------------|
 | Category             | Demographic                                             |
@@ -12,7 +13,9 @@
 | Source               | Worldpop                                                |
 | Link                 | https://www.worldpop.org/geodata/summary?id=1281        |
 | Comment              | file of interest: "TZA_5yrs_InternalMigFlows_2010.csv"  |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                      |
 |:--------------------------|:-------------------------------------------------|
 | Category                  | Demographic                                      |

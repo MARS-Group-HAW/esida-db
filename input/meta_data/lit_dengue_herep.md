@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                  | Description                  |
 |:-----------------|:-----------------------------|
 | Category         | Health                       |
@@ -9,7 +10,9 @@
 | Spatial details  | Administrative levels        |
 | Temporal details | Cross-sectional observations |
 | Source           | Official authorities         |
-# Data quality information 
+
+## Data quality information 
+
 |              | Description           |
 |:-------------|:----------------------|
 | Category     | Health                |

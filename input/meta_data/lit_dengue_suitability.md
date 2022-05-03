@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                  | Description                                            |
 |:-----------------|:-------------------------------------------------------|
 | Category         | Enviromental                                           |
@@ -8,7 +9,9 @@
 | Format           | tbc                                                    |
 | Spatial details  | --                                                     |
 | Temporal details | --                                                     |
-# Data quality information 
+
+## Data quality information 
+
 |                          | Description                                            |
 |:-------------------------|:-------------------------------------------------------|
 | Category                 | Enviromental                                           |

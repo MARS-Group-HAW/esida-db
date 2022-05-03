@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                             |
 |:----------------------------|:----------------------------------------|
 | Category                    | Info                                    |
@@ -12,7 +13,9 @@
 | Spatial details             | Finest spatial resolution               |
 | Temporal details            | Finest temporal resoltion               |
 | Link                        | direct link to source                   |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                                |
 |:--------------------------|:-----------------------------------------------------------|
 | Category                  | Info                                                       |

@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                                                                                                   |
 |:----------------------------|:--------------------------------------------------------------------------------------------------------------|
 | Category                    | Enviromental                                                                                                  |
@@ -13,7 +14,9 @@
 | Temporal details            | 2018                                                                                                          |
 | Source                      | RCMRD                                                                                                         |
 | Link                        | https://opendata.rcmrd.org/datasets/tanzania-srtm-dem-30-meters/explore?location=-6.645890%2C36.133316%2C6.85 |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                                                                                   |
 |:--------------------------|:--------------------------------------------------------------------------------------------------------------|
 | Category                  | Enviromental                                                                                                  |

@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                                       |
 |:----------------------------|:--------------------------------------------------|
 | Category                    | Demographic                                       |
@@ -13,7 +14,9 @@
 | Temporal details            | Annualy (2010-2020)                               |
 | Source                      | Worldpop                                          |
 | Link                        | https://www.worldpop.org/project/categories?id=18 |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                       |
 |:--------------------------|:--------------------------------------------------|
 | Category                  | Demographic                                       |

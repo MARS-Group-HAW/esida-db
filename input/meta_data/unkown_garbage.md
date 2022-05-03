@@ -1,11 +1,14 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |              | Description        |
 |:-------------|:-------------------|
 | Category     | Infrastructure     |
 | Abbreviation | unkown_garbage     |
 | Titel        | Garbage collection |
 | Necessity    | optional           |
-# Data quality information 
+
+## Data quality information 
+
 |                          | Description                                  |
 |:-------------------------|:---------------------------------------------|
 | Category                 | Infrastructure                               |

@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                  | Description                             |
 |:-----------------|:----------------------------------------|
 | Category         | Enviromental                            |
@@ -9,7 +10,9 @@
 | Spatial details  | Locations / long/lat                    |
 | Temporal details | Cross-sectional observations            |
 | Source           | Literature-based                        |
-# Data quality information 
+
+## Data quality information 
+
 |              | Description                             |
 |:-------------|:----------------------------------------|
 | Category     | Enviromental                            |

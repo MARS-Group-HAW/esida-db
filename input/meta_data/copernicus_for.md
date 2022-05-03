@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                                                           |
 |:----------------------------|:----------------------------------------------------------------------|
 | Category                    | Enviromental                                                          |
@@ -14,7 +15,9 @@
 | Source                      | Copernicus Land Cover                                                 |
 | Link                        | https://zenodo.org/record/3939038#.YkLn7y8RrBI                        |
 | Comment                     | you can find follow up years under "related identifiers/Continued by" |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                    |
 |:--------------------------|:-----------------------------------------------|
 | Category                  | Enviromental                                   |

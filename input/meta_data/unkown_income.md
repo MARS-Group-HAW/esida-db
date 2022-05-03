@@ -1,11 +1,14 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |              | Description   |
 |:-------------|:--------------|
 | Category     | Demographic   |
 | Abbreviation | unkown_income |
 | Titel        | Income        |
 | Necessity    | tbc           |
-# Data quality information 
+
+## Data quality information 
+
 |                          | Description                                  |
 |:-------------------------|:---------------------------------------------|
 | Category                 | Demographic                                  |

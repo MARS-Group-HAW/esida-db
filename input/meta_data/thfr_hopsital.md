@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                                                           |
 |:----------------------------|:----------------------------------------------------------------------|
 | Category                    | Infrastructure                                                        |
@@ -12,7 +13,9 @@
 | Temporal details            | 2017 - 2022                                                           |
 | Source                      | Tanzania Health Facility Register                                     |
 | Link                        | https://hfrportal.moh.go.tz/index.php?r=facilities/homeAdvancedSearch |
-# Data quality information 
+
+## Data quality information 
+
 |                           | Description                                                           |
 |:--------------------------|:----------------------------------------------------------------------|
 | Category                  | Infrastructure                                                        |

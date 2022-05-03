@@ -1,4 +1,5 @@
-# Data type and processing information 
+## Data type and processing information 
+
 |                             | Description                                            |
 |:----------------------------|:-------------------------------------------------------|
 | Category                    | Weather & Climate                                      |
@@ -13,7 +14,9 @@
 | Temporal details            | 2010-2020, hourly/daily                                |
 | Source                      | Meteostat                                              |
 | Link                        | https://dev.meteostat.net/python/stations.html#example |
-# Data quality information 
+
+## Data quality information 
+
 |                          | Description                                            |
 |:-------------------------|:-------------------------------------------------------|
 | Category                 | Weather & Climate                                      |
