@@ -1,9 +1,9 @@
 import importlib
 import datetime as dt
-
+import os
 
 from esida import app, params, db
-from flask import render_template, make_response, abort, request, redirect, url_for
+from flask import render_template, make_response, abort, request, redirect, url_for, send_from_directory
 import markdown
 from slugify import slugify
 
@@ -11,6 +11,11 @@ from dbconf import get_engine
 from esida.models import Region, District, Signal
 
 import pandas as pd
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                          'images/favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 @app.route("/")
 def index():
@@ -55,15 +60,7 @@ def map():
 
 @app.route("/shape/<int:shape_id>")
 def shape(shape_id):
-    engine = get_engine()
-
-    shape=None
-    with engine.connect() as con:
-        # well this not good style...
-        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson, ST_AsText(geometry) as wkt FROM district WHERE id={}'.format(int(shape_id)))
-        shape = rs.fetchone()
-
-
+    shape = District.query.get(shape_id)
     return render_template('shape.html', shape=shape, params=params, data=_get_parameters_for_district(shape_id))
 
 def _get_parameters_for_district(district_id) -> pd.DataFrame:
