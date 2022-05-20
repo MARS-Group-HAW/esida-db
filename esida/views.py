@@ -61,7 +61,27 @@ def map():
 @app.route("/shape/<int:shape_id>")
 def shape(shape_id):
     shape = District.query.get(shape_id)
-    return render_template('shape.html', shape=shape, params=params, data=_get_parameters_for_district(shape_id))
+
+
+    # weather data
+    engine = get_engine()
+
+
+    chc_chirps = importlib.import_module('parameters.chc_chirps')
+
+    chc_chirps_df = None
+    if chc_chirps.is_loaded():
+        chc_chirps_df = pd.read_sql_query('SELECT date, value FROM chc_chirps WHERE district_id={}'.format(int(shape_id)), con=engine)
+
+    meteostat_df = pd.read_sql_query("SELECT * FROM meteostat_data WHERE meteostat_station_id = ( \
+	SELECT id FROM meteostat_stations ORDER BY st_distance(ST_SetSRID(meteostat_stations.geometry, 4326), \
+        ST_Centroid((SELECT geometry FROM district WHERE id = {})) ) ASC LIMIT 1) \
+       ORDER BY time ASC ".format(int(shape_id)), con=engine)
+
+
+    return render_template('shape.html', shape=shape, params=params,
+        data=_get_parameters_for_district(shape_id),
+        chc_chirps_df=chc_chirps_df, meteostat_df=meteostat_df)
 
 def _get_parameters_for_district(district_id) -> pd.DataFrame:
     dfs = []

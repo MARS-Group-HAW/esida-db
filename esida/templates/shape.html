@@ -73,11 +73,115 @@
       <div id="chart"></div>
     </div>
 
+    <div class="col-12">
+      <h3>weather data</h3>
+      <div id="chart_weather"></div>
+    </div>
+
   </div>
 
 {% endblock %}
 
 {% block footer %}
+<script>
+
+
+var nan = null;
+
+var chart_weather = Highcharts.chart('chart_weather', {
+  chart: {
+    type: 'spline'
+  },
+
+  title: {
+    text: 'Precipitation in {{ shape['name'] }}'
+  },
+  yAxis: {
+    title: {
+      text: 'mm'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    title: {
+      text: 'Date'
+    }
+  },
+
+  plotOptions: {
+    series: {
+      marker: {
+        enabled: true
+      }
+    }
+  },
+
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+  },
+
+  responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+  },
+
+  series: [
+      {
+          name: 'chc_chirps',
+          data: [
+          {% for i, row in chc_chirps_df.iterrows() %}
+          {
+            'x': Date.UTC({{ row['date'].year }}, {{ row['date'].month  -1 }}, {{ row['date'].day }}),
+            'y': {{ row['value'] }}
+          },
+
+          {% endfor %}
+
+          ],
+          type: 'line',
+          marker: {
+              enabled: false
+          }
+      },
+      {
+          name: 'meteostat',
+          turboThreshold: 0,
+          data: [
+          {% for i, row in meteostat_df.iterrows() %}
+          {
+            'x': Date.UTC({{ row['time'].year }}, {{ row['time'].month  -1 }}, {{ row['time'].day }}),
+            'y': {{ row['prcp'] }}
+          },
+
+          {% endfor %}
+
+          ],
+          type: 'line',
+          marker: {
+              enabled: true
+          }
+      }
+
+  ]
+
+});
+
+
+</script>
+
+
 <script>
 
 var data = {{ data.to_json(orient="columns")|safe }}
@@ -130,6 +234,7 @@ var chart = Highcharts.chart('chart', {
         }
     }]
   }
+
 });
 
 $('.js-highchart-add-series').on('click', function() {
