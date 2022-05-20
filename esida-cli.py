@@ -60,7 +60,7 @@ def init():
 def extract(parameter):
     """ Download input from sources to local store. """
     params  = ['worldpop_poverty', 'worldpop_popc', 'worldpop_popd',
-    'worldpop_urbanext']
+    'worldpop_urbanext', 'chc_chirps']
 
     if parameter is not None:
         params = [parameter]
@@ -102,9 +102,12 @@ def load(parameter):
 
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)
-def regiontiffs(parameter):
+@click.option('-s', '--shape', default=None, type=str)
+@click.option('--dry-run', default=False, is_flag=True)
+def regiontiffs(parameter, shape, dry_run):
     """ Import locally prepared regional GeoTiffs with individual logic. """
-    params  = ['worldpop_urbanext', 'worldpop_popd', 'worldpop_popc', 'worldpop_poverty', 'malariaatlas_incidence']
+
+    params  = ['worldpop_urbanext', 'worldpop_popd', 'worldpop_popc', 'worldpop_poverty', 'malariaatlas_incidence', 'chc_chirps']
     if parameter is not None:
         params = [parameter]
 
@@ -121,8 +124,11 @@ def regiontiffs(parameter):
         rows = []
 
         for _, row in df.iterrows():
-            shape=row['name'] # reconstruct output folder name
-            shape_out_dir = os.path.join(cwd, 'output', shape)
+            # reconstruct output folder name
+            shape_out_dir = os.path.join(cwd, 'output', row['name'])
+
+            if shape is not None and shape != row['name']:
+                continue
 
             if not os.path.isdir(shape_out_dir):
                 continue
@@ -142,9 +148,11 @@ def regiontiffs(parameter):
             else:
                 print("no feature for {}".format(shape))
 
-        pm.to_sql(rows, engine)
-
-
+        if not dry_run:
+            pm.to_sql(rows, engine)
+        else:
+            print(rows)
+            print("Dry-run, not writing to database.")
 
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)

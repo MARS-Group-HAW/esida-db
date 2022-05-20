@@ -13,7 +13,7 @@ do
     filename=${shp##*/}
     basename="${filename%.shp}"
 
-    tiffdirs=("worldpop_popc" "worldpop_popd" "worldpop_urbanext" "malariaatlas_incidence" "worldpop_poverty")
+    tiffdirs=("worldpop_popc" "worldpop_popd" "worldpop_urbanext" "malariaatlas_incidence" "worldpop_poverty" "chc_chirps")
     # loop over different geotiff features
     for tiff in "${tiffdirs[@]}"
     do
