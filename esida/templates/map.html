@@ -65,7 +65,7 @@ weatherstations=[]
 {% for station in meteostat %}
 {% if station['count'] > 0 %}
   var s = L.geoJSON({{ station['geojson']|safe }} )
-  .bindPopup(`<h4>{{ station['name'] }} ({{station['meteostat_id'] }})</h4> <p>Daily measurements: {{station['count'] }}</p>`);
+  .bindPopup(`{% include 'popup-meteostat.html' %}`);
 
   weatherstations.push(s);
 
