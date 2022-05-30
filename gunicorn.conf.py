@@ -3,3 +3,5 @@
 
 accesslog = "output/.logs/access.log"
 errorlog = "output/.logs/error.log"
+
+workers=3
