@@ -1,4 +1,5 @@
 import os
+import sys, inspect
 import datetime as dt
 from pathlib import Path
 import importlib
@@ -15,6 +16,7 @@ import esida.statcompiler as stc
 from dbconf import get_engine
 import log
 
+from parameters import *
 
 logger = log.setup_custom_logger('root')
 
@@ -132,6 +134,39 @@ def param(parameter, action):
     pmodule = importlib.import_module(f'parameters.{parameter}')
     pclass  = getattr(pmodule, parameter)()
     result = getattr(pclass, action)()
+
+
+@cli.command()
+@click.option('-p', '--parameter', default=None, type=str)
+@click.option('-s', '--shape', default=None, type=str)
+@click.option('--dry-run', default=False, is_flag=True)
+@click.option('--save-output', default=False, is_flag=True)
+def test(parameter, shape, dry_run, save_output):
+    """ Import locally prepared regional GeoTiffs with individual logic. """
+
+    pm = importlib.import_module('parameters.worldpop_urbanext')
+
+    pm_chc_chirps = pm.worldpop_urbanext()
+
+    cwd = os.getcwd()
+    df = pd.read_sql_query('SELECT id, name FROM district', con=get_engine())
+
+    shapes = []
+
+    for _, row in df.iterrows():
+        # reconstruct output folder name
+        shape_file = os.path.join(cwd, 'input', 'shapes', 'Districts', row['name']+'.shp')
+
+        # if we filter for a specific shape name
+        if shape is not None and row['name'] != shape:
+            continue
+
+        shapes.append({'file': shape_file, 'id': row['id']})
+
+    #pm_chc_chirps.transform()
+    pm_chc_chirps.load(shapes, save_output=save_output)
+
+
 
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)

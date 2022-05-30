@@ -73,21 +73,33 @@ def shape(shape_id):
     engine = get_engine()
 
 
-    chc_chirps = importlib.import_module('parameters.chc_chirps')
-
-    chc_chirps_df = None
+    # load chirps precipitation
+    chirps_module = importlib.import_module('parameters.chc_chirps')
+    chc_chirps = getattr(chirps_module, 'chc_chirps')()
+    chc_chirps_df = pd.DataFrame()
     if chc_chirps.is_loaded():
-        chc_chirps_df = pd.read_sql_query('SELECT date, value FROM chc_chirps WHERE district_id={}'.format(int(shape_id)), con=engine)
+        chc_chirps_df = pd.read_sql_query('SELECT date, chc_chirps FROM chc_chirps WHERE shape_id={}'.format(int(shape_id)), con=engine)
 
-    meteostat_df = pd.read_sql_query("SELECT * FROM meteostat_data WHERE meteostat_station_id = ( \
-	SELECT id FROM meteostat_stations ORDER BY st_distance(ST_SetSRID(meteostat_stations.geometry, 4326), \
-        ST_Centroid((SELECT geometry FROM district WHERE id = {})) ) ASC LIMIT 1) \
-       ORDER BY time ASC ".format(int(shape_id)), con=engine)
+    # nearest meteostat station to center of shape
+    meteostat_station=None
+    sql = "SELECT * FROM meteostat_stations ORDER BY st_distance( \
+        ST_SetSRID(meteostat_stations.geometry, 4326), \
+        ST_Centroid((SELECT geometry FROM shape WHERE id = {})) ) ASC LIMIT 1"
+    with engine.connect() as con:
+        rs = con.execute(sql.format(int(shape_id)))
+        for row in rs:
+            meteostat_station = dict(row)
 
+    meteostat_df = pd.read_sql_query("SELECT * FROM meteostat_data WHERE meteostat_station_id = {} ORDER BY time ASC ".format(int(meteostat_station['id'])), con=engine)
 
-    return render_template('shape.html', shape=shape, params=params,
-        data=_get_parameters_for_district(shape_id),
-        chc_chirps_df=chc_chirps_df, meteostat_df=meteostat_df)
+    return render_template('shape.html',
+        shape=shape,
+        params=params,
+        data=_get_parameters_for_shape(shape_id),
+        meteostat_station=meteostat_station,
+        chc_chirps_df=chc_chirps_df,
+        meteostat_df=meteostat_df
+    )
 
 def _get_parameters_for_shape(shape_id) -> pd.DataFrame:
     dfs = []
