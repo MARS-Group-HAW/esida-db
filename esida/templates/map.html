@@ -45,21 +45,21 @@ var hfrIcon = L.icon({
 
 regions=[]
 {% for region in regions %}
-  var s = L.geoJSON({{ region['geojson']|safe }} )
+  var s = L.geoJSON({{ region.geojson()|safe }} )
   .bindPopup(`<h4>{{ region['name'] }}</h4>`);
 
   regions.push(s);
 {% endfor %}
 var group_regions = L.featureGroup(regions);
 
-shapes=[]
-{% for shape in shapes %}
-  var s = L.geoJSON({{ shape['geojson']|safe }} )
-  .bindPopup(`<h4>{{ shape['name'] }}</h4>  <a href="{{ url_for('shape', shape_id=shape['id']) }}" class="btn btn-link">Details</a>`);
+districts=[]
+{% for district in districts %}
+  var s = L.geoJSON({{ district.geojson()|safe }} )
+  .bindPopup(`<h4>{{ district['name'] }}</h4>  <a href="{{ url_for('shape', shape_id=district['id']) }}" class="btn btn-link">Details</a>`);
 
-  shapes.push(s);
+  districts.push(s);
 {% endfor %}
-var group_districts = L.featureGroup(shapes).addTo(map);
+var group_districts = L.featureGroup(districts).addTo(map);
 
 weatherstations=[]
 {% for station in meteostat %}

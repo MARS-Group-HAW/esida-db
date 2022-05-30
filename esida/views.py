@@ -8,7 +8,7 @@ import markdown
 from slugify import slugify
 
 from dbconf import get_engine
-from esida.models import Region, District, Signal
+from esida.models import Shape, Signal
 
 import pandas as pd
 
@@ -19,28 +19,29 @@ def favicon():
 
 @app.route("/")
 def index():
-    districts = District.query.all()
-    return render_template('table.html', shapes=districts)
+    return render_template('index.html')
+
+@app.route("/regions")
+def regions():
+    regions = Shape.query.where(Shape.type == "region").all()
+    return render_template('regions.html', shapes=regions)
+
+@app.route("/districts")
+def districts():
+    districts = Shape.query.where(Shape.type == "district").all()
+    return render_template('districts.html', shapes=districts)
 
 @app.route("/map")
 def map():
 
-    engine = get_engine()
+    regions = Shape.query.where(Shape.type == "region").all()
+    districts = Shape.query.where(Shape.type == "district").all()
 
-    shapes=[]
-    regions=[]
+    engine = get_engine()
     meteostat=[]
     tza_hfr=[]
     tza_hfr_categories=[]
     with engine.connect() as con:
-        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson FROM district')
-        for row in rs:
-            shapes.append(dict(row))
-
-        rs = con.execute('SELECT id, name, ST_AsGeoJSON(geometry) AS geojson FROM region')
-        for row in rs:
-            regions.append(dict(row))
-
         rs = con.execute('SELECT id, meteostat_id, icao, wmo, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
         for row in rs:
             meteostat.append(dict(row))
@@ -55,13 +56,18 @@ def map():
 
 
 
-    return render_template('map.html', shapes=shapes, meteostat=meteostat, regions=regions, tza_hfr=tza_hfr, tza_hfr_categories=tza_hfr_categories)
+    return render_template('map.html',
+        regions=regions,
+        districts=districts,
+        meteostat=meteostat,
+        tza_hfr=tza_hfr,
+        tza_hfr_categories=tza_hfr_categories
+    )
 
 
 @app.route("/shape/<int:shape_id>")
 def shape(shape_id):
-    shape = District.query.get(shape_id)
-
+    shape = Shape.query.get(shape_id)
 
     # weather data
     engine = get_engine()
@@ -83,7 +89,7 @@ def shape(shape_id):
         data=_get_parameters_for_district(shape_id),
         chc_chirps_df=chc_chirps_df, meteostat_df=meteostat_df)
 
-def _get_parameters_for_district(district_id) -> pd.DataFrame:
+def _get_parameters_for_shape(shape_id) -> pd.DataFrame:
     dfs = []
 
     for p in params:
@@ -109,12 +115,12 @@ def download_csv(shape_id):
     shape=None
     with engine.connect() as con:
         # well this not good style...
-        rs = con.execute('SELECT id, name FROM district WHERE id={}'.format(int(shape_id)))
+        rs = con.execute('SELECT id, type, name FROM shape WHERE id={}'.format(int(shape_id)))
         shape = rs.fetchone()
 
-    df = _get_parameters_for_district(shape_id)
+    df = _get_parameters_for_shape(shape_id)
 
-    filename="esida_{}.csv".format(slugify(shape['name']))
+    filename="esida_{}_{}.csv".format(shape['type'], slugify(shape['name']))
 
     resp = make_response(df.to_csv(index=False))
     resp.headers["Content-Disposition"] = "attachment; filename={}".format(filename)

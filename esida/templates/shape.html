@@ -21,14 +21,38 @@
           </tr>
         </thead>
         <tbody>
+          {% if shape.type == 'region' %}
+          <tr class="table-info">
+            <th>Region</th>
+            <td><b>{{ shape.name }}</b></td>
+          </tr>
+          <tr>
+            <th>Districts ({{ shape.children|length }})</th>
+            <td><ul class="m-0""">{% for child in shape.children %}
+
+              <li><a href="{{ url_for('shape', shape_id=child.id) }}">{{ child.name }}</a></li>
+
+               {% endfor %}</ul></td>
+          </tr>
+          {% elif shape.type == 'district' %}
           <tr>
             <th>Region</th>
-            <td>{{ shape.region_name }}</td>
+            <td><a href="{{ url_for('shape', shape_id=shape.parent.id) }}">{{ shape.parent.name }}</a></td>
+          </tr>
+          <tr class="table-info">
+            <th>District</th>
+            <td><b>{{ shape.name }}</b></td>
+          </tr>
+          {% else %}
+          <tr>
+            <th>Type</th>
+            <td>{{ shape.type }}</td>
           </tr>
           <tr>
-            <th>District</th>
+            <th>Name</th>
             <td>{{ shape.name }}</td>
           </tr>
+          {% endif %}
           <tr>
             <th>Area</th>
             <td>{{ shape.human_readable_area() }} km<sup>2</sup></td>
@@ -62,11 +86,16 @@
     </div>
 
     <div class="col-3">
+      {% if data.empty %}
+        <div class="alert alert-primary" role="alert">
+          No data available for this shape.
+        </div>
+      {% else %}
+        {% for p in data.columns[2:] %}
+          <button type="button" data-bs-toggle="button" class="btn btn-sm btn-outline-secondary js-highchart-add-series mb-1" data-id="{{ p }}">{{ p }}</button>
 
-      {% for p in data.columns[2:] %}
-        <button type="button" data-bs-toggle="button" class="btn btn-sm btn-outline-secondary js-highchart-add-series mb-1" data-id="{{ p }}">{{ p }}</button>
-
-      {% endfor %}
+        {% endfor %}
+      {% endif %}
 
     </div>
     <div class="col-9">
@@ -144,7 +173,7 @@ var chart_weather = Highcharts.chart('chart_weather', {
           {% for i, row in chc_chirps_df.iterrows() %}
           {
             'x': Date.UTC({{ row['date'].year }}, {{ row['date'].month  -1 }}, {{ row['date'].day }}),
-            'y': {{ row['value'] }}
+            'y': {{ row['chc_chirps'] }}
           },
 
           {% endfor %}
@@ -173,12 +202,8 @@ var chart_weather = Highcharts.chart('chart_weather', {
               enabled: true
           }
       }
-
   ]
-
 });
-
-
 </script>
 
 
@@ -277,6 +302,13 @@ $('.js-highchart-add-series').on('click', function() {
   shapes.push(s);
   var group_districts = L.featureGroup(shapes).addTo(map);
   map.fitBounds(group_districts.getBounds());
+
+
+  var meteostat_station = L.marker([{{ meteostat_station['latitude']}}, {{ meteostat_station['longitude']}}]).addTo(map)
+		.bindPopup(`<h4>{{ meteostat_station['name'] }}</h4> `);
+
+
+
 
   var layerControl = L.control.layers().addTo(map);
   layerControl.addBaseLayer(osm, 'OSM');

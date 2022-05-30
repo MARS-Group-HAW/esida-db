@@ -27,23 +27,34 @@ def init():
     """ Init database, by creating database and importing district/region shapes. """
 
     # regions first, so foreign-keys exist
-    regions_gdf = geopandas.read_file('./input/shapes/Districts_Shapefiles_2019/Regions based on Distrcits.shp')
+    regions_gdf = geopandas.read_file('./input/shapes/Districts_Shapefiles_2019/Regions based on Districts.shp')
     regions_gdf = regions_gdf.rename(columns={
         "Region_Nam": "name",
-        "Region_Cod": "region_id",
+        "Region_Cod": "region_code",
     })
-    regions_gdf.to_postgis('region', get_engine(), if_exists='append')
+    regions_gdf['type'] = 'region'
+    regions_gdf = regions_gdf.sort_values(by=['region_code'])
+    regions_gdf.to_postgis('shape', get_engine(), if_exists='append')
 
+    imported_regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type= 'region'", get_engine(), geom_col='geometry')
+
+    def find_pk_if_region(name):
+        for i, row in imported_regions_gdf.iterrows():
+            if (row['name'] == name):
+                return row['id']
+        raise ValueError(f"No parent region id found for region ({name})")
 
     districts_gdf = geopandas.read_file('./input/shapes/Districts_Shapefiles_2019/Districts and TC as 2020 FIXED.shp')
     districts_gdf = districts_gdf.rename(columns={
         "NewDist20":  "name",
         "Region_Nam": "region_name",
-        "Region_Cod": "region_id",
+        "Region_Cod": "region_code",
         "District_C": "district_c"
     })
-
-    districts_gdf.to_postgis('district', get_engine(), if_exists='append')
+    districts_gdf['type'] = 'district'
+    districts_gdf['parent_id'] = districts_gdf['region_name'].apply(find_pk_if_region)
+    districts_gdf = districts_gdf.sort_values(by=['region_code', 'district_c'])
+    districts_gdf.to_postgis('shape', get_engine(), if_exists='append')
 
     # calculate district area
     # Date are in ESPG:4326 (deg based), so for ST_Area() to produce m2
@@ -51,7 +62,7 @@ def init():
     # the resp. used UTM Zone that is m based.
     engine = get_engine()
     with engine.connect() as con:
-        con.execute('UPDATE district SET area_sqm = \
+        con.execute('UPDATE shape SET area_sqm = \
           ST_Area(ST_Transform(geometry, utmzone(ST_Centroid(geometry))))')
 
 

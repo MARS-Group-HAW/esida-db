@@ -9,32 +9,28 @@ import humanize
 from esida import app, db
 
 
-class Region(db.Model):
-    """ Organizational unit in tanzania, contains multiple districts. """
+class Shape(db.Model):
+    """ Geometry for that parameters are aggregated, like Region/District.
+
+    Self reference in SQL Alchemy: https://docs.sqlalchemy.org/en/14/orm/self_referential.html
+
+    """
+
     id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String(255), nullable=False)
-    region_id = db.Column(db.Integer, nullable=False, unique=True)
-    geometry = db.Column(Geometry(srid=4326), nullable=False)
+    parent_id = db.Column(db.Integer, db.ForeignKey('shape.id'))
 
-    districts = db.relationship('District', backref='district', lazy=True)
-
-    def geom(self):
-        return to_shape(self.geometry)
-
-
-class District(db.Model):
-    """ Organizational unit in tanzania, belongs to one region. """
-    id = db.Column(db.Integer, primary_key=True)
+    parent = db.relationship("Shape", remote_side=[id])
+    children = db.relationship("Shape")
 
     name = db.Column(db.String(255), nullable=False)
+    type = db.Column(db.String(255), nullable=False)
 
-    region_id = db.Column(db.Integer, db.ForeignKey('region.region_id'), nullable=False, comment="Don't use PK, use id from shapefile to be in line with original data source")
-    region_name = db.Column(db.String(255), nullable=False)
-    district_c = db.Column(db.Integer, nullable=False, comment="Counter for districts within each region")
+    region_code = db.Column(db.Integer, nullable=True, comment="Don't use PK, use id from shapefile to be in line with original data source")
+    region_name = db.Column(db.String(255), nullable=True)
+    district_c = db.Column(db.Integer, nullable=True, comment="Counter for districts within each region")
 
     geometry = db.Column(Geometry(srid=4326), nullable=False)
-
     area_sqm = db.Column(db.Float, nullable=True)
 
     def human_readable_area(self) -> str:
@@ -60,4 +56,3 @@ class Signal(db.Model):
 
     def point(self):
         return to_shape(self.geometry)
-
