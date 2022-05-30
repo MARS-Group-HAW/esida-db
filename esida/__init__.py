@@ -6,8 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from decouple import config
 from dbconf import get_conn_string
+import log
 
 
+logger = log.setup_custom_logger('root')
 app = Flask(__name__)
 
 # deployed app would often show an "sqlalchemy.exc.OperationalError:

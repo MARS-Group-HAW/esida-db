@@ -10,7 +10,7 @@ def setup_custom_logger(name):
     handler_file.setFormatter(formatter)
 
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
     logger.addHandler(handler)
     logger.addHandler(handler_file)
 
