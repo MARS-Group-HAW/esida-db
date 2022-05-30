@@ -111,6 +111,28 @@ def load(parameter):
         pm.load()
 
 
+@cli.command("list")
+def list_parameters():
+    """ Print all available parameters. """
+    parameters  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+
+    for parameter in parameters:
+        print(parameter)
+
+@cli.command()
+@click.argument('parameter')
+@click.argument('action')
+def param(parameter, action):
+    params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+
+    if parameter not in params:
+        click.echo(click.style('Unknown parameter',  fg='red'), err=True)
+        return
+
+    pmodule = importlib.import_module(f'parameters.{parameter}')
+    pclass  = getattr(pmodule, parameter)()
+    result = getattr(pclass, action)()
+
 @cli.command()
 @click.option('-p', '--parameter', default=None, type=str)
 @click.option('-s', '--shape', default=None, type=str)

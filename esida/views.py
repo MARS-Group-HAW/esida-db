@@ -94,10 +94,17 @@ def _get_parameters_for_shape(shape_id) -> pd.DataFrame:
 
     for p in params:
         pm = importlib.import_module('parameters.{}'.format(p))
+        pc = getattr(pm, p)()
 
-        rdf = pm.download(int(district_id), get_engine())
+        rdf = pc.download(int(shape_id))
         if not rdf.empty:
             dfs.append(rdf)
+
+    if len(dfs) == 0:
+        return pd.DataFrame()
+
+    if len(dfs) == 1:
+        return dfs[0]
 
     df = dfs[0]
     for i in range(1, len(dfs)):
@@ -133,9 +140,11 @@ def parameters():
     pars = []
     for p in params:
         pm = importlib.import_module('parameters.{}'.format(p))
+
         pars.append({
             'name': pm.__name__.split('.')[1],
             'description': pm.__doc__,
+            'class': getattr(pm, p)()
         })
 
     return render_template('parameters.html', parameters=pars)

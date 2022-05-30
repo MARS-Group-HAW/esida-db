@@ -11,6 +11,7 @@
       <tr>
         <th>Key</th>
         <th>Summary</th>
+        <th>State</th>
         <th class="no-sort">Actions</th>
       </tr>
     </thead>
@@ -20,6 +21,16 @@
       <tr>
         <td class="align-middle">{{ parameter['name'] }}</td>
         <td>-</td>
+        <td>
+          {% if parameter['class'].is_loaded() %}
+          <span class="badge bg-success">Loaded</span>
+
+          {% else %}
+          <span class="badge bg-warning text-dark">Not loaded</span>
+
+          {% endif %}
+
+        </td>
         <td>
           <a href="{{ url_for('parameter', parameter_name=parameter['name']) }}"  class="btn btn-sm btn-link">Details</a>
         </td>

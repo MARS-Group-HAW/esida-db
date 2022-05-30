@@ -1,62 +1,49 @@
 """
-Demographic	Population counts
+Demographic	Population density
 
 
-- tiff 100 x 100 m
-- sum total number
+- tiff 1x1 km
+- mean
 - Annualy (2010-2020)
-- [Worldpop](https://www.worldpop.org/geodata/listing?id=69)
+- [Worldpop](https://www.worldpop.org/project/categories?id=18)
 
 """
-import subprocess
 
-import rasterio
-import re
 import os
+import re
 import numpy as np
 import pandas as pd
 
-parameter_id = 'worldpop_poverty'
+from esida.tiff_parameter import TiffParameter
+from dbconf import get_engine
 
-data = {}
+class worldpop_poverty(TiffParameter):
 
-def consume(file, district_id=None):
-    x = re.search(r'^tza([0-9]{2})([a-z0-9-]+)\.', os.path.basename(file))
-    year = 2000 + int(x[1])
+    def __init__(self):
+        super().__init__()
+        self.data = {}
 
-    dataset = rasterio.open(file)
-    band1 = dataset.read(1, masked=True)
+    def extract(self):
+        """ Download needed files, since this is 7z archive and we don't want
+        to clutter out container with many tools, and die actual files are
+        not that large, we also have those files in the git repository"""
+        pass
+        #subprocess.check_output(['wget', 'https://data.worldpop.org/GIS/Development_and_health_indicators/Individual_countries/Poverty/TZA/80.7z', "-P", "./input/data/worldpop_poverty"])
 
-    if (district_id not in data):
-        data[district_id] = {'year': year }
+    def consume(self, file, band, shape):
+        x = re.search(r'^tza([0-9]{2})([a-z0-9-]+)\.', os.path.basename(file))
+        year = 2000 + int(x[1])
+        key = f"{self.parameter_id}_{x[2].replace('-', '')}"
 
-    data[district_id][x[2].replace('-', '')] = np.nanmean(band1)
+        if shape['id'] not in self.data:
+            self.data[shape['id']] = {'year': year }
 
-    return {} # return empty dict to prevent error in calling script
+        self.data[shape['id']][key]              = np.nanmean(band)
+        #self.data[shape['id']][f"{key}_min"]     = np.nanmin(band)
+        #self.data[shape['id']][f"{key}_max"]     = np.nanmax(band)
+        #self.data[shape['id']][f"{key}_std_dev"] = np.nanstd(band)
 
-def to_sql(rows, engine):
-    df = pd.DataFrame.from_dict(data, orient='index')
-    df['district_id'] = df.index
-    df.to_sql(parameter_id, engine, if_exists="replace")
-
-def download(shape_id, engine):
-    sql = "SELECT year, povcons125 as {key}_povcons125, \
-        povcons125uncert as {key}_povcons125uncert, \
-        povcons200 as {key}_povcons200, \
-        povcons200uncert as {key}_povcons200uncert, \
-        povmpiuncert as {key}_povmpiuncert, \
-        povmpi as {key}_povmpi FROM {key} WHERE district_id = {id}".format(
-        key=parameter_id,
-        id=shape_id
-    )
-
-    df = pd.read_sql_query(sql, con=engine)
-
-    return df
-
-def extract():
-    """ Download needed files, since this is 7z archive and we don't want
-    to clutter out container with many tools, and die actual files are
-    not that large, we also have those files in the git repository"""
-    pass
-    #subprocess.check_output(['wget', 'https://data.worldpop.org/GIS/Development_and_health_indicators/Individual_countries/Poverty/TZA/80.7z', "-P", "./input/data/worldpop_poverty"])
+    def save(self):
+        df = pd.DataFrame.from_dict(self.data, orient='index')
+        df['shape_id'] = df.index
+        df.to_sql(self.parameter_id, get_engine(), if_exists="replace")
