@@ -46,11 +46,11 @@ def map():
         for row in rs:
             meteostat.append(dict(row))
 
-        rs = con.execute('SELECT t."ID", t."Facility Name", t."Facility Type", t."Latitude", t."Longitude" FROM tza_hfr_healthfacilities t')
+        rs = con.execute('SELECT t."ID", t."Facility Name", t."Facility Type", t."Latitude", t."Longitude" FROM thfr t')
         for row in rs:
             tza_hfr.append(dict(row))
 
-        rs = con.execute('SELECT t."Facility Type", COUNT(*) as count FROM tza_hfr_healthfacilities t WHERE t."Facility Type" IS NOT NULL GROUP BY t."Facility Type" ORDER BY count DESC;')
+        rs = con.execute('SELECT t."Facility Type", COUNT(*) as count FROM thfr t WHERE t."Facility Type" IS NOT NULL GROUP BY t."Facility Type" ORDER BY count DESC;')
         for row in rs:
             tza_hfr_categories.append(dict(row))
 
