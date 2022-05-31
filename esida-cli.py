@@ -137,35 +137,42 @@ def param(parameter, action):
 
 
 @cli.command()
-@click.option('-p', '--parameter', default=None, type=str)
+@click.argument('parameter')
+@click.argument('action')
 @click.option('-s', '--shape', default=None, type=str)
 @click.option('--dry-run', default=False, is_flag=True)
 @click.option('--save-output', default=False, is_flag=True)
-def test(parameter, shape, dry_run, save_output):
+def test(parameter, action, shape, dry_run, save_output):
     """ Import locally prepared regional GeoTiffs with individual logic. """
 
-    pm = importlib.import_module('parameters.worldpop_urbanext')
+    params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+    if parameter not in params:
+        click.echo(click.style('Unknown parameter',  fg='red'), err=True)
+        return
 
-    pm_chc_chirps = pm.worldpop_urbanext()
 
-    cwd = os.getcwd()
-    df = pd.read_sql_query('SELECT id, name FROM district', con=get_engine())
+    sql = "SELECT * FROM shape WHERE type IN('region', 'district')"
+    #sql = "SELECT * FROM shape WHERE name = 'Mjini'"
 
+    gdf = geopandas.GeoDataFrame.from_postgis(
+        sql,
+        get_engine(), geom_col='geometry')
     shapes = []
-
-    for _, row in df.iterrows():
-        # reconstruct output folder name
-        shape_file = os.path.join(cwd, 'input', 'shapes', 'Districts', row['name']+'.shp')
-
+    for _, row in gdf.iterrows():
         # if we filter for a specific shape name
         if shape is not None and row['name'] != shape:
             continue
 
-        shapes.append({'file': shape_file, 'id': row['id']})
+        shapes.append({
+            'id':       row['id'],
+            'name':     row['name'],
+            'geometry': row['geometry'],
+        })
 
-    #pm_chc_chirps.transform()
-    pm_chc_chirps.load(shapes, save_output=save_output)
 
+    pmodule = importlib.import_module(f'parameters.{parameter}')
+    pclass  = getattr(pmodule, parameter)()
+    result = getattr(pclass, action)(shapes=shapes, save_output=save_output)
 
 
 @cli.command()

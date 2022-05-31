@@ -77,7 +77,7 @@ class TiffParameter(BaseParameter):
                     band1 = out_image[0]
 
                     # To mask NoData cells we use np.nan so we can use np.nan*-methods.
-                    # But np.nan is only avaulbale inside float arrays, not with
+                    # But np.nan is only available inside float arrays, not with
                     # int arrays!
                     # So in case we have a int array GeoTiff, we need to check
                     # and convert it to a float array.
