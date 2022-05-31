@@ -11,8 +11,8 @@ import pandas as pd
 
 #Load the meta csv files and saves temporarily as dataframe
 path = pathlib.Path(__file__).parent.resolve()
-df_dtype = pd.read_csv(path / "DB_Meta_Sheet - Data Type & Processing.csv")
-df_dqual = pd.read_csv(path / "DB_Meta_Sheet - Data Quality.csv")
+df_dtype = pd.read_csv(path / "DB_Meta_Sheet - Documentation.csv")
+df_dqual = pd.read_csv(path / "DB_Meta_Sheet - Metadata.csv")
 
 
 def make_md_link(text):
