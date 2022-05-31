@@ -29,7 +29,7 @@ def init():
     """ Init database, by creating database and importing district/region shapes. """
 
     # regions first, so foreign-keys exist
-    regions_gdf = geopandas.read_file('./input/shapes/Districts_Shapefiles_2019/Regions based on Districts.shp')
+    regions_gdf = geopandas.read_file('./input/shapes/Districts_Shapefiles_2019/Regions Based on Districts.shp')
     regions_gdf = regions_gdf.rename(columns={
         "Region_Nam": "name",
         "Region_Cod": "region_code",
