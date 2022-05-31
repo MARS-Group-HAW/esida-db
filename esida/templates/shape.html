@@ -91,6 +91,7 @@
           No data available for this shape.
         </div>
       {% else %}
+        {# first two columns are index and year and not interesting for the chart #}
         {% for p in data.columns[2:] %}
           <button type="button" data-bs-toggle="button" class="btn btn-sm btn-outline-secondary js-highchart-add-series mb-1" data-id="{{ p }}">{{ p }}</button>
 
@@ -113,22 +114,12 @@
 
 {% block footer %}
 <script>
-
-
-var nan = null;
-
 var chart_weather = Highcharts.chart('chart_weather', {
   chart: {
-    type: 'spline'
+    zoomType: 'x'
   },
-
   title: {
     text: 'Precipitation in {{ shape['name'] }}'
-  },
-  yAxis: {
-    title: {
-      text: 'mm'
-    }
   },
   xAxis: {
     type: 'datetime',
@@ -136,13 +127,13 @@ var chart_weather = Highcharts.chart('chart_weather', {
       text: 'Date'
     }
   },
-
-  plotOptions: {
-    series: {
-      marker: {
-        enabled: true
-      }
+  yAxis: {
+    title: {
+      text: 'mm'
     }
+  },
+  plotOptions: {
+
   },
 
   legend: {
@@ -151,35 +142,11 @@ var chart_weather = Highcharts.chart('chart_weather', {
     verticalAlign: 'middle'
   },
 
-  responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-    }]
-  },
-
   series: [
       {
           name: 'chc_chirps',
-          data: [
-          {% for i, row in chc_chirps_df.iterrows() %}
-          {
-            'x': Date.UTC({{ row['date'].year }}, {{ row['date'].month  -1 }}, {{ row['date'].day }}),
-            'y': {{ row['chc_chirps'] }}
-          },
-
-          {% endfor %}
-
-          ],
-          type: 'line',
+          data: {{chc_chirps_data|safe}},
+          type: 'area',
           marker: {
               enabled: false
           }
@@ -187,19 +154,10 @@ var chart_weather = Highcharts.chart('chart_weather', {
       {
           name: 'meteostat',
           turboThreshold: 0,
-          data: [
-          {% for i, row in meteostat_df.iterrows() %}
-          {
-            'x': Date.UTC({{ row['time'].year }}, {{ row['time'].month  -1 }}, {{ row['time'].day }}),
-            'y': {{ row['prcp'] }}
-          },
-
-          {% endfor %}
-
-          ],
-          type: 'line',
+          data: {{meteostat_data|safe}},
+          type: 'area',
           marker: {
-              enabled: true
+              enabled: false
           }
       }
   ]

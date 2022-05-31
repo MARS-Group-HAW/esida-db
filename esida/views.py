@@ -11,6 +11,7 @@ from dbconf import get_engine
 from esida.models import Shape, Signal
 
 import pandas as pd
+import numpy as np
 
 @app.route('/favicon.ico')
 def favicon():
@@ -76,9 +77,13 @@ def shape(shape_id):
     # load chirps precipitation
     chirps_module = importlib.import_module('parameters.chc_chirps')
     chc_chirps = getattr(chirps_module, 'chc_chirps')()
-    chc_chirps_df = pd.DataFrame()
+    chc_chirps_data = []
     if chc_chirps.is_loaded():
-        chc_chirps_df = pd.read_sql_query('SELECT date, chc_chirps FROM chc_chirps WHERE shape_id={}'.format(int(shape_id)), con=engine)
+        chc_chirps_df = pd.read_sql_query('SELECT date, chc_chirps FROM chc_chirps WHERE shape_id={}'.format(int(shape_id)), parse_dates=['date'], con=engine)
+        chc_chirps_df['x'] = chc_chirps_df['date'].astype(np.int64) / int(1e6)
+        chc_chirps_df['x'] = chc_chirps_df['x'].astype(int)
+        chc_chirps_df['y'] = chc_chirps_df['chc_chirps']
+        chc_chirps_data = chc_chirps_df[['x', 'y']].sort_values(by='x').to_json(orient="values")
 
     # nearest meteostat station to center of shape
     meteostat_station=None
@@ -90,15 +95,19 @@ def shape(shape_id):
         for row in rs:
             meteostat_station = dict(row)
 
-    meteostat_df = pd.read_sql_query("SELECT * FROM meteostat_data WHERE meteostat_station_id = {} ORDER BY time ASC ".format(int(meteostat_station['id'])), con=engine)
+    meteostat_df = pd.read_sql_query("SELECT * FROM meteostat_data WHERE meteostat_station_id = {} ORDER BY time ASC ".format(int(meteostat_station['id'])), parse_dates=['time'], con=engine)
+    meteostat_df['x'] = meteostat_df['time'].astype(np.int64) / int(1e6)
+    meteostat_df['x'] = meteostat_df['x'].astype(int)
+    meteostat_df['y'] = meteostat_df['prcp']
+    meteostat_data = meteostat_df[['x', 'y']].sort_values(by='x').to_json(orient="values")
 
     return render_template('shape.html',
         shape=shape,
         params=params,
         data=_get_parameters_for_shape(shape_id),
         meteostat_station=meteostat_station,
-        chc_chirps_df=chc_chirps_df,
-        meteostat_df=meteostat_df
+        chc_chirps_data=chc_chirps_data,
+        meteostat_data=meteostat_data
     )
 
 def _get_parameters_for_shape(shape_id) -> pd.DataFrame:
