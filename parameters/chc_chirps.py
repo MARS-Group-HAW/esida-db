@@ -32,13 +32,17 @@ class chc_chirps(TiffParameter):
         self.manual_nodata = -9999
 
     def extract(self):
-        start_date = dt.date(2022, 1, 1)
-        end_date = dt.date(2022, 1, 2)
+        start_date = dt.date(2018, 1, 1)
+        end_date = dt.date(2022, 1, 1)
 
         # download all required files
         for date in self.date_range(start_date, end_date):
             url = BASE_URL.format(resolution=RESOLUTION, year=date.year, month=date.month, day=date.day)
-            self._save_url_to_file(url)
+
+            if not self._save_url_to_file(url):
+                # if file could not be downloaded, try to download without
+                # .gz extension. For 2021-12-* all files are uncompressed
+                self._save_url_to_file(url.replace("tif.gz", 'tif'))
 
         # after, gzip all downloaded *.gz files
         # only keep extracted files
@@ -55,7 +59,7 @@ class chc_chirps(TiffParameter):
             yield start_date + dt.timedelta(n)
 
 
-    def _save_url_to_file(self, url):
+    def _save_url_to_file(self, url) -> bool:
         """ Downloads a URL to be saved on the parameter data directory.
         Checks if file has already been downloaded. """
         a = urlparse(url)
@@ -63,17 +67,20 @@ class chc_chirps(TiffParameter):
 
         if os.path.isfile(self.get_data_path() / file_name):
             self.logger.debug("Skipping b/c already downloaded %s", url)
-            return
+            return True
 
         # does unzipped file exists?
         if os.path.isfile(self.get_data_path() / file_name.replace('.tif.gz', '.tif')):
             self.logger.debug("Skipping b/c already downloaded %s", url)
-            return
+            return True
 
         try:
             subprocess.check_output(['wget', url, "-P", self.get_data_path().as_posix()])
+            return True
         except subprocess.CalledProcessError as error:
             self.logger.warning("Could not download file: %s, %s", url, error.stderr)
+
+        return False
 
     def consume(self, file, band, shape):
         x = re.search(r'([0-9]{4})\.([0-9]{2})\.([0-9]{2})\.tif', os.path.basename(file))
