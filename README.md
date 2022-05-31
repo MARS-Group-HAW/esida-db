@@ -7,7 +7,7 @@
 
 After initial starting of the system, you need to-to the following steps:
 
-    $ flask init-db # setup required database columns
+    $ flask create-db # setup required database columns
     $ python esida-cli.py init # import region/district shape files into db
     $ python esida-cli.py meteostat # import Metestat stations for tanzania
 
