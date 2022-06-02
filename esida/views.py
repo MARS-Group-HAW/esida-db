@@ -118,8 +118,15 @@ def _get_parameters_for_shape(shape_id) -> pd.DataFrame:
         pc = getattr(pm, p)()
 
         rdf = pc.download(int(shape_id))
-        if not rdf.empty:
-            dfs.append(rdf)
+        if rdf.empty:
+            continue
+
+        # we merge data year column, so do not add it to the pool
+        # if the column is missing
+        if 'year' not in rdf:
+            continue
+
+        dfs.append(rdf)
 
     if len(dfs) == 0:
         return pd.DataFrame()
