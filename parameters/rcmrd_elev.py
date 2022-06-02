@@ -37,7 +37,7 @@ class rcmrd_elev(TiffParameter):
 
     def consume(self, file, band, shape):
         self.rows.append({
-            'date': 2018, # only on file for 2018
+            'year': 2018, # only on file for 2018
             'shape_id': shape['id'],
             f'{self.parameter_id}':         np.nanmean(band),
             f"{self.parameter_id}_min":     np.nanmin(band),
