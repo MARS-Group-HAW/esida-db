@@ -18,4 +18,6 @@
 | Category     | Health                |
 | Abbreviation | lit_dengue_herep      |
 | Titel        | Dengue health reports |
+| Accuracy     | No                    |
+| Consistency  | Yes                   |
 | Source       | Official authorities  |

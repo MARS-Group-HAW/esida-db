@@ -27,7 +27,7 @@
 | Consistency               | Yes                                                                                              |
 | Data Origin               | Disaggregation                                                                                   |
 | Source                    | Worldpop                                                                                         |
-| Source dataset Identifier | doi/10.5258/SOTON/WP00660                                                                        |
+| Source dataset Identifier | [10.5258/SOTON/WP00660](https://doi.org/10.5258/SOTON/WP00660)                                   |
 | Publication               | [https://doi.org/10.1371/journal.pone.0107042](https://doi.org/10.1371/journal.pone.0107042)     |
 | Rights                    | Attribution 4.0 International (CC BY 4.0)                                                        |
 | Source link               | [https://www.worldpop.org/geodata/listing?id=69](https://www.worldpop.org/geodata/listing?id=69) |

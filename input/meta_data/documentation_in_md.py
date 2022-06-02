@@ -59,7 +59,7 @@ def documentation (abbrev, i):
 
 def write_md(abbrev, dtype_info, dqual_info):
     """ writes the markdown strings into a markdownfile and saves it """
-    with open(".".join([abbrev, "md"]), 'w') as f:
+    with open(path / f"{abbrev}.md", 'w') as f:
         f.write("## Data type and processing information \n\n")
         f.write(dtype_info)
         f.write("\n\n## Data quality information \n\n")

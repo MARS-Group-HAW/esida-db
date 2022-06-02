@@ -17,13 +17,20 @@
 
 ## Data quality information 
 
-|                          | Description                                                                                                      |
-|:-------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| Category                 | Weather & Climate                                                                                                |
-| Abbreviation             | meteo_maxt                                                                                                       |
-| Titel                    | Maximum Temperature                                                                                              |
-| Source                   | Meteostat                                                                                                        |
-| Source link              | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
-| Related Sources          | None                                                                                                             |
-| Documentaion Contributor | KrN                                                                                                              |
-| Documentation Date       | 02.05.2022                                                                                                       |
+|                           | Description                                                                                                          |
+|:--------------------------|:---------------------------------------------------------------------------------------------------------------------|
+| Category                  | Weather & Climate                                                                                                    |
+| Abbreviation              | meteo_maxt                                                                                                           |
+| Titel                     | Maximum Temperature                                                                                                  |
+| Timeliness                | 2022                                                                                                                 |
+| Accuracy                  | No                                                                                                                   |
+| Consistency               | No                                                                                                                   |
+| Data Origin               | Weather Stations                                                                                                     |
+| Source                    | Meteostat                                                                                                            |
+| Source dataset Identifier | uses multiple open source datasets: [https://dev.meteostat.net/sources.html](https://dev.meteostat.net/sources.html) |
+| Publication               | No                                                                                                                   |
+| Rights                    | CC BY-NC 4.0                                                                                                         |
+| Source link               | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example)     |
+| Related Sources           | Copernicus                                                                                                           |
+| Documentaion Contributor  | KrN                                                                                                                  |
+| Documentation Date        | 02.05.2022                                                                                                           |

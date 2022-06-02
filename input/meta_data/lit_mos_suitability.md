@@ -21,6 +21,5 @@
 | Abbreviation             | lit_mos_suitability                                                   |
 | Titel                    | Environmental suitability Aedes aegypti (assumptions from literature) |
 | Source                   | Literature-based                                                      |
-| Source link              | [https://datadryad.org/stash/404](https://datadryad.org/stash/404)    |
 | Documentaion Contributor | KrN                                                                   |
 | Documentation Date       | 02.05.2022                                                            |

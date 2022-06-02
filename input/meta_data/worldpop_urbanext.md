@@ -27,7 +27,7 @@
 | Consistency               | No                                                                                                     |
 | Data Origin               | Interpolation, Extrapolation                                                                           |
 | Source                    | Worldpop                                                                                               |
-| Source dataset Identifier | doi/10.5258/SOTON/WP00649                                                                              |
+| Source dataset Identifier | [10.5258/SOTON/WP00649](https://doi.org/10.5258/SOTON/WP00649)                                         |
 | Publication               | [https://doi.org/10.1016/j.rse.2014.09.023](https://doi.org/10.1016/j.rse.2014.09.023)                 |
 | Rights                    | Attribution 4.0 International (CC BY 4.0)                                                              |
 | Source link               | [https://www.worldpop.org/geodata/summary?id=17285](https://www.worldpop.org/geodata/summary?id=17285) |

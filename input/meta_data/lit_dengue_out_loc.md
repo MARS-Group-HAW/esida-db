@@ -18,4 +18,6 @@
 | Category     | Health                                 |
 | Abbreviation | lit_dengue_out_loc                     |
 | Titel        | Dengue outbreak locations (historical) |
+| Accuracy     | No                                     |
+| Consistency  | Yes                                    |
 | Source       | Literature-based, Report-based         |

@@ -18,4 +18,6 @@
 | Category     | Health                         |
 | Abbreviation | lit_chol_herep                 |
 | Titel        | Cholera health reports         |
+| Accuracy     | No                             |
+| Consistency  | Yes                            |
 | Source       | Literature-based, Report-based |

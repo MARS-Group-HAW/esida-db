@@ -18,4 +18,6 @@
 | Category     | Health                                             |
 | Abbreviation | lit_chik_sero                                      |
 | Titel        | Optional: Chikungunya seroprevalences (historical) |
+| Accuracy     | No                                                 |
+| Consistency  | Yes                                                |
 | Source       | Ummy field work                                    |

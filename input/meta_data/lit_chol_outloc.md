@@ -18,4 +18,6 @@
 | Category     | Health                                  |
 | Abbreviation | lit_chol_outloc                         |
 | Titel        | Cholera outbreak locations (historical) |
+| Accuracy     | No                                      |
+| Consistency  | Yes                                     |
 | Source       | Literature-based, Report-based          |

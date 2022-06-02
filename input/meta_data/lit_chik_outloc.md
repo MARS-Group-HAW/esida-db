@@ -18,4 +18,6 @@
 | Category     | Health                                                |
 | Abbreviation | lit_chik_outloc                                       |
 | Titel        | Optional: Chikungunya outbreak locations (historical) |
+| Accuracy     | No                                                    |
+| Consistency  | Yes                                                   |
 | Source       | Ummy field work                                       |

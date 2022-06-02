@@ -18,4 +18,6 @@
 | Category     | Health                                     |
 | Abbreviation | lit_chol_waterloc                          |
 | Titel        | Cholera affected water bodies (historical) |
+| Accuracy     | No                                         |
+| Consistency  | Yes                                        |
 | Source       | Literature-based                           |

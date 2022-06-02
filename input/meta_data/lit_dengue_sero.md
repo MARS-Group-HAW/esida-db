@@ -18,4 +18,6 @@
 | Category     | Health                                   |
 | Abbreviation | lit_dengue_sero                          |
 | Titel        | Dengue seroprevalence level (historical) |
+| Accuracy     | No                                       |
+| Consistency  | Yes                                      |
 | Source       | Literature-based                         |

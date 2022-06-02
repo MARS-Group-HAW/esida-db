@@ -28,7 +28,7 @@
 | Consistency               | Yes                                                                                                  |
 | Data Origin               | Model-based                                                                                          |
 | Source                    | Worldpop                                                                                             |
-| Source dataset Identifier | doi/10.5258/SOTON/WP00290                                                                            |
+| Source dataset Identifier | [10.5258/SOTON/WP00290](https://doi.org/10.5258/SOTON/WP00290)                                       |
 | Publication               | [https://doi.org/10.1098/rsif.2016.0690](https://doi.org/10.1098/rsif.2016.0690)                     |
 | Rights                    | Attribution 4.0 International (CC BY 4.0)                                                            |
 | Source link               | [https://www.worldpop.org/geodata/summary?id=1273](https://www.worldpop.org/geodata/summary?id=1273) |
