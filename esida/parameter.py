@@ -111,7 +111,7 @@ class BaseParameter():
         return shapes
 
 
-    def _save_url_to_file(self, url) -> bool:
+    def _save_url_to_file(self, url, folder=None) -> bool:
         """ Downloads a URL to be saved on the parameter data directory.
         Checks if file has already been downloaded. Return True in case
         file was downloaded/was already downloaded, otherwise False.
@@ -119,12 +119,15 @@ class BaseParameter():
         a = urlparse(url)
         file_name = os.path.basename(a.path)
 
-        if os.path.isfile(self.get_data_path() / file_name):
+        if folder is None:
+            folder = self.get_data_path()
+
+        if os.path.isfile(folder / file_name):
             self.logger.debug("Skipping b/c already downloaded %s", url)
             return True
 
         try:
-            subprocess.check_output(['wget', url, "-P", self.get_data_path().as_posix()])
+            subprocess.check_output(['wget', url, "-P", folder])
             return True
         except subprocess.CalledProcessError as error:
             self.logger.warning("Could not download file: %s, %s", url, error.stderr)
