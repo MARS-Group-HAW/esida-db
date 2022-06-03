@@ -3,23 +3,16 @@ CHIRPS Data: https://www.chc.ucsb.edu/data/chirps
 
 """
 
-import logging
-import subprocess
-import rasterio
-import rasterio.mask
-import fiona
 import re
 import os
-from pathlib import Path
+import subprocess
+import datetime as dt
+from urllib.parse import urlparse
+
 import numpy as np
 import pandas as pd
-from urllib.parse import urlparse
-import datetime as dt
-
-from dbconf import get_engine
 
 from esida.tiff_parameter import TiffParameter
-
 
 RESOLUTION = "p05" # p04 or p25 resolution in deg
 BASE_URL = "https://data.chc.ucsb.edu/products/CHIRPS-2.0/africa_daily/tifs/{resolution}/{year}/chirps-v2.0.{year}.{month:02d}.{day:02d}.tif.gz"
