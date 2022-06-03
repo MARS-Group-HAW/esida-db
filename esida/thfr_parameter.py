@@ -28,8 +28,6 @@ class ThfrParameter(BaseParameter):
         # table name for the cleaned records
         self.table_name = 'thfr'
 
-        self.districts_gdf = geopandas.read_postgis("SELECT * FROM shape WHERE type = 'district'",
-                        geom_col='geometry', con=get_engine())
     # ---
 
     def extract(self):
@@ -38,6 +36,9 @@ class ThfrParameter(BaseParameter):
 
     def transform(self):
         """ (T)ransform: prepare data for loading. """
+
+        self.districts_gdf = geopandas.read_postgis("SELECT * FROM shape WHERE type = 'district'",
+                        geom_col='geometry', con=get_engine())
 
         # latest download of tza hfr
         list_of_files = glob.glob('./input/data/tza_hfr/*.xls')
