@@ -7,7 +7,7 @@ from flask import render_template, make_response, abort, request, redirect, url_
 import markdown
 from slugify import slugify
 
-from dbconf import get_engine
+from dbconf import get_engine, close
 from esida.models import Shape, Signal
 
 import pandas as pd
@@ -225,6 +225,11 @@ def signal():
 
     return render_template('signal/create.html')
 
+
+@app.after_request
+def after_request_callback(response):
+    close()
+    return response
 
 
 if __name__ == '__main__':

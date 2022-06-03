@@ -7,7 +7,9 @@ from urllib.parse import urlparse
 import pandas as pd
 import geopandas
 
-from dbconf import get_engine
+from dbconf import get_engine, connect
+
+engine = get_engine()
 
 class BaseParameter():
     """ Base class for all parameters, implementing necessary functions. """
@@ -22,6 +24,22 @@ class BaseParameter():
 
     def get_output_path(self, name) -> Path:
         return Path(f"./output/{name}/{self.parameter_id}/")
+
+    def get_fields(self):
+        """ Check if the parameter has been loaded to the database. """
+        sql = f"SELECT column_name \
+            FROM information_schema.columns \
+ WHERE table_schema = 'public' \
+   AND table_name   = '{self.parameter_id}';"
+
+        con = connect()
+        res = con.execute(sql)
+        fields = []
+        for row in res:
+            field = row[0]
+            if field not in ['index', 'year', 'date', 'shape_id']:
+                fields.append(field)
+        return fields
 
 
     def save(self):
@@ -56,11 +74,9 @@ class BaseParameter():
             tablename  = '{self.parameter_id}' \
         );"
 
-        engine = get_engine()
-
-        with engine.connect() as con:
-            res = con.execute(sql)
-            return res.fetchone()[0]
+        con = connect()
+        res = con.execute(sql)
+        return res.fetchone()[0]
 
 
     def download(self, shape_id) -> pd.DataFrame:

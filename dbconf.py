@@ -4,6 +4,8 @@
 from sqlalchemy import create_engine
 from decouple import config
 
+_connection = None
+
 def get_conn_string():
     try:
         # read connection params
@@ -26,15 +28,27 @@ def get_engine():
 def connect():
     """ Connect to the PostgreSQL database server """
 
+    global _connection
+
+    if _connection is not None:
+        return _connection
+
     try:
         # connect to PostgreSQL server
         engine = get_engine()
 
-        connection = engine.connect()
+        _connection = engine.connect()
 
-        return connection
+        return _connection
     except:
         return print("Connection failed.")
+
+def close():
+    global _connection
+
+    if _connection is not None:
+        _connection.close()
+        _connection = None
 
 # for debug
 if __name__ == '__main__':
