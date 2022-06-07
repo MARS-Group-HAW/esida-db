@@ -83,8 +83,9 @@ Start Flask web-interface:
     flask run
 
 
-https://geotiff.io/
+Start Flask with Gunicron:
 
+    gunicorn --bind 0.0.0.0:80 esida:app --error-logfile - --reload
 
 ----
 
