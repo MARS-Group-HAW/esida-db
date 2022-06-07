@@ -1,9 +1,10 @@
 import importlib
 import datetime as dt
 import os
+import json
 
-from esida import app, params, db
-from flask import render_template, make_response, abort, request, redirect, url_for, send_from_directory
+from esida import app, params, db, logger
+from flask import render_template, make_response, abort, jsonify, request, redirect, url_for, send_from_directory
 import markdown
 from slugify import slugify
 
@@ -101,10 +102,18 @@ def shape(shape_id):
     meteostat_df['y'] = meteostat_df['prcp']
     meteostat_data = meteostat_df[['x', 'y']].sort_values(by='x').to_json(orient="values")
 
+    parameters = []
+    for p in params:
+        pm = importlib.import_module('parameters.{}'.format(p))
+        pc = getattr(pm, p)()
+
+        if pc.is_loaded():
+            parameters.append(pc)
+
     return render_template('shape.html',
         shape=shape,
-        params=params,
-        data=_get_parameters_for_shape(shape_id),
+        params=parameters,
+        #data=_get_parameters_for_shape(shape_id),
         meteostat_station=meteostat_station,
         chc_chirps_data=chc_chirps_data,
         meteostat_data=meteostat_data
@@ -142,6 +151,43 @@ def _get_parameters_for_shape(shape_id) -> pd.DataFrame:
 
     return df
 
+@app.route('/shape/<int:shape_id>/<parameter>/<column>/json')
+def download_json(shape_id, parameter, column):
+    if parameter not in params:
+        logger.warning("JSON Download for %s, but unknown parameter.", parameter)
+        abort(500)
+
+    pm = importlib.import_module(f'parameters.{parameter}')
+    pc = getattr(pm, parameter)()
+
+    if not pc.is_loaded():
+        logger.warning("JSON Download for %s, but not loaded", parameter)
+        abort(500)
+
+    df = pc.download(int(shape_id))
+    if column not in df.columns:
+        logger.warning("JSON Download for %s, but column %s not available.", parameter, column)
+        abort(500)
+
+    if 'year' in df.columns:
+        df['date'] = df['year'].astype(str) + "-01-01"
+        df['date'] = pd.to_datetime(df['date'])
+    elif 'date' in df.columns:
+        df['date'] = pd.to_datetime(df['date'])
+    else:
+        df['date'] = 0
+
+    df = df.sort_values(by=['date']).reset_index()
+
+    df['x'] = df['date'].astype(np.int64) / int(1e6)
+    df['x'] = df['x'].astype(int)
+    df['y'] = df[column]
+
+    df = df[df['y'].notna()]
+
+    return jsonify(
+        data=df[['x', 'y']].values.tolist()
+    )
 
 @app.route('/shape/<int:shape_id>/parameters')
 def download_csv(shape_id):

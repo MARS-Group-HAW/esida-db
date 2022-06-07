@@ -81,22 +81,33 @@
     <div class="col-12">
       <h3>Data visualization</h3>
       <p>
-        You can toggle the different parameters on the left pane to show them inside the line-chart.
+        Add different parameters by selecting them in the dropdown.
       </p>
     </div>
 
     <div class="col-3">
-      {% if data.empty %}
-        <div class="alert alert-primary" role="alert">
-          No data available for this shape.
-        </div>
-      {% else %}
-        {# first two columns are index and year and not interesting for the chart #}
-        {% for p in data.columns[2:] %}
-          <button type="button" data-bs-toggle="button" class="btn btn-sm btn-outline-secondary js-highchart-add-series mb-1" data-id="{{ p }}">{{ p }}</button>
+      <div class="mb-3">
+        <select class="form-select js-chosen-select" id="series-for-chart" multiple  data-placeholder="Select parameter…">
+          {% for p in params %}
+              <optgroup label="{{ p.__class__.__name__ | replace("_", " ") }}">
+                {% for pk in p.get_fields() %}
+                <option data-param="{{ p.__class__.__name__ }}" value="{{ pk }}">{{ pk | replace("_", " ") }}</option>
+                {% endfor %}
+              </optgroup>
+            {% endfor %}
+        </select>
+      </div>
 
-        {% endfor %}
-      {% endif %}
+      {#
+      <div class="mb-3">
+        <label for="start_date" class="form-label">Start date</label>
+        <input type="date" id="start_date" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="end_date" class="form-label">End date</label>
+        <input type="date" id="end_date" class="form-control">
+      </div>
+      #}
 
     </div>
     <div class="col-9">
@@ -113,6 +124,7 @@
 {% endblock %}
 
 {% block footer %}
+
 <script>
 var chart_weather = Highcharts.chart('chart_weather', {
   chart: {
@@ -164,10 +176,8 @@ var chart_weather = Highcharts.chart('chart_weather', {
 });
 </script>
 
-
 <script>
-
-var data = {{ data.to_json(orient="columns")|safe }}
+$(".js-chosen-select").chosen();
 
 var chart = Highcharts.chart('chart', {
   chart: {
@@ -217,30 +227,52 @@ var chart = Highcharts.chart('chart', {
         }
     }]
   }
-
 });
 
-$('.js-highchart-add-series').on('click', function() {
-  var id = $(this).data('id');
-  var becameActive = $(this).hasClass('active');
 
-  if (becameActive) {
-    var values = [];
-    for(var k in data[id]) {
-      values.push([Date.UTC(data['year'][k]), data[id][k]]);
-    }
+var column_to_parameter = {};
 
-    chart.addSeries({
-      id: id,
-      name: id,
-      data: values
-    });
-  } else {
+{% for p in params %}
+    {% for pk in p.get_fields() %}
+    column_to_parameter['{{ pk }}'] = '{{ p.__class__.__name__ }}';
+    {% endfor %}
+{% endfor %}
+
+var active = [];
+
+$(".js-chosen-select").on('change', function(e) {
+  var selected = $(this).val();
+  var done = []
+
+  selected.forEach(function(id) {
     series = chart.get(id);
     if (series) {
-      series.remove();
+      // already in chart...
+    } else {
+        $.getJSON('/shape/{{ shape['id'] }}/' + column_to_parameter[id] + '/' + id + '/json', function(data) {
+          chart.addSeries({
+            id: id,
+            name: id,
+            data: data['data']
+          });
+
+        }).fail(function() {
+          alert('Sorry, could not load data.')
+        });
     }
-  }
+    done.push(id);
+  });
+
+  active.forEach(function(id) {
+    if(!done.includes(id)) {
+      series = chart.get(id);
+      if (series) {
+        series.remove();
+      }
+    }
+  });
+
+  active = done;
 });
 </script>
 
@@ -271,5 +303,5 @@ $('.js-highchart-add-series').on('click', function() {
   var layerControl = L.control.layers().addTo(map);
   layerControl.addBaseLayer(osm, 'OSM');
   layerControl.addOverlay(group_districts, 'Districts');
-  </script>
+</script>
 {% endblock %}
