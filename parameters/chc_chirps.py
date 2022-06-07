@@ -92,3 +92,6 @@ class chc_chirps(TiffParameter):
         """ Overwrite download for CHIRPS data since the static/download parameters
         have a yearly resolution, but CHIRPS has daily. """
         return pd.DataFrame
+
+    def get_fields(self):
+        return []
