@@ -1,18 +1,12 @@
-from multiprocessing.sharedctypes import Value
+
 import os
-import glob
-import itertools
+import re
 import subprocess
 from pathlib import Path
 from urllib.parse import urlparse
 
 import numpy as np
-import pandas as pd
-import rasterio
-import rasterio.mask
-import fiona
 
-from dbconf import get_engine
 from esida.tiff_parameter import TiffParameter
 
 class CopernicusParameter(TiffParameter):
@@ -20,6 +14,8 @@ class CopernicusParameter(TiffParameter):
 
     def __init__(self):
         super().__init__()
+
+        self.area_of_interest = []
 
         self.mapping = [{
             "meaning": "unknown",
@@ -42,7 +38,7 @@ class CopernicusParameter(TiffParameter):
             "value": 114
         },
         {
-            "meaning": "mixed _closed",
+            "meaning": "mixed_closed",
             "value": 115
         },
         {
@@ -66,7 +62,7 @@ class CopernicusParameter(TiffParameter):
             "value": 124
         },
         {
-            "meaning": "mixed _open",
+            "meaning": "mixed_open",
             "value": 125
         },
         {
@@ -179,3 +175,24 @@ class CopernicusParameter(TiffParameter):
                 return item['value']
 
         raise ValueError(f"Unknown Copernicus mapping key: {key}.")
+
+    def consume(self, file, band, shape):
+        x = re.search(r'([0-9]{4})', os.path.basename(file))
+        year = int(x[1])
+
+        total_cells = np.count_nonzero(~np.isnan(band))
+        values, count = np.unique(band, return_counts=True)
+        stats = dict(zip(values, count))
+
+        aoi_cells = 0
+        for key in self.area_of_interest:
+            val = self.get_value_for_key(key)
+
+            if val in stats:
+                aoi_cells += stats[val]
+
+        self.rows.append({
+            'year': year,
+            'shape_id': shape['id'],
+            f'{self.parameter_id}': aoi_cells / total_cells,
+        })
