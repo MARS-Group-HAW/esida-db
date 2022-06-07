@@ -15,9 +15,16 @@
 
 |              | Description                                |
 |:-------------|:-------------------------------------------|
-| Category     | Health                                     |
 | Abbreviation | lit_chol_waterloc                          |
-| Titel        | Cholera affected water bodies (historical) |
-| Accuracy     | No                                         |
-| Consistency  | Yes                                        |
+| Subject      | Health                                     |
+| Creator      | ESIDA                                      |
+| Description  | Cholera affected water bodies (historical) |
+| Publisher    | HAW Hamburg                                |
+| Contributor  | ESIDA                                      |
+| Type         | Dataset                                    |
+| Format       | csv                                        |
 | Source       | Literature-based                           |
+| Citation     | None                                       |
+| Language     | eng                                        |
+| Rights       | None                                       |
+| Coverage     | Tanzania                                   |

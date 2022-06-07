@@ -3,9 +3,9 @@
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
-| Abbreviation        | copernicus_schrub                                                                                |
-| Titel               | Proportion Shrubland                                                                             |
-| Necessity           | optional                                                                                         |
+| Abbreviation        | copernicus_herbwet                                                                               |
+| Titel               | Proportion permanent herbaceous wetland                                                          |
+| Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |
 | Original unit       | binary (0=no, 1=yes)                                                                             |
@@ -21,10 +21,10 @@
 
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
-| Abbreviation | copernicus_schrub                                                |
+| Abbreviation | copernicus_herbwet                                               |
 | Subject      | Enviroment                                                       |
 | Creator      | Copernicus Land Cover                                            |
-| Description  | Proportion Shrubland                                             |
+| Description  | Proportion permanent herbaceous wetland                          |
 | Publisher    | HAW Hamburg                                                      |
 | Contributor  | ESIDA                                                            |
 | Date         | 02.05.2022                                                       |

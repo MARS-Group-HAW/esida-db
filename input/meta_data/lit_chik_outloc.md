@@ -15,9 +15,16 @@
 
 |              | Description                                           |
 |:-------------|:------------------------------------------------------|
-| Category     | Health                                                |
 | Abbreviation | lit_chik_outloc                                       |
-| Titel        | Optional: Chikungunya outbreak locations (historical) |
-| Accuracy     | No                                                    |
-| Consistency  | Yes                                                   |
+| Subject      | Health                                                |
+| Creator      | ESIDA                                                 |
+| Description  | Optional: Chikungunya outbreak locations (historical) |
+| Publisher    | HAW Hamburg                                           |
+| Contributor  | ESIDA                                                 |
+| Type         | Dataset                                               |
+| Format       | csv                                                   |
 | Source       | Ummy field work                                       |
+| Citation     | None                                                  |
+| Language     | eng                                                   |
+| Rights       | None                                                  |
+| Coverage     | Tanzania                                              |

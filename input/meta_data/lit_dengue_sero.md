@@ -15,9 +15,16 @@
 
 |              | Description                              |
 |:-------------|:-----------------------------------------|
-| Category     | Health                                   |
 | Abbreviation | lit_dengue_sero                          |
-| Titel        | Dengue seroprevalence level (historical) |
-| Accuracy     | No                                       |
-| Consistency  | Yes                                      |
+| Subject      | Health                                   |
+| Creator      | ESIDA                                    |
+| Description  | Dengue seroprevalence level (historical) |
+| Publisher    | HAW Hamburg                              |
+| Contributor  | ESIDA                                    |
+| Type         | Dataset                                  |
+| Format       | csv                                      |
 | Source       | Literature-based                         |
+| Citation     | None                                     |
+| Language     | eng                                      |
+| Rights       | None                                     |
+| Coverage     | Tanzania                                 |

@@ -3,9 +3,9 @@
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
-| Abbreviation        | copernicus_schrub                                                                                |
-| Titel               | Proportion Shrubland                                                                             |
-| Necessity           | optional                                                                                         |
+| Abbreviation        | copernicus_forest                                                                                |
+| Titel               | Proportion Forest                                                                                |
+| Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |
 | Original unit       | binary (0=no, 1=yes)                                                                             |
@@ -21,10 +21,10 @@
 
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
-| Abbreviation | copernicus_schrub                                                |
+| Abbreviation | copernicus_forest                                                |
 | Subject      | Enviroment                                                       |
 | Creator      | Copernicus Land Cover                                            |
-| Description  | Proportion Shrubland                                             |
+| Description  | Proportion Forest                                                |
 | Publisher    | HAW Hamburg                                                      |
 | Contributor  | ESIDA                                                            |
 | Date         | 02.05.2022                                                       |

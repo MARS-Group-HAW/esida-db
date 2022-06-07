@@ -15,9 +15,16 @@
 
 |              | Description                                        |
 |:-------------|:---------------------------------------------------|
-| Category     | Health                                             |
 | Abbreviation | lit_chik_sero                                      |
-| Titel        | Optional: Chikungunya seroprevalences (historical) |
-| Accuracy     | No                                                 |
-| Consistency  | Yes                                                |
+| Subject      | Health                                             |
+| Creator      | ESIDA                                              |
+| Description  | Optional: Chikungunya seroprevalences (historical) |
+| Publisher    | HAW Hamburg                                        |
+| Contributor  | ESIDA                                              |
+| Type         | Dataset                                            |
+| Format       | csv                                                |
 | Source       | Ummy field work                                    |
+| Citation     | None                                               |
+| Language     | eng                                                |
+| Rights       | None                                               |
+| Coverage     | Tanzania                                           |

@@ -1,27 +1,28 @@
 ## Data type and processing information 
 
-|              | Description        |
-|:-------------|:-------------------|
-| Category     | Infrastructure     |
-| Abbreviation | unkown_garbage     |
-| Titel        | Garbage collection |
-| Necessity    | optional           |
+|                 | Description        |
+|:----------------|:-------------------|
+| Category        | Infrastructure     |
+| Abbreviation    | unkown_garbage     |
+| Titel           | Garbage collection |
+| Necessity       | optional           |
+| Related Sources | None               |
 
 ## Data quality information 
 
-|                           | 52                                                                                           |
-|:--------------------------|:---------------------------------------------------------------------------------------------|
-| Category                  | Infrastructure                                                                               |
-| Abbreviation              | unkown_garbage                                                                               |
-| Titel                     | Garbage collection                                                                           |
-| Accuracy                  | Unkown                                                                                       |
-| Consistency               | No                                                                                           |
-| Data Origin               | Reporting                                                                                    |
-| Source                    | DHS Program                                                                                  |
-| Source dataset Identifier | mixed                                                                                        |
-| Publication               | None                                                                                         |
-| Rights                    | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
-| Source link               | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)                         |
-| Related Sources           | None                                                                                         |
-| Documentaion Contributor  | KrN                                                                                          |
-| Documentation Date        | 02.05.2022                                                                                   |
+|              | 54                                                                                           |
+|:-------------|:---------------------------------------------------------------------------------------------|
+| Abbreviation | unkown_garbage                                                                               |
+| Subject      | Infrastructure                                                                               |
+| Creator      | Unkown                                                                                       |
+| Description  | Garbage collection                                                                           |
+| Publisher    | HAW Hamburg                                                                                  |
+| Contributor  | ESIDA                                                                                        |
+| Date         | 02.05.2022                                                                                   |
+| Type         | Dataset                                                                                      |
+| Format       | csv                                                                                          |
+| Identifier   | None                                                                                         |
+| Language     | eng                                                                                          |
+| Rights       | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
+| Coverage     | Tanzania                                                                                     |
+| contributor  | KrN                                                                                          |

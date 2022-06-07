@@ -15,7 +15,15 @@
 
 |              | Description                             |
 |:-------------|:----------------------------------------|
-| Category     | Enviromental                            |
 | Abbreviation | lit_mos_abundance                       |
-| Titel        | Mosquitoes Abundance Index (historical) |
+| Subject      | Enviromental                            |
+| Description  | Mosquitoes Abundance Index (historical) |
+| Publisher    | HAW Hamburg                             |
+| Contributor  | ESIDA                                   |
+| Type         | Dataset                                 |
+| Format       | csv                                     |
 | Source       | Literature-based                        |
+| Citation     | None                                    |
+| Language     | eng                                     |
+| Coverage     | Tanzania                                |
+| contributor  | KrN                                     |

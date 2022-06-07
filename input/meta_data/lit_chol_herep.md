@@ -15,9 +15,16 @@
 
 |              | Description                    |
 |:-------------|:-------------------------------|
-| Category     | Health                         |
 | Abbreviation | lit_chol_herep                 |
-| Titel        | Cholera health reports         |
-| Accuracy     | No                             |
-| Consistency  | Yes                            |
+| Subject      | Health                         |
+| Creator      | ESIDA                          |
+| Description  | Cholera health reports         |
+| Publisher    | HAW Hamburg                    |
+| Contributor  | ESIDA                          |
+| Type         | Dataset                        |
+| Format       | csv                            |
 | Source       | Literature-based, Report-based |
+| Citation     | None                           |
+| Language     | eng                            |
+| Rights       | None                           |
+| Coverage     | Tanzania                       |

@@ -1,35 +1,38 @@
 ## Data type and processing information 
 
-|                      | Description                                                          |
-|:---------------------|:---------------------------------------------------------------------|
-| Category             | Health                                                               |
-| Abbreviation         | statcompiler_mosnet                                                  |
-| Titel                | Mosquito net implementation (bed net)                                |
-| Necessity            | optional                                                             |
-| Format               | csv                                                                  |
-| Operation            | None                                                                 |
-| Original Parameteter | Proportion of households with at least one net                       |
-| Spatial details      | Regional level                                                       |
-| Temporal details     | 2017                                                                 |
-| Source               | DHS Program                                                          |
-| Link                 | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+|                  | Description                                                          |
+|:-----------------|:---------------------------------------------------------------------|
+| Category         | Health                                                               |
+| Abbreviation     | statcompiler_mosnet                                                  |
+| Titel            | Mosquito net implementation (bed net)                                |
+| Necessity        | optional                                                             |
+| Format           | csv                                                                  |
+| Operation        | None                                                                 |
+| Original unit    | Proportion of households with at least one net                       |
+| Spatial details  | Regional level                                                       |
+| Temporal details | 2017                                                                 |
+| Source           | DHS Program                                                          |
+| Related Sources  | None                                                                 |
+| Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment.1        | ML_NETP_H_MOS                                                        |
 
 ## Data quality information 
 
-|                           | 54                                                                                           |
-|:--------------------------|:---------------------------------------------------------------------------------------------|
-| Category                  | Health                                                                                       |
-| Abbreviation              | statcompiler_mosnet                                                                          |
-| Titel                     | Mosquito net implementation (bed net)                                                        |
-| Accuracy                  | Unkown                                                                                       |
-| Consistency               | No                                                                                           |
-| Data Origin               | Reporting                                                                                    |
-| Source                    | DHS Program                                                                                  |
-| Source dataset Identifier | mixed                                                                                        |
-| Publication               | None                                                                                         |
-| Rights                    | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
-| Source link               | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)                         |
-| Related Sources           | None                                                                                         |
-| Documentaion Contributor  | KrN                                                                                          |
-| Documentation Date        | 02.05.2022                                                                                   |
-| Comment                   | ML_NETP_H_MOS                                                                                |
+|              | 56                                                                                           |
+|:-------------|:---------------------------------------------------------------------------------------------|
+| Abbreviation | statcompiler_mosnet                                                                          |
+| Subject      | Health                                                                                       |
+| Creator      | DHS Program                                                                                  |
+| Description  | Mosquito net implementation (bed net)                                                        |
+| Publisher    | HAW Hamburg                                                                                  |
+| Contributor  | ESIDA                                                                                        |
+| Date         | 02.05.2022                                                                                   |
+| Type         | Dataset                                                                                      |
+| Format       | csv                                                                                          |
+| Identifier   | None                                                                                         |
+| Source       | DHS Program                                                                                  |
+| Citation     | None                                                                                         |
+| Language     | eng                                                                                          |
+| Rights       | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
+| Coverage     | Tanzania                                                                                     |
+| contributor  | KrN                                                                                          |

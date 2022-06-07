@@ -12,11 +12,17 @@
 
 ## Data quality information 
 
-|                          | Description                                            |
-|:-------------------------|:-------------------------------------------------------|
-| Category                 | Enviromental                                           |
-| Abbreviation             | lit_dengue_suitability                                 |
-| Titel                    | Dengue suitability index (assumptions from literature) |
-| Source                   | Literature-based                                       |
-| Documentaion Contributor | KrN                                                    |
-| Documentation Date       | 02.05.2022                                             |
+|              | Description                                            |
+|:-------------|:-------------------------------------------------------|
+| Abbreviation | lit_dengue_suitability                                 |
+| Subject      | Enviromental                                           |
+| Description  | Dengue suitability index (assumptions from literature) |
+| Publisher    | HAW Hamburg                                            |
+| Contributor  | ESIDA                                                  |
+| Type         | Dataset                                                |
+| Format       | csv                                                    |
+| Source       | Literature-based                                       |
+| Citation     | None                                                   |
+| Language     | eng                                                    |
+| Coverage     | Tanzania                                               |
+| contributor  | KrN                                                    |

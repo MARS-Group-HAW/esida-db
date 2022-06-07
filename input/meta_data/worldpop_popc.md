@@ -1,36 +1,38 @@
 ## Data type and processing information 
 
-|                             | Description                                                                                      |
-|:----------------------------|:-------------------------------------------------------------------------------------------------|
-| Category                    | Demographic                                                                                      |
-| Abbreviation                | worldpop_popc                                                                                    |
-| Titel                       | Population counts                                                                                |
-| Necessity                   | required                                                                                         |
-| Format                      | tiff                                                                                             |
-| Operation                   | sum                                                                                              |
-| Original Parameteter        | total number                                                                                     |
-| DataBase District Parameter | total number                                                                                     |
-| Spatial details             | 100 x 100 m                                                                                      |
-| Temporal details            | Annualy (2010-2020)                                                                              |
-| Source                      | Worldpop                                                                                         |
-| Link                        | [https://www.worldpop.org/geodata/listing?id=69](https://www.worldpop.org/geodata/listing?id=69) |
+|                     | Description                                                                                      |
+|:--------------------|:-------------------------------------------------------------------------------------------------|
+| Category            | Demographic                                                                                      |
+| Abbreviation        | worldpop_popc                                                                                    |
+| Titel               | Population counts                                                                                |
+| Necessity           | required                                                                                         |
+| Format              | tiff                                                                                             |
+| Operation           | sum                                                                                              |
+| Original unit       | total number                                                                                     |
+| ESIDA database unit | total number                                                                                     |
+| Spatial details     | 100 x 100 m                                                                                      |
+| Temporal details    | Annualy (2010-2020)                                                                              |
+| Source              | Worldpop                                                                                         |
+| Related Sources     | None                                                                                             |
+| Link                | [https://www.worldpop.org/geodata/listing?id=69](https://www.worldpop.org/geodata/listing?id=69) |
 
 ## Data quality information 
 
-|                           | Description                                                                                      |
-|:--------------------------|:-------------------------------------------------------------------------------------------------|
-| Category                  | Demographic                                                                                      |
-| Abbreviation              | worldpop_popc                                                                                    |
-| Titel                     | Population counts                                                                                |
-| Timeliness                | 2020                                                                                             |
-| Accuracy                  | No                                                                                               |
-| Consistency               | Yes                                                                                              |
-| Data Origin               | Disaggregation                                                                                   |
-| Source                    | Worldpop                                                                                         |
-| Source dataset Identifier | [10.5258/SOTON/WP00660](https://doi.org/10.5258/SOTON/WP00660)                                   |
-| Publication               | [https://doi.org/10.1371/journal.pone.0107042](https://doi.org/10.1371/journal.pone.0107042)     |
-| Rights                    | Attribution 4.0 International (CC BY 4.0)                                                        |
-| Source link               | [https://www.worldpop.org/geodata/listing?id=69](https://www.worldpop.org/geodata/listing?id=69) |
-| Related Sources           | None                                                                                             |
-| Documentaion Contributor  | KrN                                                                                              |
-| Documentation Date        | 02.05.2022                                                                                       |
+|              | Description                                                                                  |
+|:-------------|:---------------------------------------------------------------------------------------------|
+| Abbreviation | worldpop_popc                                                                                |
+| Subject      | Demographics                                                                                 |
+| Creator      | Worldpop                                                                                     |
+| Description  | Population counts                                                                            |
+| Publisher    | HAW Hamburg                                                                                  |
+| Contributor  | ESIDA                                                                                        |
+| Date         | 02.05.2022                                                                                   |
+| Type         | Dataset                                                                                      |
+| Format       | csv                                                                                          |
+| Identifier   | [10.5258/SOTON/WP00660](https://doi.org/10.5258/SOTON/WP00660)                               |
+| Source       | Worldpop                                                                                     |
+| Citation     | [https://doi.org/10.1371/journal.pone.0107042](https://doi.org/10.1371/journal.pone.0107042) |
+| Language     | eng                                                                                          |
+| Rights       | CC BY 4.0                                                                                    |
+| Coverage     | Tanzania                                                                                     |
+| contributor  | KrN                                                                                          |

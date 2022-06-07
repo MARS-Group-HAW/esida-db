@@ -35,18 +35,18 @@ def make_md_link(text):
 
 df_dtype['Link'] = df_dtype['Link'].apply(make_md_link)
 
-df_dqual['Source dataset Identifier'] = df_dqual['Source dataset Identifier'].apply(make_md_link)
-df_dqual['Publication'] = df_dqual['Publication'].apply(make_md_link)
-df_dqual['Rights']      = df_dqual['Rights'].apply(make_md_link)
-df_dqual['Source link'] = df_dqual['Source link'].apply(make_md_link)
+df_dqual['Identifier'] = df_dqual['Identifier'].apply(make_md_link)
+df_dqual['Citation']   = df_dqual['Citation'].apply(make_md_link)
+df_dqual['Rights']     = df_dqual['Rights'].apply(make_md_link)
 
 def check_for_match():
     """ Checks if both list have identical entry. Raises Error if not else
     returns the list of abbreviations """
     abbrev1 = df_dtype["Abbreviation"]
     abbrev2 = df_dqual["Abbreviation"]
+
     if len(list(set(abbrev1) - set(abbrev2))) != 0:
-        raise ValueError('Data type information and data quality information do not match!')
+        raise ValueError(f'Data type information and data quality information do not match.')
     else:
         return abbrev1
 

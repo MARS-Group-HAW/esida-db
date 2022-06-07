@@ -7,7 +7,7 @@
 | Titel            | Environmental suitability Aedes aegypti (assumptions from literature) |
 | Necessity        | required                                                              |
 | Format           | tbc                                                                   |
-| Spatial details  | 10x10 km                                                              |
+| Spatial details  | 10 x 10 km                                                            |
 | Temporal details | --                                                                    |
 | Source           | Literature-based                                                      |
 | Link             | [https://datadryad.org/stash/404](https://datadryad.org/stash/404)    |
@@ -15,11 +15,17 @@
 
 ## Data quality information 
 
-|                          | Description                                                           |
-|:-------------------------|:----------------------------------------------------------------------|
-| Category                 | Enviromental                                                          |
-| Abbreviation             | lit_mos_suitability                                                   |
-| Titel                    | Environmental suitability Aedes aegypti (assumptions from literature) |
-| Source                   | Literature-based                                                      |
-| Documentaion Contributor | KrN                                                                   |
-| Documentation Date       | 02.05.2022                                                            |
+|              | Description                                                           |
+|:-------------|:----------------------------------------------------------------------|
+| Abbreviation | lit_mos_suitability                                                   |
+| Subject      | Enviromental                                                          |
+| Description  | Environmental suitability Aedes aegypti (assumptions from literature) |
+| Publisher    | HAW Hamburg                                                           |
+| Contributor  | ESIDA                                                                 |
+| Type         | Dataset                                                               |
+| Format       | csv                                                                   |
+| Source       | Literature-based                                                      |
+| Citation     | None                                                                  |
+| Language     | eng                                                                   |
+| Coverage     | Tanzania                                                              |
+| contributor  | KrN                                                                   |

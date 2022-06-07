@@ -15,9 +15,16 @@
 
 |              | Description                            |
 |:-------------|:---------------------------------------|
-| Category     | Health                                 |
 | Abbreviation | lit_dengue_out_loc                     |
-| Titel        | Dengue outbreak locations (historical) |
-| Accuracy     | No                                     |
-| Consistency  | Yes                                    |
+| Subject      | Health                                 |
+| Creator      | ESIDA                                  |
+| Description  | Dengue outbreak locations (historical) |
+| Publisher    | HAW Hamburg                            |
+| Contributor  | ESIDA                                  |
+| Type         | Dataset                                |
+| Format       | csv                                    |
 | Source       | Literature-based, Report-based         |
+| Citation     | None                                   |
+| Language     | eng                                    |
+| Rights       | None                                   |
+| Coverage     | Tanzania                               |

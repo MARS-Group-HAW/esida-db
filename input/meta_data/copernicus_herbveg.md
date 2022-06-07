@@ -3,14 +3,14 @@
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
-| Abbreviation        | copernicus_schrub                                                                                |
-| Titel               | Proportion Shrubland                                                                             |
-| Necessity           | optional                                                                                         |
+| Abbreviation        | copernicus_herbveg                                                                               |
+| Titel               | Proportion Herbaceous wetland                                                                    |
+| Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |
 | Original unit       | binary (0=no, 1=yes)                                                                             |
 | ESIDA database unit | percentage                                                                                       |
-| Spatial details     | 100 x 100 m                                                                                      |
+| Spatial details     | 101 x 100 m                                                                                      |
 | Temporal details    | 2015-2019, annually                                                                              |
 | Source              | Copernicus Land Cover                                                                            |
 | Related Sources     | None                                                                                             |
@@ -21,13 +21,13 @@
 
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
-| Abbreviation | copernicus_schrub                                                |
+| Abbreviation | copernicus_herbveg                                               |
 | Subject      | Enviroment                                                       |
 | Creator      | Copernicus Land Cover                                            |
-| Description  | Proportion Shrubland                                             |
+| Description  | Proportion Herbaceous wetland                                    |
 | Publisher    | HAW Hamburg                                                      |
 | Contributor  | ESIDA                                                            |
-| Date         | 02.05.2022                                                       |
+| Date         | 07.06.2022                                                       |
 | Type         | Dataset                                                          |
 | Format       | csv                                                              |
 | Identifier   | [10.5281/zenodo.3939038](https://doi.org/10.5281/zenodo.3939038) |

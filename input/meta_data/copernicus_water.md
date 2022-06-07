@@ -1,37 +1,39 @@
 ## Data type and processing information 
 
-|                             | Description                                                                                      |
-|:----------------------------|:-------------------------------------------------------------------------------------------------|
-| Category                    | Enviromental                                                                                     |
-| Abbreviation                | copernicus_water                                                                                 |
-| Titel                       | Proportion permanent water bodies                                                                |
-| Necessity                   | required                                                                                         |
-| Format                      | tiff                                                                                             |
-| Operation                   | Proportion (area of interest/whole area)                                                         |
-| Original Parameteter        | binary (0=no, 1=yes)                                                                             |
-| DataBase District Parameter | percentage                                                                                       |
-| Spatial details             | 100 x 100 m                                                                                      |
-| Temporal details            | 2015-2019, annually                                                                              |
-| Source                      | Copernicus Land Cover                                                                            |
-| Link                        | [https://zenodo.org/record/3939038#.YkLn7y8RrBI](https://zenodo.org/record/3939038#.YkLn7y8RrBI) |
-| Comment                     | you can find follow up years under "related identifiers/Continued by"                            |
+|                     | Description                                                                                      |
+|:--------------------|:-------------------------------------------------------------------------------------------------|
+| Category            | Enviromental                                                                                     |
+| Abbreviation        | copernicus_water                                                                                 |
+| Titel               | Proportion permanent water bodies                                                                |
+| Necessity           | required                                                                                         |
+| Format              | tiff                                                                                             |
+| Operation           | Proportion (area of interest/whole area)                                                         |
+| Original unit       | binary (0=no, 1=yes)                                                                             |
+| ESIDA database unit | percentage                                                                                       |
+| Spatial details     | 100 x 100 m                                                                                      |
+| Temporal details    | 2015-2019, annually                                                                              |
+| Source              | Copernicus Land Cover                                                                            |
+| Related Sources     | None                                                                                             |
+| Link                | [https://zenodo.org/record/3939038#.YkLn7y8RrBI](https://zenodo.org/record/3939038#.YkLn7y8RrBI) |
+| Comment             | you can find follow up years under "related identifiers/Continued by"                            |
 
 ## Data quality information 
 
-|                           | Description                                                                                      |
-|:--------------------------|:-------------------------------------------------------------------------------------------------|
-| Category                  | Enviromental                                                                                     |
-| Abbreviation              | copernicus_water                                                                                 |
-| Titel                     | Proportion permanent water bodies                                                                |
-| Timeliness                | 2019                                                                                             |
-| Accuracy                  | No                                                                                               |
-| Consistency               | Yes                                                                                              |
-| Data Origin               | Remote Sensing                                                                                   |
-| Source                    | Copernicus Land Cover                                                                            |
-| Source dataset Identifier | [10.5281/zenodo.3939042](https://doi.org/10.5281/zenodo.3939042)                                 |
-| Publication               | [https://doi.org/10.3390/rs12061048](https://doi.org/10.3390/rs12061048)                         |
-| Rights                    | Attribution 4.0 International (CC BY 4.0)                                                        |
-| Source link               | [https://zenodo.org/record/3939038#.YkLn7y8RrBI](https://zenodo.org/record/3939038#.YkLn7y8RrBI) |
-| Related Sources           | None                                                                                             |
-| Documentaion Contributor  | KrN                                                                                              |
-| Documentation Date        | 02.05.2022                                                                                       |
+|              | Description                                                      |
+|:-------------|:-----------------------------------------------------------------|
+| Abbreviation | copernicus_water                                                 |
+| Subject      | Enviroment                                                       |
+| Creator      | Copernicus Land Cover                                            |
+| Description  | Proportion permanent water bodies                                |
+| Publisher    | HAW Hamburg                                                      |
+| Contributor  | ESIDA                                                            |
+| Date         | 02.05.2022                                                       |
+| Type         | Dataset                                                          |
+| Format       | csv                                                              |
+| Identifier   | [10.5281/zenodo.3939038](https://doi.org/10.5281/zenodo.3939038) |
+| Source       | Copernicus Land Cover                                            |
+| Citation     | [10.3390/rs12061044](https://doi.org/10.3390/rs12061044)         |
+| Language     | eng                                                              |
+| Rights       | CC BY 4.0                                                        |
+| Coverage     | Tanzania                                                         |
+| contributor  | KrN                                                              |
