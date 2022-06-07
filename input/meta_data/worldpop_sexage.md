@@ -4,7 +4,7 @@
 |:-----------------|:-------------------------------------------------------------------------------------------------------|
 | Category         | Demographic                                                                                            |
 | Abbreviation     | worldpop_sexage                                                                                        |
-| Titel            | Sex and age structure                                                                                  |
+| Title            | Sex and age structure                                                                                  |
 | Necessity        | required                                                                                               |
 | Format           | tiff                                                                                                   |
 | Operation        | tbd                                                                                                    |

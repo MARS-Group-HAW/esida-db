@@ -4,7 +4,7 @@
 |:-----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category         | Enviromental                                                                                                                                                                                 |
 | Abbreviation     | shapefile_area                                                                                                                                                                               |
-| Titel            | Area                                                                                                                                                                                         |
+| Title            | Area                                                                                                                                                                                         |
 | Necessity        | required                                                                                                                                                                                     |
 | Format           | .shp                                                                                                                                                                                         |
 | Operation        | calculated from shapefile, PostGIS ST_Area                                                                                                                                                   |

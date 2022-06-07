@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                          |
 | Abbreviation        | worldpop_poverty                                                                                     |
-| Titel               | Poverty                                                                                              |
+| Title               | Poverty                                                                                              |
 | Necessity           | required                                                                                             |
 | Format              | tiff                                                                                                 |
 | Operation           | mean                                                                                                 |

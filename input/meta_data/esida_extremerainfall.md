@@ -4,7 +4,7 @@
 |:--------------------|:--------------------------------------------------------------------|
 | Category            | Weather                                                             |
 | Abbreviation        | esida_extremerainfall                                               |
-| Titel               | Extreme Rainfall event                                              |
+| Title               | Extreme Rainfall event                                              |
 | Necessity           | required                                                            |
 | Format              | calculated                                                          |
 | Operation           | Is the day >95th percetile of average monthly of ten year average ? |

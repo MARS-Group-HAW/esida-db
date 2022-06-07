@@ -4,7 +4,7 @@
 |:----------------|:----------------|
 | Category        | Infrastructure  |
 | Abbreviation    | unkown_housing  |
-| Titel           | Housing density |
+| Title           | Housing density |
 | Necessity       | optional        |
 | Related Sources | None            |
 

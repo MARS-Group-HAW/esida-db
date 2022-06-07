@@ -4,7 +4,7 @@
 |:-----------------|:---------------------------------------------------------------------|
 | Category         | Infrastructure                                                       |
 | Abbreviation     | statcompiler_internet                                                |
-| Titel            | Internet usage (mHealth)                                             |
+| Title            | Internet usage (mHealth)                                             |
 | Necessity        | optional                                                             |
 | Format           | csv                                                                  |
 | Operation        | mean(men & women)                                                    |

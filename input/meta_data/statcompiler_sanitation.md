@@ -4,7 +4,7 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Infrastructure                                                       |
 | Abbreviation        | statcompiler_sanitation                                              |
-| Titel               | Sanitation                                                           |
+| Title               | Sanitation                                                           |
 | Necessity           | optional                                                             |
 | Format              | csv                                                                  |
 | Operation           | None                                                                 |

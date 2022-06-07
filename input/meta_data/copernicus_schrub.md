@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_schrub                                                                                |
-| Titel               | Proportion Shrubland                                                                             |
+| Title               | Proportion Shrubland                                                                             |
 | Necessity           | optional                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |

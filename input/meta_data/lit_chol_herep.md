@@ -4,7 +4,7 @@
 |:-----------------|:------------------------------------------------------------------------|
 | Category         | Health                                                                  |
 | Abbreviation     | lit_chol_herep                                                          |
-| Titel            | Cholera health reports                                                  |
+| Title            | Cholera health reports                                                  |
 | Necessity        | required                                                                |
 | Format           | csv                                                                     |
 | Spatial details  | Administrative levels, locations derived from literature (case studies) |

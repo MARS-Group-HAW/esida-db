@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_herbveg                                                                               |
-| Titel               | Proportion Herbaceous wetland                                                                    |
+| Title               | Proportion Herbaceous wetland                                                                    |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |

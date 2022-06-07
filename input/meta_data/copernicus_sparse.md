@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_sparse                                                                                |
-| Titel               | Proportion bare & sparse                                                                         |
+| Title               | Proportion bare & sparse                                                                         |
 | Necessity           | optional                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |

@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_forest                                                                                |
-| Titel               | Proportion Forest                                                                                |
+| Title               | Proportion Forest                                                                                |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |

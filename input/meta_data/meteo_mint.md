@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_mint                                                                                                       |
-| Titel               | Minimum Temperature                                                                                              |
+| Title               | Minimum Temperature                                                                                              |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | min                                                                                                              |

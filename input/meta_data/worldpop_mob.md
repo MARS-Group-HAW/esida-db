@@ -4,7 +4,7 @@
 |:-----------------|:-----------------------------------------------------------------------------------------------------|
 | Category         | Demographic                                                                                          |
 | Abbreviation     | worldpop_mob                                                                                         |
-| Titel            | Population mobility & migration                                                                      |
+| Title            | Population mobility & migration                                                                      |
 | Necessity        | required                                                                                             |
 | Format           | csv                                                                                                  |
 | Original unit    | tbd                                                                                                  |

@@ -4,7 +4,7 @@
 |:-----------------|:-------------------------------------------|
 | Category         | Health                                     |
 | Abbreviation     | lit_chol_waterloc                          |
-| Titel            | Cholera affected water bodies (historical) |
+| Title            | Cholera affected water bodies (historical) |
 | Necessity        | required                                   |
 | Format           | csv                                        |
 | Spatial details  | Specific locations                         |

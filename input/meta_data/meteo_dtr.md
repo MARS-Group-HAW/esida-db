@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_dtr                                                                                                        |
-| Titel               | Diurnal Temporal Range                                                                                           |
+| Title               | Diurnal Temporal Range                                                                                           |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | max(T) - min (T)                                                                                                 |

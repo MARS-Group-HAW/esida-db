@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                                                                          |
 | Abbreviation        | fao_drought                                                                                                                                                      |
-| Titel               | Agricultutral stress index                                                                                                                                       |
+| Title               | Agricultutral stress index                                                                                                                                       |
 | Necessity           | required                                                                                                                                                         |
 | Format              | csv                                                                                                                                                              |
 | Operation           | None                                                                                                                                                             |

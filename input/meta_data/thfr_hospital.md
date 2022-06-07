@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_hospital                                                                                                                                  |
-| Titel               | Hospital Density                                                                                                                               |
+| Title               | Hospital Density                                                                                                                               |
 | Necessity           | required                                                                                                                                       |
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |

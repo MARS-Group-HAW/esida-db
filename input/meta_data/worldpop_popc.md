@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                      |
 | Abbreviation        | worldpop_popc                                                                                    |
-| Titel               | Population counts                                                                                |
+| Title               | Population counts                                                                                |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | sum                                                                                              |

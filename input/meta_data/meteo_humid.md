@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_humid                                                                                                      |
-| Titel               | Humidity                                                                                                         |
+| Title               | Humidity                                                                                                         |
 | Necessity           | optional                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | mean                                                                                                             |

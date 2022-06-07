@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_clinic                                                                                                                                    |
-| Titel               | Clinic Density                                                                                                                                 |
+| Title               | Clinic Density                                                                                                                                 |
 | Necessity           | required                                                                                                                                       |
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |

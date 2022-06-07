@@ -4,7 +4,7 @@
 |:-----------------|:------------------------------------------------------------------------|
 | Category         | Health                                                                  |
 | Abbreviation     | lit_chol_outloc                                                         |
-| Titel            | Cholera outbreak locations (historical)                                 |
+| Title            | Cholera outbreak locations (historical)                                 |
 | Necessity        | required                                                                |
 | Format           | csv                                                                     |
 | Spatial details  | Administrative levels, locations derived from literature (case studies) |

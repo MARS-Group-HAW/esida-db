@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_crop                                                                                  |
-| Titel               | Proportion Cropland                                                                              |
+| Title               | Proportion Cropland                                                                              |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |

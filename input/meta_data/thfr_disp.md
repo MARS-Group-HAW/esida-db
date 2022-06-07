@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_disp                                                                                                                                      |
-| Titel               | Dispensery Density                                                                                                                             |
+| Title               | Dispensery Density                                                                                                                             |
 | Necessity           | required                                                                                                                                       |
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |

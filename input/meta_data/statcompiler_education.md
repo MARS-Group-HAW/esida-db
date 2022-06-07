@@ -4,7 +4,7 @@
 |:-----------------|:---------------------------------------------------------------------|
 | Category         | Demographic                                                          |
 | Abbreviation     | statcompiler_education                                               |
-| Titel            | Education level                                                      |
+| Title            | Education level                                                      |
 | Necessity        | required                                                             |
 | Format           | csv                                                                  |
 | Operation        | mean(men & women)                                                    |

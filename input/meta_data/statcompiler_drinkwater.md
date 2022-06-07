@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                     |
 | Abbreviation        | statcompiler_drinkwater                                                            |
-| Titel               | Source of Drinking water                                                           |
+| Title               | Source of Drinking water                                                           |
 | Necessity           | optional                                                                           |
 | Format              | csv                                                                                |
 | Operation           | None                                                                               |

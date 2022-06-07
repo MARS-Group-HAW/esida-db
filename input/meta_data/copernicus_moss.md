@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_moss                                                                                  |
-| Titel               | Proportion moss & litchen                                                                        |
+| Title               | Proportion moss & litchen                                                                        |
 | Necessity           | optional                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |

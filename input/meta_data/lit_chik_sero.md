@@ -4,7 +4,7 @@
 |:-----------------|:---------------------------------------------------|
 | Category         | Health                                             |
 | Abbreviation     | lit_chik_sero                                      |
-| Titel            | Optional: Chikungunya seroprevalences (historical) |
+| Title            | Optional: Chikungunya seroprevalences (historical) |
 | Necessity        | optional                                           |
 | Format           | csv                                                |
 | Spatial details  | Specific locations                                 |

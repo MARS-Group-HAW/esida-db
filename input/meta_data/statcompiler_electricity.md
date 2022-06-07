@@ -4,7 +4,7 @@
 |:-----------------|:---------------------------------------------------------------------|
 | Category         | Infrastructure                                                       |
 | Abbreviation     | statcompiler_electricity                                             |
-| Titel            | Electricity (mHealth)                                                |
+| Title            | Electricity (mHealth)                                                |
 | Necessity        | optional                                                             |
 | Format           | csv                                                                  |
 | Operation        | None                                                                 |

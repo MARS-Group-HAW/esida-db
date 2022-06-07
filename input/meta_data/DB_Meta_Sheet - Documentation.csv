@@ -1,4 +1,4 @@
-Category,Abbreviation,Titel,Necessity,Format,Operation,Original unit,ESIDA database unit,Spatial details,Temporal details,Source,Related Sources,Link,Comment,Comment
+Category,Abbreviation,Title,Necessity,Format,Operation,Original unit,ESIDA database unit,Spatial details,Temporal details,Source,Related Sources,Link,Comment,Comment
 Info,callname in db,Description of layer,Is the data required for ESIDA?,Which input format was used,How was the data manipulated?,Which unit was used in the source data?,Which unit is given in the database,Finest spatial resolution,Finest temporal resoltion,,Do we host other sources for this parameter?,direct weblink to source,,
 Health,lit_dengue_sero,Dengue seroprevalence level (historical),optional,csv,,,,Specific locations,Cross-sectional observations,Literature-based,,,,
 Health,lit_dengue_out_loc,Dengue outbreak locations (historical),required,csv,,,,"Administrative levels, locations derived from literature (case studies)",2010 - 2021,"Literature-based, report-based (e.g. WHO, MoH)",,,,
@@ -20,8 +20,8 @@ Demographic,worldpop_poverty,Poverty,required,tiff,mean,proportion of people per
 Weather,chrips_tprecit,Total precipitation,required,tiff,mean,mm,mm/day,local weather stations ,"1981-2020, daily",CHIRPS,Meteostat,https://www.chc.ucsb.edu/data/chirps,,
 Weather,meteo_tprecit,Total precipitation,required,API,sum,mm/day,mm/day,local weather stations,"2010-2020, hourly/daily",Meteostat,CHIRPS,https://dev.meteostat.net/python/stations.html#example,,
 Weather,meteo_humid,Humidity,optional,API,mean,avg. percentage/day,avg. percentage/day,local weather stations,"2010-2020, hourly/daily",Meteostat,None,https://dev.meteostat.net/python/stations.html#example,,
-Weather,copernicus_temp,Maximum Temperature ,required,GRIB,max,celsius/day,celsius/day,9x9 km,1950 - present,Copernicus,Meteostat,https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form,,
-Weather,copernicus_temp,Minumum Temperature ,required,GRIB,min,celsius/day,celsius/day,9x9 km,1950 - present,Copernicus,Meteostat,https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form,,
+Weather,copernicus_maxt,Maximum Temperature ,required,GRIB,max,celsius/day,celsius/day,9x9 km,1950 - present,Copernicus,Meteostat,https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form,,
+Weather,copernicus_mint,Minumum Temperature ,required,GRIB,min,celsius/day,celsius/day,9x9 km,1950 - present,Copernicus,Meteostat,https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form,,
 Weather,meteo_maxt,Maximum Temperature ,required,API,max,celsius/day,celsius/day,local weather stations,"2010-2020, hourly/daily",Meteostat,Copernicus,https://dev.meteostat.net/python/stations.html#example,,
 Weather,meteo_mint,Minimum Temperature,required,API,min,celsius/day,celsius/day,local weather stations,"2010-2020, hourly/daily",Meteostat,Copernicus,https://dev.meteostat.net/python/stations.html#example,,
 Weather,meteo_dtr,Diurnal Temporal Range,required,API,max(T) - min (T),celsius/day,celsius/day,local weather stations,"2010-2020, hourly/daily",Meteostat,None,https://dev.meteostat.net/python/stations.html#example,,

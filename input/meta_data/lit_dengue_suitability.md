@@ -4,7 +4,7 @@
 |:-----------------|:-------------------------------------------------------|
 | Category         | Enviromental                                           |
 | Abbreviation     | lit_dengue_suitability                                 |
-| Titel            | Dengue suitability index (assumptions from literature) |
+| Title            | Dengue suitability index (assumptions from literature) |
 | Necessity        | optional                                               |
 | Format           | tbc                                                    |
 | Spatial details  | --                                                     |

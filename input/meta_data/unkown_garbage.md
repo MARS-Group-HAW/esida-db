@@ -4,7 +4,7 @@
 |:----------------|:-------------------|
 | Category        | Infrastructure     |
 | Abbreviation    | unkown_garbage     |
-| Titel           | Garbage collection |
+| Title           | Garbage collection |
 | Necessity       | optional           |
 | Related Sources | None               |
 

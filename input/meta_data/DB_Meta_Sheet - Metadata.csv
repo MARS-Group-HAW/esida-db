@@ -20,8 +20,8 @@ worldpop_poverty,Demographics,Worldpop ,Poverty,HAW Hamburg,ESIDA,02.05.2022,Dat
 chrips_tprecit,Weather,CHRIPS,Total precipitation,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.1038/sdata.2015.66,CHRIPS,https://doi.org/10.1038/sdata.2015.66,eng,CC BY 4.0,Tanzania,KrN
 meteo_tprecit,Weather,Meteostat,Total precipitation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
 meteo_humid,Weather,Meteostat,Humidity,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
-copernicus_temp,Weather,Copernicus ,Maximum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
-copernicus_temp,Weather,Copernicus ,Minumum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
+copernicus_maxt,Weather,Copernicus ,Maximum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
+copernicus_mint,Weather,Copernicus ,Minumum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
 meteo_maxt,Weather,Meteostat,Maximum Temperature ,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
 meteo_mint,Weather,Meteostat,Minimum Temperature,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
 meteo_dtr,Weather,Meteostat,Diurnal Temporal Range,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN

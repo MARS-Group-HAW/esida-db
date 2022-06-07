@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------|
 | Category            | Health                                                                       |
 | Abbreviation        | malariaatlas_incidence                                                       |
-| Titel               | Annual Malaria (falciparum) Incidence                                        |
+| Title               | Annual Malaria (falciparum) Incidence                                        |
 | Necessity           | proxy                                                                        |
 | Format              | tiff                                                                         |
 | Operation           | None                                                                         |

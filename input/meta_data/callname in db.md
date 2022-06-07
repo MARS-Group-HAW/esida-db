@@ -4,7 +4,7 @@
 |:--------------------|:---------------------------------------------|
 | Category            | Info                                         |
 | Abbreviation        | callname in db                               |
-| Titel               | Description of layer                         |
+| Title               | Description of layer                         |
 | Necessity           | Is the data required for ESIDA?              |
 | Format              | Which input format was used                  |
 | Operation           | How was the data manipulated?                |

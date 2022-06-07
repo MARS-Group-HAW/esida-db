@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_maxt                                                                                                       |
-| Titel               | Maximum Temperature                                                                                              |
+| Title               | Maximum Temperature                                                                                              |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | max                                                                                                              |

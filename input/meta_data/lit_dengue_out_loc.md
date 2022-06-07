@@ -4,7 +4,7 @@
 |:-----------------|:------------------------------------------------------------------------|
 | Category         | Health                                                                  |
 | Abbreviation     | lit_dengue_out_loc                                                      |
-| Titel            | Dengue outbreak locations (historical)                                  |
+| Title            | Dengue outbreak locations (historical)                                  |
 | Necessity        | required                                                                |
 | Format           | csv                                                                     |
 | Spatial details  | Administrative levels, locations derived from literature (case studies) |

@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_hecenter                                                                                                                                  |
-| Titel               | Health Center Density                                                                                                                          |
+| Title               | Health Center Density                                                                                                                          |
 | Necessity           | required                                                                                                                                       |
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |

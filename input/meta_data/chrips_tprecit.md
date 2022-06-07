@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------|
 | Category            | Weather                                                                      |
 | Abbreviation        | chrips_tprecit                                                               |
-| Titel               | Total precipitation                                                          |
+| Title               | Total precipitation                                                          |
 | Necessity           | required                                                                     |
 | Format              | tiff                                                                         |
 | Operation           | mean                                                                         |

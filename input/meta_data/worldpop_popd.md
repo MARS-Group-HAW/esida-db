@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                            |
 | Abbreviation        | worldpop_popd                                                                                          |
-| Titel               | Population density                                                                                     |
+| Title               | Population density                                                                                     |
 | Necessity           | required                                                                                               |
 | Format              | tiff                                                                                                   |
 | Operation           | mean                                                                                                   |

@@ -4,7 +4,7 @@
 |:-----------------|:----------------------------------------------------------------------|
 | Category         | Enviromental                                                          |
 | Abbreviation     | lit_mos_suitability                                                   |
-| Titel            | Environmental suitability Aedes aegypti (assumptions from literature) |
+| Title            | Environmental suitability Aedes aegypti (assumptions from literature) |
 | Necessity        | required                                                              |
 | Format           | tbc                                                                   |
 | Spatial details  | 10 x 10 km                                                            |

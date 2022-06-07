@@ -4,7 +4,7 @@
 |:-----------------|:----------------------------------------|
 | Category         | Enviromental                            |
 | Abbreviation     | lit_mos_abundance                       |
-| Titel            | Mosquitoes Abundance Index (historical) |
+| Title            | Mosquitoes Abundance Index (historical) |
 | Necessity        | required                                |
 | Format           | csv                                     |
 | Spatial details  | Locations / long/lat                    |

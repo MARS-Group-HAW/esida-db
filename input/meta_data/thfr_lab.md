@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_lab                                                                                                                                       |
-| Titel               | Health Lab Density                                                                                                                             |
+| Title               | Health Lab Density                                                                                                                             |
 | Necessity           | optional                                                                                                                                       |
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |

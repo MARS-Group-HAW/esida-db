@@ -4,7 +4,7 @@
 |:-----------------|:---------------------------------------------------------------------|
 | Category         | Infrastructure                                                       |
 | Abbreviation     | statcompiler_cellphone                                               |
-| Titel            | Cellphone usage                                                      |
+| Title            | Cellphone usage                                                      |
 | Necessity        | optional                                                             |
 | Format           | csv                                                                  |
 | Operation        | mean(men & women)                                                    |

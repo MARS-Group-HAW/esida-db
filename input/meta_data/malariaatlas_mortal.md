@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------|
 | Category            | Health                                                                       |
 | Abbreviation        | malariaatlas_mortal                                                          |
-| Titel               | Annual Malaria (falciparum) Mortality                                        |
+| Title               | Annual Malaria (falciparum) Mortality                                        |
 | Necessity           | proxy                                                                        |
 | Format              | tiff                                                                         |
 | Operation           | None                                                                         |

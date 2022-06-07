@@ -4,7 +4,7 @@
 |:-----------------|:---------------------|
 | Category         | Health               |
 | Abbreviation     | unkown_vacci         |
-| Titel            | Vaccination coverage |
+| Title            | Vaccination coverage |
 | Necessity        | optional             |
 | Format           | csv                  |
 | Spatial details  | cross-sectional      |

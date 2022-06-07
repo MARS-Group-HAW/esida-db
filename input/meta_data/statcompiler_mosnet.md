@@ -4,7 +4,7 @@
 |:-----------------|:---------------------------------------------------------------------|
 | Category         | Health                                                               |
 | Abbreviation     | statcompiler_mosnet                                                  |
-| Titel            | Mosquito net implementation (bed net)                                |
+| Title            | Mosquito net implementation (bed net)                                |
 | Necessity        | optional                                                             |
 | Format           | csv                                                                  |
 | Operation        | None                                                                 |

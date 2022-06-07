@@ -4,7 +4,7 @@
 |:-----------------|:-----------------------------------------|
 | Category         | Health                                   |
 | Abbreviation     | lit_dengue_sero                          |
-| Titel            | Dengue seroprevalence level (historical) |
+| Title            | Dengue seroprevalence level (historical) |
 | Necessity        | optional                                 |
 | Format           | csv                                      |
 | Spatial details  | Specific locations                       |

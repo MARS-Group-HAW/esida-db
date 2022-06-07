@@ -4,7 +4,7 @@
 |:-----------------|:------------------------------------------------------------------------|
 | Category         | Health                                                                  |
 | Abbreviation     | lit_chik_outloc                                                         |
-| Titel            | Optional: Chikungunya outbreak locations (historical)                   |
+| Title            | Optional: Chikungunya outbreak locations (historical)                   |
 | Necessity        | optional                                                                |
 | Format           | csv                                                                     |
 | Spatial details  | Administrative levels, locations derived from literature (case studies) |

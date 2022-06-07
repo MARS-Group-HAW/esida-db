@@ -4,7 +4,7 @@
 |:----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category        | Demographic                                                                                                                                             |
 | Abbreviation    | unkown_income                                                                                                                                           |
-| Titel           | Income                                                                                                                                                  |
+| Title           | Income                                                                                                                                                  |
 | Necessity       | required                                                                                                                                                |
 | Related Sources | None                                                                                                                                                    |
 | Comment         | statacompiler offers the information on how many people live in which national quintile this however would add 5 new categrories can we combine those ? |

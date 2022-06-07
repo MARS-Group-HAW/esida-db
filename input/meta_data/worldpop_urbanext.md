@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                            |
 | Abbreviation        | worldpop_urbanext                                                                                      |
-| Titel               | Urban Settlement Extent                                                                                |
+| Title               | Urban Settlement Extent                                                                                |
 | Necessity           | optional                                                                                               |
 | Format              | tiff                                                                                                   |
 | Operation           | Proportion (area of interest/whole area)                                                               |

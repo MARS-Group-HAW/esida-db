@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_tprecit                                                                                                    |
-| Titel               | Total precipitation                                                                                              |
+| Title               | Total precipitation                                                                                              |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | sum                                                                                                              |

@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_built                                                                                 |
-| Titel               | Proportion Built-up                                                                              |
+| Title               | Proportion Built-up                                                                              |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |

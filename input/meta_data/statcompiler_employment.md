@@ -4,7 +4,7 @@
 |:-----------------|:-----------------------------------------------------------------------------------------|
 | Category         | Infrastructure                                                                           |
 | Abbreviation     | statcompiler_employment                                                                  |
-| Titel            | Employment status                                                                        |
+| Title            | Employment status                                                                        |
 | Necessity        | optional                                                                                 |
 | Format           | csv                                                                                      |
 | Operation        | mean(men & women)                                                                        |
