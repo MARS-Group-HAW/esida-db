@@ -89,7 +89,7 @@
       <div class="mb-3">
         <select class="form-select js-chosen-select" id="series-for-chart" multiple  data-placeholder="Select parameter…">
           {% for p in params %}
-              <optgroup label="{{ p.__class__.__name__ | replace("_", " ") }}">
+              <optgroup label="{{ p.get_title() }}">
                 {% for pk in p.get_fields() %}
                 <option data-param="{{ p.__class__.__name__ }}" value="{{ pk }}">{{ pk | replace("_", " ") }}</option>
                 {% endfor %}
