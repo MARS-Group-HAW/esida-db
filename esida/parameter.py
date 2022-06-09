@@ -103,17 +103,22 @@ class BaseParameter():
         return res.fetchone()[0]
 
 
-    def download(self, shape_id) -> pd.DataFrame:
+    def download(self, shape_id, start=None, end=None) -> pd.DataFrame:
         """ Download data for given shape id. """
 
-
-        self.logger.warning("Downloading for shape_id=%s", shape_id)
+        self.logger.debug("Downloading for shape_id=%s", shape_id)
 
         if not self.is_loaded():
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame
 
         sql = f"SELECT * FROM {self.parameter_id} WHERE shape_id = {int(shape_id)}"
+
+        if start:
+            sql += f" AND year >= {start.year}"
+        if end:
+            sql += f" AND year <= {end.year}"
+
         df = pd.read_sql_query(sql, con=get_engine())
 
         if len(df) == 0:

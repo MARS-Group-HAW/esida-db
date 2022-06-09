@@ -69,7 +69,7 @@ class StatcompilerParameter(BaseParameter):
     def save(self):
         self.df.to_sql(self.parameter_id, get_engine(), if_exists='replace')
 
-    def download(self, shape_id) -> pd.DataFrame:
+    def download(self, shape_id, start=None, end=None) -> pd.DataFrame:
         """ Statcompiler are only region based, so before we can load
         data we need to know, if we query a region (-> return directly) or
         if wie load a district. Then we need to query the parent region first.
@@ -79,7 +79,7 @@ class StatcompilerParameter(BaseParameter):
         if shape.type != 'region':
             shape_id = shape.parent_id
 
-        return super().download(shape_id)
+        return super().download(shape_id, start=start, end=end)
 
     # ---
 

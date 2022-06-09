@@ -2,6 +2,7 @@ import importlib
 import datetime as dt
 import os
 import json
+from tracemalloc import start
 
 from esida import app, params, db, logger
 from flask import render_template, make_response, abort, jsonify, request, redirect, url_for, send_from_directory
@@ -71,6 +72,9 @@ def map():
 def shape(shape_id):
     shape = Shape.query.get(shape_id)
 
+    if shape is None:
+        abort(404)
+
     # weather data
     engine = get_engine()
 
@@ -100,7 +104,10 @@ def shape(shape_id):
     meteostat_df['x'] = meteostat_df['time'].astype(np.int64) / int(1e6)
     meteostat_df['x'] = meteostat_df['x'].astype(int)
     meteostat_df['y'] = meteostat_df['prcp']
+    meteostat_df = meteostat_df[meteostat_df['y'].notna()]
     meteostat_data = meteostat_df[['x', 'y']].sort_values(by='x').to_json(orient="values")
+
+
 
     parameters = []
     for p in params:
@@ -113,43 +120,10 @@ def shape(shape_id):
     return render_template('shape.html',
         shape=shape,
         params=parameters,
-        #data=_get_parameters_for_shape(shape_id),
         meteostat_station=meteostat_station,
         chc_chirps_data=chc_chirps_data,
         meteostat_data=meteostat_data
     )
-
-def _get_parameters_for_shape(shape_id) -> pd.DataFrame:
-    dfs = []
-
-    for p in params:
-        pm = importlib.import_module('parameters.{}'.format(p))
-        pc = getattr(pm, p)()
-
-        rdf = pc.download(int(shape_id))
-        if rdf.empty:
-            continue
-
-        # we merge data year column, so do not add it to the pool
-        # if the column is missing
-        if 'year' not in rdf:
-            continue
-
-        dfs.append(rdf)
-
-    if len(dfs) == 0:
-        return pd.DataFrame()
-
-    if len(dfs) == 1:
-        return dfs[0]
-
-    df = dfs[0]
-    for i in range(1, len(dfs)):
-        df = df.merge(dfs[i], how='outer', on='year')
-
-    df = df.sort_values(by=['year']).reset_index()
-
-    return df
 
 @app.route('/shape/<int:shape_id>/<parameter>/<column>/json')
 def download_json(shape_id, parameter, column):
@@ -177,6 +151,16 @@ def download_json(shape_id, parameter, column):
     else:
         df['date'] = 0
 
+    start_date = request.args.get('start_date')
+    if start_date:
+        start_date = dt.datetime(year=int(start_date), month=1, day=1)
+        df = df[df['date'] >= start_date]
+
+    end_date = request.args.get('end_date')
+    if end_date:
+        end_date = dt.datetime(year=int(end_date), month=1, day=1)
+        df = df[df['date'] <= end_date]
+
     df = df.sort_values(by=['date']).reset_index()
 
     df['x'] = df['date'].astype(np.int64) / int(1e6)
@@ -189,23 +173,73 @@ def download_json(shape_id, parameter, column):
         data=df[['x', 'y']].values.tolist()
     )
 
+def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None, end_date=None) -> pd.DataFrame:
+    dfs = []
+
+    for p in params:
+        if filter_parameters and p not in filter_parameters:
+            continue
+
+        pm = importlib.import_module(f'parameters.{p}')
+        pc = getattr(pm, p)()
+
+        rdf = pc.download(int(shape_id), start=start_date, end=end_date)
+        if rdf.empty:
+            continue
+
+        # we merge data year column, so do not add it to the pool
+        # if the column is missing
+        if 'year' not in rdf:
+            continue
+
+        dfs.append(rdf)
+
+    if len(dfs) == 0:
+        return pd.DataFrame()
+
+    if len(dfs) == 1:
+        return dfs[0]
+
+    df = dfs[0]
+    for i in range(1, len(dfs)):
+        df = df.merge(dfs[i], how='outer', on='year')
+
+    df = df.sort_values(by=['year']).reset_index()
+
+    return df
+
 @app.route('/shape/<int:shape_id>/parameters')
 def download_csv(shape_id):
-    engine = get_engine()
+    shape = Shape.query.get(shape_id)
+    if shape is None:
+        abort(404)
 
-    shape=None
-    with engine.connect() as con:
-        # well this not good style...
-        rs = con.execute('SELECT id, type, name FROM shape WHERE id={}'.format(int(shape_id)))
-        shape = rs.fetchone()
+    filters_str = request.args.get('filter_parameters')
+    filters = None
+    if filters_str:
+        filters = request.args.get('filter_parameters').split(',')
 
-    df = _get_parameters_for_shape(shape_id)
+    start_date = request.args.get('start_date')
+    if start_date:
+        start_date = dt.datetime(year=int(start_date), month=1, day=1)
 
-    filename="esida_{}_{}.csv".format(shape['type'], slugify(shape['name']))
+    end_date = request.args.get('end_date')
+    if end_date:
+        end_date = dt.datetime(year=int(end_date), month=1, day=1)
+
+    df = _get_parameters_for_shape(shape_id,
+        filter_parameters=filters,
+        start_date=start_date,
+        end_date=end_date)
+
+
+
+    filename=f"ESIDA_{shape.type}_{slugify(shape.name)}.csv"
 
     resp = make_response(df.to_csv(index=False))
-    resp.headers["Content-Disposition"] = "attachment; filename={}".format(filename)
+    resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
     resp.headers["Content-Type"] = "text/csv"
+
     return resp
 
 

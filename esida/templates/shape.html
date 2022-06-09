@@ -4,15 +4,16 @@
 
 
 {% block content %}
-  <h1>{{ shape['name'] }}</h1>
+
+<div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
+  <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('download_csv', shape_id=shape.id) }}">Download all data</a>
+  <h1 class="bd-title">{{ shape.name }}</h1>
+</div>
+
 
   <div class="row">
 
     <div class="col col-md-6">
-
-
-      <a href="{{ url_for('download_csv', shape_id=shape['id']) }}" download class="btn btn-primary">Parameters as CSV</a>
-
       <table class="table table-sm">
         <thead>
           <tr>
@@ -90,7 +91,7 @@
         <select class="form-select js-chosen-select" id="series-for-chart" multiple  data-placeholder="Select parameter…">
           {% for p in params %}
               <optgroup label="{{ p.get_title() }}">
-                {% for pk in p.get_fields() %}
+                {% for pk in p.get_fields(only_numeric=True) %}
                 <option data-param="{{ p.__class__.__name__ }}" value="{{ pk }}">{{ pk | replace("_", " ") }}</option>
                 {% endfor %}
               </optgroup>
@@ -98,16 +99,25 @@
         </select>
       </div>
 
-      {#
       <div class="mb-3">
         <label for="start_date" class="form-label">Start date</label>
-        <input type="date" id="start_date" class="form-control">
+        <input id="start_date" class="form-control form-control-sm" type="number" placeholder="YYYY" min="1900" max="2100">
+        {# Use type="number" instead of "date" since the year is not easy selectable and #}
+        {# <input type="date" id="start_date" class="form-control"> #}
       </div>
       <div class="mb-3">
         <label for="end_date" class="form-label">End date</label>
-        <input type="date" id="end_date" class="form-control">
+        <input id="end_date" class="form-control form-control-sm" type="number" placeholder="YYYY" min="1900" max="2100">
+        {# <input type="date" id="end_date" class="form-control"> #}
       </div>
-      #}
+      <hr>
+      <div class="mb-3">
+        <div class="d-grid gap-2 col-12 mx-auto">
+          <button id="dl_filtered" class="btn btn-primary">Download selected data</button>
+          <a href="{{ url_for('download_csv', shape_id=shape.id) }}" class="btn btn-outline-primary">Download all data</a>
+        </div>
+
+      </div>
 
     </div>
     <div class="col-9">
@@ -115,7 +125,7 @@
     </div>
 
     <div class="col-12">
-      <h3>weather data</h3>
+      <h3>Weather data</h3>
       <div id="chart_weather"></div>
     </div>
 
@@ -249,7 +259,17 @@ $(".js-chosen-select").on('change', function(e) {
     if (series) {
       // already in chart...
     } else {
-        $.getJSON('/shape/{{ shape['id'] }}/' + column_to_parameter[id] + '/' + id + '/json', function(data) {
+
+        var options = {}
+
+        if ($("#start_date").val()) {
+          options['start_date'] = $("#start_date").val();
+        }
+        if ($("#end_date").val()) {
+          options['end_date'] = $("#end_date").val();
+        }
+
+        $.getJSON('/shape/{{ shape['id'] }}/' + column_to_parameter[id] + '/' + id + '/json', options, function(data) {
           chart.addSeries({
             id: id,
             name: id,
@@ -274,6 +294,39 @@ $(".js-chosen-select").on('change', function(e) {
 
   active = done;
 });
+
+$("#start_date, #end_date").on('change', function() {
+  active = [];
+  while(chart.series.length > 0) {
+    chart.series[0].remove(true);
+  }
+  $(".js-chosen-select").trigger('change');
+
+});
+
+
+$('#dl_filtered').on('click', function(e) {
+  var options = {}
+
+  if ($("#start_date").val()) {
+    options['start_date'] = $("#start_date").val();
+  }
+  if ($("#end_date").val()) {
+    options['end_date'] = $("#end_date").val();
+  }
+
+  pars = [];
+  active.forEach(function(el) {
+    pars.push(column_to_parameter[el]);
+  })
+  options['filter_parameters'] = [...new Set(pars)];
+
+  const params = new URLSearchParams(options);
+  const url = '{{ url_for('download_csv', shape_id=shape.id) }}';
+
+  window.location = url + '?' + params.toString();
+});
+
 </script>
 
 <script>

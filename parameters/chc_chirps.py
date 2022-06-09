@@ -88,10 +88,10 @@ class chc_chirps(TiffParameter):
             f"{self.parameter_id}_std_dev": np.nanstd(band),
         })
 
-    def download(self, shape_id):
+    def download(self, shape_id, start=None, end=None):
         """ Overwrite download for CHIRPS data since the static/download parameters
         have a yearly resolution, but CHIRPS has daily. """
         return pd.DataFrame
 
-    def get_fields(self):
+    def get_fields(self, only_numeric=False):
         return []
