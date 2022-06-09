@@ -6,3 +6,13 @@
 .table-meta_data thead th:first-child {
   width: 33%;
 }
+
+
+.link-subtle {
+  color: currentColor;
+  text-decoration: none;
+}
+.link-subtle:hover,
+.link-subtle:focus {
+  text-decoration: underline;
+}
