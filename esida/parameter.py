@@ -39,9 +39,9 @@ class BaseParameter():
     def get_output_path(self, name) -> Path:
         return Path(f"./output/{name}/{self.parameter_id}/")
 
-    def get_fields(self):
+    def get_fields(self, only_numeric=False):
         """ Check if the parameter has been loaded to the database. """
-        sql = f"SELECT column_name \
+        sql = f"SELECT column_name, data_type \
             FROM information_schema.columns \
  WHERE table_schema = 'public' \
    AND table_name   = '{self.parameter_id}';"
@@ -51,8 +51,18 @@ class BaseParameter():
         fields = []
         for row in res:
             field = row[0]
-            if field not in ['index', 'year', 'date', 'shape_id']:
-                fields.append(field)
+            dtype = row[1]
+
+            # if we want only numeric types for charts etc. filter out+
+            # text based columns
+            if only_numeric and dtype in ['text']:
+                continue
+
+            if field in ['index', 'year', 'date', 'shape_id']:
+                continue
+
+            fields.append(field)
+
         return fields
 
 
