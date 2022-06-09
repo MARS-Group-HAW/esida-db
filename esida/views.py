@@ -261,7 +261,7 @@ def parameters():
 def parameter(parameter_name):
 
     if parameter_name not in params:
-        abort(500)
+        abort(404)
 
     pm = importlib.import_module(f'parameters.{parameter_name}')
     docblock = pm.__doc__ or "*please add docstring to module*"
