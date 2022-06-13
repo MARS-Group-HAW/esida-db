@@ -18,7 +18,7 @@ RESOLUTION = "p05" # p04 or p25 resolution in deg
 BASE_URL = "https://data.chc.ucsb.edu/products/CHIRPS-2.0/africa_daily/tifs/{resolution}/{year}/chirps-v2.0.{year}.{month:02d}.{day:02d}.tif.gz"
 
 
-class chc_chirps(TiffParameter):
+class chirps_tprecit(TiffParameter):
 
     def __init__(self):
         super().__init__()
@@ -42,7 +42,7 @@ class chc_chirps(TiffParameter):
         try:
             # cmd syntax didn't work, not sure why
             #subprocess.check_output('gzip -d ./input/data/chc_chirps/*.gz', shell=True)
-            subprocess.run('gzip -d ./input/data/chc_chirps/*.gz', shell=True,
+            subprocess.run(f"gzip -d {self.get_data_path()}/*.gz", shell=True,
                 capture_output=True, check=True)
         except subprocess.CalledProcessError as error:
             self.logger.warning("Could not unzip files: %s", error.stderr)
