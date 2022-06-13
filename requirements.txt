@@ -17,3 +17,4 @@ meteostat==1.6.1
 python-decouple==3.6
 lxml==4.8.0
 humanize==4.0.0
+osmnx==1.2.0
