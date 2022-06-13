@@ -80,14 +80,14 @@ def shape(shape_id):
 
 
     # load chirps precipitation
-    chirps_module = importlib.import_module('parameters.chc_chirps')
-    chc_chirps = getattr(chirps_module, 'chc_chirps')()
+    chirps_module = importlib.import_module('parameters.chirps_tprecit')
+    chc_chirps = getattr(chirps_module, 'chirps_tprecit')()
     chc_chirps_data = []
     if chc_chirps.is_loaded():
-        chc_chirps_df = pd.read_sql_query('SELECT date, chc_chirps FROM chc_chirps WHERE shape_id={}'.format(int(shape_id)), parse_dates=['date'], con=engine)
+        chc_chirps_df = pd.read_sql_query('SELECT date, chirps_tprecit FROM chirps_tprecit WHERE shape_id={}'.format(int(shape_id)), parse_dates=['date'], con=engine)
         chc_chirps_df['x'] = chc_chirps_df['date'].astype(np.int64) / int(1e6)
         chc_chirps_df['x'] = chc_chirps_df['x'].astype(int)
-        chc_chirps_df['y'] = chc_chirps_df['chc_chirps']
+        chc_chirps_df['y'] = chc_chirps_df['chirps_tprecit']
         chc_chirps_data = chc_chirps_df[['x', 'y']].sort_values(by='x').to_json(orient="values")
 
     # nearest meteostat station to center of shape

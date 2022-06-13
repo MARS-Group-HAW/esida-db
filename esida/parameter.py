@@ -23,6 +23,10 @@ class BaseParameter():
         self.rows = []
         self.logger = logging.getLogger('root')
 
+        self.output_path = None
+
+        self.output = 'db'
+
     def get_title(self) -> str:
         if self.parameter_id in meta_dict:
             return meta_dict[self.parameter_id ]['Title']
@@ -36,8 +40,18 @@ class BaseParameter():
     def get_data_path(self) -> Path:
         return Path(f"./input/data/{self.parameter_id}/")
 
-    def get_output_path(self, name) -> Path:
-        return Path(f"./output/{name}/{self.parameter_id}/")
+    def get_output_path(self) -> Path:
+
+        if self.output_path is None:
+            raise ValueError("You need to set the output path first.")
+
+        return self.output_path
+
+    def set_output_path(self, out_dir):
+        if not os.path.exists(out_dir):
+            os.mkdir(out_dir)
+        self.output_path = out_dir
+        #return Path(f"./output/{name}/{self.parameter_id}/")
 
     def get_fields(self, only_numeric=False):
         """ Check if the parameter has been loaded to the database. """
@@ -68,8 +82,13 @@ class BaseParameter():
 
     def save(self):
         df = pd.DataFrame(self.rows)
-        #df.to_csv('wtf.csv')
-        df.to_sql(self.parameter_id, get_engine(), if_exists='replace')
+
+        if self.output == 'db':
+            df.to_sql(self.parameter_id, get_engine(), if_exists='replace')
+        elif self.output == 'fs':
+            df.to_csv(self.get_output_path() / f'{self.parameter_id}.csv')
+        else:
+            raise ValueError(f"Unknown save option {self.output}.")
 
 
     # ---

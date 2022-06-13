@@ -69,9 +69,7 @@ class TiffParameter(BaseParameter):
                                         "width": out_image.shape[2],
                                         "transform": out_transform})
 
-                        shape_name = os.path.splitext(os.path.basename(shape['name']))[0]
-
-                        out_file = self.get_output_path(shape_name) / file
+                        out_file = self.get_output_path() / self.parameter_id / file
                         Path(os.path.dirname(out_file)).mkdir(parents=True, exist_ok=True)
                         with rasterio.open(out_file, "w", **out_meta) as dest:
                             dest.write(out_image)

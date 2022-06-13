@@ -4,6 +4,7 @@ import datetime as dt
 from pathlib import Path
 import importlib
 import pkgutil
+import shapely
 
 import logging
 
@@ -90,56 +91,36 @@ def param(parameter, action):
     pclass  = getattr(pmodule, parameter)()
     result = getattr(pclass, action)()
 
-
+@cli.command()
+@click.option('--signal', '-s', multiple=True)
+def abm(signal):
+    pass
 
 @cli.command()
-def meteostat():
-    """ Fetch meteostat stations and data. """
+@click.option('--wkt')
+def clip(wkt):
+    params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
-    # Database access
-    engine  = get_engine()
+    if os.path.exists(wkt):
+        with open(wkt, 'r') as file:
+            wkt = file.read()
 
-    # fetch Meteostat weather stations for TZ
-    stations = Stations()
-    stations = stations.region('TZ')
-    print('Stations in Tanzania:', stations.count())
+    shape = {
+        'geometry': shapely.wkt.loads(wkt),
+        'name': 'text',
+        'id': 0,
+    }
 
-    df = stations.fetch()
+    for p in params:
 
-    # Meteostat ID is not always numerical. Safe the internal Meteostat ID
-    # but add an numerical index for smooth PostGis access
-    df['meteostat_id'] = df.index
-    df.insert(0, 'meteostat_id', df.pop('meteostat_id')) # move meteostat ID to second column (directly ≤after index)
+        if p != 'worldpop_popc':
+            continue
 
-    df['id'] = range(1, len(df)+1)
-    df.insert(0, 'id', df.pop('id'))
-
-    gdf = geopandas.GeoDataFrame(
-        df, geometry=geopandas.points_from_xy(df.longitude, df.latitude))
-
-
-    gdf.to_postgis("meteostat_stations", engine, if_exists='replace')
-
-
-    # loop over all stations and collect daily values
-    start = dt.datetime(2000, 1, 1)
-    end = dt.datetime(2021, 3, 31)
-
-    dfs = []
-
-    for i, row in gdf.iterrows():
-        print("Fetching {} ({})".format(row['name'], row['meteostat_id']))
-        data = Daily(row['meteostat_id'], start, end)
-        data = data.fetch()
-
-        print("Found {} rows".format(len(data)))
-        data['meteostat_station_id'] = row['id']
-        dfs.append(data)
-
-    merged_df = pd.concat(dfs)
-    merged_df.to_sql("meteostat_data", engine, if_exists='replace')
-
-
+        pmodule = importlib.import_module(f'parameters.{p}')
+        pclass  = getattr(pmodule, p)()
+        pclass.set_output_path(Path("./test"))
+        pclass.output = 'fs' # save products to file system instead of database
+        result = getattr(pclass, 'load')(shapes=[shape], save_output=True)
 
 if __name__ == '__main__':
     cli()
