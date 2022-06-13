@@ -26,7 +26,7 @@ class chc_chirps(TiffParameter):
 
     def extract(self):
         start_date = dt.date(2018, 1, 1)
-        end_date = dt.date(2022, 1, 1)
+        end_date = dt.date(2022, 4, 30)
 
         # download all required files
         for date in self.date_range(start_date, end_date):
