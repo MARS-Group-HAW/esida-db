@@ -8,7 +8,7 @@
 | Necessity        | required                                                                |
 | Format           | csv                                                                     |
 | Spatial details  | Administrative levels, locations derived from literature (case studies) |
-| Temporal details | Cross-sectional observations                                            |
+| Temporal details | Cross-sectional                                                         |
 | Source           | Literature-based, report-based (e.g. WHO, MoH)                          |
 
 ## Data quality information 

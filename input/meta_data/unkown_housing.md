@@ -10,7 +10,7 @@
 
 ## Data quality information 
 
-|              | 55                                                                                           |
+|              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | unkown_housing                                                                               |
 | Subject      | Infrastructure                                                                               |

@@ -11,7 +11,8 @@
 | Original unit       | proportion of people per grid cell living with less than 2 dollar per day                            |
 | ESIDA database unit | proportion (0 to 1)                                                                                  |
 | Spatial details     | 1 x 1 km                                                                                             |
-| Temporal details    | 2013                                                                                                 |
+| Temporal details    | Cross-sectional                                                                                      |
+| Timeframe           | 2013                                                                                                 |
 | Source              | Worldpop                                                                                             |
 | Related Sources     | None                                                                                                 |
 | Link                | [https://www.worldpop.org/geodata/summary?id=1273](https://www.worldpop.org/geodata/summary?id=1273) |

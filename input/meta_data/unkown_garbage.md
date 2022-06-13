@@ -10,7 +10,7 @@
 
 ## Data quality information 
 
-|              | 54                                                                                           |
+|              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | unkown_garbage                                                                               |
 | Subject      | Infrastructure                                                                               |

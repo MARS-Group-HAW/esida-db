@@ -10,7 +10,8 @@
 | Operation        | None                                                                 |
 | Original unit    | Proportion of households with at least one net                       |
 | Spatial details  | Regional level                                                       |
-| Temporal details | 2017                                                                 |
+| Temporal details | Cross-sectional                                                      |
+| Timeframe        | 2017                                                                 |
 | Source           | DHS Program                                                          |
 | Related Sources  | None                                                                 |
 | Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
@@ -18,7 +19,7 @@
 
 ## Data quality information 
 
-|              | 56                                                                                           |
+|              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_mosnet                                                                          |
 | Subject      | Health                                                                                       |

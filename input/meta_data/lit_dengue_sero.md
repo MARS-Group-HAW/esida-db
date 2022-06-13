@@ -8,7 +8,7 @@
 | Necessity        | optional                                 |
 | Format           | csv                                      |
 | Spatial details  | Specific locations                       |
-| Temporal details | Cross-sectional observations             |
+| Temporal details | Cross-sectional                          |
 | Source           | Literature-based                         |
 
 ## Data quality information 

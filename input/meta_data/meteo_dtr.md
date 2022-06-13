@@ -11,7 +11,8 @@
 | Original unit       | celsius/day                                                                                                      |
 | ESIDA database unit | celsius/day                                                                                                      |
 | Spatial details     | local weather stations                                                                                           |
-| Temporal details    | 2010-2020, hourly/daily                                                                                          |
+| Temporal details    | Hourly                                                                                                           |
+| Timeframe           | 2010-2020                                                                                                        |
 | Source              | Meteostat                                                                                                        |
 | Related Sources     | None                                                                                                             |
 | Link                | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |

@@ -11,7 +11,8 @@
 | Original unit       | Cases per 1000 per year                                                      |
 | ESIDA database unit | Cases per 1000 per year                                                      |
 | Spatial details     | Region / District                                                            |
-| Temporal details    | Annualy (2000-2020)                                                          |
+| Temporal details    | Annualy                                                                      |
+| Timeframe           | 2000-2020                                                                    |
 | Source              | Malaria Atlas Project                                                        |
 | Related Sources     | None                                                                         |
 | Link                | [https://malariaatlas.org/explorer/#/](https://malariaatlas.org/explorer/#/) |

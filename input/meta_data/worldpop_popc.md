@@ -11,7 +11,8 @@
 | Original unit       | total number                                                                                     |
 | ESIDA database unit | total number                                                                                     |
 | Spatial details     | 100 x 100 m                                                                                      |
-| Temporal details    | Annualy (2010-2020)                                                                              |
+| Temporal details    | Annualy                                                                                          |
+| Timeframe           | 2010-2020                                                                                        |
 | Source              | Worldpop                                                                                         |
 | Related Sources     | None                                                                                             |
 | Link                | [https://www.worldpop.org/geodata/listing?id=69](https://www.worldpop.org/geodata/listing?id=69) |

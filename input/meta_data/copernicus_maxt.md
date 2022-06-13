@@ -11,7 +11,8 @@
 | Original unit       | celsius/day                                                                                                                                                            |
 | ESIDA database unit | celsius/day                                                                                                                                                            |
 | Spatial details     | 9x9 km                                                                                                                                                                 |
-| Temporal details    | 1950 - present                                                                                                                                                         |
+| Temporal details    | Hourly                                                                                                                                                                 |
+| Timeframe           | 1950 - present                                                                                                                                                         |
 | Source              | Copernicus                                                                                                                                                             |
 | Related Sources     | Meteostat                                                                                                                                                              |
 | Link                | [https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form](https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form) |

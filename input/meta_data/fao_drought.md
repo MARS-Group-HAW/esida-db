@@ -11,7 +11,8 @@
 | Original unit       | % of area with Mean VHI below 35                                                                                                                                 |
 | ESIDA database unit | % of area with Mean VHI below 35                                                                                                                                 |
 | Spatial details     | Region                                                                                                                                                           |
-| Temporal details    | 1984 - 2021                                                                                                                                                      |
+| Temporal details    | Thrice-monthly                                                                                                                                                   |
+| Timeframe           | 1984 - 2021                                                                                                                                                      |
 | Source              | FAO                                                                                                                                                              |
 | Related Sources     | None                                                                                                                                                             |
 | Link                | [https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#](https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#) |

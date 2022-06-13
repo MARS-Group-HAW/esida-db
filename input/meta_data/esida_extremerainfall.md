@@ -11,7 +11,8 @@
 | Original unit       | mm/day                                                              |
 | ESIDA database unit | binary (0 = no, 1= yes)                                             |
 | Spatial details     | Region / District                                                   |
-| Temporal details    | 2010-2020 daily                                                     |
+| Temporal details    | Daily                                                               |
+| Timeframe           | 2010-2020                                                           |
 | Source              | ESIDA                                                               |
 | Related Sources     | None                                                                |
 | Link                | None                                                                |

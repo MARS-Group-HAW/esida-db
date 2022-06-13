@@ -9,7 +9,8 @@
 | Format           | csv                                                                                                  |
 | Original unit    | tbd                                                                                                  |
 | Spatial details  | Migration flows between subnational adminisrative units                                              |
-| Temporal details | 2005-2010                                                                                            |
+| Temporal details | Cross-sectional                                                                                      |
+| Timeframe        | 2005-2010                                                                                            |
 | Source           | Worldpop                                                                                             |
 | Related Sources  | None                                                                                                 |
 | Link             | [https://www.worldpop.org/geodata/summary?id=1281](https://www.worldpop.org/geodata/summary?id=1281) |

@@ -8,7 +8,7 @@
 | Necessity        | optional                                                                |
 | Format           | csv                                                                     |
 | Spatial details  | Administrative levels, locations derived from literature (case studies) |
-| Temporal details | Cross-sectional observations                                            |
+| Temporal details | Cross-sectional                                                         |
 | Source           | Ummy field work                                                         |
 
 ## Data quality information 

@@ -11,7 +11,8 @@
 | Original unit       | binary (0=no, 1=yes)                                                                             |
 | ESIDA database unit | percentage                                                                                       |
 | Spatial details     | 103 x 100 m                                                                                      |
-| Temporal details    | 2015-2019, annually                                                                              |
+| Temporal details    | Annualy                                                                                          |
+| Timeframe           | 2015-2019                                                                                        |
 | Source              | Copernicus Land Cover                                                                            |
 | Related Sources     | None                                                                                             |
 | Link                | [https://zenodo.org/record/3939038#.YkLn7y8RrBI](https://zenodo.org/record/3939038#.YkLn7y8RrBI) |

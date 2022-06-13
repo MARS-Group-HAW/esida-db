@@ -11,7 +11,8 @@
 | Original unit       | mm/day                                                                                                           |
 | ESIDA database unit | mm/day                                                                                                           |
 | Spatial details     | local weather stations                                                                                           |
-| Temporal details    | 2010-2020, hourly/daily                                                                                          |
+| Temporal details    | Hourly                                                                                                           |
+| Timeframe           | 2010-2020                                                                                                        |
 | Source              | Meteostat                                                                                                        |
 | Related Sources     | CHIRPS                                                                                                           |
 | Link                | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |

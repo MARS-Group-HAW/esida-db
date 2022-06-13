@@ -8,7 +8,8 @@
 | Necessity        | required                                                                |
 | Format           | csv                                                                     |
 | Spatial details  | Administrative levels, locations derived from literature (case studies) |
-| Temporal details | 2010 - 2021                                                             |
+| Temporal details | Weekly                                                                  |
+| Timeframe        | 2010 - 2021                                                             |
 | Source           | Literature-based, report-based (e.g. WHO, MoH)                          |
 
 ## Data quality information 

@@ -10,7 +10,8 @@
 | Operation        | None                                                                 |
 | Original unit    | Proportion population with electricty access                         |
 | Spatial details  | Regional level                                                       |
-| Temporal details | up to 2017                                                           |
+| Temporal details | Cross-sectional                                                      |
+| Timeframe        | up to 2017                                                           |
 | Source           | DHS Program                                                          |
 | Related Sources  | None                                                                 |
 | Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |

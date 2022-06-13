@@ -11,7 +11,8 @@
 | Original unit       | Percentage of households whose main source of drinking water is an improved source |
 | ESIDA database unit | Percentage of households whose main source of drinking water is an improved source |
 | Spatial details     | Regional Level                                                                     |
-| Temporal details    | up to 2017                                                                         |
+| Temporal details    | Cross-sectional                                                                    |
+| Timeframe           | up to 2017                                                                         |
 | Source              | DHS Program                                                                        |
 | Related Sources     | None                                                                               |
 | Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)               |
@@ -19,7 +20,7 @@
 
 ## Data quality information 
 
-|              | 52                                                                                           |
+|              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_drinkwater                                                                      |
 | Subject      | Infrastructure                                                                               |

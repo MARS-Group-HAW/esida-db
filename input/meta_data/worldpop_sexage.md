@@ -10,7 +10,8 @@
 | Operation        | tbd                                                                                                    |
 | Original unit    | tbd, Proportion of group                                                                               |
 | Spatial details  | 100 x 100 m                                                                                            |
-| Temporal details | 2010 - 2020, annually                                                                                  |
+| Temporal details | Annualy                                                                                                |
+| Timeframe        | 2010 - 2020                                                                                            |
 | Source           | Worldpop data                                                                                          |
 | Related Sources  | None                                                                                                   |
 | Link             | [https://www.worldpop.org/geodata/summary?id=50564](https://www.worldpop.org/geodata/summary?id=50564) |

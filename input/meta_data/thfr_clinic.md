@@ -10,7 +10,8 @@
 | Operation           | count                                                                                                                                          |
 | ESIDA database unit | Number of Facilities per district                                                                                                              |
 | Spatial details     | Region/District/Ward                                                                                                                           |
-| Temporal details    | 2016 - 2022                                                                                                                                    |
+| Temporal details    | Hourly                                                                                                                                         |
+| Timeframe           | 2014 - 2022                                                                                                                                    |
 | Source              | Tanzania Health Facility Register                                                                                                              |
 | Related Sources     | healthsites.io                                                                                                                                 |
 | Link                | [https://hfrportal.moh.go.tz/index.php?r=facilities/homeAdvancedSearch](https://hfrportal.moh.go.tz/index.php?r=facilities/homeAdvancedSearch) |

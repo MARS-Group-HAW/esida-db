@@ -10,7 +10,8 @@
 | Operation        | mean(men & women)                                                    |
 | Original unit    | Proportion of population who used the internet in the past 12 months |
 | Spatial details  | Regional level                                                       |
-| Temporal details | up to 2016                                                           |
+| Temporal details | Cross-sectional                                                      |
+| Timeframe        | up to 2016                                                           |
 | Source           | DHS Program                                                          |
 | Related Sources  | None                                                                 |
 | Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |

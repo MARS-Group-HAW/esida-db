@@ -8,12 +8,12 @@
 | Necessity        | optional             |
 | Format           | csv                  |
 | Spatial details  | cross-sectional      |
-| Temporal details | cross-sectional      |
+| Temporal details | Cross-sectional      |
 | Source           | Literature-based     |
 
 ## Data quality information 
 
-|              | 57                   |
+|              | Description          |
 |:-------------|:---------------------|
 | Abbreviation | unkown_vacci         |
 | Subject      | Health               |

@@ -11,7 +11,8 @@
 | Original unit       | Mortality rate per 10k per year                                              |
 | ESIDA database unit | Mortality rate per 10k per year                                              |
 | Spatial details     | Region / District                                                            |
-| Temporal details    | Annualy (2000-2017)                                                          |
+| Temporal details    | Annualy                                                                      |
+| Timeframe           | 2000-2017                                                                    |
 | Source              | Malaria Atlas Project                                                        |
 | Related Sources     | None                                                                         |
 | Link                | [https://malariaatlas.org/explorer/#/](https://malariaatlas.org/explorer/#/) |

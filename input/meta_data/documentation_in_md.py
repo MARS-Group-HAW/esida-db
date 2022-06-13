@@ -14,6 +14,8 @@ path = pathlib.Path(__file__).parent.resolve()
 df_dtype = pd.read_csv(path / "DB_Meta_Sheet - Documentation.csv")
 df_dqual = pd.read_csv(path / "DB_Meta_Sheet - Metadata.csv")
 
+df_dtype = df_dtype[~(df_dtype['Abbreviation'].str.match('callname in db'))].reset_index(drop=True)
+
 
 def make_md_link(text):
     """ Transform URLs/DOIs in HTML to Markdown links. """
@@ -46,6 +48,7 @@ def check_for_match():
     abbrev2 = df_dqual["Abbreviation"]
 
     if len(list(set(abbrev1) - set(abbrev2))) != 0:
+        print(list(set(abbrev1) - set(abbrev2)))
         raise ValueError(f'Data type information and data quality information do not match.')
     else:
         return abbrev1

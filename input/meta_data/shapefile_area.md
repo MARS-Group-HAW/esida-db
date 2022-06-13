@@ -2,7 +2,7 @@
 
 |                  | Description                                                                                                                                                                                  |
 |:-----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Category         | Enviromental                                                                                                                                                                                 |
+| Category         | Administrative                                                                                                                                                                               |
 | Abbreviation     | shapefile_area                                                                                                                                                                               |
 | Title            | Area                                                                                                                                                                                         |
 | Necessity        | required                                                                                                                                                                                     |
@@ -10,17 +10,18 @@
 | Operation        | calculated from shapefile, PostGIS ST_Area                                                                                                                                                   |
 | Original unit    | None                                                                                                                                                                                         |
 | Spatial details  | Disctrict Level                                                                                                                                                                              |
-| Temporal details | 2019                                                                                                                                                                                         |
+| Temporal details | Cross-sectional                                                                                                                                                                              |
+| Timeframe        | 2019                                                                                                                                                                                         |
 | Source           | National Bureau of Statistics                                                                                                                                                                |
 | Related Sources  | None                                                                                                                                                                                         |
 | Link             | [https://www.nbs.go.tz/index.php/en/census-surveys/gis/568-tanzania-districts-shapefiles-2019](https://www.nbs.go.tz/index.php/en/census-surveys/gis/568-tanzania-districts-shapefiles-2019) |
 
 ## Data quality information 
 
-|              | 58                                                                                                                                               |
+|              | Description                                                                                                                                      |
 |:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | shapefile_area                                                                                                                                   |
-| Subject      | Enviromental                                                                                                                                     |
+| Subject      | Administrative                                                                                                                                   |
 | Creator      | TZ Bureau of Statistics                                                                                                                          |
 | Description  | Area                                                                                                                                             |
 | Publisher    | HAW Hamburg                                                                                                                                      |

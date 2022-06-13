@@ -10,7 +10,8 @@
 | Operation        | mean(men & women)                                                    |
 | Original unit    | median years of education                                            |
 | Spatial details  | Regional level                                                       |
-| Temporal details | up to 2016                                                           |
+| Temporal details | Cross-sectional                                                      |
+| Timeframe        | up to 2016                                                           |
 | Source           | DHS Porgram                                                          |
 | Related Sources  | None                                                                 |
 | Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
