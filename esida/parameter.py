@@ -122,7 +122,7 @@ class BaseParameter():
         return res.fetchone()[0]
 
 
-    def download(self, shape_id, start=None, end=None) -> pd.DataFrame:
+    def download(self, shape_id=None, start=None, end=None) -> pd.DataFrame:
         """ Download data for given shape id. """
 
         self.logger.debug("Downloading for shape_id=%s", shape_id)
@@ -131,7 +131,10 @@ class BaseParameter():
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame
 
-        sql = f"SELECT * FROM {self.parameter_id} WHERE shape_id = {int(shape_id)}"
+        sql = f"SELECT * FROM {self.parameter_id} WHERE 1=1"
+
+        if shape_id:
+            sql += f" AND shape_id = {int(shape_id)}"
 
         if start:
             sql += f" AND year >= {start.year}"
@@ -146,7 +149,10 @@ class BaseParameter():
 
         # all parameters tables have index and shape id columns, drop them
         # always so we don't duplicate them while merging the DataFrames
-        df = df.drop(['index','shape_id'], axis=1, errors='ignore')
+        drop_cols = ['index']
+        if shape_id:
+            drop_cols.append('shape_id')
+        df = df.drop(drop_cols, axis=1, errors='ignore')
 
 
         return df

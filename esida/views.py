@@ -204,9 +204,114 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
     for i in range(1, len(dfs)):
         df = df.merge(dfs[i], how='outer', on='year')
 
-    df = df.sort_values(by=['year']).reset_index()
+    df = df.sort_values(by=['year']).reset_index(drop=True)
 
     return df
+
+def str2bool(v) -> bool:
+    """ https://stackoverflow.com/a/715468/723769 """
+    return str(v).lower() in ("yes", "true", "t", "1")
+
+@app.route('/api/v1/shapes')
+def api_shapes():
+
+    if 'type' in request.args:
+        shapes = Shape.query.where(Shape.type == request.args['type']).all()
+    else:
+        shapes = Shape.query.where().all()
+
+    data = []
+
+    for s in shapes:
+        row = {
+            'id': s.id,
+            'name': s.name,
+            'type': s.type,
+            'area_sqm': s.area_sqm,
+            'wkt': None
+        }
+
+        if 'wkt' in request.args and str2bool(request.args['wkt']):
+            row['wkt'] = s.geom().wkt
+
+        data.append(row)
+    df = pd.DataFrame(data)
+
+    return jsonify(
+        data=df.to_dict('records')
+    )
+
+@app.route('/api/v1/shape/<int:shape_id>')
+def api_data(shape_id):
+    shape = Shape.query.get(shape_id)
+    if shape is None:
+        abort(404)
+
+    filters_str = request.args.get('filter_parameters')
+    filters = None
+    if filters_str:
+        filters = request.args.get('filter_parameters').split(',')
+
+    start_date = request.args.get('start_date')
+    if start_date:
+        start_date = dt.datetime(year=int(start_date), month=1, day=1)
+
+    end_date = request.args.get('end_date')
+    if end_date:
+        end_date = dt.datetime(year=int(end_date), month=1, day=1)
+
+    df = _get_parameters_for_shape(shape_id,
+        filter_parameters=filters,
+        start_date=start_date,
+        end_date=end_date)
+
+    if 'format' in request.args and request.args['format'] == 'csv':
+        filename=f"ESIDA_{shape.type}_{slugify(shape.name)}.csv"
+        resp = make_response(df.to_csv(index=False))
+        resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
+        resp.headers["Content-Type"] = "text/csv"
+        return resp
+
+    # the jsonify() method will not translate np.NaN to null for a valid JSON.
+    # pandas' fillna() can't handle None, so we sett all "none"s to np.Nan and
+    # make a replace to pythons None, which will wie translated by jsonify() to
+    # JSONs null (https://stackoverflow.com/a/62691803/723769).
+    # We can't use to_json() directly since we would get a string, and
+    # than we would reply with a json String and not an object.
+    return jsonify(
+        data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records')
+    )
+
+
+@app.route('/api/v1/parameter/<string:parameter_id>')
+def api_parameter(parameter_id):
+    if parameter_id not in params:
+        abort(404)
+
+    pm = importlib.import_module(f'parameters.{parameter_id}')
+    pc = getattr(pm, parameter_id)()
+
+    start_date = request.args.get('start_date')
+    if start_date:
+        start_date = dt.datetime(year=int(start_date), month=1, day=1)
+
+    end_date = request.args.get('end_date')
+    if end_date:
+        end_date = dt.datetime(year=int(end_date), month=1, day=1)
+
+    df = pc.download(start=start_date, end=end_date)
+
+    # the jsonify() method will not translate np.NaN to null for a valid JSON.
+    # pandas' fillna() can't handle None, so we sett all "none"s to np.Nan and
+    # make a replace to pythons None, which will wie translated by jsonify() to
+    # JSONs null (https://stackoverflow.com/a/62691803/723769).
+    # We can't use to_json() directly since we would get a string, and
+    # than we would reply with a json String and not an object.
+    return jsonify(
+        data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records'),
+        fields=pc.get_fields()
+    )
+
 
 @app.route('/shape/<int:shape_id>/parameters')
 def download_csv(shape_id):
@@ -279,6 +384,7 @@ def parameter(parameter_name):
         'name': pm.__name__.split('.')[1],
         'description': pm.__doc__,
         'description_html': docmd,
+        'class': getattr(pm, parameter_name)()
     }
 
     return render_template('parameter.html', parameter=parameter)

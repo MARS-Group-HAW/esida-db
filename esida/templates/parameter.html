@@ -5,6 +5,18 @@
 {% block content %}
   <h1>{{ parameter['name'] }} </h1>
 
+
+  <div>
+    <p>Available parameter fields:</p>
+    <ul>
+    {% for pk in parameter['class'].get_fields(only_numeric=False) %}
+      <li><code>{{ pk }}</code></li>
+    {% endfor %}
+    </ul>
+
+  </div>
+
+
   <div>
     {{ parameter['description_html']|safe }}
   </div>
