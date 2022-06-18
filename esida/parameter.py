@@ -1,4 +1,5 @@
 import os
+from sys import platform
 import logging
 import subprocess
 from pathlib import Path
@@ -49,6 +50,9 @@ class BaseParameter():
         python would require looping over all the stored files. """
         if not self.get_data_path().exists():
             return 0
+
+        if platform == "linux":
+            return int(subprocess.check_output(['du', "-sb", self.get_data_path().as_posix()]).split()[0].decode('utf-8'))
 
         # du returns the amount of 512b chunks used by the file. So we need to
         # multiply with 512 to get the actual size in bytes.
