@@ -22,6 +22,7 @@ class BaseParameter():
     def __init__(self):
         self.parameter_id = self.__class__.__name__
         self.rows = []
+        self.df = None
         self.logger = logging.getLogger('root')
 
         self.output_path = None
@@ -100,12 +101,13 @@ class BaseParameter():
 
 
     def save(self):
-        df = pd.DataFrame(self.rows)
+        if self.df is None:
+            self.df = pd.DataFrame(self.rows)
 
         if self.output == 'db':
-            df.to_sql(self.parameter_id, get_engine(), if_exists='replace')
+            self.df.to_sql(self.parameter_id, get_engine(), if_exists='replace')
         elif self.output == 'fs':
-            df.to_csv(self.get_output_path() / f'{self.parameter_id}.csv')
+            self.df.to_csv(self.get_output_path() / f'{self.parameter_id}.csv')
         else:
             raise ValueError(f"Unknown save option {self.output}.")
 
