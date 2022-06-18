@@ -15,6 +15,8 @@ class MeteostatParameter(BaseParameter):
     def __init__(self):
         super().__init__()
 
+        self.time_col = 'date'
+
         # Meteostat can't handle Path() object
         Stations.cache_dir = self.get_data_path().as_posix()
         Daily.cache_dir = self.get_data_path().as_posix()

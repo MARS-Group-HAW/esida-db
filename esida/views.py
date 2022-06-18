@@ -317,6 +317,7 @@ def api_data(shape_id):
 
 @app.route('/api/v1/parameter/<string:parameter_id>')
 def api_parameter(parameter_id):
+    """ Get data and metadata for single parameter. """
     if parameter_id not in params:
         abort(404)
 
@@ -332,6 +333,15 @@ def api_parameter(parameter_id):
         end_date = dt.datetime(year=int(end_date), month=1, day=1)
 
     df = pc.download(start=start_date, end=end_date)
+
+    # in case wie have d date column (datetime obj) convert it to string.
+    # the jsonify method would convert into an unlucky Date String like
+    # `Mon, 01 Jan 2018 00:00:00 GMT`.
+    if 'date' in df.columns:
+        df['date'] = df['date'].apply(lambda x: x.strftime('%Y-%m-%d'))
+
+    for x in  df.select_dtypes(include=['datetime64']).columns.tolist():
+        df[x] = df[x].astype(str)
 
     # the jsonify() method will not translate np.NaN to null for a valid JSON.
     # pandas' fillna() can't handle None, so we sett all "none"s to np.Nan and

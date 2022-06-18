@@ -12,6 +12,10 @@ from dbconf import get_engine
 class lit_dengue_out_loc(BaseParameter):
 
 
+    def __init__(self):
+        super().__init__()
+        self.time_col = 'date'
+
     def extract(self):
         # Nothing to do here, manually prepared excel file.
         pass

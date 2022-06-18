@@ -25,6 +25,8 @@ class BaseParameter():
 
         self.output_path = None
 
+        self.time_col = 'year'
+
         self.output = 'db'
 
     def get_title(self) -> str:
@@ -149,10 +151,18 @@ class BaseParameter():
         if shape_id:
             sql += f" AND shape_id = {int(shape_id)}"
 
-        if start:
-            sql += f" AND year >= {start.year}"
-        if end:
-            sql += f" AND year <= {end.year}"
+        if self.time_col == 'year':
+            if start:
+                sql += f" AND year >= {start.year}"
+            if end:
+                sql += f" AND year <= {end.year}"
+        elif self.time_col == 'date':
+            if start:
+                sql += f" AND date >= '{str(start)}'"
+            if end:
+                sql += f" AND date <= '{str(end)}'"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
 
         df = pd.read_sql_query(sql, con=get_engine())
 

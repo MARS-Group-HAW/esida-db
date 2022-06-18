@@ -24,6 +24,8 @@ class chirps_tprecit(TiffParameter):
         super().__init__()
         self.manual_nodata = -9999
 
+        self.time_col = 'date'
+
     def extract(self):
         start_date = dt.date(2018, 1, 1)
         end_date = dt.date(2022, 4, 30)
@@ -87,11 +89,6 @@ class chirps_tprecit(TiffParameter):
             f"{self.parameter_id}_max":     np.nanmax(band),
             f"{self.parameter_id}_std_dev": np.nanstd(band),
         })
-
-    def download(self, shape_id, start=None, end=None):
-        """ Overwrite download for CHIRPS data since the static/download parameters
-        have a yearly resolution, but CHIRPS has daily. """
-        return pd.DataFrame
 
     def get_fields(self, only_numeric=False):
         return []
