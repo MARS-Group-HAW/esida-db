@@ -319,10 +319,13 @@ def api_data(shape_id):
 def api_parameter(parameter_id):
     """ Get data and metadata for single parameter. """
     if parameter_id not in params:
-        abort(404)
+        return jsonify(error="Parameter is not found"), 404
 
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
+
+    if not pc.is_loaded():
+        return jsonify(error="Parameter is not loaded"), 503
 
     start_date = request.args.get('start_date')
     if start_date:
