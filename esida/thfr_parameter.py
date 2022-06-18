@@ -1,5 +1,6 @@
 import os
 import glob
+from pathlib import Path
 
 import datetime as dt
 import pandas as pd
@@ -30,6 +31,13 @@ class ThfrParameter(BaseParameter):
 
     # ---
 
+
+    def get_data_path(self) -> Path:
+        """ Overwrite parameter_id based input directory, because we have
+        multiple derives parameters from this source. """
+        return Path(f"./input/data/tza_hfr/")
+
+
     def extract(self):
         """ (E)xtract: automatic download of source files. """
         pass
@@ -41,7 +49,7 @@ class ThfrParameter(BaseParameter):
                         geom_col='geometry', con=get_engine())
 
         # latest download of tza hfr
-        list_of_files = glob.glob('./input/data/tza_hfr/*.xls')
+        list_of_files = glob.glob(f'{self.get_data_path()}/*.xls')
         latest_file = max(list_of_files, key=os.path.getctime)
 
         # the xls file is actually just a HTML table
