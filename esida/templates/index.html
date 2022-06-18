@@ -15,7 +15,7 @@
       <h2>Data sources</h2>
       <p>
         In the database there are {{ count_parameters }} parameters with {{ count_local_data_sources }} locally saved data sources (some parameters are derived from the same data source).
-        In total that are <b>{{ total_size_human }}</b> on storage. Though not all data might be needed, since some downloads are only provided with additional data that are not consumed by this project.
+        In total that are <b>{{ total_size_human }}</b> on storage. This number is a bit larger than the actual raw data, since in some cases raw data need to be transformed and duplicated or compressed source files are still on the file system and counted as well.
       </p>
       <p>
         More explanations and documentation can be accessed for each parameter on its <a href="{{ url_for('parameters') }}">documentation page</a>.
