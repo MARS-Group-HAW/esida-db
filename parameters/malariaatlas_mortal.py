@@ -41,7 +41,7 @@ class malariaatlas_mortal(TiffParameter):
                 self.logger.warning("Could not unzip files: %s", error.stderr)
 
     def load(self, shapes=None, save_output=False, param_dir=None):
-        param_dir = self.get_data_path() / "Pf_Mortality/Raster Data/Pf_Mortality_rate_rmean/"
+        param_dir = self.get_data_path() / "Pf_Mortality/Raster Data/Pf_mortality_rate_rmean/"
         super().load(shapes, save_output, param_dir)
 
 
