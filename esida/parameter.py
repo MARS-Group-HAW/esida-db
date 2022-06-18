@@ -40,6 +40,19 @@ class BaseParameter():
     def get_data_path(self) -> Path:
         return Path(f"./input/data/{self.parameter_id}/")
 
+    def get_raw_data_size(self) -> int:
+        """ get input data (raw data) size in bytes for parameter.
+        depends on du cli utility so only works on linux systems.
+        we use du for performance reasons, since collecting these stats with
+        python would require looping over all the stored files. """
+        if not self.get_data_path().exists():
+            return 0
+
+        # du returns the amount of 512b chunks used by the file. So we need to
+        # multiply with 512 to get the actual size in bytes.
+        return int(subprocess.check_output(['du', self.get_data_path().as_posix()]).split()[0].decode('utf-8')) * 512
+
+
     def get_output_path(self) -> Path:
 
         if self.output_path is None:

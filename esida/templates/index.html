@@ -4,9 +4,66 @@
 
 
 {% block content %}
-  <img class="float-end" width="250" src="{{ url_for('static', filename='images/Logo_Projekt_ESIDA2021.png') }}" alt="ESIDA spelled out in the logo">
+  <div class="clearfix">
+  <img class="float-end ps-3 pb-3" width="250" src="{{ url_for('static', filename='images/Logo_Projekt_ESIDA2021.png') }}" alt="ESIDA spelled out in the logo">
 
   <h1>Welcome to the ESIDA Data Pipeline</h1>
+</div>
+  <div class="row">
+    <div class="col-12 col-sm-6">
+
+      <h2>Data sources</h2>
+      <p>
+        In the database there are {{ count_parameters }} parameters with {{ count_local_data_sources }} locally saved data sources (some parameters are derived from the same data source).
+        In total that are <b>{{ total_size_human }}</b> on storage. Though not all data might be needed, since some downloads are only provided with additional data that are not consumed by this project.
+      </p>
+      <p>
+        More explanations and documentation can be accessed for each parameter on its <a href="{{ url_for('parameters') }}">documentation page</a>.
+      </p>
+    </div>
+    <div class="col-12 col-sm-6">
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="chart-tab" data-bs-toggle="tab" data-bs-target="#chart-tab-pane" type="button" role="tab" aria-controls="chart-tab-pane" aria-selected="true">Chart</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="table-tab" data-bs-toggle="tab" data-bs-target="#table-tab-pane" type="button" role="tab" aria-controls="table-tab-pane" aria-selected="false">Table</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="chart-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+          <div id="chart_sizes"></div>
+        </div>
+        <div class="tab-pane fade" id="table-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Raw data</th>
+                <th>Size</th>
+                <th>Parameters</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for s in sizes %}
+              <tr>
+                <td class="align-middle">{{ s['name'] }}</td>
+                <td class="align-middle text-nowrap"><code>{{ s['human'] }}</code></td>
+                <td>
+                  {% for p in s['parameter_ids'] %}
+                    <a href="{{ url_for('parameter', parameter_name=p) }}"  class="">{{ p }}</a>
+                  {% endfor %}
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <h2>Data access</h2>
 
@@ -16,4 +73,50 @@
   <p>
     Additionally a simple API access is possible. Use the provided Jupyter Notebook (<a href="{{ url_for('static', filename='ESIDA DB Demo.ipynb') }}"><code>ESIDA DB Demo.ipynb</code></a>) with Python code for example on how to query and use the data.
   </p>
+{% endblock %}
+
+{% block footer %}
+<script>
+Highcharts.chart('chart_sizes', {
+  chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+  },
+  title: {
+      text: 'Raw data size of integrated data'
+  },
+  tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f} % ({point.human})</b>'
+  },
+  accessibility: {
+      point: {
+          valueSuffix: '%'
+      }
+  },
+  plotOptions: {
+      pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+              enabled: true,
+              format: '<b>{point.name}</b>: {point.percentage:.1f} % ({point.human})'
+          },
+          showInLegend: false
+      }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+  },
+
+  series: [{
+      name: 'Size',
+      colorByPoint: true,
+      data: {{ sizes_json|safe }}
+  }]
+});
+</script>
 {% endblock %}
