@@ -158,21 +158,21 @@ def shape(shape_id):
     )
 
 @app.route('/shape/<int:shape_id>/<parameter>/<column>/json')
-def download_json(shape_id, parameter, column):
-    if parameter not in params:
-        logger.warning("JSON Download for %s, but unknown parameter.", parameter)
+def download_json(shape_id, parameter_id, column):
+    if parameter_id not in params:
+        logger.warning("JSON Download for %s, but unknown parameter.", parameter_id)
         abort(500)
 
-    pm = importlib.import_module(f'parameters.{parameter}')
-    pc = getattr(pm, parameter)()
+    pm = importlib.import_module(f'parameters.{parameter_id}')
+    pc = getattr(pm, parameter_id)()
 
     if not pc.is_loaded():
-        logger.warning("JSON Download for %s, but not loaded", parameter)
+        logger.warning("JSON Download for %s, but not loaded", parameter_id)
         abort(500)
 
     df = pc.download(int(shape_id))
     if column not in df.columns:
-        logger.warning("JSON Download for %s, but column %s not available.", parameter, column)
+        logger.warning("JSON Download for %s, but column %s not available.", parameter_id, column)
         abort(500)
 
     if 'year' in df.columns:
