@@ -52,7 +52,7 @@ class BaseParameter():
 
         # du returns the amount of 512b chunks used by the file. So we need to
         # multiply with 512 to get the actual size in bytes.
-        return int(subprocess.check_output(['du', self.get_data_path().as_posix()]).split()[0].decode('utf-8')) * 512
+        return int(subprocess.check_output(['du', "-s", self.get_data_path().as_posix()]).split()[0].decode('utf-8')) * 512
 
 
     def get_output_path(self) -> Path:
