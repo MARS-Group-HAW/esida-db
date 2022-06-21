@@ -116,15 +116,15 @@ class BaseParameter():
 
     def extract(self):
         """ (E)xtract: automatic download of source files. """
-        pass
+        raise NotImplementedError
 
     def transform(self):
         """ (T)ransform: prepare data for loading. """
-        pass
+        raise NotImplementedError
 
     def load(self, save_output=False):
         """ (L)oad: consume/calculate data to insert into data warehouse. """
-        pass
+        raise NotImplementedError
 
     # ---
 
