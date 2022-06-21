@@ -157,7 +157,7 @@ def shape(shape_id):
         meteostat_data=meteostat_data
     )
 
-@app.route('/shape/<int:shape_id>/<parameter>/<column>/json')
+@app.route('/shape/<int:shape_id>/<parameter_id>/<column>/json')
 def download_json(shape_id, parameter_id, column):
     if parameter_id not in params:
         logger.warning("JSON Download for %s, but unknown parameter.", parameter_id)
