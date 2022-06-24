@@ -1,15 +1,19 @@
 ## Data type and processing information 
 
-|                  | Description           |
-|:-----------------|:----------------------|
-| Category         | Health                |
-| Abbreviation     | lit_dengue_herep      |
-| Title            | Dengue health reports |
-| Necessity        | required              |
-| Format           | csv                   |
-| Spatial details  | Administrative levels |
-| Temporal details | Cross-sectional       |
-| Source           | Official authorities  |
+|                     | Description           |
+|:--------------------|:----------------------|
+| Category            | Health                |
+| Abbreviation        | lit_dengue_herep      |
+| Title               | Dengue health reports |
+| Necessity           | required              |
+| Format              | csv                   |
+| Operation           | None                  |
+| Original unit       | None                  |
+| ESIDA database unit | None                  |
+| Spatial details     | Administrative levels |
+| Temporal details    | Cross-sectional       |
+| Timeframe           | Unkown                |
+| Source              | Report-based          |
 
 ## Data quality information 
 
@@ -23,6 +27,7 @@
 | Contributor  | ESIDA                 |
 | Type         | Dataset               |
 | Format       | csv                   |
+| Identifier   | None                  |
 | Source       | Official authorities  |
 | Citation     | None                  |
 | Language     | eng                   |

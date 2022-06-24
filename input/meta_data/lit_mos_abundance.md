@@ -7,7 +7,9 @@
 | Title            | Mosquitoes Abundance Index (historical) |
 | Necessity        | required                                |
 | Format           | csv                                     |
-| Spatial details  | Locations / long/lat                    |
+| Operation        | Unkown                                  |
+| Original unit    | Unkown                                  |
+| Spatial details  | Coordinates                             |
 | Temporal details | Cross-sectional                         |
 | Timeframe        | Unkown                                  |
 | Source           | Literature-based                        |
@@ -18,6 +20,7 @@
 |:-------------|:----------------------------------------|
 | Abbreviation | lit_mos_abundance                       |
 | Subject      | Enviromental                            |
+| Creator      | Unkown                                  |
 | Description  | Mosquitoes Abundance Index (historical) |
 | Publisher    | HAW Hamburg                             |
 | Contributor  | ESIDA                                   |

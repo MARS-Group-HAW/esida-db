@@ -1,15 +1,19 @@
 ## Data type and processing information 
 
-|                  | Description                                        |
-|:-----------------|:---------------------------------------------------|
-| Category         | Health                                             |
-| Abbreviation     | lit_chik_sero                                      |
-| Title            | Optional: Chikungunya seroprevalences (historical) |
-| Necessity        | optional                                           |
-| Format           | csv                                                |
-| Spatial details  | Specific locations                                 |
-| Temporal details | Cross-sectional                                    |
-| Source           | Ummy field work                                    |
+|                     | Description                                        |
+|:--------------------|:---------------------------------------------------|
+| Category            | Health                                             |
+| Abbreviation        | lit_chik_sero                                      |
+| Title               | Optional: Chikungunya seroprevalences (historical) |
+| Necessity           | optional                                           |
+| Format              | csv                                                |
+| Operation           | None                                               |
+| Original unit       | None                                               |
+| ESIDA database unit | None                                               |
+| Spatial details     | Specific locations                                 |
+| Temporal details    | Cross-sectional                                    |
+| Timeframe           | Unkown                                             |
+| Source              | Report-based                                       |
 
 ## Data quality information 
 
@@ -23,7 +27,8 @@
 | Contributor  | ESIDA                                              |
 | Type         | Dataset                                            |
 | Format       | csv                                                |
-| Source       | Ummy field work                                    |
+| Identifier   | None                                               |
+| Source       | Report-based                                       |
 | Citation     | None                                               |
 | Language     | eng                                                |
 | Rights       | None                                               |

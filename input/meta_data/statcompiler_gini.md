@@ -2,30 +2,30 @@
 
 |                     | Description                                                          |
 |:--------------------|:---------------------------------------------------------------------|
-| Category            | Infrastructure                                                       |
-| Abbreviation        | statcompiler_electricity                                             |
-| Title               | Electricity (mHealth)                                                |
-| Necessity           | optional                                                             |
+| Category            | Demographic                                                          |
+| Abbreviation        | statcompiler_gini                                                    |
+| Title               | Income distribution                                                  |
+| Necessity           | required                                                             |
 | Format              | csv                                                                  |
 | Operation           | None                                                                 |
-| Original unit       | Proportion population with electricty access                         |
-| ESIDA database unit | Proportion population with electricty access                         |
+| Original unit       | Gini index                                                           |
+| ESIDA database unit | Gini index                                                           |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
-| Timeframe           | up to 2017                                                           |
+| Timeframe           | 2011 - 2017                                                          |
 | Source              | DHS Program                                                          |
 | Related Sources     | None                                                                 |
 | Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1           | HC_ELEC_P_ELC                                                        |
+| Comment.1           | HC_WIXQ_P_GNI                                                        |
 
 ## Data quality information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_electricity                                                                     |
-| Subject      | Infrastructure                                                                               |
-| Creator      | DHS Program                                                                                  |
-| Description  | Electricity (mHealth)                                                                        |
+| Abbreviation | statcompiler_gini                                                                            |
+| Subject      | Demographics                                                                                 |
+| Creator      | Unkown                                                                                       |
+| Description  | Income                                                                                       |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 02.05.2022                                                                                   |

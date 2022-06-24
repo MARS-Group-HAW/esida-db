@@ -1,22 +1,23 @@
 ## Data type and processing information 
 
-|                  | Description                                                                              |
-|:-----------------|:-----------------------------------------------------------------------------------------|
-| Category         | Infrastructure                                                                           |
-| Abbreviation     | statcompiler_employment                                                                  |
-| Title            | Employment status                                                                        |
-| Necessity        | optional                                                                                 |
-| Format           | csv                                                                                      |
-| Operation        | mean(men & women)                                                                        |
-| Original unit    | Proportion                                                                               |
-| Spatial details  | Regional level                                                                           |
-| Temporal details | Cross-sectional                                                                          |
-| Timeframe        | up to 2016                                                                               |
-| Source           | DHS Program                                                                              |
-| Related Sources  | None                                                                                     |
-| Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)                     |
-| Comment          | all three indicators                                                                     |
-| Comment.1        | EM_EMPL_M_EMC, EM_EMPL_M_ENC, EM_EMPL_M_N12, EM_EMPL_W_EMC, EM_EMPL_W_ENC, EM_EMPL_W_N12 |
+|                     | Description                                                                              |
+|:--------------------|:-----------------------------------------------------------------------------------------|
+| Category            | Infrastructure                                                                           |
+| Abbreviation        | statcompiler_employment                                                                  |
+| Title               | Employment status                                                                        |
+| Necessity           | optional                                                                                 |
+| Format              | csv                                                                                      |
+| Operation           | mean(men & women)                                                                        |
+| Original unit       | Proportion of unemployed                                                                 |
+| ESIDA database unit | Proportion of unemployed                                                                 |
+| Spatial details     | Region                                                                                   |
+| Temporal details    | Cross-sectional                                                                          |
+| Timeframe           | up to 2016                                                                               |
+| Source              | DHS Program                                                                              |
+| Related Sources     | None                                                                                     |
+| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)                     |
+| Comment             | all three indicators                                                                     |
+| Comment.1           | EM_EMPL_M_EMC, EM_EMPL_M_ENC, EM_EMPL_M_N12, EM_EMPL_W_EMC, EM_EMPL_W_ENC, EM_EMPL_W_N12 |
 
 ## Data quality information 
 

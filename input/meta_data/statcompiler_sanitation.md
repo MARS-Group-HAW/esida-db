@@ -10,7 +10,7 @@
 | Operation           | None                                                                 |
 | Original unit       | Percentage of households with an improved sanitation facility        |
 | ESIDA database unit | Percentage of households with an improved sanitation facility        |
-| Spatial details     | Regional level                                                       |
+| Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
 | Timeframe           | up to 2017                                                           |
 | Source              | DHS Program                                                          |

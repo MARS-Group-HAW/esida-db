@@ -10,7 +10,7 @@
 | Operation           | min                                                                                                                                                                    |
 | Original unit       | celsius/day                                                                                                                                                            |
 | ESIDA database unit | celsius/day                                                                                                                                                            |
-| Spatial details     | 9x9 km                                                                                                                                                                 |
+| Spatial details     | 9km raster                                                                                                                                                             |
 | Temporal details    | Hourly                                                                                                                                                                 |
 | Timeframe           | 1950 - present                                                                                                                                                         |
 | Source              | Copernicus                                                                                                                                                             |

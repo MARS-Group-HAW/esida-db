@@ -9,7 +9,7 @@
 | Format           | csv                                                                  |
 | Operation        | None                                                                 |
 | Original unit    | Proportion of households with at least one net                       |
-| Spatial details  | Regional level                                                       |
+| Spatial details  | Region                                                               |
 | Temporal details | Cross-sectional                                                      |
 | Timeframe        | 2017                                                                 |
 | Source           | DHS Program                                                          |

@@ -1,21 +1,22 @@
 ## Data type and processing information 
 
-|                  | Description                                                          |
-|:-----------------|:---------------------------------------------------------------------|
-| Category         | Demographic                                                          |
-| Abbreviation     | statcompiler_education                                               |
-| Title            | Education level                                                      |
-| Necessity        | required                                                             |
-| Format           | csv                                                                  |
-| Operation        | mean(men & women)                                                    |
-| Original unit    | median years of education                                            |
-| Spatial details  | Regional level                                                       |
-| Temporal details | Cross-sectional                                                      |
-| Timeframe        | up to 2016                                                           |
-| Source           | DHS Porgram                                                          |
-| Related Sources  | None                                                                 |
-| Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1        | ED_EDUC_W_MYR, ED_EDUC_M_MYR                                         |
+|                     | Description                                                          |
+|:--------------------|:---------------------------------------------------------------------|
+| Category            | Demographic                                                          |
+| Abbreviation        | statcompiler_education                                               |
+| Title               | Education level                                                      |
+| Necessity           | required                                                             |
+| Format              | csv                                                                  |
+| Operation           | mean(men & women)                                                    |
+| Original unit       | Median years of education                                            |
+| ESIDA database unit | Median years of education                                            |
+| Spatial details     | Region                                                               |
+| Temporal details    | Cross-sectional                                                      |
+| Timeframe           | up to 2016                                                           |
+| Source              | DHS Program                                                          |
+| Related Sources     | None                                                                 |
+| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment.1           | ED_EDUC_W_MYR, ED_EDUC_M_MYR                                         |
 
 ## Data quality information 
 

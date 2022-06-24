@@ -1,15 +1,19 @@
 ## Data type and processing information 
 
-|                  | Description                                                             |
-|:-----------------|:------------------------------------------------------------------------|
-| Category         | Health                                                                  |
-| Abbreviation     | lit_chol_herep                                                          |
-| Title            | Cholera health reports                                                  |
-| Necessity        | required                                                                |
-| Format           | csv                                                                     |
-| Spatial details  | Administrative levels, locations derived from literature (case studies) |
-| Temporal details | Cross-sectional                                                         |
-| Source           | Literature-based, report-based (e.g. WHO, MoH)                          |
+|                     | Description                                                             |
+|:--------------------|:------------------------------------------------------------------------|
+| Category            | Health                                                                  |
+| Abbreviation        | lit_chol_herep                                                          |
+| Title               | Cholera health reports                                                  |
+| Necessity           | required                                                                |
+| Format              | csv                                                                     |
+| Operation           | None                                                                    |
+| Original unit       | None                                                                    |
+| ESIDA database unit | None                                                                    |
+| Spatial details     | Administrative levels, locations derived from literature (case studies) |
+| Temporal details    | Cross-sectional                                                         |
+| Timeframe           | Unkown                                                                  |
+| Source              | Literature-based                                                        |
 
 ## Data quality information 
 
@@ -23,6 +27,7 @@
 | Contributor  | ESIDA                          |
 | Type         | Dataset                        |
 | Format       | csv                            |
+| Identifier   | None                           |
 | Source       | Literature-based, Report-based |
 | Citation     | None                           |
 | Language     | eng                            |

@@ -1,35 +1,37 @@
 ## Data type and processing information 
 
-|                     | Description        |
-|:--------------------|:-------------------|
-| Category            | Infrastructure     |
-| Abbreviation        | unkown_garbage     |
-| Title               | Garbage collection |
-| Necessity           | optional           |
-| Format              | Unkown             |
-| Operation           | Unkown             |
-| Original unit       | Unkown             |
-| ESIDA database unit | Unkown             |
-| Spatial details     | Unkown             |
-| Temporal details    | Unkown             |
-| Timeframe           | Unkown             |
-| Source              | Unkown             |
-| Related Sources     | None               |
+|                     | Description                      |
+|:--------------------|:---------------------------------|
+| Category            | Infrastructure                   |
+| Abbreviation        | statcompiler_housing             |
+| Title               | Housing density                  |
+| Necessity           | optional                         |
+| Format              | csv                              |
+| Operation           | None                             |
+| Original unit       | Mean number of household members |
+| ESIDA database unit | Mean number of household members |
+| Spatial details     | Region                           |
+| Temporal details    | Cross-sectional                  |
+| Timeframe           | 1991 - 2017                      |
+| Source              | DHS Program                      |
+| Related Sources     | None                             |
 
 ## Data quality information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | unkown_garbage                                                                               |
+| Abbreviation | statcompiler_housing                                                                         |
 | Subject      | Infrastructure                                                                               |
 | Creator      | Unkown                                                                                       |
-| Description  | Garbage collection                                                                           |
+| Description  | Housing density                                                                              |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 02.05.2022                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | None                                                                                         |
+| Source       | DHS Program                                                                                  |
+| Citation     | None                                                                                         |
 | Language     | eng                                                                                          |
 | Rights       | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
 | Coverage     | Tanzania                                                                                     |

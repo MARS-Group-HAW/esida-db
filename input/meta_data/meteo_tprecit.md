@@ -10,7 +10,7 @@
 | Operation           | sum                                                                                                              |
 | Original unit       | mm/day                                                                                                           |
 | ESIDA database unit | mm/day                                                                                                           |
-| Spatial details     | local weather stations                                                                                           |
+| Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
 | Timeframe           | 2010-2020                                                                                                        |
 | Source              | Meteostat                                                                                                        |

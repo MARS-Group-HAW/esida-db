@@ -1,16 +1,19 @@
 ## Data type and processing information 
 
-|                  | Description                                                             |
-|:-----------------|:------------------------------------------------------------------------|
-| Category         | Health                                                                  |
-| Abbreviation     | lit_dengue_out_loc                                                      |
-| Title            | Dengue outbreak locations (historical)                                  |
-| Necessity        | required                                                                |
-| Format           | csv                                                                     |
-| Spatial details  | Administrative levels, locations derived from literature (case studies) |
-| Temporal details | Weekly                                                                  |
-| Timeframe        | 2010 - 2021                                                             |
-| Source           | Literature-based, report-based (e.g. WHO, MoH)                          |
+|                     | Description                            |
+|:--------------------|:---------------------------------------|
+| Category            | Health                                 |
+| Abbreviation        | lit_dengue_out_loc                     |
+| Title               | Dengue outbreak locations (historical) |
+| Necessity           | required                               |
+| Format              | csv                                    |
+| Operation           | None                                   |
+| Original unit       | None                                   |
+| ESIDA database unit | None                                   |
+| Spatial details     | District                               |
+| Temporal details    | Weekly                                 |
+| Timeframe           | 2010-2021                              |
+| Source              | Report-based                           |
 
 ## Data quality information 
 
@@ -24,6 +27,7 @@
 | Contributor  | ESIDA                                  |
 | Type         | Dataset                                |
 | Format       | csv                                    |
+| Identifier   | None                                   |
 | Source       | Literature-based, Report-based         |
 | Citation     | None                                   |
 | Language     | eng                                    |

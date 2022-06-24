@@ -10,7 +10,7 @@
 | Operation           | None                                                                               |
 | Original unit       | Percentage of households whose main source of drinking water is an improved source |
 | ESIDA database unit | Percentage of households whose main source of drinking water is an improved source |
-| Spatial details     | Regional Level                                                                     |
+| Spatial details     | Region                                                                             |
 | Temporal details    | Cross-sectional                                                                    |
 | Timeframe           | up to 2017                                                                         |
 | Source              | DHS Program                                                                        |

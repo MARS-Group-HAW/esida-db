@@ -10,7 +10,7 @@
 | Operation           | Proportion (area of interest/whole area)                                                               |
 | Original unit       | binary (0=not urban, 1=urban)                                                                          |
 | ESIDA database unit | proportion (0 to 1)                                                                                    |
-| Spatial details     | 100 x 100 m                                                                                            |
+| Spatial details     | 0.1km raster                                                                                           |
 | Temporal details    | Cross-sectional                                                                                        |
 | Timeframe           | 2020, 2010                                                                                             |
 | Source              | Worldpop                                                                                               |

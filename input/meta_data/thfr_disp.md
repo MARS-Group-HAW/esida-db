@@ -8,8 +8,9 @@
 | Necessity           | required                                                                                                                                       |
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |
-| ESIDA database unit | Number of Facilities per district                                                                                                              |
-| Spatial details     | Region/District/Ward                                                                                                                           |
+| Original unit       | None                                                                                                                                           |
+| ESIDA database unit | Facilities per district                                                                                                                        |
+| Spatial details     | Coordinates                                                                                                                                    |
 | Temporal details    | Hourly                                                                                                                                         |
 | Timeframe           | 2014 - 2022                                                                                                                                    |
 | Source              | Tanzania Health Facility Register                                                                                                              |

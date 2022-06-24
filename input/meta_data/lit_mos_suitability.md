@@ -7,11 +7,14 @@
 | Title            | Environmental suitability Aedes aegypti (assumptions from literature) |
 | Necessity        | required                                                              |
 | Format           | tbc                                                                   |
-| Spatial details  | 10 x 10 km                                                            |
-| Temporal details | --                                                                    |
+| Operation        | Unkown                                                                |
+| Original unit    | Unkown                                                                |
+| Spatial details  | 0.1km raster                                                          |
+| Temporal details | Unkown                                                                |
+| Timeframe        | Unkown                                                                |
 | Source           | Literature-based                                                      |
 | Link             | [https://datadryad.org/stash/404](https://datadryad.org/stash/404)    |
-| Comment          | Link is currently down, I already wrote the authors                   |
+| Comment          | Link is currently down, wrote the authors                             |
 
 ## Data quality information 
 
@@ -19,6 +22,7 @@
 |:-------------|:----------------------------------------------------------------------|
 | Abbreviation | lit_mos_suitability                                                   |
 | Subject      | Enviromental                                                          |
+| Creator      | Unkown                                                                |
 | Description  | Environmental suitability Aedes aegypti (assumptions from literature) |
 | Publisher    | HAW Hamburg                                                           |
 | Contributor  | ESIDA                                                                 |

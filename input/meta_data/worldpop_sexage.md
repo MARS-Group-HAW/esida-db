@@ -1,20 +1,21 @@
 ## Data type and processing information 
 
-|                  | Description                                                                                            |
-|:-----------------|:-------------------------------------------------------------------------------------------------------|
-| Category         | Demographic                                                                                            |
-| Abbreviation     | worldpop_sexage                                                                                        |
-| Title            | Sex and age structure                                                                                  |
-| Necessity        | required                                                                                               |
-| Format           | tiff                                                                                                   |
-| Operation        | tbd                                                                                                    |
-| Original unit    | tbd, Proportion of group                                                                               |
-| Spatial details  | 100 x 100 m                                                                                            |
-| Temporal details | Annualy                                                                                                |
-| Timeframe        | 2010 - 2020                                                                                            |
-| Source           | Worldpop data                                                                                          |
-| Related Sources  | None                                                                                                   |
-| Link             | [https://www.worldpop.org/geodata/summary?id=50564](https://www.worldpop.org/geodata/summary?id=50564) |
+|                     | Description                                                                                            |
+|:--------------------|:-------------------------------------------------------------------------------------------------------|
+| Category            | Demographic                                                                                            |
+| Abbreviation        | worldpop_sexage                                                                                        |
+| Title               | Sex and age structure                                                                                  |
+| Necessity           | required                                                                                               |
+| Format              | tiff                                                                                                   |
+| Operation           | Unkown                                                                                                 |
+| Original unit       | tbd, Proportion of group                                                                               |
+| ESIDA database unit | Unkown                                                                                                 |
+| Spatial details     | 0.1km raster                                                                                           |
+| Temporal details    | Annualy                                                                                                |
+| Timeframe           | 2010 - 2020                                                                                            |
+| Source              | Worldpop                                                                                               |
+| Related Sources     | None                                                                                                   |
+| Link                | [https://www.worldpop.org/geodata/summary?id=50564](https://www.worldpop.org/geodata/summary?id=50564) |
 
 ## Data quality information 
 

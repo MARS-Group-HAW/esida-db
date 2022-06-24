@@ -8,9 +8,9 @@
 | Necessity           | required                                                                     |
 | Format              | tiff                                                                         |
 | Operation           | mean                                                                         |
-| Original unit       | mm                                                                           |
+| Original unit       | mm/day                                                                       |
 | ESIDA database unit | mm/day                                                                       |
-| Spatial details     | local weather stations                                                       |
+| Spatial details     | Coordinates                                                                  |
 | Temporal details    | Daily                                                                        |
 | Timeframe           | 1981-2020                                                                    |
 | Source              | CHIRPS                                                                       |

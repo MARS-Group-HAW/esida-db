@@ -10,7 +10,7 @@
 | Operation           | mean                                                                                                 |
 | Original unit       | proportion of people per grid cell living with less than 2 dollar per day                            |
 | ESIDA database unit | proportion (0 to 1)                                                                                  |
-| Spatial details     | 1 x 1 km                                                                                             |
+| Spatial details     | 1km raster                                                                                           |
 | Temporal details    | Cross-sectional                                                                                      |
 | Timeframe           | 2013                                                                                                 |
 | Source              | Worldpop                                                                                             |

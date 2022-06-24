@@ -14,9 +14,6 @@ path = pathlib.Path(__file__).parent.resolve()
 df_dtype = pd.read_csv(path / "DB_Meta_Sheet - Documentation.csv")
 df_dqual = pd.read_csv(path / "DB_Meta_Sheet - Metadata.csv")
 
-df_dtype = df_dtype[~(df_dtype['Abbreviation'].str.match('callname in db'))].reset_index(drop=True)
-
-
 def make_md_link(text):
     """ Transform URLs/DOIs in HTML to Markdown links. """
     if pd.isna(text):

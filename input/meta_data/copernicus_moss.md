@@ -10,10 +10,10 @@
 | Operation           | Proportion (area of interest/whole area)                                                         |
 | Original unit       | binary (0=no, 1=yes)                                                                             |
 | ESIDA database unit | percentage                                                                                       |
-| Spatial details     | 102 x 100 m                                                                                      |
+| Spatial details     | 0.1km raster                                                                                     |
 | Temporal details    | Annualy                                                                                          |
 | Timeframe           | 2015-2019                                                                                        |
-| Source              | Copernicus Land Cover                                                                            |
+| Source              | Copernicus                                                                                       |
 | Related Sources     | None                                                                                             |
 | Link                | [https://zenodo.org/record/3939038#.YkLn7y8RrBI](https://zenodo.org/record/3939038#.YkLn7y8RrBI) |
 | Comment             | you can find follow up years under "related identifiers/Continued by"                            |

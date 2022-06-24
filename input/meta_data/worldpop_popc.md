@@ -8,11 +8,11 @@
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | sum                                                                                              |
-| Original unit       | total number                                                                                     |
+| Original unit       | total amount                                                                                     |
 | ESIDA database unit | total number                                                                                     |
-| Spatial details     | 100 x 100 m                                                                                      |
+| Spatial details     | 0.1km raster                                                                                     |
 | Temporal details    | Annualy                                                                                          |
-| Timeframe           | 2010-2020                                                                                        |
+| Timeframe           | 2000-2020                                                                                        |
 | Source              | Worldpop                                                                                         |
 | Related Sources     | None                                                                                             |
 | Link                | [https://www.worldpop.org/geodata/listing?id=69](https://www.worldpop.org/geodata/listing?id=69) |

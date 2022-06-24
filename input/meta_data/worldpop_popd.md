@@ -10,9 +10,9 @@
 | Operation           | mean                                                                                                   |
 | Original unit       | population per m^2                                                                                     |
 | ESIDA database unit | population per m^2                                                                                     |
-| Spatial details     | 1 x 1 km                                                                                               |
+| Spatial details     | 1km raster                                                                                             |
 | Temporal details    | Annualy                                                                                                |
-| Timeframe           | 2010-2020                                                                                              |
+| Timeframe           | 2000-2020                                                                                              |
 | Source              | Worldpop                                                                                               |
 | Related Sources     | None                                                                                                   |
 | Link                | [https://www.worldpop.org/project/categories?id=18](https://www.worldpop.org/project/categories?id=18) |

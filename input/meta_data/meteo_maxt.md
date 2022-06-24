@@ -10,7 +10,7 @@
 | Operation           | max                                                                                                              |
 | Original unit       | celsius/day                                                                                                      |
 | ESIDA database unit | celsius/day                                                                                                      |
-| Spatial details     | local weather stations                                                                                           |
+| Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
 | Timeframe           | 2010-2020                                                                                                        |
 | Source              | Meteostat                                                                                                        |
