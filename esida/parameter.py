@@ -1,10 +1,12 @@
 import os
 from sys import platform
+import datetime as dt
 import logging
 import subprocess
 from pathlib import Path
 from urllib.parse import urlparse
 
+from sqlalchemy import text
 import pandas as pd
 import geopandas
 
@@ -30,6 +32,11 @@ class BaseParameter():
         self.time_col = 'year'
 
         self.output = 'db'
+
+
+        self.da_temporal_start = dt.datetime(2010, 1, 1)
+        self.da_temporal_end   = dt.datetime(2020, 12, 31)
+
 
     def get_title(self) -> str:
         if self.parameter_id in meta_dict:
@@ -110,6 +117,109 @@ class BaseParameter():
             self.df.to_csv(self.get_output_path() / f'{self.parameter_id}.csv')
         else:
             raise ValueError(f"Unknown save option {self.output}.")
+
+    # ---
+
+    def da_temporal_expected(self):
+        if self.time_col == 'year':
+            return self.da_temporal_end.year - self.da_temporal_start.year + 1
+        elif self.time_col == 'date':
+            return (self.da_temporal_end - self.da_temporal_start).days
+        else:
+            return None
+
+    def da_count_temporal(self, shape_id=None):
+
+        if not self.is_loaded():
+            return None
+
+        if self.time_col == 'year':
+            sql = f"SELECT COUNT(*) FROM {self.parameter_id} WHERE  year >= {self.da_temporal_start.year} AND year <= {self.da_temporal_end.year}"
+        elif self.time_col == 'date':
+            sql = f"SELECT COUNT(*) FROM {self.parameter_id} WHERE date >= '{self.da_temporal_start}' AND date <= '{self.da_temporal_end}'"
+        else:
+            return None
+
+        if shape_id:
+            sql += f" AND shape_id = {int(shape_id)}"
+
+        res = connect().execute(sql)
+        return res.fetchone()[0]
+
+    def da_temporal_date_first(self, shape_id=None):
+        if not self.is_loaded():
+            return None
+
+        if self.time_col == 'year':
+            sql = f"SELECT year FROM {self.parameter_id} WHERE  year >= {self.da_temporal_start.year} AND year <= {self.da_temporal_end.year}"
+            if shape_id:
+                sql += f" AND shape_id = {int(shape_id)}"
+            sql += " ORDER BY year ASC LIMIT 1"
+        elif self.time_col == 'date':
+            sql = f"SELECT date FROM {self.parameter_id} WHERE date >= '{self.da_temporal_start}' AND date <= '{self.da_temporal_end}'"
+            if shape_id:
+                sql += f" AND shape_id = {int(shape_id)}"
+            sql += " ORDER BY date ASC LIMIT 1"
+
+        res = connect().execute(sql)
+        row = res.fetchone()
+        if row:
+            return row[0]
+        else:
+            return None
+
+    def da_temporal_date_last(self, shape_id=None):
+        if not self.is_loaded():
+            return None
+
+        if self.time_col == 'year':
+            sql = f"SELECT year FROM {self.parameter_id} WHERE  year >= {self.da_temporal_start.year} AND year <= {self.da_temporal_end.year}"
+            if shape_id:
+                sql += f" AND shape_id = {int(shape_id)}"
+            sql += " ORDER BY year DESC LIMIT 1"
+        elif self.time_col == 'date':
+            sql = f"SELECT date FROM {self.parameter_id} WHERE date >= '{self.da_temporal_start}' AND date <= '{self.da_temporal_end}'"
+            if shape_id:
+                sql += f" AND shape_id = {int(shape_id)}"
+            sql += " ORDER BY date DESC LIMIT 1"
+        else:
+            return None
+
+        res = connect().execute(sql)
+        row = res.fetchone()
+        if row:
+            return row[0]
+        else:
+            return None
+
+    def da_temporal(self, shape_id=None):
+        """ Determine temporal completeness of data source. """
+
+        if not self.is_loaded():
+            return None
+
+        if self.time_col == 'year':
+            should = self.da_temporal_end.year - self.da_temporal_start.year + 1
+            sql = f"SELECT year FROM {self.parameter_id} WHERE  year >= {self.da_temporal_start.year} AND year <= {self.da_temporal_end.year}"
+            if shape_id:
+                sql += f" AND shape_id = {int(shape_id)}"
+            sql += " GROUP BY year ORDER BY year"
+            df = pd.read_sql(sql, con=connect())
+            have = len(df)
+
+            return have / should
+        elif self.time_col == 'date':
+            should = (self.da_temporal_end - self.da_temporal_start).days
+            sql = f"SELECT date FROM {self.parameter_id} WHERE date >= '{self.da_temporal_start}' AND date <= '{self.da_temporal_end}'"
+            if shape_id:
+                sql += f" AND shape_id = {int(shape_id)}"
+            sql += " GROUP BY date ORDER BY date"
+            df = pd.read_sql(sql, con=connect())
+            have = len(df)
+
+            return have / should
+
+        return None
 
 
     # ---

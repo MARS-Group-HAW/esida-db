@@ -1,22 +1,14 @@
 import os
-import sys, inspect
-import datetime as dt
-from pathlib import Path
-import importlib
 import pkgutil
 import shapely
-
-import logging
+import importlib
+from pathlib import Path
 
 import click
-import pandas as pd
 import geopandas
-from meteostat import Stations, Daily
 
-import esida.statcompiler as stc
-from dbconf import get_engine
+from dbconf import get_engine, connect, close
 import log
-
 from parameters import *
 
 logger = log.setup_custom_logger('root')
@@ -37,9 +29,9 @@ def init():
     })
     regions_gdf['type'] = 'region'
     regions_gdf = regions_gdf.sort_values(by=['region_code'])
-    regions_gdf.to_postgis('shape', get_engine(), if_exists='append')
+    regions_gdf.to_postgis('shape', connect(), if_exists='append')
 
-    imported_regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type= 'region'", get_engine(), geom_col='geometry')
+    imported_regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type= 'region'", connect(), geom_col='geometry')
 
     def find_pk_if_region(name):
         for i, row in imported_regions_gdf.iterrows():
@@ -57,16 +49,15 @@ def init():
     districts_gdf['type'] = 'district'
     districts_gdf['parent_id'] = districts_gdf['region_name'].apply(find_pk_if_region)
     districts_gdf = districts_gdf.sort_values(by=['region_code', 'district_c'])
-    districts_gdf.to_postgis('shape', get_engine(), if_exists='append')
+    districts_gdf.to_postgis('shape', connect(), if_exists='append')
 
     # calculate district area
     # Date are in ESPG:4326 (deg based), so for ST_Area() to produce m2
     # we need to convert to a meters based system. With utmzone() we identify
     # the resp. used UTM Zone that is m based.
-    engine = get_engine()
-    with engine.connect() as con:
-        con.execute('UPDATE shape SET area_sqm = \
-          ST_Area(ST_Transform(geometry, utmzone(ST_Centroid(geometry))))')
+    con = connect()
+    con.execute('UPDATE shape SET area_sqm = \
+        ST_Area(ST_Transform(geometry, utmzone(ST_Centroid(geometry))))')
 
 
 @cli.command("list")
@@ -124,3 +115,6 @@ def clip(wkt):
 
 if __name__ == '__main__':
     cli()
+
+    # make sure potentially open database connections are closed
+    close()

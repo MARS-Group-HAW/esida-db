@@ -2,7 +2,6 @@ import importlib
 import datetime as dt
 import os
 import json
-from tracemalloc import start
 
 from esida import app, params, db, logger
 from flask import render_template, make_response, abort, jsonify, request, redirect, url_for, send_from_directory
@@ -15,6 +14,7 @@ from esida.models import Shape, Signal
 import pandas as pd
 import numpy as np
 import humanize
+
 
 @app.route('/favicon.ico')
 def favicon():
@@ -346,6 +346,12 @@ def api_parameter(parameter_id):
     for x in  df.select_dtypes(include=['datetime64']).columns.tolist():
         df[x] = df[x].astype(str)
 
+    shape_id = None
+
+    data_quality = {
+        'temporal_coverage': pc.da_temporal(shape_id=shape_id),
+    }
+
     # the jsonify() method will not translate np.NaN to null for a valid JSON.
     # pandas' fillna() can't handle None, so we sett all "none"s to np.Nan and
     # make a replace to pythons None, which will wie translated by jsonify() to
@@ -354,9 +360,41 @@ def api_parameter(parameter_id):
     # than we would reply with a json String and not an object.
     return jsonify(
         data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records'),
-        fields=pc.get_fields()
+        fields=pc.get_fields(),
+        data_quality=data_quality
     )
 
+@app.route('/api/v1/parameters')
+def api_parameters():
+    shape_id = request.args.get('shape_id')
+    if shape_id and shape_id.isnumeric():
+        shape_id = int(shape_id)
+    else:
+        shape_id = None
+
+    rows = []
+
+    for p in params:
+        pm = importlib.import_module(f'parameters.{p}')
+        pc = getattr(pm, p)()
+
+        row = {
+            'parameter_id': p,
+            'timelines': pc.time_col,
+            'loaded':  pc.is_loaded(),
+            'temporal_expected': pc.da_temporal_expected(),
+            'temporal_actual': pc.da_count_temporal(shape_id=shape_id),
+            'temporal_coverage': pc.da_temporal(shape_id=shape_id),
+            'temporal_first': pc.da_temporal_date_first(shape_id=shape_id),
+            'temporal_last': pc.da_temporal_date_last(shape_id=shape_id)
+        }
+
+        rows.append(row)
+
+    df = pd.DataFrame(rows)
+    return jsonify(
+        data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records'),
+    )
 
 @app.route('/shape/<int:shape_id>/parameters')
 def download_csv(shape_id):
