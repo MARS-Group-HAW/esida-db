@@ -381,7 +381,7 @@ def api_parameters():
         row = {
             'parameter_id': p,
             'timelines': pc.time_col,
-            'loaded':  pc.is_loaded(),
+            'loaded': pc.is_loaded(),
             'temporal_expected': pc.da_temporal_expected(),
             'temporal_actual': pc.da_count_temporal(shape_id=shape_id),
             'temporal_coverage': pc.da_temporal(shape_id=shape_id),

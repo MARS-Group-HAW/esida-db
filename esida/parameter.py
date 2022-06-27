@@ -164,7 +164,7 @@ class BaseParameter():
         res = connect().execute(sql)
         row = res.fetchone()
         if row:
-            return row[0]
+            return str(row[0])
         else:
             return None
 
@@ -188,7 +188,7 @@ class BaseParameter():
         res = connect().execute(sql)
         row = res.fetchone()
         if row:
-            return row[0]
+            return str(row[0])
         else:
             return None
 
