@@ -2,6 +2,45 @@
 
 ## Initial setup
 
+
+Cerate `docker-compose.yml`:
+
+```
+version: "3"
+
+services:
+  postgis:
+    image: postgis/postgis
+    restart: always
+    environment:
+      POSTGRES_DB: esida
+      POSTGRES_USER: esida
+      POSTGRES_PASSWORD: esida
+      PGDATA: /var/lib/postgresql/data/pgdat
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+  esida:
+    image: git.haw-hamburg.de:5005/mars/esida-db:latest
+    restart: always
+    environment:
+      POSTGIS_HOST: postgis
+      POSTGIS_DB: esida
+      POSTGIS_USER: esida
+      POSTGIS_PASS: esida
+      POSTGIS_PORT: "5432"
+      FLASK_BASIC_AUTH_FORCE: "False"
+    ports:
+      - 80:80
+    volumes:
+      - ./input:/app/input/data
+      - ./output:/app/output
+```
+
+Boot it up with `docker-compose up -d` (you might need to log-in with your HAW-Account to access the registry).
+
+
 After initial starting of the system, you need to-to the following steps. Either run them locally, or enter the docker container bash first.
 
     $ flask create-db # setup required database columns
