@@ -1,8 +1,13 @@
 FROM osgeo/gdal:ubuntu-small-3.4.2
 
 # install pip and postgresql binaries so pycog2 will install
+#
+# python-rtree was NOT required building on Linux/GitLab CI. If it's missing
+# during build on macOS/M1 the container won't run. Why? Probably due to
+# arm64 emulation thins for the container?
 RUN apt-get update && apt-get install -y \
     python3-pip \
+    python3-rtree \
     libpq-dev \
     rsync \
     wget
