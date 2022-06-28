@@ -68,7 +68,6 @@ def districts():
 
 @app.route("/map")
 def map():
-
     regions = Shape.query.where(Shape.type == "region").all()
     districts = Shape.query.where(Shape.type == "district").all()
 
@@ -76,20 +75,26 @@ def map():
     meteostat=[]
     tza_hfr=[]
     tza_hfr_categories=[]
+
     with engine.connect() as con:
-        rs = con.execute('SELECT id, meteostat_id, icao, wmo, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
-        for row in rs:
-            meteostat.append(dict(row))
 
-        rs = con.execute('SELECT t."ID", t."Facility Name", t."Facility Type", t."Latitude", t."Longitude" FROM thfr t')
-        for row in rs:
-            tza_hfr.append(dict(row))
+        meteo_tprecit_module = importlib.import_module('parameters.meteo_tprecit')
+        meteo_tprecit = getattr(meteo_tprecit_module, 'meteo_tprecit')()
+        if meteo_tprecit.is_loaded():
+            rs = con.execute('SELECT id, meteostat_id, icao, wmo, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
+            for row in rs:
+                meteostat.append(dict(row))
 
-        rs = con.execute('SELECT t."Facility Type", COUNT(*) as count FROM thfr t WHERE t."Facility Type" IS NOT NULL GROUP BY t."Facility Type" ORDER BY count DESC;')
-        for row in rs:
-            tza_hfr_categories.append(dict(row))
+        thfr_disp_module = importlib.import_module('parameters.thfr_disp')
+        thfr_disp = getattr(thfr_disp_module, 'thfr_disp')()
+        if thfr_disp.is_loaded():
+            rs = con.execute('SELECT t."ID", t."Facility Name", t."Facility Type", t."Latitude", t."Longitude" FROM thfr t')
+            for row in rs:
+                tza_hfr.append(dict(row))
 
-
+            rs = con.execute('SELECT t."Facility Type", COUNT(*) as count FROM thfr t WHERE t."Facility Type" IS NOT NULL GROUP BY t."Facility Type" ORDER BY count DESC;')
+            for row in rs:
+                tza_hfr_categories.append(dict(row))
 
     return render_template('map.html',
         regions=regions,
