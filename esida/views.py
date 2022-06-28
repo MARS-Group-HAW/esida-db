@@ -107,54 +107,16 @@ def shape(shape_id):
     if shape is None:
         abort(404)
 
-    # weather data
-    engine = get_engine()
-
-
-    # load chirps precipitation
-    chirps_module = importlib.import_module('parameters.chirps_tprecit')
-    chc_chirps = getattr(chirps_module, 'chirps_tprecit')()
-    chc_chirps_data = []
-    if chc_chirps.is_loaded():
-        chc_chirps_df = pd.read_sql_query('SELECT date, chirps_tprecit FROM chirps_tprecit WHERE shape_id={}'.format(int(shape_id)), parse_dates=['date'], con=engine)
-        chc_chirps_df['x'] = chc_chirps_df['date'].astype(np.int64) / int(1e6)
-        chc_chirps_df['x'] = chc_chirps_df['x'].astype(int)
-        chc_chirps_df['y'] = chc_chirps_df['chirps_tprecit']
-        chc_chirps_data = chc_chirps_df[['x', 'y']].sort_values(by='x').to_json(orient="values")
-
-    # nearest meteostat station to center of shape
-    meteostat_station=None
-    sql = "SELECT * FROM meteostat_stations ORDER BY st_distance( \
-        ST_SetSRID(meteostat_stations.geometry, 4326), \
-        ST_Centroid((SELECT geometry FROM shape WHERE id = {})) ) ASC LIMIT 1"
-    with engine.connect() as con:
-        rs = con.execute(sql.format(int(shape_id)))
-        for row in rs:
-            meteostat_station = dict(row)
-
-    meteostat_df = pd.read_sql_query("SELECT * FROM meteostat_data WHERE meteostat_station_id = {} ORDER BY time ASC ".format(int(meteostat_station['id'])), parse_dates=['time'], con=engine)
-    meteostat_df['x'] = meteostat_df['time'].astype(np.int64) / int(1e6)
-    meteostat_df['x'] = meteostat_df['x'].astype(int)
-    meteostat_df['y'] = meteostat_df['prcp']
-    meteostat_df = meteostat_df[meteostat_df['y'].notna()]
-    meteostat_data = meteostat_df[['x', 'y']].sort_values(by='x').to_json(orient="values")
-
-
-
     parameters = []
     for p in params:
         pm = importlib.import_module('parameters.{}'.format(p))
         pc = getattr(pm, p)()
-
         if pc.is_loaded():
             parameters.append(pc)
 
     return render_template('shape.html',
         shape=shape,
-        params=parameters,
-        meteostat_station=meteostat_station,
-        chc_chirps_data=chc_chirps_data,
-        meteostat_data=meteostat_data
+        params=parameters
     )
 
 @app.route('/shape/<int:shape_id>/<parameter_id>/<column>/json')

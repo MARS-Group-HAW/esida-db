@@ -123,69 +123,11 @@
     <div class="col-9">
       <div id="chart"></div>
     </div>
-
-    <div class="col-12">
-      <h3>Weather data</h3>
-      <div id="chart_weather"></div>
-    </div>
-
   </div>
 
 {% endblock %}
 
 {% block footer %}
-
-<script>
-var chart_weather = Highcharts.chart('chart_weather', {
-  chart: {
-    zoomType: 'x'
-  },
-  title: {
-    text: 'Precipitation in {{ shape['name'] }}'
-  },
-  xAxis: {
-    type: 'datetime',
-    title: {
-      text: 'Date'
-    }
-  },
-  yAxis: {
-    title: {
-      text: 'mm'
-    }
-  },
-  plotOptions: {
-
-  },
-
-  legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-  },
-
-  series: [
-      {
-          name: 'chirps_tprecit',
-          data: {{chc_chirps_data|safe}},
-          type: 'area',
-          marker: {
-              enabled: false
-          }
-      },
-      {
-          name: 'meteostat',
-          turboThreshold: 0,
-          data: {{meteostat_data|safe}},
-          type: 'area',
-          marker: {
-              enabled: false
-          }
-      }
-  ]
-});
-</script>
-
 <script>
 $(".js-chosen-select").chosen();
 
@@ -345,12 +287,6 @@ $('#dl_filtered').on('click', function(e) {
   shapes.push(s);
   var group_districts = L.featureGroup(shapes).addTo(map);
   map.fitBounds(group_districts.getBounds());
-
-
-  var meteostat_station = L.marker([{{ meteostat_station['latitude']}}, {{ meteostat_station['longitude']}}]).addTo(map)
-		.bindPopup(`<h4>{{ meteostat_station['name'] }}</h4> `);
-
-
 
 
   var layerControl = L.control.layers().addTo(map);
