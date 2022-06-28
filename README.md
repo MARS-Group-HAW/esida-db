@@ -1,72 +1,36 @@
 # ESIDA DB Pipeline
 
-## Initial setup
 
+## Local setup (Docker)
 
-Cerate `docker-compose.yml`:
+Clone the repository and then following commands to build the containers:
 
-```
-version: "3"
+    $ docker-compose up -d
 
-services:
-  postgis:
-    image: postgis/postgis
-    restart: always
-    environment:
-      POSTGRES_DB: esida
-      POSTGRES_USER: esida
-      POSTGRES_PASSWORD: esida
-      PGDATA: /var/lib/postgresql/data/pgdat
-    ports:
-      - 5432:5432
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-  esida:
-    image: git.haw-hamburg.de:5005/mars/esida-db:latest
-    restart: always
-    environment:
-      POSTGIS_HOST: postgis
-      POSTGIS_DB: esida
-      POSTGIS_USER: esida
-      POSTGIS_PASS: esida
-      POSTGIS_PORT: "5432"
-      FLASK_BASIC_AUTH_FORCE: "False"
-    ports:
-      - 80:80
-    volumes:
-      - ./input:/app/input/data
-      - ./output:/app/output
-```
+After this you can start/stop the containers with
 
-Boot it up with `docker-compose up -d` (you might need to log-in with your HAW-Account to access the registry).
+    $ docker-compose start|stop
 
+The ESIDA DB is available at http://localhost/ - though it is empty at the moment
+and not everything works. To set it up follow these steps:
 
-After initial starting of the system, you need to-to the following steps. Either run them locally, or enter the docker container bash first.
+Enter the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands.
+Those are only required to be run after the first setup.
 
-    $ flask create-db # setup required database columns
+    $ flask create-db          # setup required database columns
     $ python esida-cli.py init # import region/district shape files into db
 
-After that you can load the different parameters by key into the database. For example:
+After that you can load the different parameters by key into the database:
 
     $ python ./esida-cli.py param <key> extract # downloads files from source
-    $ python ./esida-cli.py param <key> load # processes source and saves to databse
+    $ python ./esida-cli.py param <key> load    # processes source and saves to datab
 
-## Local development (docker)
+For example to load Meteostat weather data:
 
-Start PostGIS database via Docker Compose:
+    $ python ./esida-cli.py param meteo_tprecit extract
+    $ python ./esida-cli.py param meteo_tprecit load
 
-    $ docker-compose up -d  # starrting for the first time
-    $ docker-compose start # after inital start has been done
-
-Build Docker container containing the Python integration code and Flask Web-Frontend:
-
-    $ docker build -t esida-db .
-
-Run docker container locally:
-
-    $ docker run -e -p 8080:80 esida-db
-
-The database now runs at http://localhost:8080/ (but with no database)
+For available parameters see the listing at http://localhost/parameter. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder `./notebooks/ESIDA DB Demo.ipynb`).
 
 
 ## Local development (directly)
@@ -79,7 +43,7 @@ Stat the PostGIS database with docker-compose as shown above. Then install the d
 - Make local ESIDA Python package: `$ pip install -e .`
 - Make the Flask App know to the system: `$ export FLASK_APP=esida`
 - Run gunicorn to serve flask App: `$ gunicorn --bind 0.0.0.0:80 esida:app --error-logfile - --reload`
-- Page can now be access via http://localhost:8080/
+- Page can now be access via http://localhost/
 
 
 ## HAW ICC Deployment
