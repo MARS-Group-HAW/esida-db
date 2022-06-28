@@ -13,3 +13,18 @@ services:
       - 5432:5432
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+  esida:
+    build: .
+    restart: always
+    environment:
+      POSTGIS_HOST: postgis
+      POSTGIS_DB: esida
+      POSTGIS_USER: esida
+      POSTGIS_PASS: esida
+      POSTGIS_PORT: 5432
+      FLASK_BASIC_AUTH_FORCE: "False"
+    ports:
+      - 80:80
+    volumes:
+      - ./input/data:/app/input/data
+      - ./output:/app/output
