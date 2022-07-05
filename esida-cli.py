@@ -3,9 +3,11 @@ import pkgutil
 import shapely
 import importlib
 from pathlib import Path
+import datetime as dt
 
 import click
 import geopandas
+import pandas as pd
 
 from dbconf import get_engine, connect, close
 import log
@@ -89,13 +91,19 @@ def abm(signal):
 
 @cli.command()
 @click.option('--wkt')
-def clip(wkt):
+@click.option('--abm', is_flag=True)
+def clip(wkt, abm):
     params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
+    now = dt.datetime.now()
+    out_name = now.strftime("%Y-%m-%d_%H-%M-%S")
     if os.path.exists(wkt):
+        out_name += "_"+os.path.basename(wkt)
         with open(wkt, 'r') as file:
             wkt = file.read()
 
+
+    out_dir = Path("./output/") / out_name
     shape = {
         'geometry': shapely.wkt.loads(wkt),
         'name': 'text',
@@ -104,14 +112,27 @@ def clip(wkt):
 
     for p in params:
 
-        if p != 'worldpop_popc':
+        if abm and p not in ['worldpop_popc', 'geofabrik_pois', 'osm_graph', 'osm_building', 'osm_landuse', 'rcmrd_elev', 'meteo_tprecit']:
             continue
 
         pmodule = importlib.import_module(f'parameters.{p}')
         pclass  = getattr(pmodule, p)()
-        pclass.set_output_path(Path("./test"))
+        pclass.set_output_path(out_dir)
         pclass.output = 'fs' # save products to file system instead of database
         result = getattr(pclass, 'load')(shapes=[shape], save_output=True)
+
+    # after creating layers
+    # calculate amount of needed agents
+    dfx = pd.read_csv(out_dir / 'worldpop_popc.csv')
+    agent_count = int(dfx['worldpop_popc_sum'].tail(1))
+
+
+    p = 'cia_worldfactbook'
+    pmodule = importlib.import_module(f'parameters.{p}')
+    pclass  = getattr(pmodule, p)()
+    pclass.set_output_path(out_dir)
+    pclass.output = 'fs' # save products to file system instead of database
+    result = getattr(pclass, 'load')(shapes=[shape], save_output=True, agent_count=agent_count)
 
 if __name__ == '__main__':
     cli()
