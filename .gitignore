@@ -166,3 +166,4 @@ pgdata/
 .DS_Store
 /.vscode
 /.idea
+/notebooks/cache

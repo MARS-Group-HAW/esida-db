@@ -26,6 +26,11 @@ class osm_graph(BaseParameter):
             gdf_nodes, gdf_edges = ox.graph_to_gdfs(G)
             gdf_nodes = ox.io._stringify_nonnumeric_cols(gdf_nodes)
             gdf_edges = ox.io._stringify_nonnumeric_cols(gdf_edges)
+
+
+            # make sure output directory exitsts
+            (self.get_output_path() / self.parameter_id).mkdir(parents=True, exist_ok=True)
+
             gdf_nodes.to_file(self.get_output_path() / self.parameter_id /'nodes.geojson', driver='GeoJSON')
             gdf_edges.to_file(self.get_output_path() / self.parameter_id / 'edges.geojson', driver='GeoJSON')
 

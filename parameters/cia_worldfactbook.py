@@ -60,6 +60,8 @@ class cia_worldfactbook(BaseParameter):
 
     def load(self, shapes=None, save_output=False, agent_count = None):
 
+        print(agent_count)
+
         for shape in shapes:
             human_distr = np.random.choice(len(self.distributions), agent_count, p=self.weights)
             humans = []
@@ -110,5 +112,5 @@ class cia_worldfactbook(BaseParameter):
 
                 humans.append(h)
 
-                df = pd.DataFrame(humans)
-                df.to_csv(self.get_output_path() / 'citizen_tanzania.csv', index=False)
+            df = pd.DataFrame(humans)
+            df.to_csv(self.get_output_path() / 'citizen_tanzania.csv', index=False)
