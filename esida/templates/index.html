@@ -71,8 +71,13 @@
     To access the gathered open data sources you can browse them via the <a href="{{ url_for('regions') }}">Region</a> and <a href="{{ url_for('districts') }}">District</a> listings or the <a href="{{ url_for('map') }}">interactive map</a>. After selecting an area of interest you can select your wanted data via a download configurator, a minimal preview of the data is provided as well.
   </p>
   <p>
-    Additionally a simple API access is possible. Use the provided Jupyter Notebook (<a href="{{ url_for('static', filename='ESIDA DB Demo.ipynb') }}"><code>ESIDA DB Demo.ipynb</code></a>) with Python code for example on how to query and use the data.
+    Additionally a simple API access is possible. Use the provided Jupyter Notebook (<a download href="{{ url_for('static', filename='ESIDA DB Demo.ipynb') }}"><code>ESIDA DB Demo.ipynb</code></a>) with Python code for example on how to query and use the data.
   </p>
+
+  <p>
+    Regarding data quality metrics also a notebook is provided: <a download href="{{ url_for('static', filename='ESIDA DB Data Quality.ipynb') }}"><code>ESIDA DB Data Quality.ipynb</code></a>.
+  </p>
+
 {% endblock %}
 
 {% block footer %}
