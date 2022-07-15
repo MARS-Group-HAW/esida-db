@@ -85,6 +85,29 @@ def param(parameter, action):
     result = getattr(pclass, action)()
 
 @cli.command()
+def load():
+    params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+
+    action = 'load'
+    no_extract = [
+        'cia_worldfactbook',
+        'geofabrik_pois',
+        'osm_building',
+        'osm_graph',
+        'osm_landuse',
+    ]
+
+    for parameter in params:
+
+        if parameter in no_extract:
+            continue
+
+        pmodule = importlib.import_module(f'parameters.{parameter}')
+        pclass  = getattr(pmodule, parameter)()
+        result = getattr(pclass, action)()
+
+
+@cli.command()
 @click.option('--signal', '-s', multiple=True)
 def abm(signal):
     pass
