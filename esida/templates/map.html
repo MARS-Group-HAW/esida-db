@@ -63,13 +63,9 @@ var group_districts = L.featureGroup(districts).addTo(map);
 
 weatherstations=[]
 {% for station in meteostat %}
-{% if station['count'] > 0 %}
   var s = L.geoJSON({{ station['geojson']|safe }} )
   .bindPopup(`{% include 'popup-meteostat.html' %}`);
-
   weatherstations.push(s);
-
-  {% endif %}
 {% endfor %}
 var group_stations = L.featureGroup(weatherstations).addTo(map);
 

@@ -28,7 +28,7 @@ class MeteostatParameter(BaseParameter):
     def get_data_path(self) -> Path:
         """ Overwrite parameter_id based input directory, because we have
         multiple derived parameters from this source. """
-        return Path(f"./input/data/meteostat/")
+        return Path("./input/data/meteostat/")
 
     def extract(self):
         stations = Stations()
@@ -47,9 +47,6 @@ class MeteostatParameter(BaseParameter):
         gdf = geopandas.GeoDataFrame(
             df, geometry=geopandas.points_from_xy(df.longitude, df.latitude))
 
-        gdf.to_postgis("meteostat_stations", get_engine(), if_exists='replace')
-
-
         # loop over all stations and collect daily values
         today = dt.date.today()
         start = dt.datetime(2010, 1, 1)
@@ -57,6 +54,8 @@ class MeteostatParameter(BaseParameter):
 
         dfs_daily = []
         dfs_hourly = []
+
+        stations_with_no_data = []
 
         for _, row in gdf.iterrows():
             # daily
@@ -66,6 +65,12 @@ class MeteostatParameter(BaseParameter):
 
             self.logger.debug("Found Daily %s rows", len(data))
             data['meteostat_station_id'] = row['id']
+
+            if len(data) == 0:
+                self.logger.info("Remove station (%s) due to no data in time range", row['meteostat_id'])
+                stations_with_no_data.append(row['id'])
+                continue # in case we have no daily data, also do not query hourly data
+
             dfs_daily.append(data)
 
             # hourly
@@ -76,6 +81,11 @@ class MeteostatParameter(BaseParameter):
             self.logger.debug("Found Hourly %s rows", len(data))
             data['meteostat_station_id'] = row['id']
             dfs_hourly.append(data)
+
+        # save to database
+        gdf = gdf[~gdf['id'].isin(stations_with_no_data)] # do not write empty stations to database
+        gdf.to_postgis("meteostat_stations", get_engine(), if_exists='replace')
+
 
         merged_df = pd.concat(dfs_daily)
         merged_df.to_sql("meteostat_daily", get_engine(), if_exists='replace')
