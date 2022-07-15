@@ -1,42 +1,11 @@
-import os
-import subprocess
-from urllib.parse import urlparse
-from pathlib import Path
-
 import geopandas
-import pandas as pd
 
-from esida.parameter import BaseParameter
+from esida.geofabrik_parameter import GeofabrikParameter
 
-class geofabrik_transport(BaseParameter):
-
-
-    def extract(self):
-        url  = "http://download.geofabrik.de/africa/tanzania-latest-free.shp.zip"
-        self._save_url_to_file(url)
-
-        # Check if file is already unzipped
-        a = urlparse(url)
-        file_name = os.path.basename(a.path)
-        if os.path.isfile(self.get_data_path() / "README"):
-            self.logger.debug("File already unzipped.")
-            return
-
-        try:
-            # cmd syntax didn't work, not sure why
-            #subprocess.check_output('gzip -d ./input/data/chc_chirps/*.gz', shell=True)
-            in_file = self.get_data_path() / file_name
-            out_dir = self.get_data_path().as_posix()
-            subprocess.run(f'unzip {in_file} -d {out_dir}', shell=True,
-                capture_output=True, check=True)
-        except subprocess.CalledProcessError as error:
-            self.logger.warning("Could not unzip files: %s", error.stderr)
-
+class geofabrik_transport(GeofabrikParameter):
 
     def load(self, shapes=None, save_output=False):
-
-        path = Path(f"./input/data/geofabrik_pois/")
-        gdf = geopandas.read_file(path / 'gis_osm_transport_free_1.shp')
+        gdf = geopandas.read_file(self.get_data_path() / 'gis_osm_transport_free_1.shp')
 
         if shapes is None:
             shapes = self._get_shapes_from_db()
