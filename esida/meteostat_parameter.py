@@ -78,7 +78,7 @@ class MeteostatParameter(BaseParameter):
             dfs_hourly.append(data)
 
         merged_df = pd.concat(dfs_daily)
-        merged_df.to_sql("meteostat_data", get_engine(), if_exists='replace')
+        merged_df.to_sql("meteostat_daily", get_engine(), if_exists='replace')
 
         merged_df = pd.concat(dfs_hourly)
         merged_df.to_sql("meteostat_hourly", get_engine(), if_exists='replace')
@@ -114,7 +114,7 @@ class MeteostatParameter(BaseParameter):
         dfxs = []
         for sid in station_ids:
 
-            column = 'meteostat_data'
+            column = 'meteostat_daily'
             if self.meteo_mode == 'hourly':
                 column = 'meteostat_hourly'
 

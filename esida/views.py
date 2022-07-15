@@ -81,7 +81,7 @@ def map():
         meteo_tprecit_module = importlib.import_module('parameters.meteo_tprecit')
         meteo_tprecit = getattr(meteo_tprecit_module, 'meteo_tprecit')()
         if meteo_tprecit.is_loaded():
-            rs = con.execute('SELECT id, meteostat_id, icao, wmo, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_data WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
+            rs = con.execute('SELECT id, meteostat_id, icao, wmo, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_daily WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
             for row in rs:
                 meteostat.append(dict(row))
 
