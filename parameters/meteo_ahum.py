@@ -43,7 +43,6 @@ class meteo_ahum(MeteostatParameter):
             raise ValueError("Can't happen")
 
         for i in range(len(temp_cols)):
-            print(temp_cols[i], rhum_cols[i])
             df[f'ahum_{i}'] = df.apply(lambda x: ahum(x[temp_cols[i]], x[rhum_cols[i]]), axis=1)
 
 
