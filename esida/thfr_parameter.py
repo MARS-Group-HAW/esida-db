@@ -35,7 +35,7 @@ class ThfrParameter(BaseParameter):
     def get_data_path(self) -> Path:
         """ Overwrite parameter_id based input directory, because we have
         multiple derives parameters from this source. """
-        return Path(f"./input/data/tza_hfr/")
+        return Path("./input/data/tza_hfr/")
 
 
     def extract(self):
