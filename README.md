@@ -37,6 +37,7 @@ For available parameters see the listing at http://localhost/parameter. After lo
 
 Stat the PostGIS database with docker-compose as shown above. Then install the dependencies:
 
+- PostGIS (you use the one from docker-compose: `$ docker-compose up -d postgis`)
 - GDAL
 - Python 3.9.x
 - Python packages with `$ pip install -r requirements.txt`
