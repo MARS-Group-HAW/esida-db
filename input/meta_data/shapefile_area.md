@@ -16,7 +16,6 @@
 | Source              | Tanzanian National Bureau of Statistics                                                                                                                                                      |
 | Related Sources     | None                                                                                                                                                                                         |
 | Link                | [https://www.nbs.go.tz/index.php/en/census-surveys/gis/568-tanzania-districts-shapefiles-2019](https://www.nbs.go.tz/index.php/en/census-surveys/gis/568-tanzania-districts-shapefiles-2019) |
-| Comment.1           | HC_MEMB_H_MNM                                                                                                                                                                                |
 
 ## Data quality information 
 

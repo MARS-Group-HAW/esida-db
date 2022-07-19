@@ -15,6 +15,7 @@
 | Timeframe           | 1991 - 2017                      |
 | Source              | DHS Program                      |
 | Related Sources     | None                             |
+| Comment.1           | HC_MEMB_H_MNM                    |
 
 ## Data quality information 
 

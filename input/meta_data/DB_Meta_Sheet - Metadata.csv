@@ -18,7 +18,8 @@ worldpop_urbanext,Demographics,Worldpop,Urban Settlement Extent,HAW Hamburg,ESID
 worldpop_poverty,Demographics,Worldpop ,Poverty,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00290,Worldpop ,https://doi.org/10.1098/rsif.2016.0690,eng,CC BY 4.0,Tanzania,KrN
 chirps_tprecit,Weather,CHRIPS,Total precipitation,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.1038/sdata.2015.66,CHRIPS,https://doi.org/10.1038/sdata.2015.66,eng,CC BY 4.0,Tanzania,KrN
 meteo_tprecit,Weather,Meteostat,Total precipitation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
-meteo_humid,Weather,Meteostat,Humidity,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
+meteo_rhum,Weather,Meteostat,Relative humidity,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
+meteo_ahum,Weather,Meteostat,Absolute humidtiy,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,
 copernicus_maxt,Weather,Copernicus ,Maximum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
 copernicus_mint,Weather,Copernicus ,Minumum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
 meteo_maxt,Weather,Meteostat,Maximum Temperature ,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
@@ -27,6 +28,7 @@ meteo_dtr,Weather,Meteostat,Diurnal Temporal Range,HAW Hamburg,ESIDA,02.05.2022,
 esida_extremerainfall,Weather,ESIDA,Extreme rainfall event,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,None,None,eng,CC BY-NC 4.0,Tanzania,KrN
 fao_drought,Weather,FAO,Agricultural Stress Index,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,https://io.apps.fao.org/geoserver/wms/ASIS/ASI_D/v1?service=WMS&version=1.3.0&request=GetCapabilities,FAO,"FAO - Agricultrual Stress Index System (ASIS), http://www.fao.org/giews/earthobservation/",eng,CC BY-NC- SA 3.0 IGO,Tanzania,KrN
 rcmrd_elev,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania,KrN
+rcmrd_elevthresh,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania,
 copernicus_crop,Enviroment,Copernicus Land Cover,Proportion Cropland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
 copernicus_forest,Enviroment,Copernicus Land Cover,Proportion Forest,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
 copernicus_schrub,Enviroment,Copernicus Land Cover,Proportion Shrubland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
