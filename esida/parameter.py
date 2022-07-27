@@ -16,7 +16,7 @@ engine = get_engine()
 
 meta_df = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Documentation.csv')
 
-meta_dict = meta_df[['Abbreviation', 'Category', 'Title']].set_index('Abbreviation').to_dict('index')
+meta_dict = meta_df[['Abbreviation', 'Category', 'Title', 'ESIDA database unit']].set_index('Abbreviation').to_dict('index')
 
 class BaseParameter():
     """ Base class for all parameters, implementing necessary functions. """
@@ -47,6 +47,21 @@ class BaseParameter():
         if self.parameter_id in meta_dict:
             return meta_dict[self.parameter_id ]['Category']
         return '-'
+
+
+    def get_unit(self) -> str:
+        if self.parameter_id not in meta_dict:
+            return ""
+
+        unit =  meta_dict[self.parameter_id ]['ESIDA database unit']
+
+        if unit == 'percent':
+            return '%'
+
+        if unit == 'None':
+            return ''
+
+        return unit
 
     def get_data_path(self) -> Path:
         return Path(f"./input/data/{self.parameter_id}/")
