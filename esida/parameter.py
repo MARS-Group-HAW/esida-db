@@ -310,7 +310,51 @@ class BaseParameter():
 
 
         return df
+
+    def peek(self, shape_id):
+        """ Get the latest known value of the parameter, if available. """
+
+        if not self.is_loaded():
+            self.logger.warning("Peek of data requested but not loaded for shape_id=%s", shape_id)
+            return None
+
+        sql = f"SELECT * FROM {self.parameter_id} WHERE shape_id = {shape_id} ORDER BY {self.time_col} DESC LIMIT 1"
+
+        con = connect()
+        res = con.execute(sql)
+        req = res.fetchone()
+
+        if req is None:
+            return None
+
+        dreq =  dict(req)
+
+        if self.parameter_id not in dreq:
+            self.logger.error("Parameter column missing in peek for shape_id=%s", shape_id)
+            return None
+
+        if self.time_col not in dreq:
+            self.logger.error("Time column missing in peek for shape_id=%s", shape_id)
+            return None
+
+        return dreq
+
+    def format_value(self, value) -> str:
+
+        #if self.precision is not None:
+        #    value = round(value, self.precision)
+
+        if self.unit == '%':
+            frmt = "{:." + str(self.precision) + "%}"
+            value = frmt.format(value)
+        elif self.unit is not None:
+            value = f"{value} {self.unit}"
+
+        return value
+
     # ---
+
+
 
     def _get_shapes_from_db(self):
         """ Fetch all available districts and regions from the database. """
