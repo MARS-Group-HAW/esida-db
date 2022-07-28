@@ -24,5 +24,5 @@ class statcompiler_education(StatcompilerParameter):
 
 
     def consume(self, df):
-        df[f'{self.parameter_id}_avg'] = df[self.get_indicators()].mean(axis=1)
+        df[f'{self.parameter_id}'] = df[self.get_indicators()].mean(axis=1)
         self.df = df

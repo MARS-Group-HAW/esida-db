@@ -12,5 +12,5 @@ class statcompiler_internet(StatcompilerParameter):
         return ['CO_INUS_W_U12', 'CO_INUS_M_U12']
 
     def consume(self, df):
-        df[f'{self.parameter_id}_mean'] = df[self.get_indicators()].mean(axis=1)
+        df[f'{self.parameter_id}'] = df[self.get_indicators()].mean(axis=1)
         self.df = df

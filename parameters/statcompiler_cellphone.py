@@ -10,6 +10,6 @@ class statcompiler_cellphone(StatcompilerParameter):
 
     def consume(self, df):
         df[f'{self.parameter_id}_sum'] = df[self.get_indicators()].sum(axis=1, min_count=1)
-        df[f'{self.parameter_id}_avg'] = df[self.get_indicators()].mean(axis=1)
+        df[f'{self.parameter_id}'] = df[self.get_indicators()].mean(axis=1)
 
         self.df = df

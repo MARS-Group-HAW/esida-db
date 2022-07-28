@@ -6,4 +6,5 @@ class statcompiler_housing(StatcompilerParameter):
         return ['HC_MEMB_H_MNM']
 
     def consume(self, df):
+        df[self.parameter_id] = df[self.get_indicators()[0]]
         self.df = df

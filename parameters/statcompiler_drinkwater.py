@@ -12,4 +12,5 @@ class statcompiler_drinkwater(StatcompilerParameter):
         return ['WS_SRCE_H_IMP']
 
     def consume(self, df):
+        df[self.parameter_id] = df[self.get_indicators()[0]]
         self.df = df

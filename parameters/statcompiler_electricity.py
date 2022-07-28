@@ -12,5 +12,5 @@ class statcompiler_electricity(StatcompilerParameter):
         return ['HC_ELEC_P_ELC']
 
     def consume(self, df):
-        #df[f'{self.parameter_id}_avg'] = df[self.get_indicators()].mean(axis=1)
+        df[self.parameter_id] = df[self.get_indicators()[0]]
         self.df = df
