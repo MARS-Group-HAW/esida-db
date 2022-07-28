@@ -77,11 +77,11 @@
             <th><code><a href="{{ url_for('parameter', parameter_name=p.parameter_id) }}">{{ p.parameter_id }}</a></code></th>
             {% set peek = p.peek(shape.id) %}
             {% if peek %}
-              <td>{{ peek[p.parameter_id] }}</td>
+              <td>{{ p.format_value(peek[p.parameter_id]) }}</td>
               <td>{{ p.get_unit() }}</td>
               <td>{{ peek[p.time_col] }}</td>
             {% else %}
-              <td colspan="3" class="text-center text-muted">N/A</td>
+              <td colspan="3" class="text-center text-muted text-bg-light small">N/A</td>
             {% endif %}
           </tr>
           {% endfor %}
