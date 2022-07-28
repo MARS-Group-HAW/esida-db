@@ -14,6 +14,8 @@ class fao_drought(BaseParameter):
     def __init__(self):
         super().__init__()
         self.time_col = 'date'
+        self.is_percent = True
+        self.is_percent100 = True
 
     def extract(self):
         url = "https://www.fao.org/giews/earthobservation/asis/data/country/TZA/MAP_ASI/DATA/ASI_Dekad_Season1_data.csv"

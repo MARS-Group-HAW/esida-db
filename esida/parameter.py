@@ -33,6 +33,16 @@ class BaseParameter():
 
         self.output = 'db'
 
+        # How many decimal digits should be displayed?
+        # Only used in UI for human on the web, API and CSV data are never rounded
+        self.precision = 3
+
+        # Is the parameter a percentage?
+        self.is_percent = False
+
+        # If true the value range for the percentage is 0 to 100 instead of
+        # 0 to 1
+        self.is_percent100 = False
 
         self.da_temporal_start = dt.datetime(2010, 1, 1)
         self.da_temporal_end   = dt.datetime(2020, 12, 31)
@@ -341,14 +351,13 @@ class BaseParameter():
 
     def format_value(self, value) -> str:
 
-        #if self.precision is not None:
-        #    value = round(value, self.precision)
+        if isinstance(value, (float)):
+            if self.is_percent:
+                if not self.is_percent100:
+                    value = value * 100
 
-        if self.unit == '%':
-            frmt = "{:." + str(self.precision) + "%}"
-            value = frmt.format(value)
-        elif self.unit is not None:
-            value = f"{value} {self.unit}"
+            if self.precision is not None:
+                value = round(value, self.precision)
 
         return value
 

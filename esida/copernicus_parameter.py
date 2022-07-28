@@ -15,6 +15,8 @@ class CopernicusParameter(TiffParameter):
     def __init__(self):
         super().__init__()
 
+        self.is_percent = True
+
         self.area_of_interest = []
 
         self.mapping = [{

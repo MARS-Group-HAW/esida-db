@@ -9,6 +9,11 @@ from esida.rcmrd_parameter import RcmrdParameter
 
 class rcmrd_elevthresh(RcmrdParameter):
 
+    def __init__(self):
+        super().__init__()
+        self.is_percent = True
+        self.is_percent100 = False
+
     def consume(self, file, band, shape):
 
         total_cells = np.count_nonzero(~np.isnan(band))

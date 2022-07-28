@@ -6,6 +6,8 @@ class meteo_rhum(MeteostatParameter):
         super().__init__()
         self.meteo_mode = 'hourly' # do we need daily or hourly data?
         self.col_of_interest = 'rhum'
+        self.is_percent = True
+        self.is_percent100 = True
 
     def consume(self, df, shape):
 

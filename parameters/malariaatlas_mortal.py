@@ -15,6 +15,10 @@ from dbconf import get_engine
 
 class malariaatlas_mortal(TiffParameter):
 
+    def __init__(self):
+        super().__init__()
+        self.precision = None # to small value for rounding
+
     def extract(self):
         urls = [
             "https://malariaatlas.org/wp-content/uploads/2022-gbd2020/Pf_Mortality.zip",
