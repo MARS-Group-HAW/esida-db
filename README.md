@@ -76,6 +76,11 @@ Port forwarding to access pod:e
     $ kubectl port-forward $(kubectl -n esida get pod | grep postgis | awk '{ print $1 }') -n esida 6432:5432
 
 
+Get logs
+
+    $ kubectl logs $(kubectl -n esida get pod | grep esida-db | awk '{ print $1 }') -n esida
+
+
 Delete something
 
     $ kubectl delete -f ./k8s/<file.yaml>
