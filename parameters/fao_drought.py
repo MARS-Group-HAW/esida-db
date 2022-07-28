@@ -39,6 +39,7 @@ class fao_drought(BaseParameter):
         def get_id_for_name(name):
             return name_to_id[name]
 
+        df2['date'] = df2['date'].dt.date # drop timestamp (hh:mm:ss) portion of date
         df2['shape_id'] = df2['name'].apply(get_id_for_name)
         df2 = df2.drop(columns=['name'])
 

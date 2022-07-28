@@ -57,6 +57,8 @@ class meteo_ahum(MeteostatParameter):
 
         dfn = df[['time']]
         dfn = dfn.rename(columns={'time': 'date'})
+        dfn['date'] = dfn['date'].dt.date # drop timestamp (hh:mm:ss) portion of date
+
         dfn['shape_id'] = shape['id']
 
         dfn[f'{self.parameter_id}']       = df[filter_col].mean(axis=1)
