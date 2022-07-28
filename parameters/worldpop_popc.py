@@ -32,7 +32,7 @@ class worldpop_popc(TiffParameter):
         year = int(x[0])
 
         self.rows.append({
-            f"{self.parameter_id}_sum": np.nansum(band),
+            f"{self.parameter_id}": np.nansum(band),
             'year': year,
             'shape_id': shape['id']
         })

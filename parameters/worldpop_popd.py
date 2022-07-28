@@ -28,7 +28,7 @@ class worldpop_popd(TiffParameter):
         year = int(x[0])
 
         self.rows.append({
-            f"{self.parameter_id}_mean":    np.nanmean(band),
+            f"{self.parameter_id}":    np.nanmean(band),
             f"{self.parameter_id}_min":     np.nanmin(band),
             f"{self.parameter_id}_max":     np.nanmax(band),
             f"{self.parameter_id}_std_dev": np.nanstd(band),
