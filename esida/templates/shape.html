@@ -61,33 +61,39 @@
         </tbody>
       </table>
 
-      <table class="table table-sm caption-top">
-        <caption>Latest value per parameter</caption>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Value</th>
-            <th>Unit</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for p in params %}
-          <tr>
-            <th><code><a href="{{ url_for('parameter', parameter_name=p.parameter_id) }}">{{ p.parameter_id }}</a></code></th>
-            {% set peek = p.peek(shape.id) %}
-            {% if peek %}
-              <td>{{ p.format_value(peek[p.parameter_id]) }}</td>
-              <td>{{ p.get_unit() }}</td>
-              <td>{{ peek[p.time_col] }}</td>
-            {% else %}
-              <td colspan="3" class="text-center text-muted text-bg-light small">N/A</td>
-            {% endif %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="">
+        <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#latestparametervalues" aria-expanded="false" aria-controls="latestparametervalues">Show latest values per parameter</button>
 
+        <div class="collapse multi-collapse" id="latestparametervalues">
+          <table class="table table-sm caption-top">
+            <caption>Latest value per parameter</caption>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+                <th>Unit</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in params %}
+              <tr>
+                <th><code><a href="{{ url_for('parameter', parameter_name=p.parameter_id) }}">{{ p.parameter_id }}</a></code></th>
+                {% set peek = p.peek(shape.id) %}
+                {% if peek %}
+                  <td>{{ p.format_value(peek[p.parameter_id]) }}</td>
+                  <td>{{ p.get_unit() }}</td>
+                  <td class="text-nowrap">{{ peek[p.time_col] }}</td>
+                {% else %}
+                  <td colspan="3" class="text-center text-muted text-bg-light small">N/A</td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
     </div>
 
     <div class="col col-md-6">
