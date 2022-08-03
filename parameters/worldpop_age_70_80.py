@@ -9,7 +9,7 @@ import pandas as pd
 
 from esida.sexage_parameter import SexageParameter
 
-class worldpop_age_70_79(SexageParameter):
+class worldpop_age_70_80(SexageParameter):
 
     def __init__(self):
         super().__init__()
