@@ -20,11 +20,18 @@ class TiffParameter(BaseParameter):
     def consume(self, file, band, shape):
         raise NotImplementedError
 
+    def get_tiff_files(self, param_dir):
+        files = sorted([s for s in os.listdir(param_dir) if s.rpartition('.')[2] in ('tiff','tif')])
+
+        return files
+
+
     def load(self, shapes=None, save_output=False, param_dir=None):
 
         if param_dir is None:
             param_dir = self.get_data_path()
-        files = sorted([s for s in os.listdir(param_dir) if s.rpartition('.')[2] in ('tiff','tif')])
+
+        files = self.get_tiff_files(param_dir)
 
         if shapes is None:
             shapes = self._get_shapes_from_db()
