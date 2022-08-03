@@ -59,3 +59,11 @@ statcompiler_mosnet,Health,DHS Program,Mosquito net implementation (bed net),HAW
 shapefile_area,Administrative ,TZ Bureau of Statistics,Area,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,TZ Bureau of Statistics,None,eng,https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf,Tanzania,KrN
 tnhp_clinical_officer,Infrastructure,TZ Ministry of Health,Physician density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania,KrN
 tnhp_nurse,Infrastructure,TZ Ministry of Health,Nurse density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania,KrN
+worldpop_age_0_9,Demographic,,,,,,,,,,,,,,
+worldpop_age_10_19,Demographic,,,,,,,,,,,,,,
+worldpop_age_20_29,Demographic,,,,,,,,,,,,,,
+worldpop_age_30_39,Demographic,,,,,,,,,,,,,,
+worldpop_age_40_49,Demographic,,,,,,,,,,,,,,
+worldpop_age_50_59,Demographic,,,,,,,,,,,,,,
+worldpop_age_60_69,Demographic,,,,,,,,,,,,,,
+worldpop_age_70_80,Demographic,,,,,,,,,,,,,,

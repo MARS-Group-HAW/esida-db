@@ -9,7 +9,7 @@
 | Format              | csv                                                                                                                                                                        |
 | Operation           | None                                                                                                                                                                       |
 | Original unit       | None                                                                                                                                                                       |
-| ESIDA database unit | None                                                                                                                                                                       |
+| ESIDA database unit | Number of nurses                                                                                                                                                           |
 | Spatial details     | District                                                                                                                                                                   |
 | Temporal details    | Cross-sectional                                                                                                                                                            |
 | Timeframe           | 2018                                                                                                                                                                       |

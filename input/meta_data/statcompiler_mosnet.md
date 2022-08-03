@@ -1,21 +1,22 @@
 ## Data type and processing information 
 
-|                  | Description                                                          |
-|:-----------------|:---------------------------------------------------------------------|
-| Category         | Health                                                               |
-| Abbreviation     | statcompiler_mosnet                                                  |
-| Title            | Mosquito net implementation (bed net)                                |
-| Necessity        | optional                                                             |
-| Format           | csv                                                                  |
-| Operation        | None                                                                 |
-| Original unit    | Proportion of households with at least one net                       |
-| Spatial details  | Region                                                               |
-| Temporal details | Cross-sectional                                                      |
-| Timeframe        | 2017                                                                 |
-| Source           | DHS Program                                                          |
-| Related Sources  | None                                                                 |
-| Link             | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1        | ML_NETP_H_MOS                                                        |
+|                     | Description                                                          |
+|:--------------------|:---------------------------------------------------------------------|
+| Category            | Health                                                               |
+| Abbreviation        | statcompiler_mosnet                                                  |
+| Title               | Mosquito net implementation (bed net)                                |
+| Necessity           | optional                                                             |
+| Format              | csv                                                                  |
+| Operation           | None                                                                 |
+| Original unit       | Proportion of households with at least one net                       |
+| ESIDA database unit | None                                                                 |
+| Spatial details     | Region                                                               |
+| Temporal details    | Cross-sectional                                                      |
+| Timeframe           | 2017                                                                 |
+| Source              | DHS Program                                                          |
+| Related Sources     | None                                                                 |
+| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment.1           | ML_NETP_H_MOS                                                        |
 
 ## Data quality information 
 

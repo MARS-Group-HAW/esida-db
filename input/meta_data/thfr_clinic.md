@@ -9,7 +9,7 @@
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |
 | Original unit       | None                                                                                                                                           |
-| ESIDA database unit | Facilities per district                                                                                                                        |
+| ESIDA database unit | Facilities per area                                                                                                                            |
 | Spatial details     | Coordinates                                                                                                                                    |
 | Temporal details    | Hourly                                                                                                                                         |
 | Timeframe           | 2014 - 2022                                                                                                                                    |
