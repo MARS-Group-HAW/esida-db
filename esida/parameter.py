@@ -176,12 +176,12 @@ class BaseParameter():
             return None
 
         if self.time_col == 'year':
-            sql = f"SELECT year FROM {self.parameter_id} WHERE  year >= {self.da_temporal_start.year} AND year <= {self.da_temporal_end.year}"
+            sql = f"SELECT year FROM {self.parameter_id} WHERE 1=1"
             if shape_id:
                 sql += f" AND shape_id = {int(shape_id)}"
             sql += " ORDER BY year ASC LIMIT 1"
         elif self.time_col == 'date':
-            sql = f"SELECT date FROM {self.parameter_id} WHERE date >= '{self.da_temporal_start}' AND date <= '{self.da_temporal_end}'"
+            sql = f"SELECT date FROM {self.parameter_id} WHERE 1=1"
             if shape_id:
                 sql += f" AND shape_id = {int(shape_id)}"
             sql += " ORDER BY date ASC LIMIT 1"
@@ -198,12 +198,12 @@ class BaseParameter():
             return None
 
         if self.time_col == 'year':
-            sql = f"SELECT year FROM {self.parameter_id} WHERE  year >= {self.da_temporal_start.year} AND year <= {self.da_temporal_end.year}"
+            sql = f"SELECT year FROM {self.parameter_id} WHERE 1=1"
             if shape_id:
                 sql += f" AND shape_id = {int(shape_id)}"
             sql += " ORDER BY year DESC LIMIT 1"
         elif self.time_col == 'date':
-            sql = f"SELECT date FROM {self.parameter_id} WHERE date >= '{self.da_temporal_start}' AND date <= '{self.da_temporal_end}'"
+            sql = f"SELECT date FROM {self.parameter_id} WHERE 1=1"
             if shape_id:
                 sql += f" AND shape_id = {int(shape_id)}"
             sql += " ORDER BY date DESC LIMIT 1"
