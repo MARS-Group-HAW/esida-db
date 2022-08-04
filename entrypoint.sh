@@ -11,4 +11,4 @@ rsync -a input/data.local/ input/data/
 mkdir -p output/.logs
 
 # start gunicorn
-gunicorn --bind 0.0.0.0:80 esida:app
+gunicorn --bind 0.0.0.0:80 esida:app --timeout 0
