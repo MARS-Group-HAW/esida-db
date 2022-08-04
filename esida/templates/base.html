@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='Highcharts/css/highcharts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='apexcharts/apexcharts.css') }}">
 
     <title>{% block title %}{% endblock %} - ESIDA DB</title>
   </head>
@@ -71,6 +72,9 @@
 
 
     <script src="{{ url_for('static', filename='Highcharts/highcharts.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='apexcharts/apexcharts.min.js') }}"></script>
+
 
     {% block footer %}{% endblock %}
   </body>

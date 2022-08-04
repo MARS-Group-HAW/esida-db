@@ -454,6 +454,34 @@ def parameters():
 
     return render_template('parameters.html', parameters=pars)
 
+@app.route('/parameter-statistics')
+def parameter_statistics():
+    pars = []
+
+    filters_str = request.args.get('filter_parameters')
+    filters = None
+    if filters_str:
+        filters = request.args.get('filter_parameters').split(',')
+
+    for p in params:
+
+        if filters and p not in filters:
+            continue
+
+        pm = importlib.import_module('parameters.{}'.format(p))
+        pc = getattr(pm, p)()
+
+        if not pc.is_loaded():
+            continue
+
+        pars.append(pc)
+
+    return render_template('parameter-statistics.html',
+        parameters=pars,
+        count=len(pars)
+    )
+
+
 @app.route("/parameter/<string:parameter_name>")
 def parameter(parameter_name):
 

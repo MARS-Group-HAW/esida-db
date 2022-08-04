@@ -217,6 +217,22 @@ class BaseParameter():
         else:
             return None
 
+    def da_temporal_date_first_dt(self):
+        date = self.da_temporal_date_first()
+
+        if self.time_col == 'year':
+            return f"{date}-01-01"
+
+        return date
+
+    def da_temporal_date_last_dt(self):
+        date = self.da_temporal_date_last()
+
+        if self.time_col == 'year':
+            return f"{date}-12-31"
+
+        return date
+
     def da_temporal(self, shape_id=None):
         """ Determine temporal completeness of data source. """
 

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Parameters{% endblock %}
+
+{% block content %}
+  <h1>Parameter statistics</h1>
+
+  <h2>Temporal coverage</h2>
+
+  <p>
+    In the following chart the range between the <b>first</b> and <b>last</b> available value for each parameter is shown. Potential gaps in this range are <em>not</em> taken into account!
+  </p>
+
+  <div id="time_chart"></div>
+
+{% endblock %}
+
+{% block footer %}
+<script>
+var options = {
+  series: [
+  {
+    name: 'Parameters',
+    data: [
+    {% for parameter in parameters %}
+
+      {
+        x: '{{ parameter.parameter_id }}',
+        y: [
+          new Date('{{ parameter.da_temporal_date_first_dt() }}').getTime(),
+          new Date('{{ parameter.da_temporal_date_last_dt() }}').getTime()
+        ]
+      },
+      {% endfor %}
+    ]
+  }
+],
+  chart: {
+  height: {{ 25 * count + 75 }},
+  type: 'rangeBar'
+},
+plotOptions: {
+  bar: {
+    horizontal: true,
+    barHeight: '80%'
+  }
+},
+xaxis: {
+  type: 'datetime'
+},
+stroke: {
+  width: 1
+},
+fill: {
+  type: 'solid',
+  opacity: 0.6
+},
+legend: {
+  position: 'top',
+  horizontalAlign: 'left'
+}
+};
+
+var chart = new ApexCharts(document.querySelector("#time_chart"), options);
+chart.render();
+
+</script>
+
+{% endblock %}
