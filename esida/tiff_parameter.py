@@ -6,6 +6,7 @@ import pandas as pd
 import rasterio
 import rasterio.mask
 import fiona
+from rasterstats import zonal_stats
 
 from dbconf import get_engine
 from esida.parameter import BaseParameter
@@ -96,3 +97,53 @@ class TiffParameter(BaseParameter):
                     self.consume(file, band1, shape)
 
         self.save()
+
+
+    def da_spatial(self, shape_id=None):
+
+        if not self.is_loaded():
+            return None
+
+        files = self.get_tiff_files(self.get_data_path())
+
+        shapes = self._get_shapes_from_db(shape_id)
+
+        file_count = len(files)
+        i = 1
+
+        masks = []
+        for shape in shapes:
+            self.logger.debug("loading shape: %s", shape['name'])
+
+            if "geometry" in shape:
+                mask = [shape['geometry']]
+            elif "file" in shape:
+                with fiona.open(shape['file'], "r") as shapefile:
+                    mask = [feature["geometry"] for feature in shapefile]
+            else:
+                raise ValueError("No geometry found for given shape.")
+
+            masks.append(mask[0])
+
+        results = []
+
+        for file in files:
+            self.logger.info("loading file (%s of %s): %s", i, file_count, file)
+            stats = zonal_stats(masks, self.get_data_path() / file, stats=['nodata', 'count'])
+
+            for j, s in enumerate(stats):
+                r = {
+                    'parameter_id': self.parameter_id,
+                    'file': file,
+                    'coverage': s['count'] / (s['count'] + s['nodata']),
+                    'valid_cells': s['count'],
+                    'nodata_cells': s['nodata'],
+                    'shape_id': shapes[j]['id']
+                }
+                results.append(r)
+
+        df = pd.DataFrame(results)
+        result = df['coverage'].mean()
+
+        return (result, results)
+

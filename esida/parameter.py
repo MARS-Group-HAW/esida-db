@@ -246,6 +246,9 @@ class BaseParameter():
 
         return None
 
+    def da_spatial(self, shape_id=None):
+        return None
+
 
     # ---
 
@@ -365,11 +368,14 @@ class BaseParameter():
 
 
 
-    def _get_shapes_from_db(self):
+    def _get_shapes_from_db(self, id=None):
         """ Fetch all available districts and regions from the database. """
 
         sql = "SELECT * FROM shape WHERE type IN('region', 'district')"
         #sql = "SELECT * FROM shape WHERE name = 'Mjini'"
+
+        if id:
+            sql = "SELECT * FROM shape WHERE id = " + str(int(id))
 
         gdf = geopandas.GeoDataFrame.from_postgis(
             sql,

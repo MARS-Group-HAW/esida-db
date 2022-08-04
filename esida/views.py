@@ -331,6 +331,35 @@ def api_parameter(parameter_id):
         data_quality=data_quality
     )
 
+@app.route('/api/v1/da_spatial/<string:parameter_id>')
+def api_da_spatial(parameter_id):
+    """ Get data and metadata for single parameter. """
+    if parameter_id not in params:
+        return jsonify(error="Parameter is not found"), 404
+
+    pm = importlib.import_module(f'parameters.{parameter_id}')
+    pc = getattr(pm, parameter_id)()
+
+    if not pc.is_loaded():
+        return jsonify(error="Parameter is not loaded"), 503
+
+    shape_id = None
+    d = pc.da_spatial(shape_id=shape_id)
+    data_quality = {
+        'spatial_coverage': d[0]
+    }
+
+    # the jsonify() method will not translate np.NaN to null for a valid JSON.
+    # pandas' fillna() can't handle None, so we sett all "none"s to np.Nan and
+    # make a replace to pythons None, which will wie translated by jsonify() to
+    # JSONs null (https://stackoverflow.com/a/62691803/723769).
+    # We can't use to_json() directly since we would get a string, and
+    # than we would reply with a json String and not an object.
+    return jsonify(
+        data=d[1],
+        data_quality=data_quality
+    )
+
 @app.route('/api/v1/parameters')
 def api_parameters():
     shape_id = request.args.get('shape_id')
@@ -340,20 +369,32 @@ def api_parameters():
         shape_id = None
 
     rows = []
+    spatial_details = []
 
     for p in params:
         pm = importlib.import_module(f'parameters.{p}')
         pc = getattr(pm, p)()
 
+
+        spatial_coverage = None
+        if request.args.get('da_spatial', type=bool):
+            b = pc.da_spatial(shape_id=shape_id)
+            if b:
+                spatial_coverage = b[0]
+                spatial_details += b[1]
+
         row = {
             'parameter_id': p,
             'timelines': pc.time_col,
             'loaded': pc.is_loaded(),
+
             'temporal_expected': pc.da_temporal_expected(),
             'temporal_actual': pc.da_count_temporal(shape_id=shape_id),
             'temporal_coverage': pc.da_temporal(shape_id=shape_id),
             'temporal_first': pc.da_temporal_date_first(shape_id=shape_id),
-            'temporal_last': pc.da_temporal_date_last(shape_id=shape_id)
+            'temporal_last': pc.da_temporal_date_last(shape_id=shape_id),
+
+            'spatial_coverage': spatial_coverage
         }
 
         rows.append(row)
@@ -361,6 +402,7 @@ def api_parameters():
     df = pd.DataFrame(rows)
     return jsonify(
         data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records'),
+        spatial_details=spatial_details
     )
 
 @app.route('/shape/<int:shape_id>/parameters')
