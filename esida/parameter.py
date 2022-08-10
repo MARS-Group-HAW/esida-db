@@ -427,6 +427,8 @@ class BaseParameter():
             self.logger.debug("Skipping b/c already downloaded %s", url)
             return True
 
+        Path(folder).mkdir(parents=True, exist_ok=True)
+
         try:
             params = ['wget', "-O", folder / file_name, url]
             subprocess.check_output(params)
