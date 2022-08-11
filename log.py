@@ -11,6 +11,10 @@ def setup_custom_logger(name):
 
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
+
+    if (logger.hasHandlers()):
+        logger.handlers.clear()
+
     logger.addHandler(handler)
     logger.addHandler(handler_file)
 
