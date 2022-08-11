@@ -10,7 +10,7 @@
 | Operation           | mean                                                                         |
 | Original unit       | mm/day                                                                       |
 | ESIDA database unit | mm/day                                                                       |
-| Spatial details     | Coordinates                                                                  |
+| Spatial details     | 5km raster                                                                   |
 | Temporal details    | Daily                                                                        |
 | Timeframe           | 1981-2020                                                                    |
 | Source              | CHIRPS                                                                       |

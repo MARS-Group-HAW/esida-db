@@ -23,3 +23,4 @@
 |:-------------|:-------------------|
 | Abbreviation | worldpop_age_10_19 |
 | Subject      | Demographic        |
+| Creator      | Worldpop           |

@@ -23,3 +23,4 @@
 |:-------------|:-------------------|
 | Abbreviation | worldpop_age_60_69 |
 | Subject      | Demographic        |
+| Creator      | Worldpop           |

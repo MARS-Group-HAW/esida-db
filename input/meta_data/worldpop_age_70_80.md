@@ -23,3 +23,4 @@
 |:-------------|:-------------------|
 | Abbreviation | worldpop_age_70_80 |
 | Subject      | Demographic        |
+| Creator      | Worldpop           |

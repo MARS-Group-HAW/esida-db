@@ -27,6 +27,8 @@ meteo_mint,Weather,Meteostat,Minimum Temperature,HAW Hamburg,ESIDA,02.05.2022,Da
 meteo_dtr,Weather,Meteostat,Diurnal Temporal Range,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
 esida_extremerainfall,Weather,ESIDA,Extreme rainfall event,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,None,None,eng,CC BY-NC 4.0,Tanzania,KrN
 fao_drought,Weather,FAO,Agricultural Stress Index,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,https://io.apps.fao.org/geoserver/wms/ASIS/ASI_D/v1?service=WMS&version=1.3.0&request=GetCapabilities,FAO,"FAO - Agricultrual Stress Index System (ASIS), http://www.fao.org/giews/earthobservation/",eng,CC BY-NC- SA 3.0 IGO,Tanzania,KrN
+chirts_mint,Weather,,,,,,,,,,,,,,
+chirts_maxt,Weather,,,,,,,,,,,,,,
 rcmrd_elev,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania,KrN
 rcmrd_elevthresh,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania,
 copernicus_crop,Enviroment,Copernicus Land Cover,Proportion Cropland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
@@ -59,11 +61,16 @@ statcompiler_mosnet,Health,DHS Program,Mosquito net implementation (bed net),HAW
 shapefile_area,Administrative ,TZ Bureau of Statistics,Area,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,TZ Bureau of Statistics,None,eng,https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf,Tanzania,KrN
 tnhp_clinical_officer,Infrastructure,TZ Ministry of Health,Physician density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania,KrN
 tnhp_nurse,Infrastructure,TZ Ministry of Health,Nurse density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania,KrN
-worldpop_age_0_9,Demographic,,,,,,,,,,,,,,
-worldpop_age_10_19,Demographic,,,,,,,,,,,,,,
-worldpop_age_20_29,Demographic,,,,,,,,,,,,,,
-worldpop_age_30_39,Demographic,,,,,,,,,,,,,,
-worldpop_age_40_49,Demographic,,,,,,,,,,,,,,
-worldpop_age_50_59,Demographic,,,,,,,,,,,,,,
-worldpop_age_60_69,Demographic,,,,,,,,,,,,,,
-worldpop_age_70_80,Demographic,,,,,,,,,,,,,,
+worldpop_age_0_9,Demographic,Worldpop,,,,,,,,,,,,,
+worldpop_age_10_19,Demographic,Worldpop,,,,,,,,,,,,,
+worldpop_age_20_29,Demographic,Worldpop,,,,,,,,,,,,,
+worldpop_age_30_39,Demographic,Worldpop,,,,,,,,,,,,,
+worldpop_age_40_49,Demographic,Worldpop,,,,,,,,,,,,,
+worldpop_age_50_59,Demographic,Worldpop,,,,,,,,,,,,,
+worldpop_age_60_69,Demographic,Worldpop,,,,,,,,,,,,,
+worldpop_age_70_80,Demographic,Worldpop,,,,,,,,,,,,,
+koeppen_a,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
+koeppen_b,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
+koeppen_c,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
+koeppen_d,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
+koeppen_e,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
