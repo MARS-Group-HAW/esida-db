@@ -12,6 +12,8 @@ import pandas as pd
 from dbconf import get_engine, connect, close
 import log
 from parameters import *
+from esida.tiff_parameter import TiffParameter
+
 
 logger = log.setup_custom_logger('root')
 
@@ -111,6 +113,49 @@ def load():
 @click.option('--signal', '-s', multiple=True)
 def abm(signal):
     pass
+
+
+@cli.command()
+@click.option('--shape_id', required=False, type=int)
+def daspatial(shape_id):
+    params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+
+    summary = []
+    per_file_data = []
+
+    now = dt.datetime.now()
+    out_name = now.strftime("%Y-%m-%d_%H-%M-%S")
+    out_name += "_DA_Spatial"
+    out_dir = Path("./output") / out_name
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+
+    for p in params:
+        pmodule = importlib.import_module(f'parameters.{p}')
+        pc  = getattr(pmodule, p)()
+
+        if not isinstance(pc, TiffParameter):
+            continue
+
+        if not pc.is_loaded():
+            continue
+
+        result, results = pc.da_spatial(shape_id)
+
+        summary.append({
+            'data_layer': p,
+            'spatial_coverage': result,
+        })
+
+        # save summary in each loop iteration to save output early.
+        # generation takes long!
+        dfx = pd.DataFrame(summary)
+        dfx.to_csv(out_dir / f'da_spatial.csv', index=False)
+
+        dfx = pd.DataFrame(results)
+        dfx.to_csv(out_dir / f'files_{p}.csv', index=False)
+
+
 
 @cli.command()
 @click.option('--wkt')

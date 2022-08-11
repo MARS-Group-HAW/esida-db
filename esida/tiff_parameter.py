@@ -129,7 +129,8 @@ class TiffParameter(BaseParameter):
 
         for file in files:
             self.logger.info("loading file (%s of %s): %s", i, file_count, file)
-            stats = zonal_stats(masks, self.get_data_path() / file, stats=['nodata', 'count'])
+            i += 1
+            stats = zonal_stats(masks, self.get_data_path() / file, stats=['nodata', 'count'], nodata=self.manual_nodata)
 
             for j, s in enumerate(stats):
                 r = {
