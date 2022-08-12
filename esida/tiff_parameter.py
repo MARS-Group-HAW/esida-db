@@ -144,7 +144,11 @@ class TiffParameter(BaseParameter):
                 results.append(r)
 
         df = pd.DataFrame(results)
-        result = df['coverage'].mean()
+
+        if len(df) > 0:
+            result = df['coverage'].mean()
+        else:
+            result = None
 
         return (result, results)
 

@@ -134,6 +134,9 @@ def daspatial(shape_id):
         pmodule = importlib.import_module(f'parameters.{p}')
         pc  = getattr(pmodule, p)()
 
+        if p in ['chirps_tprecit', 'chirts_maxt', 'chirts_mint'] or "worldpop_age" in p:
+            continue
+
         if not isinstance(pc, TiffParameter):
             continue
 
