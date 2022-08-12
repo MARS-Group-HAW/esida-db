@@ -28,17 +28,43 @@
     <h1 class="bd-title">{{ parameter['name'] }}</h1>
   </div>
 
+  <div class="row">
+    {% if parameter['class'].is_loaded() %}
+    <div class="col-12 col-sm-4">
 
-  <div>
-    <p>Available parameter fields:</p>
-    <ul>
-    {% for pk in parameter['class'].get_fields(only_numeric=False) %}
-      <li><code>{{ pk }}</code></li>
-    {% endfor %}
-    </ul>
+      <p>Available parameter fields:</p>
+      <ul>
+      {% for pk in parameter['class'].get_fields(only_numeric=False) %}
+        <li><code>{{ pk }}</code></li>
+      {% endfor %}
+      </ul>
+    </div>
 
+    <div class="col-12 col-sm-8">
+      <p>
+        Compare shape against means of regions and districts:
+      </p>
+
+      <div class="input-group mb-3" style="max-width: 400px">
+        <select class="form-select js-chosen-select" id="js-shape">
+          {% for key in shapes.keys() %}
+            <optgroup label="{{ key }}">
+              {% for shape in shapes[key] %}
+                <option value="{{shape['id'] }}">{{ shape['name'] }}</option>
+              {% endfor %}
+            </optgroup>
+          {% endfor %}
+        </select>
+
+        <button id="js-add-shape-to-chart" class="btn btn-outline-secondary btn-sm">Add to chart</button>
+      </div>
+
+      <div id="chart"></div>
+    </div>
+    {% else %}
+      <div class="alert alert-warning">Paramter is not loaded into the datbase!</div>
+    {% endif %}
   </div>
-
 
   <div>
     {{ parameter['description_html']|safe }}
@@ -47,3 +73,63 @@
 {% endblock %}
 
 
+
+{% block footer %}
+
+{% if parameter['class'].is_loaded() %}
+<script>
+$(".js-chosen-select").chosen();
+
+var options = {
+  chart: {
+      height: 350,
+      type: 'line',
+  },
+  dataLabels: {
+      enabled: false
+  },
+  series: [],
+  title: {
+      text: 'Compare parameter values',
+  },
+  noData: {
+    text: 'Select data...'
+  },
+  xaxis: {
+    type: 'datetime',
+  },
+}
+
+var chart = new ApexCharts(
+  document.querySelector("#chart"),
+  options
+);
+
+chart.render();
+
+$.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_for=region', function(response) {
+  chart.appendSeries({
+    name: 'Region (mean)',
+    data: response['data']
+  })
+});
+$.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_for=district', function(response) {
+  chart.appendSeries({
+    name: 'District (mean)',
+    data: response['data']
+  })
+});
+
+$('#js-add-shape-to-chart').on('click', function(e) {
+  var shape_id = $('#js-shape option:selected').val();
+  var shape_name = $("#js-shape option:selected").text();
+  $.getJSON('/shape/' + shape_id + '/{{ parameter['name'] }}/{{ parameter['name'] }}/json', function(response) {
+    chart.appendSeries({
+      name: shape_name,
+      data: response['data']
+    })
+  });
+});
+</script>
+{% endif %}
+{% endblock %}

@@ -356,6 +356,17 @@ class BaseParameter():
 
         return df
 
+    def mean(self, shape_type: str) -> pd.DataFrame:
+
+        sql = f"SELECT {self.time_col}, AVG({self.parameter_id}) as {self.parameter_id} FROM {self.parameter_id} \
+        JOIN shape ON shape.id = {self.parameter_id}.shape_id \
+        WHERE shape.type = %(type)s \
+        GROUP BY {self.parameter_id}.{self.time_col}"
+
+        df = pd.read_sql(sql, con=get_engine(), params={'type': shape_type})
+        return df
+
+
     def peek(self, shape_id):
         """ Get the latest known value of the parameter, if available. """
 

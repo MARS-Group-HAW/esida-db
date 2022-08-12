@@ -137,7 +137,12 @@ def download_json(shape_id, parameter_id, column):
         logger.warning("JSON Download for %s, but not loaded", parameter_id)
         abort(500)
 
-    df = pc.download(int(shape_id))
+    mean_for = request.args.get('mean_for')
+    if mean_for:
+        df = pc.mean(mean_for)
+    else:
+        df = pc.download(int(shape_id))
+
     if column not in df.columns:
         logger.warning("JSON Download for %s, but column %s not available.", parameter_id, column)
         abort(500)
@@ -507,7 +512,23 @@ def parameter(parameter_name):
         'class': getattr(pm, parameter_name)()
     }
 
-    return render_template('parameter.html', parameter=parameter)
+    shapes = Shape.query.where().all()
+    shapes_dropdown = {}
+
+    for shape in shapes:
+        if shape.type not in shapes_dropdown:
+            shapes_dropdown[shape.type]  = []
+
+        shapes_dropdown[shape.type].append({
+            'name': shape.name,
+            'id': shape.id
+        })
+
+    return render_template('parameter.html', parameter=parameter,
+    shapes=shapes_dropdown)
+
+
+
 @app.route("/download_parameter/<string:parameter_id>")
 def download_parameter(parameter_id):
 
