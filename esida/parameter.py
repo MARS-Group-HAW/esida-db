@@ -303,7 +303,7 @@ class BaseParameter():
         return res.fetchone()[0]
 
 
-    def download(self, shape_id=None, start=None, end=None) -> pd.DataFrame:
+    def download(self, shape_id=None, start=None, end=None, shape_names=False) -> pd.DataFrame:
         """ Download data for given shape id. """
 
         self.logger.debug("Downloading for shape_id=%s", shape_id)
@@ -312,7 +312,17 @@ class BaseParameter():
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame
 
-        sql = f"SELECT * FROM {self.parameter_id} WHERE 1=1"
+        sql = f"SELECT {self.parameter_id}.*"
+
+        if shape_names:
+            sql += ", shape.name AS shape_name, shape.type AS shape_type"
+
+        sql += f" FROM {self.parameter_id}"
+
+        if shape_names:
+            sql += f" JOIN shape ON ({self.parameter_id}.shape_id = shape.id)"
+
+        sql += " WHERE 1=1"
 
         if shape_id:
             sql += f" AND shape_id = {int(shape_id)}"

@@ -23,7 +23,10 @@
 
 
 {% block content %}
-  <h1>{{ parameter['name'] }} </h1>
+  <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
+    <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('download_parameter', parameter_id=parameter['name']) }}">Download all data</a>
+    <h1 class="bd-title">{{ parameter['name'] }}</h1>
+  </div>
 
 
   <div>

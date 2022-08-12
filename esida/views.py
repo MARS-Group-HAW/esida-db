@@ -508,6 +508,29 @@ def parameter(parameter_name):
     }
 
     return render_template('parameter.html', parameter=parameter)
+@app.route("/download_parameter/<string:parameter_id>")
+def download_parameter(parameter_id):
+
+    if parameter_id not in params:
+        abort(404)
+
+    pm = importlib.import_module(f'parameters.{parameter_id}')
+    pc = getattr(pm, parameter_id)()
+
+    if not pc.is_loaded():
+        df = pd.DataFrame([{'Parameter is not loaded': 1}])
+    else:
+        df = pc.download(shape_names=True)
+
+    filename=f"ESIDA_{parameter_id}.csv"
+
+    resp = make_response(df.to_csv(index=False))
+    resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
+    resp.headers["Content-Type"] = "text/csv"
+
+    return resp
+
+
 
 @app.route('/signals')
 def signals():
