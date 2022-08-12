@@ -1,76 +1,76 @@
-Abbreviation,Subject,Creator,Description,Publisher,Contributor,Date,Type,Format,Identifier,Source,Citation,Language,Rights,Coverage,contributor
-lit_dengue_sero,Health,ESIDA,Dengue seroprevalence level (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Literature-based,None,eng,None,Tanzania,
-lit_dengue_out_loc,Health,ESIDA,Dengue outbreak locations (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,"Literature-based, Report-based",None,eng,None,Tanzania,
-lit_dengue_herep,Health,ESIDA,Dengue health reports,HAW Hamburg,ESIDA,,Dataset,csv,None,Official authorities,None,eng,None,Tanzania,
-lit_chik_sero,Health,ESIDA,Optional: Chikungunya seroprevalences (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Report-based,None,eng,None,Tanzania,
-lit_chik_outloc,Health,ESIDA,Optional: Chikungunya outbreak locations (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Report-based,None,eng,None,Tanzania,
-lit_chol_waterloc,Health,ESIDA,Cholera affected water bodies (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Literature-based,None,eng,None,Tanzania,
-lit_chol_outloc,Health,ESIDA,Cholera outbreak locations (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,"Literature-based, Report-based",None,eng,None,Tanzania,
-lit_chol_herep,Health,ESIDA,Cholera health reports,HAW Hamburg,ESIDA,,Dataset,csv,None,"Literature-based, Report-based",None,eng,None,Tanzania,
-malariaatlas_incidence,Health,Malaria Atlas Project,Annual Malaria (falciparum) Incidence,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Malaria Atlas Project,https://doi.org/10.1186/s12936-018-2500-5,eng,CC BY 3.0,Tanzania,KrN
-malariaatlas_mortal,Health,Malaria Atlas Project,Annual Malaria (falciparum) Mortality,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Malaria Atlas Project,https://doi.org/10.1186/s12936-018-2500-5,eng,CC BY 3.0,Tanzania,KrN
-lit_mos_abundance,Enviromental ,Unkown,Mosquitoes Abundance Index (historical),HAW Hamburg,ESIDA,,Dataset,csv,,Literature-based,None,eng,,Tanzania,KrN
-lit_mos_suitability,Enviromental ,Unkown,Environmental suitability Aedes aegypti (assumptions from literature),HAW Hamburg,ESIDA,,Dataset,csv,,Literature-based,None,eng,,Tanzania,KrN
-lit_dengue_suitability,Enviromental ,Unkown,Dengue suitability index (assumptions from literature),HAW Hamburg,ESIDA,,Dataset,csv,,Literature-based,None,eng,,Tanzania,KrN
-worldpop_popc,Demographics,Worldpop,Population counts,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00660,Worldpop,https://doi.org/10.1371/journal.pone.0107042,eng,CC BY 4.0,Tanzania,KrN
-worldpop_popd,Demographics,Worldpop,Population density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00675,Worldpop,https://doi.org/10.1371/journal.pone.0107043,eng,CC BY 4.0,Tanzania,KrN
-worldpop_urbanext,Demographics,Worldpop,Urban Settlement Extent,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00649,Worldpop,https://doi.org/10.1016/j.rse.2014.09.023,eng,CC BY 4.0,Tanzania,KrN
-worldpop_poverty,Demographics,Worldpop ,Poverty,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00290,Worldpop ,https://doi.org/10.1098/rsif.2016.0690,eng,CC BY 4.0,Tanzania,KrN
-chirps_tprecit,Weather,CHRIPS,Total precipitation,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.1038/sdata.2015.66,CHRIPS,https://doi.org/10.1038/sdata.2015.66,eng,CC BY 4.0,Tanzania,KrN
-meteo_tprecit,Weather,Meteostat,Total precipitation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
-meteo_rhum,Weather,Meteostat,Relative humidity,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
-meteo_ahum,Weather,Meteostat,Absolute humidtiy,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,
-copernicus_maxt,Weather,Copernicus ,Maximum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
-copernicus_mint,Weather,Copernicus ,Minumum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania,KrN
-meteo_maxt,Weather,Meteostat,Maximum Temperature ,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
-meteo_mint,Weather,Meteostat,Minimum Temperature,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
-meteo_dtr,Weather,Meteostat,Diurnal Temporal Range,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania,KrN
-esida_extremerainfall,Weather,ESIDA,Extreme rainfall event,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,None,None,eng,CC BY-NC 4.0,Tanzania,KrN
-fao_drought,Weather,FAO,Agricultural Stress Index,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,https://io.apps.fao.org/geoserver/wms/ASIS/ASI_D/v1?service=WMS&version=1.3.0&request=GetCapabilities,FAO,"FAO - Agricultrual Stress Index System (ASIS), http://www.fao.org/giews/earthobservation/",eng,CC BY-NC- SA 3.0 IGO,Tanzania,KrN
-chirts_mint,Weather,,,,,,,,,,,,,,
-chirts_maxt,Weather,,,,,,,,,,,,,,
-rcmrd_elev,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania,KrN
-rcmrd_elevthresh,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania,
-copernicus_crop,Enviroment,Copernicus Land Cover,Proportion Cropland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_forest,Enviroment,Copernicus Land Cover,Proportion Forest,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_schrub,Enviroment,Copernicus Land Cover,Proportion Shrubland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_built,Enviroment,Copernicus Land Cover,Proportion Built-up,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_herbveg,Enviroment,Copernicus Land Cover,Proportion Herbaceous wetland ,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_moss,Enviroment,Copernicus Land Cover,Proportion moss & litchen ,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_sparse,Enviroment,Copernicus Land Cover,Proportion bare & sparse,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_water,Enviroment,Copernicus Land Cover,Proportion permanent water bodies,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-copernicus_herbwet,Enviroment,Copernicus Land Cover,Proportion permanent herbaceous wetland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania,KrN
-worldpop_mob,Demographics,Worldpop,Population mobility & migration,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Worldpop,None,eng,CC BY 4.0,Tanzania,KrN
-thfr_disp,Infrastructure,Tanzania Health Facility Register,Dispensery Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania,KrN
-thfr_hecenter,Infrastructure,Tanzania Health Facility Register,Health Center Density ,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania,KrN
-thfr_clinic,Infrastructure,Tanzania Health Facility Register,Clinic Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania,KrN
-thfr_hospital,Infrastructure,Tanzania Health Facility Register,Hospital Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania,KrN
-thfr_lab,Infrastructure,Tanzania Health Facility Register,Health Lab Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania,KrN
-worldpop_sexage,Demographics,Worldpop data ,Sex and age structure,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.1038/sdata.2017.89,Worldpop data ,10.1038/sdata.2017.89,eng,CC BY 4.0,Tanzania,KrN
-statcompiler_electricity,Infrastructure,DHS Program,Electricity (mHealth),HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_internet,Infrastructure,DHS Program,Internet usage (mHealth),HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_cellphone,Infrastructure,DHS Program,Cellphone usage,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_education,Demographics,DHS Program,Education level,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_gini,Demographics,Unkown,Income,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_employment,Infrastructure,DHS Program,Employment status,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_drinkwater,Infrastructure,DHS Program,Source of Drinking water,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_sanitation,Infrastructure,DHS Program,Sanitation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-tnbs_garbage,Infrastructure,Unkown,Garbage collection,HAW Hamburg,ESIDA,,Dataset,csv,None,,,eng,,Tanzania,KrN
-statcompiler_housing,Infrastructure,Unkown,Housing density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-statcompiler_mosnet,Health,DHS Program,Mosquito net implementation (bed net),HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania,KrN
-shapefile_area,Administrative ,TZ Bureau of Statistics,Area,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,TZ Bureau of Statistics,None,eng,https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf,Tanzania,KrN
-tnhp_clinical_officer,Infrastructure,TZ Ministry of Health,Physician density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania,KrN
-tnhp_nurse,Infrastructure,TZ Ministry of Health,Nurse density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania,KrN
-worldpop_age_0_9,Demographic,Worldpop,,,,,,,,,,,,,
-worldpop_age_10_19,Demographic,Worldpop,,,,,,,,,,,,,
-worldpop_age_20_29,Demographic,Worldpop,,,,,,,,,,,,,
-worldpop_age_30_39,Demographic,Worldpop,,,,,,,,,,,,,
-worldpop_age_40_49,Demographic,Worldpop,,,,,,,,,,,,,
-worldpop_age_50_59,Demographic,Worldpop,,,,,,,,,,,,,
-worldpop_age_60_69,Demographic,Worldpop,,,,,,,,,,,,,
-worldpop_age_70_80,Demographic,Worldpop,,,,,,,,,,,,,
-koeppen_a,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
-koeppen_b,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
-koeppen_c,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
-koeppen_d,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
-koeppen_e,Enviromental,"Beck et al., 2018",,,,,,,,,,,,,
+Abbreviation,Subject,Creator,Description,Publisher,Contributor,Date,Type,Format,Identifier,Source,Citation,Language,Rights,Coverage
+lit_dengue_sero,Health,ESIDA,Dengue seroprevalence level (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Literature-based,None,eng,None,Tanzania
+lit_dengue_out_loc,Health,ESIDA,Dengue outbreak locations (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,"Literature-based, Report-based",None,eng,None,Tanzania
+lit_dengue_herep,Health,ESIDA,Dengue health reports,HAW Hamburg,ESIDA,,Dataset,csv,None,Official authorities,None,eng,None,Tanzania
+lit_chik_sero,Health,ESIDA,Optional: Chikungunya seroprevalences (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Report-based,None,eng,None,Tanzania
+lit_chik_outloc,Health,ESIDA,Optional: Chikungunya outbreak locations (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Report-based,None,eng,None,Tanzania
+lit_chol_waterloc,Health,ESIDA,Cholera affected water bodies (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,Literature-based,None,eng,None,Tanzania
+lit_chol_outloc,Health,ESIDA,Cholera outbreak locations (historical),HAW Hamburg,ESIDA,,Dataset,csv,None,"Literature-based, Report-based",None,eng,None,Tanzania
+lit_chol_herep,Health,ESIDA,Cholera health reports,HAW Hamburg,ESIDA,,Dataset,csv,None,"Literature-based, Report-based",None,eng,None,Tanzania
+malariaatlas_incidence,Health,Malaria Atlas Project,Annual Malaria (falciparum) Incidence,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Malaria Atlas Project,https://doi.org/10.1186/s12936-018-2500-5,eng,CC BY 3.0,Tanzania
+malariaatlas_mortal,Health,Malaria Atlas Project,Annual Malaria (falciparum) Mortality,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Malaria Atlas Project,https://doi.org/10.1186/s12936-018-2500-5,eng,CC BY 3.0,Tanzania
+lit_mos_abundance,Enviromental ,Unkown,Mosquitoes Abundance Index (historical),HAW Hamburg,ESIDA,,Dataset,csv,,Literature-based,None,eng,,Tanzania
+lit_mos_suitability,Enviromental ,Unkown,Environmental suitability Aedes aegypti (assumptions from literature),HAW Hamburg,ESIDA,,Dataset,csv,,Literature-based,None,eng,,Tanzania
+lit_dengue_suitability,Enviromental ,Unkown,Dengue suitability index (assumptions from literature),HAW Hamburg,ESIDA,,Dataset,csv,,Literature-based,None,eng,,Tanzania
+worldpop_popc,Demographics,Worldpop,Population counts,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00660,Worldpop,https://doi.org/10.1371/journal.pone.0107042,eng,CC BY 4.0,Tanzania
+worldpop_popd,Demographics,Worldpop,Population density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00675,Worldpop,https://doi.org/10.1371/journal.pone.0107043,eng,CC BY 4.0,Tanzania
+worldpop_urbanext,Demographics,Worldpop,Urban Settlement Extent,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00649,Worldpop,https://doi.org/10.1016/j.rse.2014.09.023,eng,CC BY 4.0,Tanzania
+worldpop_poverty,Demographics,Worldpop ,Poverty,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5258/SOTON/WP00290,Worldpop ,https://doi.org/10.1098/rsif.2016.0690,eng,CC BY 4.0,Tanzania
+chirps_tprecit,Weather,CHRIPS,Total precipitation,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.1038/sdata.2015.66,CHRIPS,https://doi.org/10.1038/sdata.2015.66,eng,CC BY 4.0,Tanzania
+meteo_tprecit,Weather,Meteostat,Total precipitation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania
+meteo_rhum,Weather,Meteostat,Relative humidity,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania
+meteo_ahum,Weather,Meteostat,Absolute humidtiy,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania
+copernicus_maxt,Weather,Copernicus ,Maximum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania
+copernicus_mint,Weather,Copernicus ,Minumum Temperature ,HAW Hamburg,ESIDA,24.05.2022,Dataset,csv,10.24381/cds.e2161bac,Copernicus ,doi.org/10.1002/qj.3803,eng,https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview,Tanzania
+meteo_maxt,Weather,Meteostat,Maximum Temperature ,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania
+meteo_mint,Weather,Meteostat,Minimum Temperature,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania
+meteo_dtr,Weather,Meteostat,Diurnal Temporal Range,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,https://meteostat.net/,Meteostat,None,eng,CC BY-NC 4.0,Tanzania
+esida_extremerainfall,Weather,ESIDA,Extreme rainfall event,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,None,None,eng,CC BY-NC 4.0,Tanzania
+fao_drought,Weather,FAO,Agricultural Stress Index,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,https://io.apps.fao.org/geoserver/wms/ASIS/ASI_D/v1?service=WMS&version=1.3.0&request=GetCapabilities,FAO,"FAO - Agricultrual Stress Index System (ASIS), http://www.fao.org/giews/earthobservation/",eng,CC BY-NC- SA 3.0 IGO,Tanzania
+chirts_mint,Weather,,,,,,,,,,,,,
+chirts_maxt,Weather,,,,,,,,,,,,,
+rcmrd_elev,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania
+rcmrd_elevthresh,Enviroment,RCMRD,Elevation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,RCMRD,None,eng,ODbL-1.0,Tanzania
+copernicus_crop,Enviroment,Copernicus Land Cover,Proportion Cropland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_forest,Enviroment,Copernicus Land Cover,Proportion Forest,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_schrub,Enviroment,Copernicus Land Cover,Proportion Shrubland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_built,Enviroment,Copernicus Land Cover,Proportion Built-up,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_herbveg,Enviroment,Copernicus Land Cover,Proportion Herbaceous wetland ,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_moss,Enviroment,Copernicus Land Cover,Proportion moss & litchen ,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_sparse,Enviroment,Copernicus Land Cover,Proportion bare & sparse,HAW Hamburg,ESIDA,07.06.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_water,Enviroment,Copernicus Land Cover,Proportion permanent water bodies,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+copernicus_herbwet,Enviroment,Copernicus Land Cover,Proportion permanent herbaceous wetland,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.5281/zenodo.3939038,Copernicus Land Cover,10.3390/rs12061044,eng,CC BY 4.0,Tanzania
+worldpop_mob,Demographics,Worldpop,Population mobility & migration,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Worldpop,None,eng,CC BY 4.0,Tanzania
+thfr_disp,Infrastructure,Tanzania Health Facility Register,Dispensery Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania
+thfr_hecenter,Infrastructure,Tanzania Health Facility Register,Health Center Density ,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania
+thfr_clinic,Infrastructure,Tanzania Health Facility Register,Clinic Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania
+thfr_hospital,Infrastructure,Tanzania Health Facility Register,Hospital Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania
+thfr_lab,Infrastructure,Tanzania Health Facility Register,Health Lab Density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,Tanzania Health Facility Register,None,eng,Unkown,Tanzania
+worldpop_sexage,Demographics,Worldpop data ,Sex and age structure,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,10.1038/sdata.2017.89,Worldpop data ,10.1038/sdata.2017.89,eng,CC BY 4.0,Tanzania
+statcompiler_electricity,Infrastructure,DHS Program,Electricity (mHealth),HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_internet,Infrastructure,DHS Program,Internet usage (mHealth),HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_cellphone,Infrastructure,DHS Program,Cellphone usage,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_education,Demographics,DHS Program,Education level,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_gini,Demographics,Unkown,Income,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_employment,Infrastructure,DHS Program,Employment status,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_drinkwater,Infrastructure,DHS Program,Source of Drinking water,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_sanitation,Infrastructure,DHS Program,Sanitation,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+tnbs_garbage,Infrastructure,Unkown,Garbage collection,HAW Hamburg,ESIDA,,Dataset,csv,None,,,eng,,Tanzania
+statcompiler_housing,Infrastructure,Unkown,Housing density,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+statcompiler_mosnet,Health,DHS Program,Mosquito net implementation (bed net),HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,DHS Program,None,eng,https://dhsprogram.com/data/terms-of-use.cfm,Tanzania
+shapefile_area,Administrative ,TZ Bureau of Statistics,Area,HAW Hamburg,ESIDA,02.05.2022,Dataset,csv,None,TZ Bureau of Statistics,None,eng,https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf,Tanzania
+tnhp_clinical_officer,Infrastructure,TZ Ministry of Health,Physician density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania
+tnhp_nurse,Infrastructure,TZ Ministry of Health,Nurse density,HAW Hamburg,ESIDA,21.06.2022,Dataset,csv,None,TZ Ministry of Health,None,eng,Unkown,Tanzania
+worldpop_age_0_9,Demographic,Worldpop,,,,,,,,,,,,
+worldpop_age_10_19,Demographic,Worldpop,,,,,,,,,,,,
+worldpop_age_20_29,Demographic,Worldpop,,,,,,,,,,,,
+worldpop_age_30_39,Demographic,Worldpop,,,,,,,,,,,,
+worldpop_age_40_49,Demographic,Worldpop,,,,,,,,,,,,
+worldpop_age_50_59,Demographic,Worldpop,,,,,,,,,,,,
+worldpop_age_60_69,Demographic,Worldpop,,,,,,,,,,,,
+worldpop_age_70_80,Demographic,Worldpop,,,,,,,,,,,,
+koeppen_a,Enviromental,"Beck et al., 2018",,,,,,,,,,,,
+koeppen_b,Enviromental,"Beck et al., 2018",,,,,,,,,,,,
+koeppen_c,Enviromental,"Beck et al., 2018",,,,,,,,,,,,
+koeppen_d,Enviromental,"Beck et al., 2018",,,,,,,,,,,,
+koeppen_e,Enviromental,"Beck et al., 2018",,,,,,,,,,,,
