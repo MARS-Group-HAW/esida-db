@@ -14,9 +14,8 @@ from dbconf import get_engine, connect
 
 engine = get_engine()
 
-meta_df = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Documentation.csv')
-
-meta_dict = meta_df[['Abbreviation', 'Category', 'Title', 'ESIDA database unit']].set_index('Abbreviation').to_dict('index')
+docu_df = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Documentation.csv')
+docu_dict = docu_df[['Abbreviation', 'Category', 'Title', 'ESIDA database unit']].set_index('Abbreviation').to_dict('index')
 
 class BaseParameter():
     """ Base class for all parameters, implementing necessary functions. """
@@ -49,21 +48,21 @@ class BaseParameter():
 
 
     def get_title(self) -> str:
-        if self.parameter_id in meta_dict:
-            return meta_dict[self.parameter_id ]['Title']
+        if self.parameter_id in docu_dict:
+            return docu_dict[self.parameter_id ]['Title']
         return self.parameter_id
 
     def get_category(self) -> str:
-        if self.parameter_id in meta_dict:
-            return meta_dict[self.parameter_id ]['Category']
+        if self.parameter_id in docu_dict:
+            return docu_dict[self.parameter_id ]['Category']
         return '-'
 
 
     def get_unit(self) -> str:
-        if self.parameter_id not in meta_dict:
+        if self.parameter_id not in docu_dict:
             return ""
 
-        unit =  meta_dict[self.parameter_id ]['ESIDA database unit']
+        unit =  docu_dict[self.parameter_id ]['ESIDA database unit']
 
         if unit == 'percent':
             return '%'
