@@ -2,6 +2,26 @@
 
 {% block title %}{{ parameter['name']}} - Parameters{% endblock %}
 
+{% block head %}
+  <link rel="schema.DC"       href="http://purl.org/dc/elements/1.1/" />
+  <link rel="schema.DCTERMS"  href="http://purl.org/dc/terms/" />
+  <meta name="DC.title"       content="{{ parameter['name'] }}" />
+  <meta name="DC.subject"     content="{{ parameter['class'].get_meta('subject') }}" />
+  <meta name="DC.creator"     content="{{ parameter['class'].get_meta('creator') }}" />
+  <meta name="DC.description" content="{{ parameter['class'].get_meta('description') }}" />
+  <meta name="DC.publisher"   content="{{ parameter['class'].get_meta('publisher') }}" />
+  <meta name="DC.contributor" content="{{ parameter['class'].get_meta('contributor') }}" />
+  <meta name="DC.date"        content="{{ parameter['class'].get_meta('date') }}" />
+  <meta name="DC.type"        content="{{ parameter['class'].get_meta('type') }}" />
+  <meta name="DC.format"      content="{{ parameter['class'].get_meta('format') }}" />
+  <meta name="DC.identifier"  content="{{ parameter['class'].get_meta('identifier') }}" />
+  <meta name="DC.source"      content="{{ parameter['class'].get_meta('source') }}" />
+  <meta name="DC.language"    content="{{ parameter['class'].get_meta('language') }}" />
+  <meta name="DC.rights"      content="{{ parameter['class'].get_meta('rights') }}" />
+  <meta name="DC.coverage"    content="{{ parameter['class'].get_meta('coverage') }}" />
+{% endblock %}
+
+
 {% block content %}
   <h1>{{ parameter['name'] }} </h1>
 

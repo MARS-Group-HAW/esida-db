@@ -17,6 +17,8 @@ engine = get_engine()
 docu_df = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Documentation.csv')
 docu_dict = docu_df[['Abbreviation', 'Category', 'Title', 'ESIDA database unit']].set_index('Abbreviation').to_dict('index')
 
+meta_dict = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Metadata.csv').fillna('').rename(columns=str.lower).set_index('abbreviation').to_dict('index')
+
 class BaseParameter():
     """ Base class for all parameters, implementing necessary functions. """
 
@@ -57,6 +59,11 @@ class BaseParameter():
             return docu_dict[self.parameter_id ]['Category']
         return '-'
 
+    def get_meta(self, key: str):
+        if key in meta_dict[self.parameter_id]:
+            return meta_dict[self.parameter_id][key]
+
+        return ""
 
     def get_unit(self) -> str:
         if self.parameter_id not in docu_dict:
