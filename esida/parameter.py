@@ -60,7 +60,7 @@ class BaseParameter():
         return '-'
 
     def get_meta(self, key: str):
-        if key in meta_dict[self.parameter_id]:
+        if self.parameter_id in meta_dict and key in meta_dict[self.parameter_id]:
             return meta_dict[self.parameter_id][key]
 
         return ""
