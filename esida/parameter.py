@@ -79,8 +79,15 @@ class BaseParameter():
 
         return unit
 
-    def get_data_path(self) -> Path:
+    def get_parameter_path(self) -> Path:
+        """ path to directory of parameter. """
         return Path(f"./input/data/{self.parameter_id}/")
+
+    def get_data_path(self) -> Path:
+        """ Path to data path, is most cases this is the paarameter path, but
+        in the case the parameter has som nested folders, this can be used
+        to overrule the data path. """
+        return self.get_parameter_path()
 
     def get_raw_data_size(self) -> int:
         """ get input data (raw data) size in bytes for parameter.
@@ -448,7 +455,7 @@ class BaseParameter():
             file_name = os.path.basename(a.path)
 
         if folder is None:
-            folder = self.get_data_path()
+            folder = self.get_parameter_path()
 
         if os.path.isfile(folder / file_name):
             self.logger.debug("Skipping b/c already downloaded %s", url)

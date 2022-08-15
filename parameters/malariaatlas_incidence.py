@@ -1,17 +1,12 @@
 import re
 import os
 import subprocess
+from pathlib import Path
 from urllib.parse import urlparse
 
-import rasterio
-import rasterio.mask
-import fiona
-
 import numpy as np
-import pandas as pd
 
 from esida.tiff_parameter import TiffParameter
-from dbconf import get_engine
 
 class malariaatlas_incidence(TiffParameter):
 
@@ -31,23 +26,21 @@ class malariaatlas_incidence(TiffParameter):
             # Check if file is already unzipped
             a = urlparse(url)
             file_name = os.path.basename(a.path)
-            if os.path.isdir(self.get_data_path() / "Pf_Incidence"):
+            if os.path.isdir(self.get_parameter_path() / "Pf_Incidence"):
                 self.logger.debug("File already unzipped.")
                 return
             try:
                 # cmd syntax didn't work, not sure why
                 #subprocess.check_output('gzip -d ./input/data/chc_chirps/*.gz', shell=True)
-                in_file = self.get_data_path() / file_name
-                out_dir = self.get_data_path().as_posix()
+                in_file = self.get_parameter_path() / file_name
+                out_dir = self.get_parameter_path().as_posix()
                 subprocess.run(f'unzip {in_file} -d {out_dir}', shell=True,
                     capture_output=True, check=True)
             except subprocess.CalledProcessError as error:
                 self.logger.warning("Could not unzip files: %s", error.stderr)
 
-    def load(self, shapes=None, save_output=False, param_dir=None):
-        param_dir = self.get_data_path() / "Pf_Incidence/Raster Data/Pf_incidence_rate_rmean/"
-        super().load(shapes, save_output, param_dir)
-
+    def get_data_path(self) -> Path:
+        return self.get_parameter_path() / "Pf_Incidence/Raster Data/Pf_incidence_rate_rmean/"
 
     def consume(self, file, band, shape):
         x = re.search(r'_([0-9]+)\.tif$', os.path.basename(file))
