@@ -102,7 +102,8 @@ class TiffParameter(BaseParameter):
     def da_spatial(self, shape_id=None):
 
         if not self.is_loaded():
-            return None
+            self.logger.warning("Trying to create spatial data analytics, but not loaded")
+            return (None, None)
 
         files = self.get_tiff_files(self.get_data_path())
 

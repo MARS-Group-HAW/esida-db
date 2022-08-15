@@ -116,10 +116,14 @@ def abm(signal):
 
 
 @cli.command()
+@click.argument('parameter', required=False, type=str)
 @click.option('--shape_id', required=False, type=int)
-def daspatial(shape_id):
-    params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+def daspatial(parameter, shape_id):
 
+    if not parameter:
+        params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
+    else:
+        params = [parameter]
     summary = []
     per_file_data = []
 
@@ -134,13 +138,10 @@ def daspatial(shape_id):
         pmodule = importlib.import_module(f'parameters.{p}')
         pc  = getattr(pmodule, p)()
 
-        if p in ['chirps_tprecit', 'chirts_maxt', 'chirts_mint'] or "worldpop_age" in p:
-            continue
+        #if p in ['chirps_tprecit', 'chirts_maxt', 'chirts_mint'] or "worldpop_age" in p:
+        #     continue
 
         if not isinstance(pc, TiffParameter):
-            continue
-
-        if not pc.is_loaded():
             continue
 
         result, results = pc.da_spatial(shape_id)
