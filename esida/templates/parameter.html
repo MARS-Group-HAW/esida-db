@@ -94,12 +94,49 @@ var options = {
   title: {
       text: 'Compare parameter values',
   },
+  markers: {
+    size: 3,
+    hover: {
+      sizeOffset: 2
+    }
+  },
+  stroke: {
+    width: [1, 1],
+    curve: 'straight',
+    dashArray: [5, 5]
+  },
   noData: {
     text: 'Select data...'
   },
-  xaxis: {
-    type: 'datetime',
+  yaxis: {
+    labels: {
+      formatter: function (value) {
+        var prec = {{ parameter['class'].precision or -1 }}
+        if (prec != -1) {
+          return value.toFixed(prec);
+        }
+
+        return value;
+      }
+    },
   },
+  xaxis: {
+    type: 'datetime'
+  },
+
+  {% if parameter['class'].time_col == 'year' %}
+  tooltip: {
+    x: {
+      format: "yyyy"
+    }
+  }
+  {% elif  parameter['class'].time_col == 'date' %}
+  tooltip: {
+    x: {
+      format: "yyyy-MM-dd"
+    }
+  }
+  {% endif %}
 }
 
 var chart = new ApexCharts(
@@ -110,16 +147,20 @@ var chart = new ApexCharts(
 chart.render();
 
 $.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_for=region', function(response) {
-  chart.appendSeries({
-    name: 'Region (mean)',
-    data: response['data']
-  })
+  if (response['data'].length > 0) {
+    chart.appendSeries({
+      name: 'Region (mean)',
+      data: response['data']
+    });
+  }
 });
 $.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_for=district', function(response) {
-  chart.appendSeries({
-    name: 'District (mean)',
-    data: response['data']
-  })
+  if (response['data'].length > 0) {
+    chart.appendSeries({
+      name: 'District (mean)',
+      data: response['data']
+    });
+  }
 });
 
 $('#js-add-shape-to-chart').on('click', function(e) {
