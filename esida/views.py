@@ -286,7 +286,6 @@ def api_data(shape_id):
         data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records')
     )
 
-
 @app.route('/api/v1/parameter/<string:parameter_id>')
 def api_parameter(parameter_id):
     """ Get data and metadata for single parameter. """
@@ -392,6 +391,7 @@ def api_parameters():
             'parameter_id': p,
             'timelines': pc.time_col,
             'loaded': pc.is_loaded(),
+            'raw_data_size': pc.get_raw_data_size(),
 
             'temporal_expected': pc.da_temporal_expected(),
             'temporal_actual': pc.da_count_temporal(shape_id=shape_id),
