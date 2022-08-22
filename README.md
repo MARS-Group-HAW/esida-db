@@ -88,3 +88,9 @@ Delete something
 Debugging:
 
     $ kubectl describe pods -n esida # might hint deploymentment issues
+
+Download files from pod:
+
+    $ tar -zcvf <name>.tar.gz <folder>/ # create archive of data in pod
+
+    kubectl cp esida/<some-pod>:/app/<name>.tar.gz ./
