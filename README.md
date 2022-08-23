@@ -68,7 +68,7 @@ Stat the PostGIS database with docker-compose as shown above. Then install the d
 - Make local ESIDA Python package: `$ pip install -e .`
 - Make the Flask App know to the system: `$ export FLASK_APP=esida`
 - Run gunicorn to serve flask App: `$ gunicorn --bind 0.0.0.0:80 esida:app --error-logfile - --reload`
-- Page can now be access via http://localhost/
+- Page can now be access via [http://localhost/](http://localhost/)
 
 
 ### HAW ICC Deployment
@@ -87,7 +87,6 @@ Create PersistentVolumeClaim's (PVC) for permanent storage independent of contai
 
 Create Service and Deployment for PostGIS database and ESIDA DB pipeline/flask app:
 
-
 Login to the pods:
 
     $ kubectl exec -it <Name des Pods> -n <space-name> -- bash
@@ -99,11 +98,9 @@ Port forwarding to access pod:e
 
     $ kubectl port-forward $(kubectl -n esida get pod | grep postgis | awk '{ print $1 }') -n esida 6432:5432
 
-
 Get logs
 
     $ kubectl logs $(kubectl -n esida get pod | grep esida-db | awk '{ print $1 }') -n esida
-
 
 Delete something
 
