@@ -152,7 +152,7 @@ class BaseParameter():
         if self.output == 'db':
             self.df.to_sql(self.parameter_id, get_engine(), if_exists='replace')
         elif self.output == 'fs':
-            self.df.to_csv(self.get_output_path() / f'{self.parameter_id}.csv')
+            self.df.to_csv(self.get_output_path() / f'{self.parameter_id}.csv', index=False)
         else:
             raise ValueError(f"Unknown save option {self.output}.")
 
