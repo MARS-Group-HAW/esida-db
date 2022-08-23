@@ -4,9 +4,11 @@ import pkgutil
 import importlib
 import datetime as dt
 from pathlib import Path
+from distutils.dir_util import copy_tree
 
 import click
 import shapely
+import shapely.wkt
 import geopandas
 import pandas as pd
 
@@ -136,46 +138,97 @@ def daspatial(parameter, shape_id):
 @click.option('--wkt')
 @click.option('--abm', is_flag=True)
 def clip(wkt, abm):
+    """ Get metrics for the given AOI, provide either a WKT string or file.
+
+    If the abm flag is present only data layers relevant for the ABM are
+    exported and a config.json is generated.
+
+    """
     params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
     now = dt.datetime.now()
-    out_name = now.strftime("%Y-%m-%d_%H-%M-%S")
+    out_name = now.strftime("%Y-%m-%d_%H-%M-%S") + "_clip"
     if os.path.exists(wkt):
         out_name += "_"+os.path.basename(wkt)
         with open(wkt, 'r') as file:
             wkt = file.read()
 
+    geometry = shapely.wkt.loads(wkt)
+    if geometry.geom_type != 'Polygon':
+        click.echo(click.style('Only POLYGON is allowed as input geometry.',  fg='red'), err=True)
 
-    out_dir = Path("./output/") / out_name
+    out_dir = Path("./output") / out_name
+    out_resources = out_dir / "resources"
+    out_resources.mkdir(parents=True, exist_ok=True)
     shape = {
-        'geometry': shapely.wkt.loads(wkt),
+        'geometry': geometry,
         'name': 'text',
         'id': 0,
     }
 
     for p in params:
-
-        if abm and p not in ['worldpop_popc', 'geofabrik_pois', 'osm_graph', 'osm_building', 'osm_landuse', 'rcmrd_elev', 'meteo_tprecit']:
+        if abm and p not in [
+                'worldpop_popc',
+                'geofabrik_pois',
+                'osm_graph',
+                'osm_building',
+                'osm_landuse',
+                'rcmrd_elev',
+                'meteo_tprecit',
+                'visualcrossing_weather'
+            ]:
             continue
 
         pmodule = importlib.import_module(f'parameters.{p}')
         pclass  = getattr(pmodule, p)()
-        pclass.set_output_path(out_dir)
+        pclass.set_output_path(out_resources)
         pclass.output = 'fs' # save products to file system instead of database
         result = getattr(pclass, 'load')(shapes=[shape], save_output=True)
 
+    # the following prepared the config.json for the MARS ABM
+    # so if we don't have the abm flag this is not necessary.
+    if not abm:
+        return
+
     # after creating layers
     # calculate amount of needed agents
-    dfx = pd.read_csv(out_dir / 'worldpop_popc.csv')
-    agent_count = int(dfx['worldpop_popc_sum'].tail(1))
-
+    dfx = pd.read_csv(out_resources / 'worldpop_popc.csv')
+    agent_count = int(dfx['worldpop_popc'].tail(1))
 
     p = 'cia_worldfactbook'
     pmodule = importlib.import_module(f'parameters.{p}')
     pclass  = getattr(pmodule, p)()
-    pclass.set_output_path(out_dir)
+    pclass.set_output_path(out_resources)
     pclass.output = 'fs' # save products to file system instead of database
     result = getattr(pclass, 'load')(shapes=[shape], save_output=True, agent_count=agent_count)
+
+    copy_tree("input/data/MARS", out_dir.as_posix())
+
+    # prepare config.json
+    with open('input/data/MARS/config.json') as f:
+        d = json.load(f)
+
+        # set date
+        start = dt.datetime.now()
+        end   = start + dt.timedelta(days=14+1) # +1 so we don't need to run until 23:59:59
+        d['globals']['startPoint'] = start.strftime('%Y-%m-%dT00:00:00')
+        d['globals']['endPoint']   = end.strftime('%Y-%m-%dT00:00:00')
+
+        # Geometries for temp/prcp CSV spatial join
+        geometry_json = shapely.geometry.mapping(geometry)
+        for d2 in d['layers']:
+            if d2['name'] in ['TemperatureLayer', 'PrecipitationLayer']:
+                for d3 in d2['inputs']:
+                    if "value" in d3:
+                        d3['value']['geometry'] = geometry_json
+
+        # set agent count
+        for d2 in d['agents']:
+            if d2['name'] == 'Human':
+                d2['count'] = agent_count
+
+        with open(out_dir / 'config.json', 'w') as f:
+            json.dump(d, f, indent=2)
 
 if __name__ == '__main__':
     cli()

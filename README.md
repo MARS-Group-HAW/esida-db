@@ -33,6 +33,15 @@ For example to load Meteostat weather data:
 For available parameters see the listing at http://localhost/parameter. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder `./notebooks/ESIDA DB Demo.ipynb`).
 
 
+## Extract data for MARS ABM
+
+After ingesting data you can create the MARS ABM box for an arbitrary region inside the area of the imported data.
+
+    $ python ./eisda-cli.py clip --wkt <path to WKT Polygon> --abm
+
+This will generate a simulation blueprint with the required input data.
+
+
 ## Local development (directly)
 
 Stat the PostGIS database with docker-compose as shown above. Then install the dependencies:

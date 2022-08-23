@@ -1,0 +1,168 @@
+{
+  "id": "ESIDADarEsSalaam",
+  "globals": {
+    "deltaT": 1,
+    "startPoint": "2018-11-01T04:30:00",
+    "endPoint": "2018-11-01T04:35:00",
+    "deltaTUnit": "seconds",
+    "console": false
+  },
+  "agents": [{
+    "name": "Human",
+      "outputFilter": [
+        {"parameter": "StoreTickResult", "operator": "in", "values": [true] }
+      ],
+      "outputs": [
+        {
+          "kind": "trips",
+          "outputConfiguration": {
+            "tripsFields": ["Faith", "Worker"]
+          }
+        },
+        {"kind": "csv"}
+      ],
+    "count": 100,
+    "inputs": [
+      {"file":  "resources/citizen_tanzania.csv"}
+    ],
+    "mapping": [
+      {"parameter":"StartInfectiousProbability", "value": 0.1},
+      {"parameter":"StartRecoveredProbability", "value": 0.5},
+
+      {"parameter":"IncubationPeriodInDaysMin", "value": 4},
+      {"parameter":"IncubationPeriodInDaysMax", "value": 10},
+
+      {"parameter":"InfectiousPeriodInDaysMin", "value": 3},
+      {"parameter":"InfectiousPeriodInDaysMax", "value": 14},
+
+      {"parameter":"InfectiousSeverityPeriodInDaysMin", "value": 1},
+      {"parameter":"InfectiousSeverityPeriodInDaysMax", "value": 2},
+
+      {"parameter":"InfectiousSeveritySeverePeriodInDaysMin", "value": 2},
+      {"parameter":"InfectiousSeveritySeverePeriodInDaysMax", "value": 7},
+
+      {"parameter":"InfectiousAsymptomaticRecoveredPeriodInDaysMin", "value": 4},
+      {"parameter":"InfectiousAsymptomaticRecoveredPeriodInDaysMax", "value": 5},
+
+
+      {"parameter":"DeathOrRecoveredInDaysMin", "value": 1},
+      {"parameter":"DeathOrRecoveredInDaysMax", "value": 2},
+
+
+      {"parameter":"ImmunityDurationInDays", "value": 20},
+
+
+      {"parameter":"InfectionSeverityMildProbability", "value": 0.2},
+      {"parameter":"InfectionSeveritySevereProbability", "value": 0.05},
+      {"parameter":"InfectionSeverityHospitalizedProbability", "value": 0.05},
+      {"parameter":"ProbabilitySevereInfectionRecovery", "value":  0.92},
+      {"parameter":"ProbabilityHospitalizationRecovery", "value":  0.995},
+
+      {"parameter":"InfectionSeverityHospitalized", "value": 0.05},
+
+      {"parameter":"ExposedProbabilityAfterBite", "value": 0.42}
+    ]
+  },{
+    "name": "Mosquito",
+    "outputFilter": [
+      {"parameter": "StoreTickResult", "operator": "in", "values": [true] }
+    ],
+    "outputs": [
+      {"kind": "csv"}
+    ],
+    "mapping": [
+      {"parameter":"bitePeriodInS", "value": 10}
+    ]
+  }],
+  "layers": [
+    { "file": "resources/osm_building/building.geojson", "name": "VectorBuildingsLayer"},
+    { "file": "resources/osm_landuse/landuse.geojson", "name": "VectorLanduseLayer"},
+    { "file": "resources/geofabrik_pois.geojson",  "name": "VectorPoiLayer"},
+    {
+      "name": "CitizenLayer"
+    },
+    {
+      "name": "SpatialGraphMediatorLayer",
+      "inputs": [
+        {
+          "file": "resources/osm_graph/edges.geojson",
+          "inputConfiguration": {
+            "modalities": ["Walking"],
+            "isBidirectedGraph": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "TemperatureLayer",
+      "inputs": [
+        {
+          "value": {
+            "type": "Feature",
+            "properties": {"spatial_join_col": "1"},
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [39.25756216049194, -6.864884051987164], [39.26833391189575, -6.864884051987164],
+                  [39.26833391189575, -6.8541681011574], [39.25756216049194, -6.8541681011574],
+                  [39.25756216049194, -6.864884051987164]
+                ]
+              ]
+            }
+          },
+          "inputConfiguration": {
+            "temporalJoinAttribute": "spatial_join_col",
+            "validTimeAtAttribute": "date"
+          }
+        },
+        {
+          "file": "resources/visualcrossing_weather.csv",
+          "inputConfiguration": {
+            "temporalJoinAttribute": "spatial_join_col",
+            "validTimeAtAttribute": "date"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PrecipitationLayer",
+      "output": "geojson",
+      "inputs": [
+        {
+          "value": {
+            "type": "Feature",
+            "properties": {"spatial_join_col": "1"},
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [[39.25756216049194, -6.864884051987164], [39.26833391189575, -6.864884051987164],
+                  [39.26833391189575, -6.8541681011574], [39.25756216049194, -6.8541681011574],
+                  [39.25756216049194, -6.864884051987164]]
+              ]
+            }
+          },
+          "inputConfiguration": {
+            "temporalJoinAttribute": "spatial_join_col",
+            "validTimeAtAttribute": "date"
+          }
+        },
+        {
+          "file": "resources/visualcrossing_weather.csv",
+          "inputConfiguration": {
+            "temporalJoinAttribute": "spatial_join_col",
+            "validTimeAtAttribute": "date"
+          }
+        }
+      ]
+    },
+    {
+      "name": "MosquitoLayer",
+      "mapping" :
+      [
+        {"parameter":"cellSizeInMeter", "value":50}
+      ]
+    },
+    {"name": "HumanTravelerSchedulerLayer", "file": "resources/human_traveler.csv"}
+  ]
+}
