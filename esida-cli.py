@@ -1,16 +1,17 @@
 import os
+import json
 import pkgutil
-import shapely
 import importlib
-from pathlib import Path
 import datetime as dt
+from pathlib import Path
 
 import click
+import shapely
 import geopandas
 import pandas as pd
 
-from dbconf import get_engine, connect, close
 import log
+from dbconf import get_engine, connect, close
 from parameters import *
 from esida.tiff_parameter import TiffParameter
 
@@ -38,7 +39,7 @@ def init():
     imported_regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type= 'region'", connect(), geom_col='geometry')
 
     def find_pk_if_region(name):
-        for i, row in imported_regions_gdf.iterrows():
+        for _, row in imported_regions_gdf.iterrows():
             if (row['name'] == name):
                 return row['id']
         raise ValueError(f"No parent region id found for region ({name})")
@@ -76,6 +77,8 @@ def list_parameters():
 @click.argument('parameter')
 @click.argument('action')
 def param(parameter, action):
+    """ Execute action on parameter, like load, transform or extract. """
+
     params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
     if parameter not in params:
@@ -86,46 +89,18 @@ def param(parameter, action):
     pclass  = getattr(pmodule, parameter)()
     result = getattr(pclass, action)()
 
-@cli.command()
-def load():
-    params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
-
-    action = 'load'
-    no_extract = [
-        'cia_worldfactbook',
-        'geofabrik_pois',
-        'osm_building',
-        'osm_graph',
-        'osm_landuse',
-    ]
-
-    for parameter in params:
-
-        if parameter in no_extract:
-            continue
-
-        pmodule = importlib.import_module(f'parameters.{parameter}')
-        pclass  = getattr(pmodule, parameter)()
-        result = getattr(pclass, action)()
-
-
-@cli.command()
-@click.option('--signal', '-s', multiple=True)
-def abm(signal):
-    pass
-
 
 @cli.command()
 @click.argument('parameter', required=False, type=str)
 @click.option('--shape_id', required=False, type=int)
 def daspatial(parameter, shape_id):
+    """ Generate long running spatial quality of applicable parameters. """
 
     if not parameter:
         params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
     else:
         params = [parameter]
     summary = []
-    per_file_data = []
 
     now = dt.datetime.now()
     out_name = now.strftime("%Y-%m-%d_%H-%M-%S")
@@ -137,9 +112,6 @@ def daspatial(parameter, shape_id):
     for p in params:
         pmodule = importlib.import_module(f'parameters.{p}')
         pc  = getattr(pmodule, p)()
-
-        #if p in ['chirps_tprecit', 'chirts_maxt', 'chirts_mint'] or "worldpop_age" in p:
-        #     continue
 
         if not isinstance(pc, TiffParameter):
             continue
@@ -154,11 +126,10 @@ def daspatial(parameter, shape_id):
         # save summary in each loop iteration to save output early.
         # generation takes long!
         dfx = pd.DataFrame(summary)
-        dfx.to_csv(out_dir / f'da_spatial.csv', index=False)
+        dfx.to_csv(out_dir / 'da_spatial.csv', index=False)
 
         dfx = pd.DataFrame(results)
         dfx.to_csv(out_dir / f'files_{p}.csv', index=False)
-
 
 
 @cli.command()
