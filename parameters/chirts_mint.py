@@ -41,7 +41,7 @@ class chirts_mint(TiffParameter):
             path_tmp  = f"{self.get_data_path() / str('tmp' + file_name)}"
 
             # One file per day with 71mb would lead to ~26GB per year, and for
-            # 6 years to ~155GB, to save storage and speed up the conumption
+            # 6 years to ~155GB, to save storage and speed up the consumption
             # (I/O of reading the files), we crop the tiffs to the tanzania
             # region and delete the original files after downloading.
             try:
