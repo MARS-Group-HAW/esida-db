@@ -165,5 +165,5 @@ pgdata/
 /config.ini
 .DS_Store
 /.vscode
-/.idea
+/.idea/
 /notebooks/cache
