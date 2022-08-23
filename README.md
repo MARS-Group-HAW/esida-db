@@ -1,9 +1,33 @@
 # ESIDA DB Pipeline
 
+## Usage
 
-## Local setup (Docker)
+### Extract data for MARS ABM
 
-Clone the repository and then following commands to build the containers:
+After ingesting data you can create the MARS ABM box for an arbitrary region inside the area of the imported data.
+
+    $ python ./eisda-cli.py clip --wkt <path to WKT Polygon> --abm
+
+This will generate a simulation blueprint with the required input data.
+
+
+## Setup
+
+### Local setup (Docker)
+
+Clone the repository.
+
+Copy the `.env` file and make sure it's correct populated.
+
+    $ cp .env.example .env
+
+For the local data to the needed destination (this is to pre-fill the persistent data mount needed in Kubernetes):
+
+    $ rsync -a input/data.local/ input/data/
+
+If you need to run the MARS ABM, store the zip files of the boxes inside `./input/dat/MARS/`.
+
+Build and start the containers:
 
     $ docker-compose up -d
 
@@ -11,7 +35,7 @@ After this you can start/stop the containers with
 
     $ docker-compose start|stop
 
-The ESIDA DB is available at http://localhost/ - though it is empty at the moment
+The ESIDA DB is available at [http://localhost/](http://localhost/) - though it is empty at the moment
 and not everything works. To set it up follow these steps:
 
 Enter the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands.
@@ -30,19 +54,10 @@ For example to load Meteostat weather data:
     $ python ./esida-cli.py param meteo_tprecit extract
     $ python ./esida-cli.py param meteo_tprecit load
 
-For available parameters see the listing at http://localhost/parameter. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder `./notebooks/ESIDA DB Demo.ipynb`).
+For available parameters see the listing at [http://localhost/parameter](http://localhost/parameter). After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder `./notebooks/ESIDA DB Demo.ipynb`).
 
 
-## Extract data for MARS ABM
-
-After ingesting data you can create the MARS ABM box for an arbitrary region inside the area of the imported data.
-
-    $ python ./eisda-cli.py clip --wkt <path to WKT Polygon> --abm
-
-This will generate a simulation blueprint with the required input data.
-
-
-## Local development (directly)
+### Local development (directly)
 
 Stat the PostGIS database with docker-compose as shown above. Then install the dependencies:
 
@@ -56,7 +71,7 @@ Stat the PostGIS database with docker-compose as shown above. Then install the d
 - Page can now be access via http://localhost/
 
 
-## HAW ICC Deployment
+### HAW ICC Deployment
 
 Create Kubernetes space:
 
@@ -64,7 +79,7 @@ Create Kubernetes space:
 
 Access for further HAW users can be added with the `k8s/rolebinding.yaml`.
 
-Create PersistentVolumeClaim's (PVC) for permanent storage independed of container life-cycle:
+Create PersistentVolumeClaim's (PVC) for permanent storage independent of container life-cycle:
 
     $ kubectl apply -f ./k8s/pvc-postgis.yaml        # Storage of PostGis database
     $ kubectl apply -f ./k8s/pvc-esidadb-input.yaml  # Storage of input data of the pipeline
@@ -101,5 +116,4 @@ Debugging:
 Download files from pod:
 
     $ tar -zcvf <name>.tar.gz <folder>/ # create archive of data in pod
-
-    kubectl cp esida/<some-pod>:/app/<name>.tar.gz ./
+    $ kubectl cp esida/<some-pod>:/app/<name>.tar.gz ./ # run from your host
