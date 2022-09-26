@@ -2,6 +2,14 @@
 
 ## Usage
 
+### Access data
+
+Two means of data access are provided. Once on each shape all loaded parameter data associated with the shape can be downloaded as CSV file. For each parameter a download containing all shapes for this parameter is provided as well. Those downloads can be accessed via the web frontend.
+
+Also a simple REST like API is provided to query the shape and parameter data programmatically. See the Jupyter notebook `notebooks/ESIDA DB Demo.ipynb` for further explanation and usage examples of the API.
+
+Data quality metrics can be extracted as well with the API, for this see the notebook `notebooks/ESIDA DB Data Quality.ipynb`. In this case it is recommended to use the system locally since the queries for spatial data quality can be quite long-running, and it might not be possible to query them from a remote host.
+
 ### Extract data for MARS ABM
 
 After ingesting data you can create the MARS ABM box for an arbitrary region inside the area of the imported data.
