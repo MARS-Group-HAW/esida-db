@@ -10,6 +10,7 @@ class osm_landuse(BaseParameter):
         ox.settings.log_console=True
         ox.settings.use_cache=True
         ox.settings.cache_folder=self.get_data_path()
+        ox.settings.timeout = 1800
 
         for shape in shapes:
             gdf = ox.geometries_from_polygon(

@@ -10,6 +10,7 @@ class osm_graph(BaseParameter):
         ox.settings.log_console=True
         ox.settings.use_cache=True
         ox.settings.cache_folder=self.get_data_path()
+        ox.settings.timeout = 1800
 
         for shape in shapes:
             G = ox.graph_from_polygon(
