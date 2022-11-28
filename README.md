@@ -121,4 +121,4 @@ Debugging:
 Download files from pod:
 
     $ tar -zcvf <name>.tar.gz <folder>/ # create archive of data in pod
-    $ kubectl cp esida/<some-pod>:/app/<name>.tar.gz ./ # run from your host
+    $ kubectl cp --retries=-1 esida/<some-pod>:/app/<name>.tar.gz ./ # run from your host, sometimes the kubectl cp fails with an EOF error. The retries=-1 will run until the file has been downloaded.
