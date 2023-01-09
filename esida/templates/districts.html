@@ -32,8 +32,10 @@
           </td>
           <td class="align-middle" data-order="{{ shape.area_sqm }}">{{ shape.human_readable_area() }} km<sup>2</sup></td>
           <td>
-            <a href="{{ url_for('download_csv', shape_id=shape.id) }}" download class="btn btn-sm btn-outline-primary">Parameters as CSV</a>
-            <a href="{{ url_for('shape', shape_id=shape.id) }}" class="btn btn-sm btn-link">Details</a>
+            <div class="d-flex justify-content-end">
+              <a href="{{ url_for('download_csv', shape_id=shape.id) }}" download class="btn btn-sm btn-outline-primary">Parameters as CSV</a>
+              <a href="{{ url_for('shape', shape_id=shape.id) }}" class="btn btn-sm btn-link">Details</a>
+            </div>
           </td>
         </tr>
       {% endfor %}

@@ -13,7 +13,7 @@
         <th>Title</th>
         <th>Key</th>
         <th>State</th>
-        <th class="no-sort">Actions</th>
+        <th class="no-sort text-end">Actions</th>
       </tr>
     </thead>
 
@@ -34,7 +34,9 @@
 
         </td>
         <td>
-          <a href="{{ url_for('parameter', parameter_name=parameter['name']) }}"  class="btn btn-sm btn-link">Details</a>
+          <div class="d-flex justify-content-end">
+            <a href="{{ url_for('parameter', parameter_name=parameter['name']) }}"  class="btn btn-sm btn-link">Details</a>
+          </div>
         </td>
       </tr>
     {% endfor %}
