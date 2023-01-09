@@ -46,7 +46,7 @@ var hfrIcon = L.icon({
 regions=[]
 {% for region in regions %}
   var s = L.geoJSON({{ region.geojson()|safe }} )
-  .bindPopup(`<h4>{{ region['name'] }}</h4>`);
+  .bindPopup(`{% with shape=region %}{% include 'misc/shape-popup.html' %}{% endwith %}`);
 
   regions.push(s);
 {% endfor %}
@@ -55,7 +55,7 @@ var group_regions = L.featureGroup(regions);
 districts=[]
 {% for district in districts %}
   var s = L.geoJSON({{ district.geojson()|safe }} )
-  .bindPopup(`<h4>{{ district['name'] }}</h4>  <a href="{{ url_for('shape', shape_id=district['id']) }}" class="btn btn-link">Details</a>`);
+  .bindPopup(`{% with shape=district %}{% include 'misc/shape-popup.html' %}{% endwith %}`);
 
   districts.push(s);
 {% endfor %}
