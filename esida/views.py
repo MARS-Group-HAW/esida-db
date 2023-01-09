@@ -58,13 +58,13 @@ def index():
 
 @app.route("/regions")
 def regions():
-    regions = Shape.query.where(Shape.type == "region").all()
-    return render_template('regions.html', shapes=regions)
+    shapes = Shape.query.where(Shape.type == "region").all()
+    return render_template('regions.html', shapes=shapes)
 
 @app.route("/districts")
 def districts():
-    districts = Shape.query.where(Shape.type == "district").all()
-    return render_template('districts.html', shapes=districts)
+    shapes = Shape.query.where(Shape.type == "district").all()
+    return render_template('districts.html', shapes=shapes)
 
 @app.route("/map")
 def map():
