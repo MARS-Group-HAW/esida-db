@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ parameter['name']}} - Parameters{% endblock %}
+{% block title %}{{ parameter['class'].get_title() }} ({{ parameter['name']}}) - Parameters{% endblock %}
 
 {% block head %}
   <link rel="schema.DC"       href="http://purl.org/dc/elements/1.1/" />
@@ -25,7 +25,7 @@
 {% block content %}
   <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
     <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('download_parameter', parameter_id=parameter['name']) }}">Download all data</a>
-    <h1 class="bd-title">{{ parameter['name'] }}</h1>
+    <h1 class="bd-title">{{ parameter['class'].get_title() }} <small class="text-muted">({{ parameter['name'] }})</small></h1>
   </div>
 
   <div class="row">
@@ -41,26 +41,28 @@
 
     <div class="col-12 col-sm-6">
 
-      <div class="input-group input-group-sm mb-3" style="max-width: 400px">
-        <select class="form-select js-map-shape_type" id="js-shape_type">
-          <option value="region">Region</option>
-          <option value="district">District</option>
-        </select>
-
-        {% if  parameter['class'].time_col == 'year' %}
-          <select class="form-select" id="js-map-date">
-            {% for year in parameter['class'].years_with_data() %}
-            <option vlaue="{{ year }}">{{ year }}</option>
-            {% endfor %}
+      <div class="mb-3">
+        <div class="input-group input-group-sm mb-3" style="max-width: 400px">
+          <select class="form-select js-map-shape_type" id="js-shape_type">
+            <option value="region">Region</option>
+            <option value="district">District</option>
           </select>
-        {% else %}
-          <input type="date" class="form-control" id="js-map-date">
-        {% endif %}
 
-        <button id="js-add-to-map" class="btn btn-outline-secondary btn-sm">Load map</button>
+          {% if  parameter['class'].time_col == 'year' %}
+            <select class="form-select" id="js-map-date">
+              {% for year in parameter['class'].years_with_data() %}
+              <option vlaue="{{ year }}">{{ year }}</option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="date" class="form-control" id="js-map-date">
+          {% endif %}
+
+          <button id="js-add-to-map" class="btn btn-outline-secondary btn-sm">Load map</button>
+        </div>
+
+        <div id="map" style="width: 100%; height: 350px;"></div>
       </div>
-
-      <div id="map" style="width: 100%; height: 350px;"></div>
     </div>
 
     <div class="col-12 col-sm-6">
@@ -80,6 +82,14 @@
 
       <div id="chart"></div>
     </div>
+    <div class="col-12">
+      <p>Available parameter fields:</p>
+      <ul>
+      {% for pk in parameter['class'].get_fields(only_numeric=False) %}
+        <li><code>{{ pk }}</code></li>
+      {% endfor %}
+      </ul>
+    </div>
     {% else %}
       <div class="col-12">
         <div class="alert alert-warning">Paramter is not loaded into the datbase!</div>
@@ -87,21 +97,8 @@
     {% endif %}
   </div>
 
-  <div class="row">
-
-    <div class="col">
-      <p>Available parameter fields:</p>
-      <ul>
-      {% for pk in parameter['class'].get_fields(only_numeric=False) %}
-        <li><code>{{ pk }}</code></li>
-      {% endfor %}
-      </ul>
-
-    </div>
-  </div>
-
   <div>
-    {{ parameter['description_html']|safe }}
+    {{ parameter['class'].get_description()|safe }}
   </div>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 import os
+import importlib
 from sys import platform
 import datetime as dt
 import logging
@@ -13,6 +14,7 @@ from geoalchemy2.shape import to_shape
 import pandas as pd
 import geopandas
 import shapely
+import markdown
 
 from dbconf import get_engine, connect
 
@@ -68,6 +70,31 @@ class BaseParameter():
             return meta_dict[self.parameter_id][key]
 
         return ""
+
+    def get_description(self) -> str:
+        """ Get description / meta information of parameter as HTML formatted
+        text. """
+
+        # check meta data directory
+        md_file = f"input/meta_data/{self.parameter_id}.md"
+        if os.path.isfile(md_file):
+            with open(md_file, encoding="utf-8") as fp:
+                docblock = fp.read()
+
+                # wrap parsed table inside Bootstrap .card for nicer formatting
+                docmd = markdown.markdown(docblock, extensions=['tables'])
+                docmd = docmd.replace('<table>', '<div class="card-body"><table class="table table-sm table-meta_data mb-0">')
+                docmd = docmd.replace('</table>', '</table></div></div>')
+
+                docmd = docmd.replace('<h2>', '<div class="card mb-3"><h5 class="card-header">')
+                docmd = docmd.replace('</h2>', '</h5>')
+        else:
+            # docblock is fallback in case no md description is found
+            pm = importlib.import_module(f'parameters.{self.parameter_id}')
+            docblock = pm.__doc__ or "*please add docstring to module*"
+            docmd = markdown.markdown(docblock, extensions=['tables'])
+
+        return docmd
 
     def get_unit(self) -> str:
         if self.parameter_id not in docu_dict:
