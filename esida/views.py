@@ -3,10 +3,12 @@ import datetime as dt
 import sys
 import os
 import json
+import zipfile
+from io import BytesIO
+import time
 
 from esida import app, params, db, logger
-from flask import render_template, make_response, abort, jsonify, request, redirect, url_for, send_from_directory
-import markdown
+from flask import render_template, make_response, abort, jsonify, send_file, request, redirect, url_for, send_from_directory
 from slugify import slugify
 
 from dbconf import get_engine, close
@@ -179,7 +181,7 @@ def download_json(shape_id, parameter_id, column):
         data=df[['x', 'y']].values.tolist()
     )
 
-def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None, end_date=None) -> pd.DataFrame:
+def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None, end_date=None, join_col='year') -> pd.DataFrame:
     dfs = []
 
     for p in params:
@@ -195,7 +197,7 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
 
         # we merge data year column, so do not add it to the pool
         # if the column is missing
-        if 'year' not in rdf:
+        if join_col not in rdf:
             continue
 
         dfs.append(rdf)
@@ -208,9 +210,9 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
 
     df = dfs[0]
     for i in range(1, len(dfs)):
-        df = df.merge(dfs[i], how='outer', on='year')
+        df = df.merge(dfs[i], how='outer', on=join_col)
 
-    df = df.sort_values(by=['year']).reset_index(drop=True)
+    df = df.sort_values(by=[join_col]).reset_index(drop=True)
 
     return df
 
@@ -480,19 +482,53 @@ def download_csv(shape_id):
     if end_date:
         end_date = dt.datetime(year=int(end_date), month=1, day=1)
 
-    df = _get_parameters_for_shape(shape_id,
+    df_year = _get_parameters_for_shape(shape_id,
         filter_parameters=filters,
         start_date=start_date,
-        end_date=end_date)
+        end_date=end_date,
+        join_col='year')
 
+    df_date = _get_parameters_for_shape(shape_id,
+        filter_parameters=filters,
+        start_date=start_date,
+        end_date=end_date,
+        join_col='date')
 
+    # we have results on both potential time resolutions, create .zip file
+    # download for both!
+    if len(df_year) > 0 and len(df_date) > 0:
+        files = [{
+            'name': f"ESIDA_{shape.type}_{slugify(shape.name)}_year.csv",
+            'content': df_year.to_csv(index=False)
+        }, {
+            'name': f"ESIDA_{shape.type}_{slugify(shape.name)}_date.csv",
+            'content': df_date.to_csv(index=False)
+        } ]
 
-    filename=f"ESIDA_{shape.type}_{slugify(shape.name)}.csv"
+        memory_file = BytesIO()
+        with zipfile.ZipFile(memory_file, 'w') as zf:
+            for file in files:
+                data = zipfile.ZipInfo(file['name'])
+                data.date_time = time.localtime(time.time())[:6]
+                data.compress_type = zipfile.ZIP_DEFLATED
+                zf.writestr(data, file['content'])
+        memory_file.seek(0)
 
-    resp = make_response(df.to_csv(index=False))
+        return send_file(memory_file, attachment_filename=f"ESIDA_{shape.type}_{slugify(shape.name)}.zip", as_attachment=True)
+
+    # only date or year are available for the query, only send the available
+    # resolution directly as .csv, no need to zip a single file.
+    df = df_year
+    temporal_resolution = 'year'
+    if len(df) == 0:
+        temporal_resolution = 'date'
+        df = df_date
+
+    filename=f"ESIDA_{shape.type}_{slugify(shape.name)}_{temporal_resolution}.csv"
+
+    resp = make_response(df_date.to_csv(index=False))
     resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
     resp.headers["Content-Type"] = "text/csv"
-
     return resp
 
 
