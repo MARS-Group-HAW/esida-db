@@ -1,5 +1,6 @@
 import importlib
 import datetime as dt
+import sys
 import os
 import json
 
@@ -11,6 +12,7 @@ from slugify import slugify
 from dbconf import get_engine, close
 from esida.models import Shape, Signal
 
+import shapely
 import pandas as pd
 import numpy as np
 import humanize
@@ -335,6 +337,55 @@ def api_parameter(parameter_id):
         data_quality=data_quality
     )
 
+@app.route('/api/v1/parameter_map/<string:parameter_id>/<string:shape_type>/<string:date>')
+def api_parameter_map(parameter_id, shape_type, date):
+    """ Get parameter values for given shape type and temporal point. """
+
+    if parameter_id not in params:
+        return jsonify(error="Parameter is not found"), 404
+
+    if shape_type not in ['region', 'district']:
+        return jsonify(error="Shape type invalid"), 404
+
+    pm = importlib.import_module(f'parameters.{parameter_id}')
+    pc = getattr(pm, parameter_id)()
+
+    if not pc.is_loaded():
+        return jsonify(error="Parameter is not loaded"), 503
+
+    date_parts = date.split('-')
+    if (len(date_parts) == 3):
+        date_obj = dt.datetime(year=int(date_parts[0]), month=int(date_parts[1]), day=int(date_parts[2]))
+    else:
+        date_obj = dt.datetime(year=int(date), month=1, day=1)
+
+    data = {
+        'type': "FeatureCollection",
+        "features":[]
+    }
+
+    rows = pc.get_map(shape_type, date_obj)
+    min_value = sys.maxsize
+    max_value = 0
+
+    for r in rows:
+
+        if r['value'] != None:
+            min_value = min(r['value'], min_value)
+            max_value = max(r['value'], max_value)
+
+        f = {
+            "type": "Feature",
+            "properties": {
+                "name":  r['name'],
+                "value": r['value'],
+            },
+            "geometry": shapely.geometry.mapping(r['geometry']),
+        }
+        data['features'].append(f)
+
+    return jsonify(geojson=data, min=min_value, max=max_value)
+
 @app.route('/api/v1/da_spatial/<string:parameter_id>')
 def api_da_spatial(parameter_id):
     """ Get data and metadata for single parameter. """
@@ -583,4 +634,4 @@ def after_request_callback(response):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)

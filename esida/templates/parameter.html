@@ -30,21 +30,40 @@
 
   <div class="row">
     {% if parameter['class'].is_loaded() %}
-    <div class="col-12 col-sm-4">
 
-      <p>Available parameter fields:</p>
-      <ul>
-      {% for pk in parameter['class'].get_fields(only_numeric=False) %}
-        <li><code>{{ pk }}</code></li>
-      {% endfor %}
-      </ul>
+    <div class="row">
+      <div class="col">
+        <p>
+          Compare shape against means of regions and districts:
+        </p>
+      </div>
     </div>
 
-    <div class="col-12 col-sm-8">
-      <p>
-        Compare shape against means of regions and districts:
-      </p>
+    <div class="col-12 col-sm-6">
 
+      <div class="input-group input-group-sm mb-3" style="max-width: 400px">
+        <select class="form-select js-map-shape_type" id="js-shape_type">
+          <option value="region">Region</option>
+          <option value="district">District</option>
+        </select>
+
+        {% if  parameter['class'].time_col == 'year' %}
+          <select class="form-select" id="js-map-date">
+            {% for year in parameter['class'].years_with_data() %}
+            <option vlaue="{{ year }}">{{ year }}</option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="date" class="form-control" id="js-map-date">
+        {% endif %}
+
+        <button id="js-add-to-map" class="btn btn-outline-secondary btn-sm">Load map</button>
+      </div>
+
+      <div id="map" style="width: 100%; height: 350px;"></div>
+    </div>
+
+    <div class="col-12 col-sm-6">
       <div class="input-group mb-3" style="max-width: 400px">
         <select class="form-select js-chosen-select" id="js-shape">
           {% for key in shapes.keys() %}
@@ -68,6 +87,19 @@
     {% endif %}
   </div>
 
+  <div class="row">
+
+    <div class="col">
+      <p>Available parameter fields:</p>
+      <ul>
+      {% for pk in parameter['class'].get_fields(only_numeric=False) %}
+        <li><code>{{ pk }}</code></li>
+      {% endfor %}
+      </ul>
+
+    </div>
+  </div>
+
   <div>
     {{ parameter['description_html']|safe }}
   </div>
@@ -77,6 +109,173 @@
 
 
 {% block footer %}
+<script>
+
+/**
+ * https://leafletjs.com/examples/choropleth/
+ */
+var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+var map_position = {lat: -6, lng: 35, zoom: 5};
+
+var map = L.map('map', {
+  preferCanvas: true,
+  loadingControl: true
+}).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
+
+var url_base = '/api/v1/parameter_map/{{ parameter['name'] }}/'
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = (props ?
+        '<b>' + props.name + '</b><br />' + props.value
+        : 'Hover over a shape');
+};
+
+info.addTo(map);
+
+function getColor(d) {
+
+  if (d == null) {
+    return '#808080';
+  }
+
+  return d >   cmap[7] ? '#800026' :
+           d > cmap[6] ? '#BD0026' :
+           d > cmap[5] ? '#E31A1C' :
+           d > cmap[4] ? '#FC4E2A' :
+           d > cmap[3] ? '#FD8D3C' :
+           d > cmap[2] ? '#FEB24C' :
+           d > cmap[1] ? '#FED976' :
+                      '#FFEDA0';
+
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.value),
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 2,
+        color: '#333',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    on_map.resetStyle(e.target);
+    info.update();
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+var on_map = false;
+var min_value = 0;
+var max_value = 0;
+var cmap = [];
+var legend = false;
+
+$('#js-add-to-map').on('click', function(e) {
+  map.fire('dataloading');
+  $.getJSON( url_base + $('#js-shape_type').val() + "/" + $('#js-map-date').val(), function(data) {
+    if (on_map) {
+      map.removeLayer(on_map);
+    }
+
+    min_value = data.min;
+    max_value = data.max;
+
+    var step = (max_value - min_value) / 8;
+    cmap = [0];
+    for (var i = 1; i < 8; i++) {
+      cmap[i] = min_value + step * i;
+    }
+
+
+    if (legend) {
+      map.removeControl(legend);
+    }
+
+    legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create('div', 'info legend'),
+            grades = cmap,
+            labels = [];
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(grades[i] + (step*0.5)) + '"></i> ' +
+                grades[i].toFixed(3) + (grades[i + 1] ? '&ndash;' + grades[i + 1].toFixed(3) + '<br>' : '+');
+        }
+
+        return div;
+    };
+
+    legend.addTo(map);
+
+
+
+    on_map = L.geoJson(data.geojson, {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+    map.fire('dataload');
+});
+});
+
+
+
+
+
+</script>
+
 
 {% if parameter['class'].is_loaded() %}
 <script>

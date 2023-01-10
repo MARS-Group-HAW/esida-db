@@ -5,10 +5,14 @@ import logging
 import subprocess
 from pathlib import Path
 from urllib.parse import urlparse
+from typing import List
+
 
 from sqlalchemy import text
+from geoalchemy2.shape import to_shape
 import pandas as pd
 import geopandas
+import shapely
 
 from dbconf import get_engine, connect
 
@@ -363,6 +367,57 @@ class BaseParameter():
 
         return df
 
+    def get_map(self, shape_type, date):
+        if not self.is_loaded():
+            self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
+            return pd.DataFrame
+
+        col = self.parameter_id
+
+        sql =  f"SELECT {self.parameter_id}.{col} as value, shape.id, shape.name, shape.geometry"
+        sql += f" FROM {self.parameter_id}"
+        sql += f" JOIN shape ON shape.id = {self.parameter_id}.shape_id"
+        sql += " WHERE 1=1"
+
+        sql += " AND shape.type = %s"
+
+        if self.time_col == 'year':
+            sql += f" AND year = {date.year}"
+        elif self.time_col == 'date':
+            sql += f" AND date = '{str(date)}'"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
+
+
+        print(sql)
+
+        con = connect()
+        res = con.execute(sql, (shape_type, ))
+        rows = []
+        for row in res:
+            rows.append({
+                'value': row[0],
+                'shape_id': row[1],
+                'name': row[2],
+                'geometry':  shapely.wkb.loads(row[3], hex=True)
+            })
+
+        return rows
+
+
+        # all parameters tables have index and shape id columns, drop them
+        # always so we don't duplicate them while merging the DataFrames
+        drop_cols = ['index']
+        if shape_id:
+            drop_cols.append('shape_id')
+        df = df.drop(drop_cols, axis=1, errors='ignore')
+
+        dd = df.to_dict('records')[0]
+        if self.parameter_id in dd:
+            return dd[self.parameter_id]
+
+        return None
+
     def mean(self, shape_type: str) -> pd.DataFrame:
 
         sql = f"SELECT {self.time_col}, AVG({self.parameter_id}) as {self.parameter_id} FROM {self.parameter_id} \
@@ -401,6 +456,23 @@ class BaseParameter():
             return None
 
         return dreq
+
+    def years_with_data(self) -> List[int]:
+        """ finds all years in which data are available. """
+
+        if not self.is_loaded():
+            self.logger.warning("Peek of data requested but not loaded for shape_id=%s", shape_id)
+            return []
+
+        if self.time_col == 'year':
+            sql = f"SELECT DISTINCT year FROM  {self.parameter_id} ORDER BY year DESC"
+        elif self.time_col == 'date':
+            sql = f"SELECT DATE_PART('year', date ::date) AS year FROM {self.parameter_id} WHERE date is not NULL GROUP BY year ORDER BY year DESC"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
+
+        df = pd.read_sql(sql, con=get_engine())
+        return df['year'].tolist()
 
     def format_value(self, value) -> str:
 
