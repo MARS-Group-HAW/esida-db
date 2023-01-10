@@ -368,6 +368,7 @@ class BaseParameter():
         return df
 
     def get_map(self, shape_type, date):
+        """ Get rows for given shape type and date. Contains shape geometry. """
         if not self.is_loaded():
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame
@@ -388,9 +389,6 @@ class BaseParameter():
         else:
             raise ValueError(f"Unknown time_col={self.time_col}")
 
-
-        print(sql)
-
         con = connect()
         res = con.execute(sql, (shape_type, ))
         rows = []
@@ -403,20 +401,6 @@ class BaseParameter():
             })
 
         return rows
-
-
-        # all parameters tables have index and shape id columns, drop them
-        # always so we don't duplicate them while merging the DataFrames
-        drop_cols = ['index']
-        if shape_id:
-            drop_cols.append('shape_id')
-        df = df.drop(drop_cols, axis=1, errors='ignore')
-
-        dd = df.to_dict('records')[0]
-        if self.parameter_id in dd:
-            return dd[self.parameter_id]
-
-        return None
 
     def mean(self, shape_type: str) -> pd.DataFrame:
 
