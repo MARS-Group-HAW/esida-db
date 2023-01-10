@@ -1,35 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ parameter['class'].get_title() }} ({{ parameter['name']}}) - Parameters{% endblock %}
+{% block title %}{{ parameter.get_title() }} ({{ parameter.parameter_id }}) - Parameters{% endblock %}
 
 {% block head %}
   <link rel="schema.DC"       href="http://purl.org/dc/elements/1.1/" />
   <link rel="schema.DCTERMS"  href="http://purl.org/dc/terms/" />
-  <meta name="DC.title"       content="{{ parameter['name'] }}" />
-  <meta name="DC.subject"     content="{{ parameter['class'].get_meta('subject') }}" />
-  <meta name="DC.creator"     content="{{ parameter['class'].get_meta('creator') }}" />
-  <meta name="DC.description" content="{{ parameter['class'].get_meta('description') }}" />
-  <meta name="DC.publisher"   content="{{ parameter['class'].get_meta('publisher') }}" />
-  <meta name="DC.contributor" content="{{ parameter['class'].get_meta('contributor') }}" />
-  <meta name="DC.date"        content="{{ parameter['class'].get_meta('date') }}" />
-  <meta name="DC.type"        content="{{ parameter['class'].get_meta('type') }}" />
-  <meta name="DC.format"      content="{{ parameter['class'].get_meta('format') }}" />
-  <meta name="DC.identifier"  content="{{ parameter['class'].get_meta('identifier') }}" />
-  <meta name="DC.source"      content="{{ parameter['class'].get_meta('source') }}" />
-  <meta name="DC.language"    content="{{ parameter['class'].get_meta('language') }}" />
-  <meta name="DC.rights"      content="{{ parameter['class'].get_meta('rights') }}" />
-  <meta name="DC.coverage"    content="{{ parameter['class'].get_meta('coverage') }}" />
+  <meta name="DC.title"       content="{{ parameter.parameter_id }}" />
+  <meta name="DC.subject"     content="{{ parameter.get_meta('subject') }}" />
+  <meta name="DC.creator"     content="{{ parameter.get_meta('creator') }}" />
+  <meta name="DC.description" content="{{ parameter.get_meta('description') }}" />
+  <meta name="DC.publisher"   content="{{ parameter.get_meta('publisher') }}" />
+  <meta name="DC.contributor" content="{{ parameter.get_meta('contributor') }}" />
+  <meta name="DC.date"        content="{{ parameter.get_meta('date') }}" />
+  <meta name="DC.type"        content="{{ parameter.get_meta('type') }}" />
+  <meta name="DC.format"      content="{{ parameter.get_meta('format') }}" />
+  <meta name="DC.identifier"  content="{{ parameter.get_meta('identifier') }}" />
+  <meta name="DC.source"      content="{{ parameter.get_meta('source') }}" />
+  <meta name="DC.language"    content="{{ parameter.get_meta('language') }}" />
+  <meta name="DC.rights"      content="{{ parameter.get_meta('rights') }}" />
+  <meta name="DC.coverage"    content="{{ parameter.get_meta('coverage') }}" />
 {% endblock %}
 
 
 {% block content %}
   <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-    <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('download_parameter', parameter_id=parameter['name']) }}">Download all data</a>
-    <h1 class="bd-title">{{ parameter['class'].get_title() }} <small class="text-muted">({{ parameter['name'] }})</small></h1>
+    <a class="btn btn-sm btn-outline-primary mb-2 mb-md-0" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">Download all data</a>
+    <h1 class="bd-title">{{ parameter.get_title() }} <small class="text-muted">({{ parameter.parameter_id }})</small></h1>
   </div>
 
   <div class="row">
-    {% if parameter['class'].is_loaded() %}
+    {% if parameter.is_loaded() %}
 
     <div class="row">
       <div class="col">
@@ -48,9 +48,9 @@
             <option value="district">District</option>
           </select>
 
-          {% if  parameter['class'].time_col == 'year' %}
+          {% if  parameter.time_col == 'year' %}
             <select class="form-select" id="js-map-date">
-              {% for year in parameter['class'].years_with_data() %}
+              {% for year in parameter.years_with_data() %}
               <option vlaue="{{ year }}">{{ year }}</option>
               {% endfor %}
             </select>
@@ -85,7 +85,7 @@
     <div class="col-12">
       <p>Available parameter fields:</p>
       <ul>
-      {% for pk in parameter['class'].get_fields(only_numeric=False) %}
+      {% for pk in parameter.get_fields(only_numeric=False) %}
         <li><code>{{ pk }}</code></li>
       {% endfor %}
       </ul>
@@ -98,7 +98,7 @@
   </div>
 
   <div>
-    {{ parameter['class'].get_description()|safe }}
+    {{ parameter.get_description()|safe }}
   </div>
 
 {% endblock %}
@@ -121,7 +121,7 @@ var map = L.map('map', {
   loadingControl: true
 }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
 
-var url_base = '/api/v1/parameter_map/{{ parameter['name'] }}/'
+var url_base = '/api/v1/parameter_map/{{ parameter.parameter_id }}/'
 
 var info = L.control();
 
@@ -274,7 +274,7 @@ $('#js-add-to-map').on('click', function(e) {
 </script>
 
 
-{% if parameter['class'].is_loaded() %}
+{% if parameter.is_loaded() %}
 <script>
 $(".js-chosen-select").chosen();
 
@@ -307,7 +307,7 @@ var options = {
   yaxis: {
     labels: {
       formatter: function (value) {
-        var prec = {{ parameter['class'].precision or -1 }}
+        var prec = {{ parameter.precision or -1 }}
         if (prec != -1) {
           return value.toFixed(prec);
         }
@@ -320,13 +320,13 @@ var options = {
     type: 'datetime'
   },
 
-  {% if parameter['class'].time_col == 'year' %}
+  {% if parameter.time_col == 'year' %}
   tooltip: {
     x: {
       format: "yyyy"
     }
   }
-  {% elif  parameter['class'].time_col == 'date' %}
+  {% elif  parameter.time_col == 'date' %}
   tooltip: {
     x: {
       format: "yyyy-MM-dd"
@@ -342,7 +342,7 @@ var chart = new ApexCharts(
 
 chart.render();
 
-$.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_for=region', function(response) {
+$.getJSON('/shape/0/{{ parameter.parameter_id }}/{{ parameter.parameter_id }}/json?mean_for=region', function(response) {
   if (response['data'].length > 0) {
     chart.appendSeries({
       name: 'Region (mean)',
@@ -350,7 +350,7 @@ $.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_fo
     });
   }
 });
-$.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_for=district', function(response) {
+$.getJSON('/shape/0/{{ parameter.parameter_id }}/{{ parameter.parameter_id }}/json?mean_for=district', function(response) {
   if (response['data'].length > 0) {
     chart.appendSeries({
       name: 'District (mean)',
@@ -362,7 +362,7 @@ $.getJSON('/shape/0/{{ parameter['name'] }}/{{ parameter['name'] }}/json?mean_fo
 $('#js-add-shape-to-chart').on('click', function(e) {
   var shape_id = $('#js-shape option:selected').val();
   var shape_name = $("#js-shape option:selected").text();
-  $.getJSON('/shape/' + shape_id + '/{{ parameter['name'] }}/{{ parameter['name'] }}/json', function(response) {
+  $.getJSON('/shape/' + shape_id + '/{{ parameter.parameter_id }}/{{ parameter.parameter_id }}/json', function(response) {
     chart.appendSeries({
       name: shape_name,
       data: response['data']

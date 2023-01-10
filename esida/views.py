@@ -544,41 +544,23 @@ def parameter(parameter_name):
     if parameter_name not in params:
         abort(404)
 
-    pm = importlib.import_module(f'parameters.{parameter_name}')
-    docblock = pm.__doc__ or "*please add docstring to module*"
-
-    # check meta data directory
-    docfile = f"input/meta_data/{parameter_name}.md"
-    if os.path.isfile(docfile):
-        with open(docfile) as f:
-            docblock = f.read()
-
-    docmd = markdown.markdown(docblock, extensions=['tables'])
-    docmd = docmd.replace('<table>', '<table class="table table-sm table-meta_data">')
-
-    parameter = {
-        'name': pm.__name__.split('.')[1],
-        'description': pm.__doc__,
-        'description_html': docmd,
-        'class': getattr(pm, parameter_name)()
-    }
+    parameter_module = importlib.import_module(f'parameters.{parameter_name}')
+    parameter_class  = getattr(parameter_module, parameter_name)()
 
     shapes = Shape.query.where().all()
     shapes_dropdown = {}
-
-    for shape in shapes:
-        if shape.type not in shapes_dropdown:
-            shapes_dropdown[shape.type]  = []
-
-        shapes_dropdown[shape.type].append({
-            'name': shape.name,
-            'id': shape.id
+    for s in shapes:
+        if s.type not in shapes_dropdown:
+            shapes_dropdown[s.type]  = []
+        shapes_dropdown[s.type].append({
+            'name': s.name,
+            'id':   s.id
         })
 
-    return render_template('parameter.html', parameter=parameter,
-    shapes=shapes_dropdown)
-
-
+    return render_template('parameter.html',
+        parameter=parameter_class,
+        shapes=shapes_dropdown
+    )
 
 @app.route("/download_parameter/<string:parameter_id>")
 def download_parameter(parameter_id):
