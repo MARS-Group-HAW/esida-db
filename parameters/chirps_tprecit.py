@@ -89,6 +89,3 @@ class chirps_tprecit(TiffParameter):
             f"{self.parameter_id}_max":     np.nanmax(band),
             f"{self.parameter_id}_std_dev": np.nanstd(band),
         })
-
-    def get_fields(self, only_numeric=False):
-        return []
