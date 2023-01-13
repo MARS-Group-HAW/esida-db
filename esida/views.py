@@ -223,6 +223,10 @@ def str2bool(v) -> bool:
 @app.route('/api/v1/shapes')
 def api_shapes():
 
+    format = 'csv'
+    if 'format' in request.args:
+        format = request.args['format']
+
     if 'type' in request.args:
         shapes = Shape.query.where(Shape.type == request.args['type']).all()
     else:
@@ -243,8 +247,28 @@ def api_shapes():
             row['wkt'] = s.geom().wkt
 
         data.append(row)
-    df = pd.DataFrame(data)
 
+
+    if format == 'json':
+        data = {
+            'type': "FeatureCollection",
+            "features":[]
+        }
+
+        for s in shapes:
+            f = {
+                "type": "Feature",
+                "properties": {
+                    "name":  s.name,
+                    'type': s.type,
+                    "shape_id": s.id
+                },
+                "geometry": shapely.geometry.mapping(s.geom()),
+            }
+            data['features'].append(f)
+        return jsonify(data)
+
+    df = pd.DataFrame(data)
     return jsonify(
         data=df.to_dict('records')
     )
