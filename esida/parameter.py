@@ -21,7 +21,7 @@ from dbconf import get_engine, connect
 engine = get_engine()
 
 docu_df = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Documentation.csv')
-docu_dict = docu_df[['Abbreviation', 'Category', 'Title', 'ESIDA database unit']].set_index('Abbreviation').to_dict('index')
+docu_dict = docu_df[['Abbreviation', 'Category', 'Title', 'ESIDA database unit']].fillna('').set_index('Abbreviation').to_dict('index')
 
 meta_dict = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Metadata.csv').fillna('').rename(columns=str.lower).set_index('abbreviation').to_dict('index')
 
@@ -57,7 +57,8 @@ class BaseParameter():
 
     def get_title(self) -> str:
         if self.parameter_id in docu_dict:
-            return docu_dict[self.parameter_id ]['Title']
+            if docu_dict[self.parameter_id ]['Title'] != '':
+                return docu_dict[self.parameter_id ]['Title']
         return self.parameter_id
 
     def get_category(self) -> str:
