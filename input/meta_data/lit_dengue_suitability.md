@@ -30,4 +30,3 @@
 | Citation     | None                                                   |
 | Language     | eng                                                    |
 | Coverage     | Tanzania                                               |
-| contributor  | KrN                                                    |

@@ -36,4 +36,3 @@
 | Language     | eng           |
 | Rights       | ODbL-1.0      |
 | Coverage     | Tanzania      |
-| contributor  | KrN           |

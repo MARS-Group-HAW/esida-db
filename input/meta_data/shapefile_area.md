@@ -36,4 +36,3 @@
 | Language     | eng                                                                                                                                              |
 | Rights       | [https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf](https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf) |
 | Coverage     | Tanzania                                                                                                                                         |
-| contributor  | KrN                                                                                                                                              |

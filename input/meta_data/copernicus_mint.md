@@ -36,4 +36,3 @@
 | Language     | eng                                                                                                                                                                          |
 | Rights       | [https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview) |
 | Coverage     | Tanzania                                                                                                                                                                     |
-| contributor  | KrN                                                                                                                                                                          |

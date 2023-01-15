@@ -36,4 +36,3 @@
 | Language     | eng                               |
 | Rights       | Unkown                            |
 | Coverage     | Tanzania                          |
-| contributor  | KrN                               |

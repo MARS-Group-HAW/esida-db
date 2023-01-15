@@ -32,4 +32,3 @@
 | Identifier   | None               |
 | Language     | eng                |
 | Coverage     | Tanzania           |
-| contributor  | KrN                |

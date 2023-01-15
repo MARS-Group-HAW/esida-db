@@ -37,4 +37,3 @@
 | Language     | eng                                                                                          |
 | Rights       | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
 | Coverage     | Tanzania                                                                                     |
-| contributor  | KrN                                                                                          |

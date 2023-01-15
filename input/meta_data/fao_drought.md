@@ -36,4 +36,3 @@
 | Language     | eng                                                                                                                                                                                                            |
 | Rights       | CC BY-NC- SA 3.0 IGO                                                                                                                                                                                           |
 | Coverage     | Tanzania                                                                                                                                                                                                       |
-| contributor  | KrN                                                                                                                                                                                                            |
