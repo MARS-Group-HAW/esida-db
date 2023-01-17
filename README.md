@@ -78,7 +78,7 @@ Stat the PostGIS database with docker-compose as shown above. Then install the d
 
 - PostGIS (you use the one from docker-compose: `$ docker-compose up -d postgis`)
 - GDAL
-- Python 3.9.x
+- Python 3.11.x
 - Python packages with `$ pip install -r requirements.txt`
 - Make local ESIDA Python package: `$ pip install -e .`
 - Make the Flask App know to the system: `$ export FLASK_APP=esida`
