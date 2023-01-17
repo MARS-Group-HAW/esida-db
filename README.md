@@ -1,22 +1,29 @@
-# ESIDA DB Pipeline
+# ESIDA Data Hub
+
+Python based framework for downloading and calculating spatio-temporal data to different areas of interest, like administrative levels of a country, or other shapes.
+
+It aims to be a decision system for epidemiology and can provide an overview with socioecological per administrative level.
+
 
 ## Usage
 
 ### Access data
 
-Two means of data access are provided. Once on each shape all loaded parameter data associated with the shape can be downloaded as CSV file. For each parameter a download containing all shapes for this parameter is provided as well. Those downloads can be accessed via the web frontend.
+Two means of data access are provided. For all loaded shapes the available parameter data associated with it can be downloaded as CSV file. For each parameter a download containing all shapes for this parameter is provided as well. Those downloads can be accessed via the web frontend.
 
 Also a simple REST like API is provided to query the shape and parameter data programmatically. See the Jupyter notebook `notebooks/ESIDA DB Demo.ipynb` for further explanation and usage examples of the API.
 
 Data quality metrics can be extracted as well with the API, for this see the notebook `notebooks/ESIDA DB Data Quality.ipynb`. In this case it is recommended to use the system locally since the queries for spatial data quality can be quite long-running, and it might not be possible to query them from a remote host.
 
-### Extract data for MARS ABM
+### Extract data for arbitrary area
 
-After ingesting data you can create the MARS ABM box for an arbitrary region inside the area of the imported data.
+After ingesting data you can calculate the data for an arbitrary region inside the area of the imported data.
 
     $ python ./eisda-cli.py clip --wkt <path to WKT Polygon> --abm
 
 This will generate a simulation blueprint with the required input data.
+
+The `--abm` flag can be used to only export the relevant data needed for the MARS agent based model.
 
 
 ## Setup
