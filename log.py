@@ -1,3 +1,4 @@
+import os
 import logging
 
 def setup_custom_logger(name):
@@ -6,7 +7,9 @@ def setup_custom_logger(name):
     handler = logging.StreamHandler()
     handler.setFormatter(formatter)
 
-    handler_file = logging.FileHandler(filename='output/.logs/esida.log')
+    log_file_name = 'output/.logs/esida.log'
+    os.makedirs(os.path.dirname(log_file_name), exist_ok=True)
+    handler_file = logging.FileHandler(filename=log_file_name)
     handler_file.setFormatter(formatter)
 
     logger = logging.getLogger(name)
