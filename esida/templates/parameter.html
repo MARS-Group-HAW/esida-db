@@ -51,7 +51,7 @@
           {% if  parameter.time_col == 'year' %}
             <select class="form-select" id="js-map-date">
               {% for year in parameter.years_with_data() %}
-              <option vlaue="{{ year }}">{{ year }}</option>
+              <option value="{{ year }}">{{ year }}</option>
               {% endfor %}
             </select>
           {% else %}
