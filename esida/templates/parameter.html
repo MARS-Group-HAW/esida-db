@@ -259,7 +259,7 @@ $('#js-add-to-map').on('click', function(e) {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(map);
-
+    map.fitBounds(on_map.getBounds());
     map.fire('dataload');
 });
 });
