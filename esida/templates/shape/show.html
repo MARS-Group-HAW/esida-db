@@ -22,38 +22,33 @@
           </tr>
         </thead>
         <tbody>
-          {% if shape.type == 'region' %}
+          {% if shape.parent %}
+          <tr>
+            <th>Parent</th>
+            <td><a href="{{ url_for('shape', shape_id=shape.parent.id) }}">{{ shape.parent.name }}</a></td>
+          </tr>
+          {% endif %}
+
           <tr class="table-info">
-            <th>Region</th>
-            <td><b>{{ shape.name }}</b></td>
+            <th>Type</th>
+            <td>{{ shape.type.title() }}</td>
           </tr>
           <tr>
-            <th>Districts ({{ shape.children|length }})</th>
+            <th>Name</th>
+            <td>{{ shape.name }}</td>
+          </tr>
+
+          {% if shape.children|length > 0 %}
+          <tr>
+            <th>Children ({{ shape.children|length }})</th>
             <td><ul class="m-0""">{% for child in shape.children %}
 
               <li><a href="{{ url_for('shape', shape_id=child.id) }}">{{ child.name }}</a></li>
 
                {% endfor %}</ul></td>
           </tr>
-          {% elif shape.type == 'district' %}
-          <tr>
-            <th>Region</th>
-            <td><a href="{{ url_for('shape', shape_id=shape.parent.id) }}">{{ shape.parent.name }}</a></td>
-          </tr>
-          <tr class="table-info">
-            <th>District</th>
-            <td><b>{{ shape.name }}</b></td>
-          </tr>
-          {% else %}
-          <tr>
-            <th>Type</th>
-            <td>{{ shape.type }}</td>
-          </tr>
-          <tr>
-            <th>Name</th>
-            <td>{{ shape.name }}</td>
-          </tr>
           {% endif %}
+
           <tr>
             <th>Area</th>
             <td>{{ shape.human_readable_area() }} km<sup>2</sup></td>

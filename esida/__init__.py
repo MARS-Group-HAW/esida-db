@@ -49,6 +49,17 @@ if config('FLASK_BASIC_AUTH_FORCE', default=True, cast=bool):
 
 params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
+def shape_types() -> list:
+    """ Return available shape types for hierarchical area of interests. """
+    types = config('DATAHUB_SHAPE_TYPES', default="region district", cast=str)
+    return types.split(" ")
+
+
+@app.context_processor
+def inject_shape_types():
+    """ Inject shape_types from .env file into ALL view templates. """
+    return dict(shape_types=shape_types())
+
 # import AFTER app, etc. has been declared!
 import esida.models
 import esida.views

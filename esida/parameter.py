@@ -16,6 +16,7 @@ import geopandas
 import shapely
 import markdown
 
+from esida import shape_types
 from dbconf import get_engine, connect
 
 engine = get_engine()
@@ -500,20 +501,19 @@ class BaseParameter():
 
     # ---
 
-
-
-    def _get_shapes_from_db(self, id=None):
+    def _get_shapes_from_db(self, shape_id=None):
         """ Fetch all available districts and regions from the database. """
 
-        sql = "SELECT * FROM shape WHERE type IN('region', 'district')"
-        #sql = "SELECT * FROM shape WHERE name = 'Mjini'"
+        sql = "SELECT * FROM shape WHERE type IN %(types)s"
+        params = {'types': tuple(shape_types())}
 
-        if id:
-            sql = "SELECT * FROM shape WHERE id = " + str(int(id))
+        if shape_id:
+            sql = "SELECT * FROM shape WHERE id = %(shape_id)s"
+            params = {'shape_id': shape_id }
 
         gdf = geopandas.GeoDataFrame.from_postgis(
             sql,
-            get_engine(), geom_col='geometry')
+            get_engine(), geom_col='geometry', params=params)
         shapes = []
         for _, row in gdf.iterrows():
             shapes.append({

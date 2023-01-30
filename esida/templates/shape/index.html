@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Regions{% endblock %}
+{% block title %}{{ shape_type }}{% endblock %}
 
 {% block content %}
-<h1>Regions</h1>
+<h1>{{ shape_type.title() }}</h1>
 
 <div class="row">
   <div class="col-12 col-md-4 order-md-last">
@@ -18,7 +18,8 @@
       <table class="table table-sm table-striped" id="shapes">
         <thead>
           <tr>
-            <th>Region</th>
+            <th>Parent</th>
+            <th>Name</th>
             <th>Area</th>
             <th class="no-sort text-end">Actions</th>
           </tr>
@@ -27,6 +28,13 @@
         <tbody>
           {% for shape in shapes %}
           <tr>
+            <td class="align-middle">
+              {% if shape.parent %}
+              <a href="{{ url_for('shape', shape_id=shape.parent_id) }}" class="link-subtle">{{ shape.parent.name }}</a>
+              {% else %}
+              -
+              {% endif %}
+            </td>
             <td class="align-middle">
               <a href="{{ url_for('shape', shape_id=shape.id) }}" class="link-subtle">{{ shape.name }}</a>
             </td>
@@ -51,7 +59,7 @@
 <script>
 $(document).ready(function() {
     $('#shapes').DataTable({
-      paging: false,
+      pageLength: 25,
       columnDefs: [
         {targets: 'no-sort', orderable: false }
     ]

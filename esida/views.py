@@ -13,6 +13,7 @@ from slugify import slugify
 
 from dbconf import get_engine, close
 from esida.models import Shape, Signal
+from esida import shape_types
 
 import shapely
 import pandas as pd
@@ -60,15 +61,33 @@ def index():
         sizes_json=json.dumps(newlist)
     )
 
-@app.route("/regions")
-def regions():
-    shapes = Shape.query.where(Shape.type == "region").all()
-    return render_template('regions.html', shapes=shapes)
+@app.route("/shapes/<string:shape_type>")
+def shape_index(shape_type):
 
-@app.route("/districts")
-def districts():
-    shapes = Shape.query.where(Shape.type == "district").all()
-    return render_template('districts.html', shapes=shapes)
+    if shape_type not in shape_types():
+        abort(404)
+
+    shapes = Shape.query.where(Shape.type == shape_type).all()
+    return render_template('shape/index.html', shape_type=shape_type, shapes=shapes)
+
+@app.route("/shape/<int:shape_id>")
+def shape(shape_id):
+    shape = Shape.query.get(shape_id)
+
+    if shape is None:
+        abort(404)
+
+    parameters = []
+    for p in params:
+        pm = importlib.import_module('parameters.{}'.format(p))
+        pc = getattr(pm, p)()
+        if pc.is_loaded():
+            parameters.append(pc)
+
+    return render_template('shape/show.html',
+        shape=shape,
+        params=parameters
+    )
 
 @app.route("/map")
 def map():
@@ -106,26 +125,6 @@ def map():
         meteostat=meteostat,
         tza_hfr=tza_hfr,
         tza_hfr_categories=tza_hfr_categories
-    )
-
-
-@app.route("/shape/<int:shape_id>")
-def shape(shape_id):
-    shape = Shape.query.get(shape_id)
-
-    if shape is None:
-        abort(404)
-
-    parameters = []
-    for p in params:
-        pm = importlib.import_module('parameters.{}'.format(p))
-        pc = getattr(pm, p)()
-        if pc.is_loaded():
-            parameters.append(pc)
-
-    return render_template('shape.html',
-        shape=shape,
-        params=parameters
     )
 
 @app.route('/shape/<int:shape_id>/<parameter_id>/<column>/json')
@@ -370,7 +369,7 @@ def api_parameter_map(parameter_id, shape_type, date):
     if parameter_id not in params:
         return jsonify(error="Parameter is not found"), 404
 
-    if shape_type not in ['region', 'district']:
+    if shape_type not in shape_types():
         return jsonify(error="Shape type invalid"), 404
 
     pm = importlib.import_module(f'parameters.{parameter_id}')

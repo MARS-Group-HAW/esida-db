@@ -44,8 +44,9 @@
       <div class="mb-3">
         <div class="input-group input-group-sm mb-3" style="max-width: 400px">
           <select class="form-select js-map-shape_type" id="js-shape_type">
-            <option value="region">Region</option>
-            <option value="district">District</option>
+            {% for type in shape_types %}
+            <option value="{{ type }}">{{ type.title() }}</option>
+            {% endfor %}
           </select>
 
           {% if  parameter.time_col == 'year' %}
@@ -69,7 +70,7 @@
       <div class="input-group mb-3" style="max-width: 400px">
         <select class="form-select js-chosen-select" id="js-shape">
           {% for key in shapes.keys() %}
-            <optgroup label="{{ key }}">
+            <optgroup label="{{ key.title() }}">
               {% for shape in shapes[key] %}
                 <option value="{{shape['id'] }}">{{ shape['name'] }}</option>
               {% endfor %}
@@ -121,7 +122,6 @@ var map = L.map('map', {
 var url_base = '/api/v1/parameter_map/{{ parameter.parameter_id }}/'
 
 var info = L.control();
-
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
     this.update();
@@ -134,11 +134,9 @@ info.update = function (props) {
         '<b>' + props.name + '</b><br />' + props.value
         : 'Hover over a shape');
 };
-
 info.addTo(map);
 
 function getColor(d) {
-
   if (d == null) {
     return '#808080';
   }
@@ -172,7 +170,6 @@ function style(feature) {
         fillOpacity: 0.7
     };
 }
-
 
 function highlightFeature(e) {
     var layer = e.target;
@@ -228,15 +225,12 @@ $('#js-add-to-map').on('click', function(e) {
       cmap[i] = min_value + step * i;
     }
 
-
     if (legend) {
       map.removeControl(legend);
     }
 
     legend = L.control({position: 'bottomright'});
-
     legend.onAdd = function (map) {
-
         var div = L.DomUtil.create('div', 'info legend'),
             grades = cmap,
             labels = [];
@@ -253,8 +247,6 @@ $('#js-add-to-map').on('click', function(e) {
 
     legend.addTo(map);
 
-
-
     on_map = L.geoJson(data.geojson, {
         style: style,
         onEachFeature: onEachFeature
@@ -263,13 +255,7 @@ $('#js-add-to-map').on('click', function(e) {
     map.fire('dataload');
 });
 });
-
-
-
-
-
 </script>
-
 
 {% if parameter.is_loaded() %}
 <script>
@@ -339,22 +325,16 @@ var chart = new ApexCharts(
 
 chart.render();
 
-$.getJSON('/shape/0/{{ parameter.parameter_id }}/{{ parameter.parameter_id }}/json?mean_for=region', function(response) {
+{% for type in shape_types %}
+$.getJSON('/shape/0/{{ parameter.parameter_id }}/{{ parameter.parameter_id }}/json?mean_for={{ type }}', function(response) {
   if (response['data'].length > 0) {
     chart.appendSeries({
-      name: 'Region (mean)',
+      name: '{{ type.title() }} (mean)',
       data: response['data']
     });
   }
 });
-$.getJSON('/shape/0/{{ parameter.parameter_id }}/{{ parameter.parameter_id }}/json?mean_for=district', function(response) {
-  if (response['data'].length > 0) {
-    chart.appendSeries({
-      name: 'District (mean)',
-      data: response['data']
-    });
-  }
-});
+{% endfor %}
 
 $('#js-add-shape-to-chart').on('click', function(e) {
   var shape_id = $('#js-shape option:selected').val();
