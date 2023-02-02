@@ -60,6 +60,8 @@ All other `copernicus_*` parameters only need to execute the `load` command sinc
 
 ### Local setup (Docker)
 
+> :warning: **Prefer local development**: The Docker setup is recommended for using the Data Hub as it is provided, and not for changing regions/data. While it works, it's not a streamlined developing experience, due to need to rebuild the container after source changes. If this is your use-case you should go for the direct development setup explained below (though this requires installing a lot of dependencies locally).
+
 Clone the repository.
 
 Create the `.env` file and make sure it's correct populated:
@@ -82,6 +84,12 @@ After this you can start/stop the containers with
 
 The Data Hub is available at [http://localhost/](http://localhost/) - though it is empty at the moment
 and not everything works. To set it up follow these steps:
+
+After you make changes to the source files, you need to rebuild the Docker container. For this follow these steps:
+
+    $ docker-compose stop     # make sure the containers are not running
+    $ docker-compose rm esida # remove the currently build container
+    $ docker-compose up -d    # this should rebuild the container and reflect your code changes
 
 Enter the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands.
 Those are only required to be run after the first setup.
@@ -108,7 +116,7 @@ For available parameters see the listing at [http://localhost/parameter](http://
 Stat the PostGIS database with docker-compose as shown above. Then install the dependencies:
 
 - PostGIS (you use the one from docker-compose: `$ docker-compose up -d postgis`)
-- GDAL
+- GDAL `$ brew install gdal`
 - Python 3.11.x
 - Python packages with `$ pip install -r requirements.txt`
 - Make local ESIDA Python package: `$ pip install -e .`
