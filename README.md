@@ -2,7 +2,7 @@
 
 Python based framework for downloading and calculating spatio-temporal data to different areas of interest, like administrative levels of a country, or other shapes.
 
-It aims to be a decision system for epidemiology and can provide an overview with socioecological per administrative level.
+It aims to be a decision system for epidemiology and can provide an overview with socioecological per administrative level. It is developed in the context of the [ESIDA project](https://www.haw-hamburg.de/en/research/research-projects/project/project/show/esida/) and focused on Tanzania. But this framework aims to be agnostic to its data, so you can use it for different areas and data! See the section below about [setting up a different region](#use-your-own-geographic-region-and-data).
 
 
 ## Usage
@@ -25,14 +25,44 @@ This will generate a simulation blueprint with the required input data.
 
 The `--abm` flag can be used to only export the relevant data needed for the MARS agent based model.
 
+### Use your own geographic region and data
 
-## Setup
+The Data Hub can be used with any geographic areas, the areas can be organized hierarchically (i.e. administrative levels of a country). But the data need to be prepared in the format of the Data Hub before they can be used. See the provided Jupyter Notebook on how to prepare a shape file for the Data Hub, this example uses Shape files from [GADM](https://gadm.org/download_country.html) which provides shape data for many countries of the world. After preparing the data you can import them with `$ python esida-cli.py load-shapes <path to shp file>`. You also need to define the `DATAHUB_SHAPE_TYPES` constant in the `.env` file with a space separated list of the categories/types of your shapes. For Germany this might look like `DATAHUB_SHAPE_TYPES="country state district"`.
+
+After preparing the area of interest for your Data Hub you can customize the used data. For this look at the different examples inside the `parameters/` folder. For two different data sources the alterations are explained in the following:
+
+#### Meteostat
+
+[Meteostat](https://meteostat.net/) aggregates different weather stations around the world. To get precipitation/temperature data for your region, open the different `parameters/meteo_*.py` classes, i.e. `meteo_tprecit` for precipitation. This parameter utilizes the ability to derive a parameter from another parent parameter class ([DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)). In this case it's the `MeteostatParameter` class which combines different functions for accessing the Meteostat data. You can find the base class in `esida/meteostat_parameter.py`.
+
+To use your region we need to change two things:
+
+1. In the first lines of the `extract()` function you can change the region code to your country: `stations = stations.region('__cc__')`
+2. The volume of available weather stations varies around the globe, change the data range for that you want to download data to something smaller like a month. A few lines below the first alteration, change the `start` and `end` variables.
+
+Now you can import the data to the Data Hub with:
+
+    $ python ./esida-cli.py param meteo_tprecit extract # downloading weather station and data
+    $ python ./esida-cli.py param meteo_tprecit load    # calculating data for your imported shapes
+
+#### Copernicus Landusage
+
+[Copernicus](https://lcviewer.vito.be/) provides classification of different land types, i.e. forest, cropland, built-up. To use the data in the Data Hub you need to open the base class for the Copernicus Land-usage Data Layer at `esida/copernicus_parameter.py`. Inside the `extract()` function you see the `tiles` variable in which you can define download links for the tiles you need for your region. The different tiles and what land they cover you can find [here](https://lcviewer.vito.be/download).
+
+After adapting the download links to your need, you can download an process the data with:
+
+    $ python ./esida-cli.py param copernicus_crop extract # downloading weather station and data
+    $ python ./esida-cli.py param copernicus_crop load    # calculating data for your imported shapes
+
+All other `copernicus_*` parameters only need to execute the `load` command since the input data is shared between the layers.
+
+## Installation
 
 ### Local setup (Docker)
 
 Clone the repository.
 
-Copy the `.env` file and make sure it's correct populated.
+Create the `.env` file and make sure it's correct populated:
 
     $ cp .env.example .env
 
@@ -50,14 +80,15 @@ After this you can start/stop the containers with
 
     $ docker-compose start|stop
 
-The ESIDA DB is available at [http://localhost/](http://localhost/) - though it is empty at the moment
+The Data Hub is available at [http://localhost/](http://localhost/) - though it is empty at the moment
 and not everything works. To set it up follow these steps:
 
 Enter the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands.
 Those are only required to be run after the first setup.
 
     $ flask create-db          # setup required database columns
-    $ python esida-cli.py init # import region/district shape files into db
+    $ python esida-cli.py init # import Tanzania region/district shape files into db |OR|
+    $ python esida-cli.py load <path-to-shape-file> # import hierarchical prepared regions (see above)
 
 After that you can load the different parameters by key into the database:
 
