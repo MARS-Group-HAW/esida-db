@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgis:
-    image: postgis/postgis:14-3.2
+    image: postgis/postgis:15-3.3
     restart: always
     environment:
       POSTGRES_DB: esida
