@@ -39,7 +39,7 @@ def init():
     })
     regions_gdf['type'] = 'region'
     regions_gdf = regions_gdf.sort_values(by=['region_code'])
-    regions_gdf.to_postgis('shape', connect(), if_exists='append')
+    regions_gdf[['name', 'geometry', 'type']].to_postgis('shape', connect(), if_exists='append')
 
     imported_regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type= 'region'", connect(), geom_col='geometry')
 
@@ -59,7 +59,7 @@ def init():
     districts_gdf['type'] = 'district'
     districts_gdf['parent_id'] = districts_gdf['region_name'].apply(find_pk_if_region)
     districts_gdf = districts_gdf.sort_values(by=['region_code', 'district_c'])
-    districts_gdf.to_postgis('shape', connect(), if_exists='append')
+    districts_gdf[['name', 'parent_id', 'type', 'geometry']].to_postgis('shape', connect(), if_exists='append')
 
     # calculate district area
     # Date are in ESPG:4326 (deg based), so for ST_Area() to produce m2
