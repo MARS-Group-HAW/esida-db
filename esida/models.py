@@ -17,21 +17,16 @@ class Shape(db.Model):
     """
 
     id = db.Column(db.Integer, primary_key=True)
-
-    parent_id = db.Column(db.Integer, db.ForeignKey('shape.id'))
-
-    parent = db.relationship("Shape", remote_side=[id])
-    children = db.relationship("Shape")
-
     name = db.Column(db.String(255), nullable=False)
     type = db.Column(db.String(255), nullable=False)
 
-    region_code = db.Column(db.Integer, nullable=True, comment="Don't use PK, use id from shapefile to be in line with original data source")
-    region_name = db.Column(db.String(255), nullable=True)
-    district_c = db.Column(db.Integer, nullable=True, comment="Counter for districts within each region")
+    parent_id = db.Column(db.Integer, db.ForeignKey('shape.id'))
 
     geometry = db.Column(Geometry(srid=4326), nullable=False)
     area_sqm = db.Column(db.Float, nullable=True)
+
+    parent = db.relationship("Shape", remote_side=[id])
+    children = db.relationship("Shape")
 
     def human_readable_area(self) -> str:
         if not self.area_sqm:
