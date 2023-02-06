@@ -23,7 +23,7 @@ The Data Hub uses the following software:
 
 ### Local setup (Docker)
 
-> **Warning**
+> **Warning**  
 > The Docker setup is recommended for using the Data Hub as it is provided, and not for changing regions/data. While it works, it's not a streamlined developing experience, due to need to rebuild the container after source changes. If this is your use-case you should go for the direct development setup explained below (though this requires installing a lot of dependencies locally).
 
 Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and it's running. Clone the Data Hub repository and open it's directory in your CLI.
@@ -38,7 +38,7 @@ The Data Hub is now available at [http://localhost/](http://localhost/) - though
 # Inside Docker container CLI
 $ flask create-db          # setup required database columns
 
-$ python esida-cli.py init # import Tanzania region/district shape files into db 
+$ python esida-cli.py init # import Tanzania region/district shape files into db
 
 $ python ./esida-cli.py param meteo_tprecit extract # download and process precipitation data from Meteostat
 $ python ./esida-cli.py param meteo_tprecit load
@@ -64,10 +64,10 @@ After you make changes to the source files, you need to rebuild the Docker conta
 
 ### Local development (directly)
 
-> **Note**
+> **Note**  
 > The local development setup is recommended for using the Data Hub with own data sources.
 
-Make sure GDAL installed and Python 3 and the dependent packages are installed (`$ pip install -r requirements.txt` ). Due to the Geo-Dependencies this might be complicated. It might be easier to use the [Anaconda](https://www.anaconda.com/) distribution, which should install GDAL as well. 
+Make sure GDAL installed and Python 3 and the dependent packages are installed (`$ pip install -r requirements.txt` ). Due to the Geo-Dependencies this might be complicated. It might be easier to use the [Anaconda](https://www.anaconda.com/) distribution, which should install GDAL as well.
 
 Make sure a PostGIS database is installed and accessable, in case you have installed Docker you can use PostGIS from the provided `docker-compose.yaml` file with: `$ docker-compose up -d postgis`.
 
@@ -90,7 +90,7 @@ Setup the database schema and import inital data:
 
 ```
 $ flask create-db
-$ python esida-cli.py init # import Tanzania region/district shape files into db 
+$ python esida-cli.py init # import Tanzania region/district shape files into db
 $ python ./esida-cli.py param meteo_tprecit extract
 $ python ./esida-cli.py param meteo_tprecit load
 ```
