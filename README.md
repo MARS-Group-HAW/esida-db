@@ -5,6 +5,7 @@ The Dat Hub is a Python based framework for downloading and calculating spatio-t
 <p align="center">
   <img src="./docs/Data%20Hub.png" alt="Visualization of the Data Hub flow of processing raw data" />
 </p>
+
 It aims to be a decision system for epidemiology and can provide an overview with socioecological per administrative level. It is developed in the context of the [ESIDA project](https://www.haw-hamburg.de/en/research/research-projects/project/project/show/esida/) and focused on Tanzania. But this framework aims to be agnostic to its data, so you can use it for different areas and data! See the section below about [setting up a different region](#use-your-own-geographic-region-and-data).
 
 ## Installation
