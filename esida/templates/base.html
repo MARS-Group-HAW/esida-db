@@ -9,18 +9,18 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png.png') }}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='leaflet/leaflet.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='leaflet.markercluster/MarkerCluster.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='leaflet.markercluster/MarkerCluster.Default.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='DataTables/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='chosen/chosen.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/leaflet/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/leaflet.markercluster/MarkerCluster.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/leaflet.markercluster/MarkerCluster.Default.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/DataTables/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/chosen/chosen.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='Highcharts/css/highcharts.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='apexcharts/apexcharts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/Highcharts/css/highcharts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/apexcharts/apexcharts.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='leaflet.loading/Control.Loading.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/leaflet.loading/Control.Loading.css') }}">
 
 
     <title>{% block title %}{% endblock %} - ESIDA DB</title>
@@ -67,22 +67,22 @@
       </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='leaflet/leaflet.js') }}"></script>
-    <script src="{{ url_for('static', filename='leaflet.markercluster/leaflet.markercluster.js') }}"></script>
-    <script src="{{ url_for('static', filename='leaflet.markercluster.freezable.js') }}"></script>
-    <script src="{{ url_for('static', filename='leaflet.loading/Control.Loading.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/leaflet.markercluster/leaflet.markercluster.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/leaflet.markercluster.freezable.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/leaflet.loading/Control.Loading.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='jQuery/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/jQuery/jquery-3.6.0.min.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='DataTables/datatables.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='chosen/chosen.jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/chosen/chosen.jquery.min.js') }}"></script>
 
 
-    <script src="{{ url_for('static', filename='Highcharts/highcharts.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/Highcharts/highcharts.js') }}"></script>
 
-    <script src="{{ url_for('static', filename='apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/apexcharts/apexcharts.min.js') }}"></script>
 
 
     {% block footer %}{% endblock %}
