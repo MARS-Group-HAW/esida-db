@@ -49,7 +49,7 @@ Now you can import the data to the Data Hub with:
 
 [Copernicus](https://lcviewer.vito.be/) provides classification of different land types, i.e. forest, cropland, built-up. To use the data in the Data Hub you need to open the base class for the Copernicus Land-usage Data Layer at `esida/copernicus_parameter.py`. Inside the `extract()` function you see the `tiles` variable in which you can define download links for the tiles you need for your region. The different tiles and what land they cover you can find [here](https://lcviewer.vito.be/download).
 
-After adapting the download links to your need, you can download an process the data with:
+After adapting the download links to your need, you can download and process the data with:
 
     $ python ./esida-cli.py param copernicus_crop extract # downloading weather station and data
     $ python ./esida-cli.py param copernicus_crop load    # calculating data for your imported shapes
@@ -60,7 +60,8 @@ All other `copernicus_*` parameters only need to execute the `load` command sinc
 
 ### Local setup (Docker)
 
-> :warning: **Prefer local development**: The Docker setup is recommended for using the Data Hub as it is provided, and not for changing regions/data. While it works, it's not a streamlined developing experience, due to need to rebuild the container after source changes. If this is your use-case you should go for the direct development setup explained below (though this requires installing a lot of dependencies locally).
+> **Warning**
+> The Docker setup is recommended for using the Data Hub as it is provided, and not for changing regions/data. While it works, it's not a streamlined developing experience, due to need to rebuild the container after source changes. If this is your use-case you should go for the direct development setup explained below (though this requires installing a lot of dependencies locally).
 
 Clone the repository.
 
