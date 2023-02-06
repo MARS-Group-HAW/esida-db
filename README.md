@@ -45,7 +45,7 @@ $ python ./esida-cli.py param meteo_tprecit extract # download and process preci
 $ python ./esida-cli.py param meteo_tprecit load
 ````
 
-Further parameters can be loaded with the following commands, see `parameters/` folder or the [listing in the web-frontend](http://localhost/parameters) for available parameter `key`s. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder `./notebooks/ESIDA DB Demo.ipynb`).
+Further parameters can be loaded with the following commands, see `parameters/` folder or the [listing in the web-frontend](http://localhost/parameters) for available parameter `key`s. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder [`./notebooks/ESIDA DB Demo.ipynb`](notebooks/ESIDA%20DB%20Demo.ipynb)).
 
 ```
 # Inside Docker container CLI
@@ -134,7 +134,7 @@ Now you can import the data to the Data Hub with:
     $ python ./esida-cli.py param meteo_tprecit extract # downloading weather station and data
     $ python ./esida-cli.py param meteo_tprecit load    # calculating data for your imported shapes
 
-#### Copernicus Landusage
+#### Copernicus Land usage
 
 [Copernicus](https://lcviewer.vito.be/) provides classification of different land types, i.e. forest, cropland, built-up. To use the data in the Data Hub you need to open the base class for the Copernicus Land-usage Data Layer at `esida/copernicus_parameter.py`. Inside the `extract()` function you see the `tiles` variable in which you can define download links for the tiles you need for your region. The different tiles and what land they cover you can find [here](https://lcviewer.vito.be/download).
 
