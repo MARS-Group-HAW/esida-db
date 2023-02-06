@@ -1,6 +1,6 @@
 # ESIDA Data Hub
 
-The Dat Hub is a Python based framework for downloading and calculating spatio-temporal data to different areas of interest, like administrative levels of a country, or other shapes. For example [Copernicus landusage raster data](https://lcviewer.vito.be/) could be used as input data, and adminstrave areas of a country could be used to calculate the proportion of each land type (crop land, forrest, …) in each adminstrative area.
+The Data Hub is a Python based framework for downloading and calculating spatio-temporal data to different areas of interest, like administrative levels of a country, or other shapes. For example [Copernicus land usage raster data](https://lcviewer.vito.be/) could be used as input data, and administrative areas of a country could be used to calculate the proportion of each land type (crop land, forest, …) in each administrative area.
 
 <p align="center">
   <img src="./docs/Data%20Hub.png" alt="Visualization of the Data Hub flow of processing raw data" />
@@ -27,13 +27,13 @@ The Data Hub uses the following software:
 > **Warning**  
 > The Docker setup is recommended for using the Data Hub as it is provided, and not for changing regions/data. While it works, it's not a streamlined developing experience, due to need to rebuild the container after source changes. If this is your use-case you should go for the direct development setup explained below (though this requires installing a lot of dependencies locally).
 
-Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and it's running. Clone the Data Hub repository and open it's directory in your CLI.
+Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and it's running. Clone the Data Hub repository and open the directory in your CLI.
 
 Build and start the containers:
 
     $ docker-compose up -d
 
-The Data Hub is now available at [http://localhost/](http://localhost/) - though it is empty at the moment and not everything works. To set it up follow these steps: Open a CLI inside the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands to create the database schema and import inital data. Those are only required to be run after the first setup.
+The Data Hub is now available at [http://localhost/](http://localhost/) - though it is empty at the moment and not everything works. To set it up follow these steps: Open a CLI inside the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands to create the database schema and import initial data. Those are only required to be run after the first setup.
 
 ````
 # Inside Docker container CLI
@@ -45,7 +45,7 @@ $ python ./esida-cli.py param meteo_tprecit extract # download and process preci
 $ python ./esida-cli.py param meteo_tprecit load
 ````
 
-Further parameters can be loaded with the following commands, see `parameters/` folder oder the [listing in the web-frontend](http://localhost/parameters) for availbale parameter `key`s. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder `./notebooks/ESIDA DB Demo.ipynb`).
+Further parameters can be loaded with the following commands, see `parameters/` folder or the [listing in the web-frontend](http://localhost/parameters) for available parameter `key`s. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder `./notebooks/ESIDA DB Demo.ipynb`).
 
 ```
 # Inside Docker container CLI
@@ -68,9 +68,9 @@ After you make changes to the source files, you need to rebuild the Docker conta
 > **Note**  
 > The local development setup is recommended for using the Data Hub with own data sources.
 
-Make sure GDAL installed and Python 3 and the dependent packages are installed (`$ pip install -r requirements.txt` ). Due to the Geo-Dependencies this might be complicated. It might be easier to use the [Anaconda](https://www.anaconda.com/) distribution, which should install GDAL as well.
+Make sure GDAL installed and Python 3 and the dependent packages are installed (`$ pip install -r requirements.txt`). Due to the Geo-Dependencies this might be complicated. It might be easier to use the [Anaconda](https://www.anaconda.com/) distribution, which should install GDAL as well.
 
-Make sure a PostGIS database is installed and accessable, in case you have installed Docker you can use PostGIS from the provided `docker-compose.yaml` file with: `$ docker-compose up -d postgis`.
+Make sure a PostGIS database is installed and accessible, in case you have installed Docker you can use PostGIS from the provided `docker-compose.yaml` file with: `$ docker-compose up -d postgis`.
 
 Copy the file `.env.example` to `.env` and make sure the PostGIS settings are correct:
 
@@ -80,14 +80,14 @@ Also copy the contents of the folder`input/data.local/` to `input/data/`. This p
 
     $ rsync -a input/data.local/ input/data/
 
-Setup the local Data Hub Python package with:
+Set up the local Data Hub Python package with:
 
 ```
 $ pip install -e .
 $ export FLASK_APP=esida
 ```
 
-Setup the database schema and import inital data:
+Set up the database schema and import initial data:
 
 ```
 $ flask create-db
@@ -96,7 +96,7 @@ $ python ./esida-cli.py param meteo_tprecit extract
 $ python ./esida-cli.py param meteo_tprecit load
 ```
 
-Now you can start [gunicorn](https://gunicorn.org/) webserver (should be installed from the Python `requirements.txt`) and open the Data Hub at [http://localhost/](http://localhost/)
+Now you can start [gunicorn](https://gunicorn.org/) web server (should be installed from the Python `requirements.txt`) and open the Data Hub at [http://localhost/](http://localhost/)
 
 ```
 $ gunicorn --bind 0.0.0.0:80 esida:app --error-logfile - --reload
@@ -110,9 +110,9 @@ $ gunicorn --bind 0.0.0.0:80 esida:app --error-logfile - --reload
 
 Two means of data access are provided. For all loaded shapes the available parameter data associated with it can be downloaded as CSV file. For each parameter a download containing all shapes for this parameter is provided as well. Those downloads can be accessed via the web frontend.
 
-Also a simple REST like API is provided to query the shape and parameter data programmatically. See the Jupyter notebook [`notebooks/ESIDA DB Demo.ipynb`](notebooks/ESIDA DB Demo.ipynb) for further explanation and usage examples of the API.
+Also a simple REST like API is provided to query the shape and parameter data programmatically. See the Jupyter notebook [`notebooks/ESIDA DB Demo.ipynb`](notebooks/ESIDA%20DB%20Demo.ipynb) for further explanation and usage examples of the API.
 
-Data quality metrics can be extracted as well with the API, for this see the notebook [`notebooks/ESIDA DB Data Quality.ipynb`](notebooks/ESIDA DB Data Quality.ipynb). In this case it is recommended to use the system locally since the queries for spatial data quality can be quite long-running, and it might not be possible to query them from a remote host.
+Data quality metrics can be extracted as well with the API, for this see the notebook [`notebooks/ESIDA DB Data Quality.ipynb`](notebooks/ESIDA%20DB%20Data%20Quality.ipynb). In this case it is recommended to use the system locally since the queries for spatial data quality can be quite long-running, and it might not be possible to query them from a remote host.
 
 ### Use your own geographic region and data
 
