@@ -149,7 +149,7 @@ All other `copernicus_*` parameters only need to execute the `load` command sinc
 
 After ingesting data you can calculate the data for an arbitrary region inside the area of the imported data.
 
-    $ python ./eisda-cli.py clip --wkt <path to WKT Polygon> --abm
+    $ python ./eisda-cli.py clip --wkt <path to WKT Polygon> [--abm]
 
 This will generate a simulation blueprint with the required input data.
 
