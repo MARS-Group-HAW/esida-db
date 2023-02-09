@@ -24,10 +24,7 @@ The Data Hub uses the following software:
 
 ### Local setup (Docker)
 
-> **Warning**  
-> The Docker setup is recommended for using the Data Hub as it is provided, and not for changing regions/data. While it works, it's not a streamlined developing experience, due to need to rebuild the container after source changes. If this is your use-case you should go for the direct development setup explained below (though this requires installing a lot of dependencies locally).
-
-Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and it's running. Clone the Data Hub repository and open the directory in your CLI.
+Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed, and it's running. Clone the Data Hub repository and open the directory in your CLI.
 
 Build and start the containers:
 
@@ -36,39 +33,33 @@ Build and start the containers:
 The Data Hub is now available at [http://localhost/](http://localhost/) - though it is empty at the moment and not everything works. To set it up follow these steps: Open a CLI inside the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands to create the database schema and import initial data. Those are only required to be run after the first setup.
 
 ````
-# Inside Docker container CLI
-$ flask create-db          # setup required database columns
+$ docker-compose exec esida flask create-db          # setup required database columns
 
-$ python esida-cli.py init # import Tanzania region/district shape files into db
+$ docker-compose exec esida python ./esida-cli.py init # import Tanzania region/district shape files into db
 
-$ python ./esida-cli.py param meteo_tprecit extract # download and process precipitation data from Meteostat
-$ python ./esida-cli.py param meteo_tprecit load
+$ docker-compose exec esida python ./esida-cli.py param meteo_tprecit extract # download and process precipitation data from Meteostat
+$ docker-compose exec esida python ./esida-cli.py param meteo_tprecit load
 ````
 
 Further parameters can be loaded with the following commands, see `parameters/` folder or the [listing in the web-frontend](http://localhost/parameters) for available parameter `key`s. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder [`./notebooks/ESIDA DB Demo.ipynb`](notebooks/ESIDA%20DB%20Demo.ipynb)).
 
 ```
-# Inside Docker container CLI
-$ python ./esida-cli.py param <key> extract # downloads files from source
-$ python ./esida-cli.py param <key> load    # processes source and saves to data
+$ docker-compose exec esida python ./esida-cli.py param <key> extract # downloads files from source
+$ docker-compose exec esida python ./esida-cli.py param <key> load    # processes source and saves to data
 ```
 
 After this you can start/stop the containers with
 
     $ docker-compose start|stop
 
-After you make changes to the source files, you need to rebuild the Docker container. For this follow these steps:
-
-    $ docker-compose stop     # make sure the containers are not running
-    $ docker-compose rm esida # remove the currently build container
-    $ docker-compose up -d    # this should rebuild the container and reflect your code changes
-
 ### Local development (directly)
 
-> **Note**  
-> The local development setup is recommended for using the Data Hub with own data sources.
+In case you want to install the Data Hub directly with its dependencies follow these instructions:
 
-Make sure GDAL installed and Python 3 and the dependent packages are installed (`$ pip install -r requirements.txt`). Due to the Geo-Dependencies this might be complicated. It might be easier to use the [Anaconda](https://www.anaconda.com/) distribution, which should install GDAL as well.
+<details>
+ <summary>Manual installation</summary>
+
+Make sure GDAL installed and Python 3 and the dependent packages are installed (`$ pip install -r requirements.txt`). Due to the Geo-Dependencies this might be complicated. It might be easier to use the [Anaconda](https://www.anaconda.com/) distribution, which should install GDAL as well. You need postgresql client tools as well for building SQLAlchemy, on macOS run `brew install libpq`.
 
 Make sure a PostGIS database is installed and accessible, in case you have installed Docker you can use PostGIS from the provided `docker-compose.yaml` file with: `$ docker-compose up -d postgis`.
 
@@ -101,8 +92,7 @@ Now you can start [gunicorn](https://gunicorn.org/) web server (should be instal
 ```
 $ gunicorn --bind 0.0.0.0:80 esida:app --error-logfile - --reload
 ```
-
-
+</details>
 
 ## Usage
 

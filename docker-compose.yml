@@ -29,5 +29,4 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./input/data:/app/input/data
-      - ./output:/app/output
+      - ./:/app/
