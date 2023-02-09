@@ -3,6 +3,7 @@ import json
 import shutil
 import pkgutil
 import importlib
+import subprocess
 import datetime as dt
 from pathlib import Path
 
@@ -14,7 +15,7 @@ import pandas as pd
 import sqlalchemy
 
 import log
-from dbconf import get_engine, connect, close
+from dbconf import get_engine, connect, close, get_conn_string
 from parameters import *
 from esida.tiff_parameter import TiffParameter
 
@@ -70,6 +71,7 @@ def init():
 @cli.command("load-shapes")
 @click.argument('file', type=click.Path(exists=True))
 def load_shapes(file):
+    """ Load given shapefile structure into the database. """
     gdf = geopandas.read_file(file)
     required_cols = ['id', 'name', 'type', 'parent_id', 'geometry']
 
@@ -99,6 +101,37 @@ def load_shapes(file):
     con = connect()
     con.execute('UPDATE shape SET area_sqm = \
         ST_Area(ST_Transform(geometry, utmzone(ST_Centroid(geometry))))')
+
+@cli.command("dump")
+@click.option('-o', '--output', type=click.Path())
+def dump(output):
+    """ Dump shapes and calculated Data Layers from the database using pg_dump. """
+
+    if not output:
+        output = f"{dt.datetime.today().strftime('%Y-%m-%d_%H-%M-%S')}_datahub.sql"
+
+    try:
+        params = ['pg_dump', "-Fc", "-f", f"output/{output}", get_conn_string()]
+        subprocess.check_output(params)
+    except subprocess.CalledProcessError as error:
+        print(error.stderr)
+
+@cli.command("restore")
+@click.argument('file', type=click.Path(exists=True))
+def restore(file):
+    """ Restore shapes and calculated Data Layers from a previous dump. """
+
+    click.confirm('This will overwrite previous data. Do you want to continue?', abort=True)
+
+    # --clean:     drop all tables, before creating them
+    # --if-exists: prevent DROP table -> table does not exist warnings during
+    #              import in a empty database
+    try:
+        params = ['pg_restore', "--clean", "--if-exists", "-d", get_conn_string(), file]
+        subprocess.check_output(params)
+        return True
+    except subprocess.CalledProcessError as error:
+        print(error.stderr)
 
 @cli.command("list")
 def list_parameters():

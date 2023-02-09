@@ -2,7 +2,10 @@ version: "3"
 
 services:
   postgis:
-    image: postgis/postgis:15-3.3
+    # do not upgrade until you can install postgresql-client on the
+    # esida container with the same version! Otherwise pg_dump/pg_resotre
+    # will not work for dumping/importing database.
+    image: postgis/postgis:14-3.3
     restart: always
     environment:
       POSTGRES_DB: esida
