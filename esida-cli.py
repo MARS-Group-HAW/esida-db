@@ -1,12 +1,10 @@
 import os
 import json
+import shutil
 import pkgutil
 import importlib
 import datetime as dt
 from pathlib import Path
-from distutils.dir_util import copy_tree
-
-
 
 import click
 import shapely
@@ -237,7 +235,7 @@ def clip(wkt, abm):
     pclass.output = 'fs' # save products to file system instead of database
     result = getattr(pclass, 'load')(shapes=[shape], save_output=True, agent_count=agent_count)
 
-    copy_tree("input/data/MARS", out_dir.as_posix())
+    shutil.copy_tree("input/data/MARS", out_dir.as_posix())
 
     # prepare config.json
     with open('input/data/MARS/config.json') as f:
