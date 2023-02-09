@@ -108,7 +108,7 @@ def dump(output):
     """ Dump shapes and calculated Data Layers from the database using pg_dump. """
 
     if not output:
-        output = f"{dt.datetime.today().strftime('%Y-%m-%d_%H-%M-%S')}_datahub.sql"
+        output = f"{dt.datetime.today().strftime('%Y-%m-%d_%H-%M-%S')}_datahub.dump"
 
     try:
         params = ['pg_dump', "-Fc", "-f", f"output/{output}", get_conn_string()]
