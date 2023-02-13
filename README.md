@@ -92,7 +92,23 @@ Now you can start [gunicorn](https://gunicorn.org/) web server (should be instal
 ```
 $ gunicorn --bind 0.0.0.0:80 esida:app --error-logfile - --reload
 ```
+
+#### Common pitfalls
+
+<details>
+<summary>Python exceptions like `Library not loaded: '[…]/gdal/lib/libgdal.<version>.dylib'`</summary>
+
+If you get Python exceptions like `Library not loaded: '[…]/gdal/lib/libgdal.<version>.dylib'` you have probably updated your GDAL installation and some Python packages can't find it anymore. You need to clear pip's cache and rebuild the packages:
+
+```
+pip cache purge
+pip install -r requirements.txt --upgrade --force-reinstall
+```
 </details>
+
+</details>
+
+
 
 ## Usage
 
