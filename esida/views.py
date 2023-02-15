@@ -668,6 +668,13 @@ def signal():
     return render_template('signal/create.html')
 
 
+
+@app.route("/signal/<int:signal_id>")
+def signal_show(signal_id):
+    signal = Signal.query.get(signal_id)
+    return render_template('signal/show.html', signal=signal)
+
+
 @app.after_request
 def after_request_callback(response):
     close()

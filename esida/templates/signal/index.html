@@ -30,7 +30,7 @@
         <tbody>
           {% for s in signals %}
             <tr>
-              <td>{{ s.id }}</td>
+              <td><a href="{{ url_for('signal_show', signal_id=s.id) }}">{{ s.id }}</a></td>
               <td>{{ s.report_date }}</td>
               <td>{{ s.sex }}</td>
               <td>{{ s.age }}</td>

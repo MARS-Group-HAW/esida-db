@@ -1,4 +1,4 @@
-from sqlalchemy.sql import func
+from sqlalchemy.sql import func, text
 from geoalchemy2.types import Geometry
 from geoalchemy2.shape import to_shape
 
@@ -58,3 +58,10 @@ class Signal(db.Model):
 
     def point(self):
         return to_shape(self.geometry)
+
+    def shapes(self):
+        """ Finds shapes that intersect with this signal. """
+        stmt = text('ST_Contains(geometry, (SELECT geometry FROM signal WHERE id = :id))')
+        stmt = stmt.bindparams(id=self.id)
+        shapes = Shape.query.where(stmt).all()
+        return shapes
