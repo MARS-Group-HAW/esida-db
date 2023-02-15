@@ -6,7 +6,6 @@ services:
     # esida container with the same version! Otherwise pg_dump/pg_resotre
     # will not work for dumping/importing database.
     image: postgis/postgis:14-3.3
-    restart: always
     environment:
       POSTGRES_DB: esida
       POSTGRES_USER: esida
@@ -18,7 +17,6 @@ services:
       - ./pgdata:/var/lib/postgresql/data
   esida:
     build: .
-    restart: always
     environment:
       POSTGIS_HOST: postgis
       POSTGIS_DB: esida
