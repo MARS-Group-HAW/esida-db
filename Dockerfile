@@ -1,7 +1,7 @@
 FROM osgeo/gdal:ubuntu-small-3.6.2
 
 # Installs pg_dump/pg_restore used for dumping/importing database backups
-RUN apt-get install postgresql-client
+RUN apt-get install -y postgresql-client
 
 # install pip and postgresql binaries so pycog2 will install
 #
