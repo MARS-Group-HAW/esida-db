@@ -37,7 +37,14 @@ class Shape(db.Model):
         return to_shape(self.geometry)
 
     def geojson(self) -> str:
-        return json.dumps(shapely.geometry.mapping(self.geom()))
+        return json.dumps({
+            "type": "Feature",
+            'geometry': shapely.geometry.mapping(self.geom()),
+            'properties': {
+                'id': self.id,
+                'name': self.name,
+            }
+        })
 
 class Signal(db.Model):
     id = db.Column(db.Integer, primary_key=True)

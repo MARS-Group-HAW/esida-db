@@ -85,5 +85,28 @@ $(document).ready(function() {
   {% endfor %}
   var group_shapes = L.featureGroup(shapes).addTo(map);
   map.fitBounds(group_shapes.getBounds());
+
+  function highlightShape(e) {
+    shapes.forEach(function(s) {
+    s.eachLayer(function (layer) {
+      if (layer.feature.properties.id == e) {
+          layer.setStyle({color: '#FF8000'});
+          layer.bringToFront();
+
+          map.flyToBounds(layer.getBounds());
+
+
+          //return;
+      } else {
+        s.resetStyle(layer);
+      }
+    });
+  });
+}
+
+$('.js-highlight-shape').on('click', function(e) {
+  highlightShape(parseInt($(this).attr('data-shape_id')));
+});
+
   </script>
 {% endblock %}

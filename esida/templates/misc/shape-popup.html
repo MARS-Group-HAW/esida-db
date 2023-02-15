@@ -1,3 +1,5 @@
-<h5>{{ shape['name'] }}</h5>
-
+<h5 class="mb-0">{{ shape['name'] }}</h5>
+<p class="mt-0">
+  <small class="text-muted">{{ shape.type.title() }}</small>
+</p>
 <a href="{{ url_for('shape', shape_id=shape['id']) }}" class="btn btn-link">Details</a>
