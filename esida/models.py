@@ -47,7 +47,7 @@ class Signal(db.Model):
     age = db.Column(db.Integer, nullable=False)
     report_date = db.Column(db.Date, nullable=False)
     sex = db.Column(db.String(255), nullable=False)
-    geometry = db.Column(Geometry('POINT'), nullable=False)
+    geometry = db.Column(Geometry('POINT', srid=4326), nullable=False)
 
     def point(self):
         return to_shape(self.geometry)
