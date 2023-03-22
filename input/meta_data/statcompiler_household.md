@@ -3,8 +3,8 @@
 |                     | Description                      |
 |:--------------------|:---------------------------------|
 | Category            | Infrastructure                   |
-| Abbreviation        | statcompiler_housing             |
-| Title               | Housing density                  |
+| Abbreviation        | statcompiler_household           |
+| Title               | Household members                |
 | Necessity           | optional                         |
 | Format              | csv                              |
 | Operation           | None                             |
@@ -21,10 +21,10 @@
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_housing                                                                         |
+| Abbreviation | statcompiler_household                                                                       |
 | Subject      | Infrastructure                                                                               |
 | Creator      | Unkown                                                                                       |
-| Description  | Housing density                                                                              |
+| Description  | Houshold members                                                                             |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 02.05.2022                                                                                   |

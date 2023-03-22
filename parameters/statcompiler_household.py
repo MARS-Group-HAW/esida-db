@@ -1,6 +1,6 @@
 from esida.statcompiler_parameter import StatcompilerParameter
 
-class statcompiler_housing(StatcompilerParameter):
+class statcompiler_household(StatcompilerParameter):
 
     def get_indicators(self):
         return ['HC_MEMB_H_MNM']
