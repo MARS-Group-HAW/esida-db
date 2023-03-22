@@ -150,7 +150,7 @@ def param(parameter, action):
     params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
     if parameter not in params:
-        click.echo(click.style('Unknown parameter',  fg='red'), err=True)
+        click.echo(click.style(f'Unknown parameter: {parameter}',  fg='red'), err=True)
         return
 
     pmodule = importlib.import_module(f'parameters.{parameter}')
