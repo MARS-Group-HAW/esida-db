@@ -253,6 +253,20 @@ $('#js-add-to-map').on('click', function(e) {
     }).addTo(map);
     map.fitBounds(on_map.getBounds());
     map.fire('dataload');
+}).fail(function(data) {
+
+  if (on_map) {
+    map.removeLayer(on_map);
+  }
+if (legend) {
+    map.removeControl(legend);
+  }
+  var message = "An error occurred.";
+  if ("error" in data.responseJSON) {
+    message = data.responseJSON['error'];
+  }
+  alert(message);
+  map.fire('dataload');
 });
 });
 </script>

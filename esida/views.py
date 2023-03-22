@@ -390,11 +390,14 @@ def api_parameter_map(parameter_id, shape_type, date):
     }
 
     rows = pc.get_map(shape_type, date_obj)
+
+    if len(rows) == 0:
+        return jsonify(error="No data found for this shape type."), 503
+
     min_value = sys.maxsize
     max_value = 0
 
     for r in rows:
-
         if r['value'] != None:
             min_value = min(r['value'], min_value)
             max_value = max(r['value'], max_value)
