@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                      |
 | Abbreviation        | worldpop_age_40_49                                                                               |
-| Title               | Number of people on age group 40 to 50                                                           |
+| Title               | Number of people on age group 40 to 49                                                           |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | sum(men & women)                                                                                 |

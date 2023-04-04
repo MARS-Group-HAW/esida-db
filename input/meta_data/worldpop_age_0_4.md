@@ -3,8 +3,8 @@
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                      |
-| Abbreviation        | worldpop_age_0_9                                                                                 |
-| Title               | Number of people on age group 0 to 9                                                             |
+| Abbreviation        | worldpop_age_0_4                                                                                 |
+| Title               | Number of people on age group 0 to 4                                                             |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | sum(men & women)                                                                                 |
@@ -21,6 +21,6 @@
 
 |              | Description      |
 |:-------------|:-----------------|
-| Abbreviation | worldpop_age_0_9 |
+| Abbreviation | worldpop_age_0_4 |
 | Subject      | Demographic      |
 | Creator      | Worldpop         |

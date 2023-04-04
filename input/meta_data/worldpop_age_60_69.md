@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                      |
 | Abbreviation        | worldpop_age_60_69                                                                               |
-| Title               | Number of people on age group 60 to 70                                                           |
+| Title               | Number of people on age group 60 to 69                                                           |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | sum(men & women)                                                                                 |

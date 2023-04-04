@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                      |
 | Abbreviation        | worldpop_age_10_19                                                                               |
-| Title               | Number of people on age group 10 to 20                                                           |
+| Title               | Number of people on age group 10 to 19                                                           |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | sum(men & women)                                                                                 |

@@ -4,7 +4,7 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                      |
 | Abbreviation        | worldpop_age_20_29                                                                               |
-| Title               | Number of people on age group 20 to 30                                                           |
+| Title               | Number of people on age group 20 to 29                                                           |
 | Necessity           | required                                                                                         |
 | Format              | tiff                                                                                             |
 | Operation           | sum(men & women)                                                                                 |
