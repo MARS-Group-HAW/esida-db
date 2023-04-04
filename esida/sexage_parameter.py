@@ -11,16 +11,16 @@ import pandas as pd
 from esida.tiff_parameter import TiffParameter
 
 class SexageParameter(TiffParameter):
-    """ Extends TiffParameter class for Copernicus consumption. """
+    """ Extends TiffParameter class for WorldPop Sex-Age consumption. """
 
     def __init__(self):
         super().__init__()
         self._tmp = {}
         self.ages = []
 
-    def get_data_path(self) -> Path:
+    def get_parameter_path(self) -> Path:
         """ Overwrite parameter_id based input directory, because we have
-        multiple derives parameters from this source. """
+        multiple derived parameters from this source. """
         return Path("./input/data/worldpop_sexage/")
 
     def extract(self):
@@ -48,7 +48,7 @@ class SexageParameter(TiffParameter):
         return files
 
     def consume(self, file, band, shape):
-        x = re.search(r'([fm]{1})_([0-9]{1,2})_([0-9]{4})\.tif', os.path.basename(file))
+        x    = re.search(r'([fm]{1})_([0-9]{1,2})_([0-9]{4})\.tif', os.path.basename(file))
         sex  = x[1]
         age  = int(x[2])
         year = int(x[3])
