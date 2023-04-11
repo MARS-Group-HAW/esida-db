@@ -117,7 +117,7 @@ class BaseParameter():
         return Path(f"./input/data/{self.parameter_id}/")
 
     def get_data_path(self) -> Path:
-        """ Path to data path, is most cases this is the paarameter path, but
+        """ Path to data path, is most cases this is the parameter path, but
         in the case the parameter has som nested folders, this can be used
         to overrule the data path. """
         return self.get_parameter_path()
@@ -399,7 +399,7 @@ class BaseParameter():
     def get_map(self, shape_type, date):
         """ Get rows for given shape type and date. Contains shape geometry. """
         if not self.is_loaded():
-            self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
+            self.logger.warning("Download of data requested but not loaded for parameter_id=%s", self.parameter_id)
             return pd.DataFrame
 
         col = self.parameter_id
@@ -526,6 +526,27 @@ class BaseParameter():
             raise ValueError("No shapes found in database.")
 
         return shapes
+
+    def _get_convex_hull_from_db(self):
+        """ Creates the convex hull of all loaded shapes and returns it.
+
+        Be aware that, the convex hull will include MORE area than the actual
+        shapes. Nevertheless it is much faster than UNION/Dissolve of existing
+        shapes. Since the function is usually called for extracting from a source
+        and in the loading stage an individual mapping for shape/AOI is performed
+        , this is not an issue.
+        """
+
+        sql = "SELECT ST_ConvexHull(ST_Collect(shape.geometry)) as geometry FROM shape"
+
+        gdf = geopandas.GeoDataFrame.from_postgis(
+            sql,
+            get_engine(), geom_col='geometry')
+
+        if len(gdf) == 0:
+            raise ValueError("No shapes found in database.")
+
+        return gdf.at[0, 'geometry']
 
 
     def _save_url_to_file(self, url, folder=None, file_name=None) -> bool:

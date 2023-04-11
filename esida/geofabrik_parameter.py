@@ -8,7 +8,7 @@ from esida.parameter import BaseParameter
 class GeofabrikParameter(BaseParameter):
     """ Extends BaseParameter class for Geofabrik file consumption. """
 
-    def get_data_path(self) -> Path:
+    def get_parameter_path(self) -> Path:
         """ Overwrite parameter_id based input directory, because we have
         multiple derived parameters from this source. """
         return Path("./input/data/geofabrik/")
