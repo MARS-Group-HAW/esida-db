@@ -190,6 +190,9 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
         pm = importlib.import_module(f'parameters.{p}')
         pc = getattr(pm, p)()
 
+        if pc.time_col is not join_col:
+            continue
+
         rdf = pc.download(int(shape_id), start=start_date, end=end_date)
         if rdf.empty:
             continue
