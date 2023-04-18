@@ -35,7 +35,7 @@ class BaseParameter():
         self.df = None
         self.logger = logging.getLogger('root')
 
-        self.output_path = None
+        self.output_path = Path(f"./output/{self.parameter_id}/")
 
         self.time_col = 'year'
 
@@ -143,13 +143,13 @@ class BaseParameter():
         if self.output_path is None:
             raise ValueError("You need to set the output path first.")
 
+        if not os.path.exists(self.output_path):
+            os.mkdir(self.output_path)
+
         return self.output_path
 
     def set_output_path(self, out_dir):
-        if not os.path.exists(out_dir):
-            os.mkdir(out_dir)
         self.output_path = out_dir
-        #return Path(f"./output/{name}/{self.parameter_id}/")
 
     def get_fields(self, only_numeric=False):
         """ Check if the parameter has been loaded to the database. """
@@ -367,8 +367,6 @@ class BaseParameter():
             raise ValueError(f"Unknown time_col={self.time_col}")
 
         sql += f' GROUP BY "{self.time_col}"'
-
-        print(sql)
 
         con = connect()
         res = con.execute(sql)
@@ -676,3 +674,15 @@ class BaseParameter():
 
         return False
 
+    def has_log(self) -> bool:
+        path = Path(self.get_output_path()/f"{self.parameter_id}.csv")
+        return path.exists()
+
+    def get_log_html(self):
+        df = pd.read_csv(f'{self.get_output_path()}/{self.parameter_id}.csv',
+        index_col=0)
+
+        html =  df.to_html(index=True, classes="table table-sm", border=0, table_id='paramter-log')
+        html = html.replace('text-align: right;', '')
+
+        return html
