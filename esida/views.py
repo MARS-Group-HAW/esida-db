@@ -552,7 +552,7 @@ def download_csv(shape_id):
 
     filename=f"ESIDA_{shape.type}_{slugify(shape.name)}_{temporal_resolution}.csv"
 
-    resp = make_response(df_date.to_csv(index=False))
+    resp = make_response(df.to_csv(index=False))
     resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
     resp.headers["Content-Type"] = "text/csv"
     return resp
