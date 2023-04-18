@@ -639,7 +639,7 @@ def download_parameter(parameter_id):
     if not pc.is_loaded():
         df = pd.DataFrame([{'Parameter is not loaded': 1}])
     else:
-        df = pc.download(shape_names=True)
+        df = pc.download()
 
     filename=f"ESIDA_{parameter_id}.csv"
 

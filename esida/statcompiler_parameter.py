@@ -1,22 +1,15 @@
-import os
 import json
 import datetime as dt
-from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import urlopen
 
-import numpy as np
 import pandas as pd
-import rasterio
-import rasterio.mask
-import fiona
 
 from dbconf import get_engine
 from esida.parameter import BaseParameter
-from esida.models import Shape
 
 class StatcompilerParameter(BaseParameter):
-    """ Extends BaseParameter class for GeoTiff consumption. """
+    """ Extends BaseParameter class for STATcompiler API consumption. """
 
     def __init__(self):
         super().__init__()
@@ -29,7 +22,6 @@ class StatcompilerParameter(BaseParameter):
         raise NotImplementedError
 
     def extract(self):
-
         df = self.fetch_from_stat_compiler(self.get_indicators())
 
         # safe raw data
@@ -59,7 +51,7 @@ class StatcompilerParameter(BaseParameter):
         # group
         df = self.group_per_studyyear_region(df, self.get_indicators(), regions_df)
 
-        # statcompiler specific data wrangling
+        # STATcompiler specific data wrangling
         self.consume(df)
 
 
@@ -69,22 +61,18 @@ class StatcompilerParameter(BaseParameter):
     def save(self):
         self.df.to_sql(self.parameter_id, get_engine(), if_exists='replace')
 
-    def download(self, shape_id, start=None, end=None) -> pd.DataFrame:
-        """ Statcompiler are only region based, so before we can load
+    def download(self, *args, **kwargs) -> pd.DataFrame:
+        """ STATcompiler are only region based, so before we can load
         data we need to know, if we query a region (-> return directly) or
         if wie load a district. Then we need to query the parent region first.
         """
 
-        shape = Shape.query.get(shape_id)
-        if shape.type != 'region':
-            shape_id = shape.parent_id
-
-        return super().download(shape_id, start=start, end=end)
+        return self.download_inferred(*args, **kwargs)
 
     # ---
 
     def is_region(self, name) -> bool:
-        """ subnational breakdown Statcompiler seems to prepend actual regions
+        """ Sub-national breakdown STATcompiler seems to prepend actual regions
         with two dots (".."). """
         if name[0] == '.' and name[1] == '.':
             return True

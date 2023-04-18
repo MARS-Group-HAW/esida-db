@@ -6,7 +6,7 @@ import logging
 import subprocess
 from pathlib import Path
 from urllib.parse import urlparse
-from typing import List
+from typing import Optional, List
 
 
 from sqlalchemy import text
@@ -342,9 +342,97 @@ class BaseParameter():
         res = con.execute(sql)
         return res.fetchone()[0]
 
+    def temporal_steps(self,
+            start: Optional[dt.datetime] = None,
+            end:   Optional[dt.datetime] = None
+        ) -> List[dt.datetime]:
+        """ Gets all available temporal steps where the parameter has values. """
 
-    def download(self, shape_id=None, start=None, end=None, shape_names=False) -> pd.DataFrame:
-        """ Download data for given shape id. """
+        sql = f"SELECT {self.time_col}"
+        sql += f" FROM {self.parameter_id}"
+
+        sql += " WHERE 1=1"
+
+        if self.time_col == 'year':
+            if start:
+                sql += f" AND year >= {start.year}"
+            if end:
+                sql += f" AND year <= {end.year}"
+        elif self.time_col == 'date':
+            if start:
+                sql += f" AND date >= '{str(start)}'"
+            if end:
+                sql += f" AND date <= '{str(end)}'"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
+
+        sql += f' GROUP BY "{self.time_col}"'
+
+        print(sql)
+
+        con = connect()
+        res = con.execute(sql)
+        steps = []
+        for row in res:
+            if self.time_col == 'year':
+                steps.append(dt.datetime(row[0], 1, 1))
+            elif self.time_col == 'date':
+                steps.append(row[0])
+            else:
+                raise ValueError(f"Unknown time_col={self.time_col}")
+
+        print(steps)
+
+        return steps
+
+    def download_inferred(self,
+            shape_id=None,
+            start: Optional[dt.datetime] = None,
+            end: Optional[dt.datetime] = None,
+            fallback_previous=False,
+            fallback_parent=False) -> pd.DataFrame:
+        """ Aggregates the download data, but in case there is now value available,
+        for the shape in question, it will look for a parent shape """
+
+        if shape_id is not None:
+            shapes = [Shape.query.get(shape_id)]
+        else:
+            shapes = Shape.query.all()
+
+        temporal_steps = self.temporal_steps(start, end)
+        rows = []
+
+        for shape in shapes:
+            for step in temporal_steps:
+                row = shape.get(self, fallback_parent=True, when=step)
+                row.pop('index', None)
+                row['shape_name'] = shape.name
+                row['shape_type'] = shape.type
+
+                # in case the value was inferred from a parent shape, the shape_id
+                # is set to this shape, instead of the actual queried shape.
+                # To be transparent in the output we "swap" the id back and keep
+                # the inferred on.
+                # The parameter ID is prefixed in case multiple downloads are merged,
+                # so the column is unique.
+                inferred_key = f'{self.parameter_id}_inferred_from_shape_id'
+                row[inferred_key] = row['shape_id']
+                row['shape_id'] = shape.id
+                row[f'{self.parameter_id}_inferred'] = (row[inferred_key] != row['shape_id'])
+                rows.append(row)
+
+        print(len(rows))
+
+        return pd.DataFrame(rows)
+
+
+    def download(self,
+            shape_id=None,
+            start: Optional[dt.datetime] = None,
+            end: Optional[dt.datetime] = None,
+            fallback_previous=False) -> pd.DataFrame:
+        """ Download all data for given shape id / all shapes. Will ONLY get
+        the data stored in the table for the resp. parameter. """
 
         self.logger.debug("Downloading for shape_id=%s", shape_id)
 
@@ -354,13 +442,9 @@ class BaseParameter():
 
         sql = f"SELECT {self.parameter_id}.*"
 
-        if shape_names:
-            sql += ", shape.name AS shape_name, shape.type AS shape_type"
-
+        sql += ", shape.name AS shape_name, shape.type AS shape_type"
         sql += f" FROM {self.parameter_id}"
-
-        if shape_names:
-            sql += f" JOIN shape ON ({self.parameter_id}.shape_id = shape.id)"
+        sql += f" JOIN shape ON ({self.parameter_id}.shape_id = shape.id)"
 
         sql += " WHERE 1=1"
 
@@ -442,18 +526,33 @@ class BaseParameter():
         return df
 
 
-    def peek(self, shape_id):
+    def peek(self, shape_id, when=None):
         """ Get the latest known value of the parameter, if available. """
 
         if not self.is_loaded():
             self.logger.warning("Peek of data requested but not loaded for shape_id=%s", shape_id)
             return None
 
-        sql = f"SELECT * FROM {self.parameter_id} WHERE shape_id = {shape_id} ORDER BY {self.time_col} DESC LIMIT 1"
+        sql = f"SELECT * FROM {self.parameter_id}"
+        sql += f" WHERE shape_id = {shape_id}"
+
+        if when is not None:
+            if self.time_col == 'year':
+                sql += f" AND year = {when.year}"
+            elif self.time_col == 'date':
+                sql += f" AND date = '{str(when)}'"
+            else:
+                raise ValueError(f"Unknown time_col={self.time_col}")
+
+        sql += f" ORDER BY {self.time_col} DESC LIMIT 1"
+
+
 
         con = connect()
         res = con.execute(sql)
         req = res.fetchone()
+
+
 
         if req is None:
             return None

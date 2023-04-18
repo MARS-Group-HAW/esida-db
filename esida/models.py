@@ -46,6 +46,23 @@ class Shape(db.Model):
             }
         })
 
+    def get(self, dl, fallback_parent=False, when=None):
+        """ Gets the latest known value for the given data layer on this shape. """
+
+        if isinstance(dl, str):
+            pm = importlib.import_module(f'parameters.{dl}')
+            dl = getattr(pm, dl)()
+
+        value = dl.peek(self.id, when=when)
+
+        if value is None and fallback_parent:
+            value = self.parent.get(dl, fallback_parent, when=when)
+
+        return value
+
+
+
+
 class Signal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
