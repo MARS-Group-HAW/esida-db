@@ -73,7 +73,7 @@ class esida_localrisk(BaseParameter):
                 print(f"Datalayer value is: {value}")
 
                 matching_tresh = None
-                if value:
+                if value is not None:
                     for thresh in spec['thresholds']:
 
                         print(thresh)
