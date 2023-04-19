@@ -86,17 +86,17 @@ class osm_rail(BaseParameter):
                 raise ValueError("No geometry found for given shape.")
 
             # clip to only POIs within area of interest
-            dfx = df[df['geometry'].within(mask[0])]
+            dfx = df[df['geometry'].intersects(mask[0])]
 
             # group / count matching facilities per year
-            risk_score = 1
+            has_rail = 0
             if len(dfx) > 0:
-                risk_score = 3
+                has_rail = 1
 
             dfs.append({
                 'shape_id': shape['id'],
                 'year': dt.datetime.now().year,
-                self.parameter_id: risk_score
+                self.parameter_id: has_rail
             })
 
         dfsx = pd.DataFrame(dfs)

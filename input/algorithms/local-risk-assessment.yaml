@@ -133,57 +133,42 @@ spec:
     datalayer: osm_airports
     thresholds:
       - min: 0
-        max: 1
-        inclusive: False
+        max: 0.9
         score: 1
-      - min: 2
-        max: 2
-        inclusive: True
-        score: 2
-      - min: 2
-        inclusive: False
+      - min: 1
         score: 3
   - name: Quality of port infrastructure
     datalayer: osm_ferries
     thresholds:
       - min: 0
-        max: 1
-        inclusive: False
+        max: 0.9
         score: 1
-      - min: 2
-        max: 2
-        inclusive: True
-        score: 2
-      - min: 2
-        inclusive: False
+      - min: 1
         score: 3
   - name: Quality of railroad infrastructure
     datalayer: osm_rail
     thresholds:
-      - min: 0
-        max: 1
-        inclusive: False
-        score: 1
-      - min: 2
-        max: 2
-        inclusive: True
-        score: 2
-      - min: 2
-        inclusive: False
-        score: 3
-  - name: Quality of roads
-    datalayer: osm_roads
     thresholds:
       - min: 0
-        max: 1
-        inclusive: False
+        max: 0.9
         score: 1
-      - min: 2
-        max: 2
-        inclusive: True
-        score: 2
-      - min: 2
-        inclusive: False
+      - min: 1
+        score: 3
+  - name: Quality of roads (trunk)
+    datalayer: osm_roads_trunk
+    thresholds:
+      - min: 0
+        max: 0.9
+        score: 1
+      - min: 1
+        score: 3
+  - name: Quality of roads (regional)
+    datalayer: osm_roads_regional
+    thresholds:
+      - min: 0
+        max: 0.9
+        score: 1
+      - min: 1
         score: 3
   - name: Age % 15-49y (mobile population)
     datalayer: worldpop_age_15_49

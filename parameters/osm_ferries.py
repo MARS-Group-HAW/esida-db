@@ -84,14 +84,14 @@ class osm_ferries(BaseParameter):
             dfx = df[df['geometry'].within(mask[0])]
 
             # group / count matching facilities per year
-            risk_score = 1
+            present = 0
             if len(dfx) > 0:
-                risk_score = 3
+                present = 1
 
             dfs.append({
                 'shape_id': shape['id'],
                 'year': dt.datetime.now().year,
-                self.parameter_id: risk_score
+                self.parameter_id: present
             })
 
         dfsx = pd.DataFrame(dfs)
