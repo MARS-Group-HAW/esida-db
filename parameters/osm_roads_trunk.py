@@ -8,7 +8,22 @@ import fiona
 from esida.parameter import BaseParameter
 from dbconf import get_engine
 
-class osm_roads(BaseParameter):
+class osm_roads_trunk(BaseParameter):
+    """
+    Main roads, trunk roads!
+
+    Overpass-Turbo query:
+
+    ```
+    [out:json];
+    (
+    way["highway"="motorway"]({{bbox}});
+    );
+    out geom;
+    >;
+    out skel qt;
+    ```
+    """
 
     def __init__(self):
         super().__init__()
@@ -32,7 +47,7 @@ class osm_roads(BaseParameter):
             shp,
             simplify=True,
             retain_all=True,
-            custom_filter='["highway"~"trunk|primary|secondary"]'
+            custom_filter='["highway"~"trunk"]'
         )
 
         gdf_nodes, gdf_edges = ox.graph_to_gdfs(G)
@@ -42,7 +57,7 @@ class osm_roads(BaseParameter):
         # flatten MultiIndex created by OSMnx
         gdf = gdf_edges.reset_index(drop=True)
 
-        # drop all columns where each row is NULL
+        # drop all columns where each row is NULL (concerns different OSM meta tags)
         gdf = gdf.dropna(axis=1,how='all')
 
         gdf.to_postgis(self.table_name, con=get_engine(), if_exists='replace')
@@ -70,17 +85,17 @@ class osm_roads(BaseParameter):
                 raise ValueError("No geometry found for given shape.")
 
             # clip to only POIs within area of interest
-            dfx = df[df['geometry'].within(mask[0])]
+            dfx = df[df['geometry'].intersects(mask[0])]
 
             # group / count matching facilities per year
-            risk_score = 1
+            has_road = 0
             if len(dfx) > 0:
-                risk_score = 3
+                has_road = 1
 
             dfs.append({
                 'shape_id': shape['id'],
                 'year': dt.datetime.now().year,
-                self.parameter_id: risk_score
+                self.parameter_id: has_road
             })
 
         dfsx = pd.DataFrame(dfs)
