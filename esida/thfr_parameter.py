@@ -119,7 +119,7 @@ class ThfrParameter(BaseParameter):
         without_opening_date = len(hf_in_district_df[hf_in_district_df['Date Opened'].isnull()])
 
         # only with date
-        with_date_df = hf_in_district_df[hf_in_district_df['Date Opened'].notna()]
+        with_date_df = hf_in_district_df[hf_in_district_df['Date Opened'].notna()].copy()
         with_date_df['year'] = with_date_df['Date Opened'].apply(lambda x: x.year)
 
         all_per_year_df = with_date_df.groupby('year').size().reset_index(name='count')
