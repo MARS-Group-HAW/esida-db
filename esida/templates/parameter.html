@@ -331,7 +331,7 @@ $('#js-add-to-map').on('click', function(e) {
         for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
                 '<i style="background:' + getColor(grades[i] + (step*0.5)) + '"></i> ' +
-                grades[i].toFixed(3) + (grades[i + 1] ? '&ndash;' + grades[i + 1].toFixed(3) + '<br>' : '+');
+                grades[i].toFixed({{ parameter.precision }}) + (grades[i + 1] ? '&ndash;' + grades[i + 1].toFixed({{ parameter.precision }}) + '<br>' : '+');
         }
 
         return div;
