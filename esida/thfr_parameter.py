@@ -130,6 +130,22 @@ class ThfrParameter(BaseParameter):
 
         all_per_year_df['shape_id'] = shape_id
 
+        # remove future items...
+        all_per_year_df = all_per_year_df[all_per_year_df.index <= dt.datetime.now()]
+
+        # we only have the counts for years where a new facility opened.
+        # -> this fills in the potentially missing years, with last known values
+        if len(all_per_year_df) > 0:
+            all_per_year_df = all_per_year_df.resample('Y').ffill()
+
+            # the last known date might still be in the past. ffill() the values
+            # up until today.
+            tidx = pd.date_range(all_per_year_df.head(1).index.values[0], dt.date.today(), freq='1Y')
+            all_per_year_df = all_per_year_df.reindex(tidx, method='ffill')
+
+            # make sure the years matches.
+            all_per_year_df['year'] = all_per_year_df.index.year
+
         # reduce grouped index with duplicate column names
         all_per_year_df.index.names = ['date']
 
