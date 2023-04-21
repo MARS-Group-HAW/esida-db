@@ -20,6 +20,8 @@ class MeteostatParameter(BaseParameter):
         self.meteo_mode = 'daily' # do we need daily or hourly data?
         self.col_of_interest = None
 
+        self.table_name = 'meteostat_stations'
+
         # Meteostat can't handle Path() object
         Stations.cache_dir = self.get_data_path().as_posix()
         Daily.cache_dir = self.get_data_path().as_posix()
@@ -84,7 +86,7 @@ class MeteostatParameter(BaseParameter):
 
         # save to database
         gdf = gdf[~gdf['id'].isin(stations_with_no_data)] # do not write empty stations to database
-        gdf.to_postgis("meteostat_stations", get_engine(), if_exists='replace')
+        gdf.to_postgis(self.table_name, get_engine(), if_exists='replace')
 
 
         merged_df = pd.concat(dfs_daily)
@@ -97,7 +99,7 @@ class MeteostatParameter(BaseParameter):
     def get_station_data_for_shape(self, shape):
 
         # load all stations
-        stations_gdf = geopandas.read_postgis('SELECT * FROM meteostat_stations',
+        stations_gdf = geopandas.read_postgis(f'SELECT * FROM {self.table_name}',
                                     con=connect(), geom_col='geometry')
 
         # get all stations inside shape
@@ -105,8 +107,8 @@ class MeteostatParameter(BaseParameter):
 
         # no station inside shape. find nearest from centroid of shape
         if len(gdfx) == 0:
-            sql = f"SELECT * FROM meteostat_stations ORDER BY st_distance( \
-                ST_SetSRID(meteostat_stations.geometry, 4326), \
+            sql = f"SELECT * FROM {self.table_name} ORDER BY st_distance( \
+                ST_SetSRID({self.table_name}.geometry, 4326), \
                 ST_SetSRID(ST_GeomFromText('{str(shape.centroid)}'), 4326) ) ASC LIMIT 1"
 
             gdfx = geopandas.read_postgis(sql,

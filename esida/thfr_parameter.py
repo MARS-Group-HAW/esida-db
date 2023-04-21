@@ -6,6 +6,7 @@ import datetime as dt
 import pandas as pd
 import geopandas
 import fiona
+from sqlalchemy.sql import text
 
 from dbconf import get_engine
 from esida.parameter import BaseParameter
@@ -27,7 +28,10 @@ class ThfrParameter(BaseParameter):
         self.facility_types = None
 
         # table name for the cleaned records
-        self.table_name = 'thfr'
+        self.table_name_all = 'thfr'
+        self.table_name = f"data_{self.parameter_id}"
+
+        self.precision = 0
 
     # ---
 
@@ -74,7 +78,7 @@ class ThfrParameter(BaseParameter):
 
         # write all to database that have coordinates inside tanzania
         final = gdf[gdf['region_id'].notna() & gdf['district_id'].notna()]
-        final.to_postgis(self.table_name, con=get_engine(), if_exists='replace')
+        final.to_postgis(self.table_name_all, con=get_engine(), if_exists='replace')
 
 
     def load(self, shapes=None, save_output=False):
@@ -82,10 +86,21 @@ class ThfrParameter(BaseParameter):
         if shapes is None:
             shapes = self._get_shapes_from_db()
 
+        # create view
+        sql = text(f"""CREATE OR REPLACE VIEW {self.table_name} AS
+        SELECT *
+        FROM {self.table_name_all}
+        WHERE "Facility Type" IN :values""")
+
+        engine = get_engine()
+        with engine.connect() as con:
+            res = con.execute(sql, values=tuple(self.facility_types))
+
         # load all known facilities with types of interest
         df = geopandas.read_postgis(f"SELECT * FROM {self.table_name}",
                             geom_col='geometry', con=get_engine())
-        df = df[df['Facility Type'].isin(self.facility_types)]
+
+        #df = df[df['Facility Type'].isin(self.facility_types)]
 
         dfs = []
 
@@ -162,7 +177,7 @@ class ThfrParameter(BaseParameter):
             pg_tables \
         WHERE \
             schemaname = 'public' AND \
-            tablename  = '{self.table_name}' \
+            tablename  = '{self.table_name_all}' \
         );"
 
         engine = get_engine()
