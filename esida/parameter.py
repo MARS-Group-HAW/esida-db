@@ -41,6 +41,12 @@ class BaseParameter():
 
         self.output = 'db'
 
+
+        # In case the Data Layer stores some (vector) data as well, i.e.
+        # raw data like POIs.
+        # For concrete data layer this value should be set in the form of
+        # `data_{parameter_id}`
+        self.table_name = None
         # How many decimal digits should be displayed?
         # Only used in UI for human on the web, API and CSV data are never rounded
         self.precision = 3
@@ -686,3 +692,34 @@ class BaseParameter():
         html = html.replace('text-align: right;', '')
 
         return html
+
+    def has_raw_data(self):
+        """ check if the raw data table name is set. """
+        return self.table_name is not None
+
+    def data_map(self):
+        # This query uses ST_AsGeoJSON(t.*) to select a single row of a postgis
+        # table as GeoJSON geometry. with the `*` all columns that are not the
+        # geometry are read into the GeoJSONs properties.
+        # With json_build_object() we aggregate the single Features from the rows
+        # into a feature collection which we can directly use on a map, i.e.
+        sql = f"""
+        WITH data AS (
+            SELECT ST_AsGeoJSON(t.*)::json as feature FROM {self.table_name} as t
+        )
+        SELECT
+        json_build_object(
+            'type', 'FeatureCollection',
+            'features', json_agg(
+            feature
+            )
+        ) AS geojson
+        FROM data
+        """
+
+        res = connect().execute(sql)
+        row = res.fetchone()
+        if row:
+            return row[0]
+        else:
+            return None

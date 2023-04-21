@@ -10,15 +10,17 @@
 
   <div class="row g-3 align-items-center">
     <div class="col-auto">
-      <label for="js-tza-hfr-type" class="col-form-label">TZA HFR Type Filter</label>
+      <label for="js-tza-hfr-type" class="col-form-label">Select raw data to add to the map</label>
     </div>
     <div class="col-auto">
-      <select class="form-select" id="js-tza-hfr-type">
-        <option value="">All</option>
-        {% for c in tza_hfr_categories %}
-        <option value="{{ c['Facility Type'] }}">{{ c['Facility Type'] }} ({{ c['count'] }})</option>
-        {% endfor %}
-      </select>
+      <div class="input-group">
+        <select class="form-select" id="js-data-selected">
+          {% for p in parameters %}
+          <option value="{{ p.parameter_id }}">{{ p.parameter_id }}</option>
+          {% endfor %}
+        </select>
+        <button class="btn btn-outline-secondary btn-sm" id="js-load-data">Load raw data</button>
+      </div>
     </div>
   </div>
 
@@ -34,7 +36,8 @@ var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
 var map_position = {lat: -6, lng: 35, zoom: 6};
 
 var map = L.map('map', {
-  preferCanvas: true
+  preferCanvas: true,
+  loadingControl: true
 }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
 
 var hfrIcon = L.icon({
@@ -61,65 +64,19 @@ districts=[]
 {% endfor %}
 var group_districts = L.featureGroup(districts).addTo(map);
 
-weatherstations=[]
-{% for station in meteostat %}
-  var s = L.geoJSON({{ station['geojson']|safe }} )
-  .bindPopup(`{% include 'popup-meteostat.html' %}`);
-  weatherstations.push(s);
-{% endfor %}
-var group_stations = L.featureGroup(weatherstations).addTo(map);
-
-
-var tza_hfr_markers = []
-
-{% for h in tza_hfr %}
-tza_hfr_markers.push(L.marker([{{ h['Latitude']}}, {{ h['Longitude']}}], {icon: hfrIcon, facilityType: '{{h['Facility Type'] }}'})
-  .bindPopup(`<h4>{{ h['Facility Name'].replace('`', "'") }}</h4> <p>Type: {{h['Facility Type'] }}<br>ID: <a href="https://hfrportal.moh.go.tz/index.php?r=facilities/view&facility_id={{ h['ID'] }}">{{ h['ID'] }}</a></p>`));
-{% endfor %}
-
-
-var cluster_tza_hfr = L.markerClusterGroup();
-cluster_tza_hfr.addLayers(tza_hfr_markers);
-map.addLayer(cluster_tza_hfr);
-
-
-
-
-var layerControl = L.control.layers().addTo(map);
+var layerControl = L.control.layers(null, null, {
+  collapsed: false
+}).addTo(map);
 layerControl.addBaseLayer(osm, 'OSM');
 layerControl.addOverlay(group_regions, 'Regions');
 layerControl.addOverlay(group_districts, 'Districts');
-layerControl.addOverlay(group_stations, 'Weather stations (Meteostat)');
 
-layerControl.addOverlay(cluster_tza_hfr, 'TZA HFR');
-
-
-
-$('#js-tza-hfr-type').on('change', function() {
-  cluster_tza_hfr.clearLayers();
-  cluster_tza_hfr.enableClustering();
-  var type = $(this).val();
-
-
-
-  if (!type) {
-    cluster_tza_hfr.addLayers(tza_hfr_markers);
-  } else {
-    var count = 0;
-    tza_hfr_markers.forEach(function(m) {
-      if(m.options.facilityType == type) {
-        cluster_tza_hfr.addLayer(m);
-        count+= 1;
-      }
-    });
-    if (count < 100) {
-      cluster_tza_hfr.disableClustering();
-    }
-  }
-
+$('#js-load-data').on('click', function(e) {
+  dl = {
+    id: $('#js-data-selected').val()
+  };
+  load_data_for_layer(map, dl, layerControl);
 });
 
 </script>
-
-
 {% endblock %}

@@ -94,37 +94,17 @@ def map():
     regions = Shape.query.where(Shape.type == "region").all()
     districts = Shape.query.where(Shape.type == "district").all()
 
-    engine = get_engine()
-    meteostat=[]
-    tza_hfr=[]
-    tza_hfr_categories=[]
-
-    with engine.connect() as con:
-
-        meteo_tprecit_module = importlib.import_module('parameters.meteo_tprecit')
-        meteo_tprecit = getattr(meteo_tprecit_module, 'meteo_tprecit')()
-        if meteo_tprecit.is_loaded():
-            rs = con.execute('SELECT id, meteostat_id, icao, wmo, name, ST_AsGeoJSON(geometry) AS geojson, (SELECT COUNT(*) FROM meteostat_daily WHERE meteostat_station_id = meteostat_stations.id) as count FROM meteostat_stations')
-            for row in rs:
-                meteostat.append(dict(row))
-
-        thfr_disp_module = importlib.import_module('parameters.thfr_disp')
-        thfr_disp = getattr(thfr_disp_module, 'thfr_disp')()
-        if thfr_disp.is_loaded():
-            rs = con.execute('SELECT t."ID", t."Facility Name", t."Facility Type", t."Latitude", t."Longitude" FROM thfr t')
-            for row in rs:
-                tza_hfr.append(dict(row))
-
-            rs = con.execute('SELECT t."Facility Type", COUNT(*) as count FROM thfr t WHERE t."Facility Type" IS NOT NULL GROUP BY t."Facility Type" ORDER BY count DESC;')
-            for row in rs:
-                tza_hfr_categories.append(dict(row))
+    parameters = []
+    for p in params:
+        pm = importlib.import_module('parameters.{}'.format(p))
+        pc = getattr(pm, p)()
+        if pc.is_loaded() and pc.has_raw_data():
+            parameters.append(pc)
 
     return render_template('map.html',
         regions=regions,
         districts=districts,
-        meteostat=meteostat,
-        tza_hfr=tza_hfr,
-        tza_hfr_categories=tza_hfr_categories
+        parameters=parameters,
     )
 
 @app.route('/shape/<int:shape_id>/<parameter_id>/<column>/json')
@@ -416,6 +396,40 @@ def api_parameter_map(parameter_id, shape_type, date):
         data['features'].append(f)
 
     return jsonify(geojson=data, min=min_value, max=max_value)
+
+@app.route('/api/v1/parameter_data_map/<string:parameter_id>/<string:date>')
+def api_parameter_data_map(parameter_id, date):
+    """ Fetch the raw data for a layer. """
+
+    if parameter_id not in params:
+        return jsonify(error="Parameter is not found"), 404
+
+    pm = importlib.import_module(f'parameters.{parameter_id}')
+    pc = getattr(pm, parameter_id)()
+
+    if not pc.is_loaded():
+        return jsonify(error="Parameter is not loaded"), 503
+
+    date_parts = date.split('-')
+    if (len(date_parts) == 3):
+        date_obj = dt.datetime(year=int(date_parts[0]), month=int(date_parts[1]), day=int(date_parts[2]))
+    else:
+        date_obj = dt.datetime(year=int(date), month=1, day=1)
+
+    data = pc.data_map()
+
+    return jsonify(geojson=data)
+
+    response = app.response_class(
+        response=json,
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+
+
+
 
 @app.route('/api/v1/da_spatial/<string:parameter_id>')
 def api_da_spatial(parameter_id):
