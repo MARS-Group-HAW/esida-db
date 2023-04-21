@@ -1,3 +1,6 @@
+import importlib
+import importlib.util
+
 from sqlalchemy.sql import func, text
 from geoalchemy2.types import Geometry
 from geoalchemy2.shape import to_shape
@@ -5,6 +8,8 @@ from geoalchemy2.shape import to_shape
 import shapely.geometry
 import json
 import humanize
+
+import datetime as dt
 
 from esida import app, db
 
@@ -46,6 +51,15 @@ class Shape(db.Model):
             }
         })
 
+    def op(self, signal, dl, op, params) -> bool:
+        """ checks if operator is defined for given data layer and if so
+        calls it. """
+        op_func = getattr(dl, f"op_{op}", None)
+        if not callable(op_func):
+            raise Exception(f"{op} is not available for {dl.parameter_id}")
+
+        return op_func(signal, self.id, **params)
+
     def get(self, dl, fallback_parent=False, when=None):
         """ Gets the latest known value for the given data layer on this shape. """
 
@@ -82,3 +96,7 @@ class Signal(db.Model):
         stmt = stmt.bindparams(id=self.id)
         shapes = Shape.query.where(stmt).all()
         return shapes
+
+    def report_date_ts(self) -> int:
+
+        return int(self.report_date.replace(tzinfo=dt.timezone.utc).timestamp()) * 1000

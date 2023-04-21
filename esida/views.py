@@ -11,6 +11,8 @@ from esida import app, params, db, logger
 from flask import render_template, make_response, abort, jsonify, send_file, request, redirect, url_for, send_from_directory
 from slugify import slugify
 
+import yaml
+
 from dbconf import get_engine, close
 from esida.models import Shape, Signal
 from esida import shape_types
@@ -692,7 +694,74 @@ def signal():
 @app.route("/signal/<int:signal_id>")
 def signal_show(signal_id):
     signal = Signal.query.get(signal_id)
-    return render_template('signal/show.html', signal=signal)
+
+
+    print(os.getcwd())
+    with open("./input/algorithms/dengue-fever.yml", "r") as stream:
+        try:
+            algorithm = yaml.safe_load(stream)
+
+            for key in algorithm['spec'].keys():
+                algorithm['spec'][key]['key'] = key
+
+        except yaml.YAMLError as exc:
+            print(exc)
+
+    results = {}
+
+    # Process specs
+    for shape in signal.shapes():
+        spec = algorithm['spec'][algorithm['metadata']['start']]
+
+        results[shape.id] = {
+            'summary': None,
+            'steps': []
+        }
+
+        while True:
+            r = {
+                'spec': spec,
+                'ops': []
+            }
+
+            if 'end' in spec:
+                #results[shape.id]['steps'].append(r)
+                results[shape.id]['summary'] = spec
+                break
+
+            dl = spec['datalayer']
+            pm = importlib.import_module(f'parameters.{dl}')
+            pc = getattr(pm, dl)()
+
+            booleans = []
+
+            for op in spec['operators']:
+                b, df = shape.op(signal, pc, op['op'], op['attrs'])
+                booleans.append(b)
+                r['ops'].append({
+                    'op': op,
+                    'result': b,
+                    'data': df,
+                    'data_v': df[spec['datalayer']].to_list()
+                })
+
+            positive = spec['positive']
+            negative = spec['negative']
+
+            if all(booleans):
+                r['result'] = True
+                spec = algorithm['spec'][positive]
+            else:
+                r['result'] = False
+                spec = algorithm['spec'][negative]
+
+            results[shape.id]['steps'].append(r)
+
+
+    return render_template('signal/show.html',
+        signal=signal,
+        results=results
+    )
 
 
 @app.after_request

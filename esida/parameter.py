@@ -15,8 +15,10 @@ import pandas as pd
 import geopandas
 import shapely
 import markdown
+import isodate
 
 from esida import shape_types
+from esida.models import Shape
 from dbconf import get_engine, connect
 
 engine = get_engine()
@@ -47,6 +49,15 @@ class BaseParameter():
         # For concrete data layer this value should be set in the form of
         # `data_{parameter_id}`
         self.table_name = None
+
+
+        # - quantity   (int, float)
+        # - percent    0-1
+        # - percent100 0-100
+        # - binary     0,1
+        self.type = None
+
+
         # How many decimal digits should be displayed?
         # Only used in UI for human on the web, API and CSV data are never rounded
         self.precision = 3
@@ -468,6 +479,9 @@ class BaseParameter():
         else:
             raise ValueError(f"Unknown time_col={self.time_col}")
 
+        if fallback_previous:
+            sql += f" ORDER BY {self.time_col} LIMIT 1"
+
         df = pd.read_sql_query(sql, con=get_engine())
 
         if len(df) == 0:
@@ -692,6 +706,85 @@ class BaseParameter():
         html = html.replace('text-align: right;', '')
 
         return html
+
+    def op_min(self, signal, shape_id, *, value=None, start=None):
+        start_date = signal.report_date
+        end_date = signal.report_date
+
+        if start:
+            start_date = start_date - isodate.parse_duration(start)
+
+        sql = f"SELECT COUNT(*) FROM {self.parameter_id} WHERE shape_id = {shape_id} "
+
+        if self.time_col == 'year':
+            sql += f" AND year >= {start_date.year}"
+            sql += f" AND year <= {end_date.year}"
+        elif self.time_col == 'date':
+            sql += f" AND date >= '{str(start_date)}'"
+            sql += f" AND date <= '{str(end_date)}'"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
+
+        sql +=  f" AND {self.parameter_id}.{self.parameter_id} < {value}"
+
+        #print(sql)
+
+        gdf = pd.read_sql(
+            sql,
+            get_engine())
+
+        return len(gdf) > 0
+
+    def op_lg(self, signal, shape_id, *, value=None, start=None, mode='all'):
+        start_date = signal.report_date
+        end_date = signal.report_date
+
+        if start:
+            start_date = start_date - isodate.parse_duration(start)
+
+        df = self.download(shape_id, start_date, end_date)
+
+        # No data available for signal date
+        if len(df) == 0:
+            df = self.download(shape_id, None, end_date, fallback_previous=True)
+
+            if len(df) == 0:
+                print("NO DATA!")
+                return False, pd.DataFrame()
+
+
+
+        if mode == 'all':
+            print(df[self.parameter_id])
+            dfx = df[df[self.parameter_id] > value]
+            return (len(dfx) == len(df)), df
+
+        if mode == 'mean':
+           return df[self.parameter_id].mean() > value, df
+
+        return False, pd.DataFrame()
+
+        sql = f"SELECT COUNT(*) FROM {self.parameter_id} WHERE shape_id = {shape_id} "
+
+        if self.time_col == 'year':
+            sql += f" AND year >= {start_date.year}"
+            sql += f" AND year <= {end_date.year}"
+        elif self.time_col == 'date':
+            sql += f" AND date >= '{str(start_date)}'"
+            sql += f" AND date <= '{str(end_date)}'"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
+
+        sql +=  f" AND {self.parameter_id}.{self.parameter_id} > {value}"
+
+        #print(sql)
+
+        gdf = pd.read_sql(
+            sql,
+            get_engine())
+
+        return len(gdf) > 0
+
 
     def has_raw_data(self):
         """ check if the raw data table name is set. """

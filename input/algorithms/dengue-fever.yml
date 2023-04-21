@@ -1,0 +1,37 @@
+apiVersion: v1
+metadata:
+  name: Dengue fever
+  start: min_temp
+spec:
+  min_temp:
+    name: Minimal temperature >15°C
+    datalayer: meteo_mint
+    operators:
+      - op: lg
+        attrs:
+          value: 15
+          start: P14D # iso8601 duration, relative to signal date
+          mode: all # all or mean
+    positive: builtup
+    negative: dengue_impossible
+  builtup:
+    name: Built-Up (0-1) Copernicus >10%?
+    datalayer: copernicus_built
+    operators:
+      - op: lg
+        attrs:
+          value: 0.10
+    positive: dengue_likely
+    negative: dengue_low
+  dengue_impossible:
+    name: Environment is not suitable for mosquito. Dengue fever outbreak very unlikely.
+    style: 'success'
+    end: True
+  dengue_low:
+    name: Risk for a Dengue fever outbreak is low.
+    style: 'warning'
+    end: True
+  dengue_likely:
+    name: Risk for a Dengue fever outbreak is very high.
+    style: 'danger'
+    end: True

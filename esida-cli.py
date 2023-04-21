@@ -13,11 +13,13 @@ import shapely.wkt
 import geopandas
 import pandas as pd
 import sqlalchemy
+import yaml
 
 import log
 from dbconf import get_engine, connect, close, get_conn_string
 from parameters import *
 from esida.tiff_parameter import TiffParameter
+from esida.models import Signal
 
 
 logger = log.setup_custom_logger('root')
@@ -295,6 +297,82 @@ def clip(wkt, abm):
 
         with open(out_dir / 'config.json', 'w') as f:
             json.dump(d, f, indent=2)
+
+
+@cli.command("signal")
+@click.option('--id')
+def assess_signal(id):
+    signal = Signal.query.get(id)
+
+    print("===")
+    print(f"Signal-ID: {signal.id}")
+    print(f"Signal date: {signal.report_date}")
+    print("===")
+
+    with open("input/algorithms/dengue-fever.yml", "r") as stream:
+        try:
+            algorithm = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
+
+    results = {}
+
+    # Process specs
+    for shape in signal.shapes():
+        spec = algorithm['spec'][algorithm['metadata']['start']]
+        print(f"# {shape.name}")
+
+        results[shape.id] = []
+
+        while True:
+            print(f" - Test: {spec['name']}")
+            dl = spec['datalayer']
+            pm = importlib.import_module(f'parameters.{dl}')
+            pc = getattr(pm, dl)()
+
+
+            r = {
+                'spec': spec,
+                'ops': []
+            }
+
+            bools = []
+
+            for op in spec['operators']:
+                b, df = shape.op(signal, pc, op['op'], op['attrs'])
+                print(f"    └ {op['op']}: {b}")
+                bools.append(b)
+                r['ops'].append([b, df])
+
+            positive = spec['positive']
+            negative = spec['negative']
+            if all(bools):
+                results[shape.id].append(r)
+                if positive and positive in algorithm['spec']:
+                    spec = algorithm['spec'][positive]
+                else:
+                    results[shape.id].append({
+                        'spec': {
+                            'name': "Algorithm finished with POSITIVE outcome"
+                        }
+                    })
+                    print("Algorithm finished with POSITIVE outcome")
+                    break
+            else:
+                if negative and negative in algorithm['spec']:
+                    spec = algorithm['spec'][negative]
+                else:
+                    results[shape.id].append({
+                        'spec': {
+                            'name': "Algorithm finished with NEGATIVE outcome"
+                        }
+                    })
+                    print("Algorithm finished with NEGATIVE outcome")
+                    break
+
+        print("")
+
+
 
 if __name__ == '__main__':
     cli()
