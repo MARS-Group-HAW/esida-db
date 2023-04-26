@@ -83,7 +83,7 @@ class StatcompilerParameter(BaseParameter):
 
     def map_region_name_to_tz_stat_names(self, name) -> str:
         """ We use the names provided by the TZ bureau of statistics (partly swahili?).
-        Statcompiler uses only english names and we have to map the two spellings. """
+        STATcompiler uses only english names and we have to map the two spellings. """
 
         if name == "Dar es Salaam":
             return "Dar-es-salaam"
