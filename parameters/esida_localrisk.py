@@ -36,8 +36,6 @@ class esida_localrisk(BaseParameter):
         for shape in shapes:
             shpobj = Shape.query.get(shape['id'])
 
-            dfshp = []
-
 
             print("======")
             print(f"Shape-ID: {shape['id']}")
@@ -45,39 +43,69 @@ class esida_localrisk(BaseParameter):
 
             risk_score = 0
             for spec in algorithm['spec']:
+                print(f"Checking: {spec['name']}")
 
-                datalayer = spec['datalayer']
-                pm = importlib.import_module(f'parameters.{datalayer}')
-                dl = getattr(pm, datalayer)()
+                # check for multiple layers
+                if spec.get('mode', None) == 'any':
+                    datalayer_values = []
 
-                value = shpobj.get(spec['datalayer'], fallback_parent = True)
+                    for datalayer in spec['datalayer']:
+                        pm = importlib.import_module(f'parameters.{datalayer}')
+                        dl = getattr(pm, datalayer)()
+                        value = shpobj.get(datalayer, fallback_parent = True)
 
-                if value is not None and spec['datalayer'] in value:
-                    value = value[spec['datalayer']]
+                        if value is not None and datalayer in value:
+                            value = value[datalayer]
+
+                        print(datalayer, value)
+
+                        if value:
+                            datalayer_values.append(value)
+
+                    value = spec['value_no']
+                    if len(datalayer_values) > 0:
+                        value = spec['value_yes']
                 else:
-                    print("No dta available for shape/layer")
-                    value = None
-                # in case the data layer is a count, but we need a proportion
-                # load the corresponding total data layer
-                if 'datalayer_total' in spec:
-                    total = shpobj.get(spec['datalayer_total'])
-                    total = total[spec['datalayer_total']]
+                    datalayer = spec['datalayer']
+                    pm = importlib.import_module(f'parameters.{datalayer}')
+                    dl = getattr(pm, datalayer)()
 
-                    value = value / total * 100
+                    value = shpobj.get(spec['datalayer'], fallback_parent = True)
 
-                if dl.is_percent:
-                    if not dl.is_percent100:
-                        value = value * 100
+                    if value is not None and spec['datalayer'] in value:
+                        value = value[spec['datalayer']]
+                    else:
+                        print("No dta available for shape/layer")
+                        value = None
+                    # in case the data layer is a count, but we need a proportion
+                    # load the corresponding total data layer
+                    if 'datalayer_total' in spec:
+                        total = shpobj.get(spec['datalayer_total'])
+                        total = total[spec['datalayer_total']]
 
-                print(f"Checking: {spec['name']} (Datalayer: {datalayer})")
+                        value = value / total * 100
+
+                    if dl.is_percent:
+                        if not dl.is_percent100:
+                            value = value * 100
+
                 print(f"Datalayer value is: {value}")
 
-                matching_tresh = None
+                matching_thresh = None
                 if value is not None:
                     for thresh in spec['thresholds']:
 
                         print(thresh)
 
+                        # Check if is exact match
+                        if "is" in thresh:
+                            if thresh['is'] == value:
+                                matching_thresh = thresh
+                                break
+
+                            continue
+
+                        # Range checks
                         range_min = None
                         range_max = None
 
@@ -93,40 +121,38 @@ class esida_localrisk(BaseParameter):
 
                             if range_min is None:
                                 if value < range_max:
-                                    matching_tresh = thresh
+                                    matching_thresh = thresh
                                     break
                             elif range_max is None:
                                 if range_min < value:
-                                    matching_tresh = thresh
+                                    matching_thresh = thresh
                                     break
                             elif range_min < value < range_max:
-                                matching_tresh = thresh
+                                matching_thresh = thresh
                                 break
                         else:
                             if range_min is None:
                                 if value <= range_max:
-                                    matching_tresh = thresh
+                                    matching_thresh = thresh
                                     break
                             elif range_max is None:
                                 if range_min <= value:
-                                    matching_tresh = thresh
+                                    matching_thresh = thresh
                                     break
                             elif range_min <= value <= range_max:
-                                matching_tresh = thresh
+                                matching_thresh = thresh
                                 break
                 else:
                     print("No data available for datalayer/shape")
 
                 score = None
-                threshold_rule = None
 
-                if matching_tresh is None:
+                if matching_thresh is None:
                     print("Datalayer value is outside of all ranges!")
                 else:
-                    print(f"matching: {matching_tresh['range_min']} to {matching_tresh['range_max']} -> score: {matching_tresh['score']}")
-                    risk_score += matching_tresh['score']
-                    score = matching_tresh['score']
-                    threshold_rule = f"{matching_tresh['range_min']} to {matching_tresh['range_max']}"
+                    print(f"matching: {matching_thresh}")
+                    risk_score += matching_thresh['score']
+                    score = matching_thresh['score']
                 print("")
 
                 row = {
@@ -134,7 +160,7 @@ class esida_localrisk(BaseParameter):
                     'shape_name': shape.get("name", ""),
                     'datalayer': spec['datalayer'],
                     'value': value,
-                    'threshold_rule': threshold_rule,
+                    'threshold_rule': matching_thresh,
                     'threshold_score': score,
                     'current_score': risk_score,
                 }

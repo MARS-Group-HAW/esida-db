@@ -2,6 +2,41 @@ apiVersion: v1
 metadata:
   name: Local Risk-Assessment
 spec:
+  - name: Physician density
+    datalayer: tnbs_physdens
+    thresholds:
+      - max: 0.7
+        score: 3
+      - min: 0.8
+        max: 2.9
+        score: 2
+      - min: 3
+        score: 1
+  - name: Nurses and midwife density
+    datalayer: tnbs_nursmidwdens
+    thresholds:
+      - max: 1.6
+        score: 3
+      - min: 1.7
+        max: 7.1
+        score: 2
+      - min: 7.2
+        score: 1
+  - name: HCfacAvail
+    description: If any healthcare facility is available (dispensary, clinic, health center, hospital) = Y
+    datalayer:
+      - thfr_disp
+      - thfr_clinic
+      - thfr_hecenter
+      - thfr_hospital
+    mode: any
+    value_yes: 1
+    value_no: 0
+    thresholds:
+      - is: 1
+        score: 1
+      - is: 0
+        score: 3
   - name: Age % 5-39y (morbidity)
     datalayer: worldpop_age_5_39
     datalayer_total: worldpop_popc
@@ -43,6 +78,17 @@ spec:
         score: 2
       - min: 11.0
         max: 100
+        score: 3
+
+  - name: Medical laboratory personnel density
+    datalayer: tnbs_medlabdens
+    thresholds:
+      - max: 1.0
+        score: 1
+      - min: 1.1
+        max: 2.7
+        score: 2
+      - min: 2.8
         score: 3
   - name: Population density
     datalayer: worldpop_popd
