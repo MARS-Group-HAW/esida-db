@@ -69,7 +69,7 @@ class Shape(db.Model):
 
         value = dl.peek(self.id, when=when)
 
-        if value is None and fallback_parent:
+        if value is None and fallback_parent and self.parent is not None:
             value = self.parent.get(dl, fallback_parent, when=when)
 
         return value
