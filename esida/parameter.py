@@ -690,6 +690,11 @@ class BaseParameter():
             subprocess.check_output(params)
             return True
         except subprocess.CalledProcessError as error:
+            # -O on wget will create the file regardless if it did exits and
+            # could be downloaded. To don't have any empty files, we remove it
+            if os.path.exists(folder / file_name):
+                os.remove(folder / file_name)
+
             self.logger.warning("Could not download file: %s, %s", url, error.stderr)
 
         return False
