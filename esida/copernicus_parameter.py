@@ -154,10 +154,15 @@ class CopernicusParameter(TiffParameter):
             for i, year in enumerate(range(2015, 2019 + 1)):
                 in_file1 = self.get_data_path() / "E020N00" / os.path.basename(urlparse(tiles['E020N00'][i]).path)
                 in_file2 = self.get_data_path() / "E040N00" / os.path.basename(urlparse(tiles['E040N00'][i]).path)
+                out_file = self.get_data_path() / f"Copernicus_Tanzania_{year}-base_Discrete-Classification.tif"
+
+                # if merged file already exists, don't merge again
+                if os.path.isfile(out_file):
+                    continue
 
                 subprocess.check_output([
                     'gdal_merge.py',
-                    "-o", self.get_data_path() / f"Copernicus_Tanzania_{year}-base_Discrete-Classification.tif",
+                    "-o", out_file,
 
                     # input files
                     in_file1,
@@ -168,7 +173,7 @@ class CopernicusParameter(TiffParameter):
                 ])
             return True
         except subprocess.CalledProcessError as error:
-            self.logger.warning("Could not download file: %s, %s", url, error.stderr)
+            self.logger.warning("Could not merge file: %s, %s", url, error.stderr)
 
     def get_value_for_key(self, key) -> int:
         """ Returns the value used for a land usage key. """
