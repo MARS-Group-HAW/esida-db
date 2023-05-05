@@ -7,7 +7,7 @@
   <div class="clearfix">
   <img class="float-end ps-3 pb-3" width="250" src="{{ url_for('static', filename='images/Logo_Projekt_ESIDA2021.png') }}" alt="ESIDA spelled out in the logo">
 
-  <h1>Welcome to the ESIDA Data Hub</h1>
+  <h1>ESIDA Data Hub</h1>
 </div>
   <div class="row">
     <div class="col-12 col-sm-6">
@@ -79,6 +79,16 @@
     Regarding data quality metrics also a notebook is provided: <a download href="{{ url_for('static', filename='ESIDA DB Data Quality.ipynb') }}"><code>ESIDA DB Data Quality.ipynb</code></a> (<span class="text-muted">Due to long-running queries for the spatial coverage of data layers, this notebook should be used with a locally hosted instance of the database.</span>)
   </p>
   #}
+
+
+  <div class="text-center text-sm-end">
+    <a class="m-3" href="https://www.mars-group.org/"><img src="{{ url_for('static', filename='images/mars-group.svg') }}" width="200" alt="MARS Group"></a>
+
+    <a class="m-3" href="https://www.haw-hamburg.de/forschung/forschungsprojekte-detail/project/project/show/esida/"><img src="{{ url_for('static', filename='images/HAW_Marke_RGB_300dpi.jpeg') }}" width="200" alt="HAW Hamburg"></a>
+
+
+
+  </div>
 
 {% endblock %}
 
