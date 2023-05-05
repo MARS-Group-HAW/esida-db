@@ -27,8 +27,10 @@ class Shape(db.Model):
 
     parent_id = db.Column(db.Integer, db.ForeignKey('shape.id'))
 
-    geometry = db.Column(Geometry(srid=4326), nullable=False)
     area_sqm = db.Column(db.Float, nullable=True)
+    properties = db.Column(db.JSON, nullable=True)
+
+    geometry = db.Column(Geometry(srid=4326), nullable=False)
 
     parent = db.relationship("Shape", remote_side=[id])
     children = db.relationship("Shape", order_by="asc(Shape.name)")

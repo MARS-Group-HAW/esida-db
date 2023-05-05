@@ -75,12 +75,18 @@ def init():
 def load_shapes(file):
     """ Load given shapefile structure into the database. """
     gdf = geopandas.read_file(file)
-    required_cols = ['id', 'name', 'type', 'parent_id', 'geometry']
+    required_cols = ['id', 'name', 'type', 'parent_id', 'properties', 'geometry']
+
+    # optional cols, if not set make it empty
+    if "properties" not in gdf.columns:
+        gdf['properties'] = "{}"
 
     # make sure our required columns exist
     for col in required_cols:
         if col not in gdf.columns:
             raise click.UsageError(f"{col} column is required")
+
+
 
     # In Geopandas/Pandas there is no None/Null value for Integers. So our
     # parent_id column with the int reference is of type float (b/c upper most
@@ -89,10 +95,10 @@ def load_shapes(file):
     # foreign key to the parent row.
     # ...so we need to split our input data in parent only rows and child rows
     # and import them separately.
-    gdf_no_parent = gdf[gdf['parent_id'].isna()]
-    gdf_no_parent[['id', 'name', 'type', 'geometry']].to_postgis('shape', connect(), if_exists='append')
+    gdf_no_parent = gdf[gdf['parent_id'].isna()].copy()
+    gdf_no_parent[['id', 'name', 'type', 'properties', 'geometry']].to_postgis('shape', connect(), if_exists='append')
 
-    gdf_with_parent = gdf[gdf['parent_id'].notna()]
+    gdf_with_parent = gdf[gdf['parent_id'].notna()].copy()
     gdf_with_parent['parent_id'] = gdf_with_parent['parent_id'].astype('int') # no isna() rows left => cast to int, so SQLAlchemy can write to PostGis
     gdf_with_parent[required_cols].to_postgis('shape', connect(), if_exists='append')
 
