@@ -69,7 +69,7 @@ def shape_index(shape_type):
     if shape_type not in shape_types():
         abort(404)
 
-    shapes = Shape.query.where(Shape.type == shape_type).all()
+    shapes = Shape.query.where(Shape.type == shape_type).order_by(Shape.name.asc()).all()
     return render_template('shape/index.html', shape_type=shape_type, shapes=shapes)
 
 @app.route("/shape/<int:shape_id>")

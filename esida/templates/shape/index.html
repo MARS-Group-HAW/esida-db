@@ -68,6 +68,7 @@
 $(document).ready(function() {
     $('#shapes').DataTable({
       pageLength: 25,
+      order: [[1, 'asc']],
       columnDefs: [
         {targets: 'no-sort', orderable: false }
     ]

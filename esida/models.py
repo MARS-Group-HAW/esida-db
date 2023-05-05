@@ -31,7 +31,7 @@ class Shape(db.Model):
     area_sqm = db.Column(db.Float, nullable=True)
 
     parent = db.relationship("Shape", remote_side=[id])
-    children = db.relationship("Shape")
+    children = db.relationship("Shape", order_by="asc(Shape.name)")
 
     def human_readable_area(self) -> str:
         if not self.area_sqm:
