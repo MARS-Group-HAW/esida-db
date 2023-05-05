@@ -86,7 +86,7 @@ class osm_ferries(BaseParameter):
             # group / count matching facilities per year
             present = 0
             if len(dfx) > 0:
-                present = 1
+                present = 4.1 # https://www.theglobaleconomy.com/rankings/seaports_quality/
 
             dfs.append({
                 'shape_id': shape['id'],

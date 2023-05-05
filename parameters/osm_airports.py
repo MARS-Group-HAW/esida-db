@@ -69,7 +69,7 @@ class osm_airports(BaseParameter):
         if shapes is None:
             shapes = self._get_shapes_from_db()
 
-        # load imported airports
+        # load imported data
         df = geopandas.read_postgis(f"SELECT * FROM {self.table_name}",
                             geom_col='geometry', con=get_engine())
 
@@ -92,7 +92,7 @@ class osm_airports(BaseParameter):
             # group / count matching facilities per year
             risk_score = 0
             if len(dfx) > 0:
-                risk_score = 1
+                risk_score = 4.1 # https://www.theglobaleconomy.com/rankings/air_transport_infrastructure/
 
             dfs.append({
                 'shape_id': shape['id'],

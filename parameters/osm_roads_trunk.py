@@ -90,7 +90,7 @@ class osm_roads_trunk(BaseParameter):
             # group / count matching facilities per year
             has_road = 0
             if len(dfx) > 0:
-                has_road = 1
+                has_road = 4.1 # https://www.theglobaleconomy.com/rankings/roads_quality/
 
             dfs.append({
                 'shape_id': shape['id'],

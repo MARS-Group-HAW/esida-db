@@ -68,7 +68,7 @@ class osm_rail(BaseParameter):
         if shapes is None:
             shapes = self._get_shapes_from_db()
 
-        # load imported airports
+        # load imported data
         df = geopandas.read_postgis(f"SELECT * FROM {self.table_name}",
                             geom_col='geometry', con=get_engine())
 
@@ -91,7 +91,7 @@ class osm_rail(BaseParameter):
             # group / count matching facilities per year
             has_rail = 0
             if len(dfx) > 0:
-                has_rail = 1
+                has_rail = 3.2 # https://www.theglobaleconomy.com/rankings/railroad_quality/
 
             dfs.append({
                 'shape_id': shape['id'],
