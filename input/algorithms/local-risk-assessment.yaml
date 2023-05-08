@@ -36,20 +36,32 @@ spec:
         inclusive: False
         score: 1
   - name: HCfacAvail
-    description: If any healthcare facility is available (dispensary, clinic, health center, hospital) = Y
-    datalayer:
-      - thfr_disp
-      - thfr_clinic
-      - thfr_hecenter
-      - thfr_hospital
-    mode: any
-    value_yes: 1
-    value_no: 0
+    datalayer: malariaatlas_traveltimehc
     thresholds:
-      - is: 1
+      - max: 141
         score: 1
-      - is: 0
+        inclusive: False
+      - min: 141
+        max: 555
+        score: 2
+      - max: 555
+        inclusive: False
         score: 3
+#  - name: HCfacAvail
+#    description: If any healthcare facility is available (dispensary, clinic, health center, hospital) = Y
+#    datalayer:
+#      - thfr_disp
+#      - thfr_clinic
+#      - thfr_hecenter
+#      - thfr_hospital
+#    mode: any
+#    value_yes: 1
+#    value_no: 0
+#    thresholds:
+#      - is: 1
+#        score: 1
+#      - is: 0
+#        score: 3
   - name: Age % 5-39y (morbidity)
     datalayer: worldpop_age_5_39
     datalayer_total: worldpop_popc
