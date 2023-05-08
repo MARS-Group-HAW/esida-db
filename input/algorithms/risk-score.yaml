@@ -1,0 +1,92 @@
+apiVersion: v1
+metadata:
+  name: Dengue fever
+  start: min_temp
+spec:
+  min_temp:
+    name: Minimal temperature >15°C
+    datalayer: meteo_mint
+    operators:
+      - op: lt
+        attrs:
+          value: 100
+          start: P14D # iso8601 duration, relative to signal date
+          mode: all # mean, all, avg
+      - op: lt
+        attrs:
+          value: 15
+          start: P14D # iso8601 duration, relative to signal date
+          mode: all # mean, all, avg
+    positive:
+    negative:
+  min_temp:
+    name: Minimal temperature >15°C
+    datalayer: meteo_mint
+    operators:
+      - op: lge
+        attrs:
+          value: 100
+      - op: lt
+        attrs:
+          value: 1000
+    score: 2
+    positive:
+    negative:
+  min_temp:
+    name: Minimal temperature >15°C
+    datalayer: meteo_mint
+    operators:
+      - op: lge
+        attrs:
+          value: 1000
+    score: 3
+    positive:
+    negative:
+
+  builtup:
+    name: Built-Up (0-1) Copernicus > 10%?
+    datalayer: copernicus_built
+    operators:
+      - op: lg
+        attrs:
+          value: 10
+    positive:
+    negative:
+
+
+
+---
+
+apiVersion: v1
+metadata:
+  name: Dengue fever
+  start: min_temp
+spec:
+  min_temp:
+    name: Minimal temperature >15°C
+    datalayer: meteo_mint
+    operators:
+      - op: lt
+        attrs:
+          ranges:
+          - lower: 0
+            upper: 100
+            score: 1
+          - lower: 100
+            upper: 1000
+            score: 2
+          - lower: 1000
+            score: 3
+          start: P14D # iso8601 duration, relative to signal date
+          mode: all # mean, all, avg
+    positive: builtup
+    negative:
+  builtup:
+    name: Built-Up (0-1) Copernicus > 10%?
+    datalayer: copernicus_built
+    operators:
+      - op: lg
+        attrs:
+          value: 10
+    positive:
+    negative:
