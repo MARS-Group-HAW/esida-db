@@ -24,7 +24,7 @@ class tncen22_disp(BaseParameter):
     def load(self, shapes=None, save_output=False):
 
         # load regions ids
-        sql = "SELECT id, name FROM shape WHERE type IN('region')"
+        sql = "SELECT id, name FROM shape WHERE type IN('country', 'region')"
         gdf = pd.read_sql(sql, get_engine())
         name_to_id = dict(zip(gdf.name, gdf.id))
 
