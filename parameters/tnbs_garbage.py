@@ -20,7 +20,7 @@ class tnbs_garbage(BaseParameter):
         df = pd.read_excel(self.get_data_path() / 'S 202 Table 12.12- Percentage of Households by Region and Type of Refuse Disposal.xlsx',
                         skiprows=3)
 
-        regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type='region'",
+        regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type IN ('country', 'region')",
             geom_col='geometry', con=get_engine())
         regions = dict(zip(regions_gdf.name, regions_gdf.id))
 
