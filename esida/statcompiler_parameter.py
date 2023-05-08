@@ -21,13 +21,16 @@ class StatcompilerParameter(BaseParameter):
     def consume(self, df):
         raise NotImplementedError
 
-    def extract(self):
-        df = self.fetch_from_stat_compiler(self.get_indicators())
+    def extract(self, breakdown='subnational'):
+        df = self.fetch_from_stat_compiler(self.get_indicators(), breakdown=breakdown)
 
         # safe raw data
         data_dir = self.get_data_path()
-        file = '{}_data_{}.csv'.format(dt.datetime.today().strftime('%Y-%m-%d_%H-%M-%S'), self.parameter_id)
         data_dir.mkdir(parents=True, exist_ok=True)
+
+        now = dt.datetime.today().strftime('%Y-%m-%d_%H-%M-%S')
+        file = f'{now}_{breakdown}_data_{self.parameter_id}.csv'
+
         df.to_csv(data_dir / file, index=False)
 
         return df
@@ -35,8 +38,62 @@ class StatcompilerParameter(BaseParameter):
 
     def load(self, shapes=None, save_output=False):
 
-        regions_df = pd.read_sql_query("SELECT id, name FROM shape WHERE type='region' ORDER by name", con=get_engine())
+        # get national data. we query them separately since the STATcompiler API
+        # return multiple things for the breakdown=all that are cluttering the
+        # response
+        country_df = pd.read_sql_query("SELECT id, name FROM shape WHERE type='country' ORDER by name", con=get_engine())
 
+        # get raw data
+        df = self.extract(breakdown='national')
+        values = []
+
+        # group by survey/year
+        for sid in df['SurveyId'].unique():
+            dfx = df[df['SurveyId'] == sid].reset_index()
+
+            year = dfx.at[0, 'SurveyYear']
+
+            for _, r in country_df.iterrows():
+                x = {
+                    'year': year,
+                    'shape_id': r['id'],
+                    f'{self.parameter_id}_survey': sid,
+                }
+
+                for i in self.get_indicators():
+
+                    # note absence of indicator in any case!
+                    x[i] = None
+
+                    dfxx = dfx[dfx['IndicatorId'] == i]
+
+                    if len(dfxx) == 0:
+                        # indicator not present for this study/year
+                        self.logger.info('indicator not present for this study/year')
+                        continue
+
+                    # indicator for region
+                    sri = dfxx.loc[dfxx['CountryName'] == r['name']]
+
+                    if len(sri) == 0:
+                        self.logger.info('for this region no value exists: "%s"', r['name'])
+                        # for this region no value exists
+                        continue
+
+                    sri = sri.reset_index()
+                    x[i] = sri.at[0, 'Value']
+
+                values.append(x)
+
+        # STATcompiler specific data wrangling
+        df = pd.DataFrame(values)
+        self.consume(df)
+        national_df = self.df.copy()
+
+
+        # get subnational data
+
+        regions_df = pd.read_sql_query("SELECT id, name FROM shape WHERE type='region' ORDER by name", con=get_engine())
 
         # get raw data
         df = self.extract()
@@ -54,7 +111,7 @@ class StatcompilerParameter(BaseParameter):
         # STATcompiler specific data wrangling
         self.consume(df)
 
-
+        self.df = pd.concat([national_df, self.df])
         self.save()
 
 
@@ -114,14 +171,14 @@ class StatcompilerParameter(BaseParameter):
 
         return name
 
-    def fetch_from_stat_compiler(self, indicators) -> pd.DataFrame:
+    def fetch_from_stat_compiler(self, indicators, breakdown='subnational') -> pd.DataFrame:
         # fetch data
         params = {
             # Country code
             'countryIds':      'TZ',
             # give region based level, still shows "zones" (tanzania)
             # we have to filter based on the prepended ".." in
-            'breakdown':       'subnational',
+            'breakdown':       breakdown,
             'indicatorIds':    ','.join(indicators),
             #'surveyIds':      'TZ2017MIS',
             'lang':            'en',
