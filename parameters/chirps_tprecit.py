@@ -27,8 +27,8 @@ class chirps_tprecit(TiffParameter):
         self.time_col = 'date'
 
     def extract(self):
-        start_date = dt.date(2018, 1, 1)
-        end_date = dt.date(2022, 4, 30)
+        start_date = dt.date(2020, 1, 1)
+        end_date = dt.date(2023, 3, 31)
 
         # download all required files
         for date in self.date_range(start_date, end_date):
