@@ -12,7 +12,7 @@ class tnbs_physdens(BaseParameter):
         super().__init__()
 
     def get_data_path(self) -> Path:
-        return Path("./input/data/tnbs_ditshealthworkers/")
+        return Path("./input/data/tnbs_disthealthworkers/")
 
     def extract(self):
         # Nothing to do here, manually prepared excel file, extracted from
