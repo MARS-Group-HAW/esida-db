@@ -16,7 +16,7 @@ class malariaatlas_mortal(TiffParameter):
 
     def extract(self):
         urls = [
-            "https://malariaatlas.org/wp-content/uploads/2022-gbd2020/Pf_Mortality.zip",
+            "https://data.malariaatlas.org/geoserver/Malaria/ows?service=CSW&version=2.0.1&request=DirectDownload&ResourceId=Malaria:202206_Global_Pf_Mortality_Rate",
         ]
 
         for url in urls:
@@ -26,7 +26,7 @@ class malariaatlas_mortal(TiffParameter):
             # Check if file is already unzipped
             a = urlparse(url)
             file_name = os.path.basename(a.path)
-            if os.path.isdir(self.get_parameter_path() / "Pf_Mortality"):
+            if os.path.isfile(self.get_parameter_path() / "202206_Global_Pf_Mortality_Rate_2020.tif"):
                 self.logger.debug("File already unzipped.")
                 return
             try:
@@ -38,9 +38,6 @@ class malariaatlas_mortal(TiffParameter):
                     capture_output=True, check=True)
             except subprocess.CalledProcessError as error:
                 self.logger.warning("Could not unzip files: %s", error.stderr)
-
-    def get_data_path(self) -> Path:
-        return self.get_parameter_path() / "Pf_Mortality/Raster Data/Pf_mortality_rate_rmean/"
 
     def consume(self, file, band, shape):
         x = re.search(r'_([0-9]+)\.tif$', os.path.basename(file))
