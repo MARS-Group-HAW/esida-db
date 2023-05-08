@@ -286,7 +286,7 @@ spec:
         max: 42.4
         score: 3
   - name: Waste collection coverage %
-    datalayer: statcompiler_sanitation
+    datalayer: tnbs_garbage
     mode: percentage
     thresholds:
       - min: 94.4
