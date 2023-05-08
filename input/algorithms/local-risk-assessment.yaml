@@ -22,6 +22,19 @@ spec:
         score: 2
       - min: 7.2
         score: 1
+  - name: Hospital beds per 10,000 population
+    datalayer: who_hospbeddens
+    thresholds:
+      - min: 0
+        max: 2
+        score: 3
+        inclusive: False
+      - min: 2
+        max: 4
+        score: 2
+      - min: 4
+        inclusive: False
+        score: 1
   - name: HCfacAvail
     description: If any healthcare facility is available (dispensary, clinic, health center, hospital) = Y
     datalayer:
