@@ -19,6 +19,9 @@ class tnbs_medlabdens(BaseParameter):
         # 2012 census
         pass
 
+
+    #  2013 = 8, 30, 31 und 2014 = 61, 62 UND 63.
+
     def load(self, shapes=None, save_output=False):
 
         # load regions ids
@@ -54,20 +57,36 @@ class tnbs_medlabdens(BaseParameter):
                 totals[int(row['YEAR'])] = int(row[df_name])
 
 
-            dfx = df[df['HEALTH WORKERS'].isin([
-                'MEDICAL LABORATORY TECHNOLOGIST',
-            ])]
 
-            for _, row in dfx.iterrows():
 
-                if totals[int(row['YEAR'])] == 0:
-                    self.logger.info(f"Total pop for {name} ({df_name}) in {row['YEAR']} is 0.")
+            for year in [2013, 2014]:
+
+                if int(row['YEAR']) == 2013:
+                    keys = [
+                        'ASSISTANT LABORATORY TECHNOLOGIST',
+                        'HEALTH LABORATORY ASSISTANT',
+                        'HEALTH LABORATORY SCIENTIST'
+                    ]
+                elif int(row['YEAR']) == 2014:
+                    keys = [
+                        'HEALTH LABORATORY ASSISTANT',
+                        'HEALTH LABORATORY SCIENTIST',
+                        'HEALTH LABORATORY TECHNOLOGISTS'
+                    ]
+                else:
+                    self.logger.info(f"unknown year {year}")
+                    continue
+
+                dfx = df[df['HEALTH WORKERS'].isin(keys)]
+
+                if totals[year] == 0:
+                    self.logger.info(f"Total pop for {name} ({df_name}) in {year} is 0.")
                     continue
 
                 rows.append({
                     'year': int(row['YEAR']),
                     'shape_id': shape_id,
-                    f"{self.parameter_id}": row[df_name] / totals[int(row['YEAR'])] * 10000
+                    f"{self.parameter_id}": dfx[df_name].sum() / totals[year] * 10000
                 })
 
         self.df = pd.DataFrame(rows)
