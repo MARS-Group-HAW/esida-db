@@ -305,12 +305,12 @@ spec:
     thresholds:
       - min: 0
         max: 42.2
-        score: 1
+        score: 3
       - min: 42.3
         max: 64.5
         score: 2
       - min: 64.6
-        score: 3
+        score: 1
   - name: Urban environment / built-up %
     datalayer: copernicus_built
     mode: percentage
