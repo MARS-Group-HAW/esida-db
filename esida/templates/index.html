@@ -81,14 +81,29 @@
   #}
 
 
-  <div class="text-center text-sm-end">
-    <a class="m-3" href="https://www.mars-group.org/"><img src="{{ url_for('static', filename='images/mars-group.svg') }}" width="200" alt="MARS Group"></a>
+  <div class="d-sm-flex mt-5 justify-content-between">
+    <div class="text-center text-sm-start">
+      <span class="text-muted small">Produced by:</span>
+      <div class="d-sm-flex align-items-center h-100">
+        <a class="mx-3" href="https://www.mars-group.org/"><img src="{{ url_for('static', filename='images/mars-group.svg') }}" width="200" alt="MARS Group"></a>
+        <a class="mx-3" href="https://www.haw-hamburg.de/forschung/forschungsprojekte-detail/project/project/show/esida/"><img src="{{ url_for('static', filename='images/HAW_Marke_RGB_300dpi.jpeg') }}" width="200" alt="HAW Hamburg"></a>
+      </div>
+   </div>
 
-    <a class="m-3" href="https://www.haw-hamburg.de/forschung/forschungsprojekte-detail/project/project/show/esida/"><img src="{{ url_for('static', filename='images/HAW_Marke_RGB_300dpi.jpeg') }}" width="200" alt="HAW Hamburg"></a>
-
-
-
+    <div class="text-center text-sm-end">
+      <span class="text-muted small">Funded by:</span>
+      <div class="d-sm-flex align-items-center h-100">
+        <a class="mx-3 text-center" href="https://www.connect-education-research-innovation.de/en/esida.html">
+          <img src="{{ url_for('static', filename='images/connect-logo-en.jpeg') }}" width="200" alt="Logo Connect">
+        </a>
+        <a class="mx-3 d-block" style="text-decoration: none;" href="https://www.bmbf.de/bmbf/en/home/home_node.html">
+          <img src="{{ url_for('static', filename='images/BMBF_gefoerdert_2017_en.svg') }}" width="100" alt="Federal Ministry of Education and Research">
+          <small class="text-muted py-1 d-block" style="font-size: 10px;">(ID 01DU20005)</small>
+        </a>
+      </div>
+    </div>
   </div>
+
 
 {% endblock %}
 
