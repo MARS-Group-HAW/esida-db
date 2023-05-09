@@ -5,34 +5,38 @@ spec:
   - name: Physician density
     datalayer: tnbs_physdens
     thresholds:
-      - max: 0.7
+      - max: 8
         score: 3
-      - min: 0.8
-        max: 2.9
+        inclusive: False
+      - min: 8
+        max: 29
         score: 2
-      - min: 3
+      - min: 29
         score: 1
+        inclusive: False
   - name: Nurses and midwife density
     datalayer: tnbs_nursmidwdens
     thresholds:
-      - max: 1.6
+      - max: 17
         score: 3
-      - min: 1.7
-        max: 7.1
+        inclusive: False
+      - min: 17
+        max: 71
         score: 2
-      - min: 7.2
+      - min: 71
         score: 1
+        inclusive: False
   - name: Hospital beds per 10,000 population
     datalayer: who_hospbeddens
     thresholds:
       - min: 0
-        max: 2
+        max: 20
         score: 3
         inclusive: False
-      - min: 2
-        max: 4
+      - min: 20
+        max: 40
         score: 2
-      - min: 4
+      - min: 40
         inclusive: False
         score: 1
   - name: HCfacAvail
@@ -104,17 +108,18 @@ spec:
       - min: 11.0
         max: 100
         score: 3
-
   - name: Medical laboratory personnel density
     datalayer: tnbs_medlabdens
     thresholds:
-      - max: 1.0
-        score: 1
+      - max: 1.1
+        score: 3
+        inclusive: False
       - min: 1.1
         max: 2.7
         score: 2
-      - min: 2.8
-        score: 3
+      - min: 2.7
+        score: 1
+        inclusive: False
   - name: Population density
     datalayer: worldpop_popd
     thresholds:
@@ -143,6 +148,7 @@ spec:
   - name: Lower secondary education % (men)
     datalayer: statcompiler_education_men
     mode: percentage
+    factor: 0.5
     thresholds:
       - min: 0
         max: 4.2
@@ -158,6 +164,7 @@ spec:
   - name: Lower secondary education % (women)
     datalayer: statcompiler_education_women
     mode: percentage
+    factor: 0.5
     thresholds:
       - min: 0
         max: 2.4
