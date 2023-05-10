@@ -576,12 +576,13 @@ class BaseParameter():
         res = con.execute(sql)
         req = res.fetchone()
 
-
-
         if req is None:
             return None
 
         dreq =  dict(req)
+
+        if dreq[self.parameter_id] is None:
+            return None
 
         if self.parameter_id not in dreq:
             self.logger.error("Parameter column missing in peek for shape_id=%s", shape_id)
