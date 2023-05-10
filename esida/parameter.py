@@ -551,18 +551,24 @@ class BaseParameter():
             self.logger.warning("Peek of data requested but not loaded for shape_id=%s", shape_id)
             return None
 
-        sql = f"SELECT * FROM {self.parameter_id}"
-        sql += f" WHERE shape_id = {shape_id}"
+        sql = f"SELECT dl.*, shape.type FROM {self.parameter_id} AS dl"
+
+        sql += f" JOIN shape ON shape.id = dl.shape_id"
+
+
+        sql += f" WHERE dl.shape_id = {shape_id}"
+
+
 
         if when is not None:
             if self.time_col == 'year':
-                sql += f" AND year = {when.year}"
+                sql += f" AND dl.year = {when.year}"
             elif self.time_col == 'date':
-                sql += f" AND date = '{str(when)}'"
+                sql += f" AND dl.date = '{str(when)}'"
             else:
                 raise ValueError(f"Unknown time_col={self.time_col}")
 
-        sql += f" ORDER BY {self.time_col} DESC LIMIT 1"
+        sql += f" ORDER BY dl.{self.time_col} DESC LIMIT 1"
 
 
 
