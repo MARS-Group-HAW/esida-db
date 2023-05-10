@@ -32,6 +32,12 @@ class tnbs_medlabdens(BaseParameter):
         def normalize_name(name):
             if name == 'Dar-es-salaam':
                 name = 'Dar es salaam'
+
+            # Songwe was created in 2016 and was part of Mbeya at the time
+            # of the data curation (2014). So we assume the value there es well.
+            if name == "Songwe":
+                name = "Mbeya"
+
             return name.upper()
 
         # load data
@@ -56,18 +62,9 @@ class tnbs_medlabdens(BaseParameter):
             for _, row in dfx_total.iterrows():
                 totals[int(row['YEAR'])] = int(row[df_name])
 
-
-
-
-            for year in [2013, 2014]:
-
-                if int(row['YEAR']) == 2013:
-                    keys = [
-                        'ASSISTANT LABORATORY TECHNOLOGIST',
-                        'HEALTH LABORATORY ASSISTANT',
-                        'HEALTH LABORATORY SCIENTIST'
-                    ]
-                elif int(row['YEAR']) == 2014:
+            # only year 2014 is of interest, 2013 is incomplete
+            for year in [2014]:
+                if int(row['YEAR']) == 2014:
                     keys = [
                         'HEALTH LABORATORY ASSISTANT',
                         'HEALTH LABORATORY SCIENTIST',
@@ -90,4 +87,19 @@ class tnbs_medlabdens(BaseParameter):
                 })
 
         self.df = pd.DataFrame(rows)
+
+        # load country to create mean, zanzibar zone has no values
+        # so we assume the country mean for this area
+        sql = "SELECT id, name FROM shape WHERE type IN('country') AND name ='Tanzania' LIMIT 1"
+        gdf = pd.read_sql(sql, get_engine())
+        name_to_id = dict(zip(gdf.name, gdf.id))
+
+        rows.append({
+            'year': 2014,
+            'shape_id': gdf.at[0, 'id'],
+            f"{self.parameter_id}": self.df[self.parameter_id].mean()
+        })
+
+        self.df = pd.DataFrame(rows)
+
         self.save()
