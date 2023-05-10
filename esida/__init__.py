@@ -9,6 +9,7 @@ from decouple import config
 from dbconf import get_conn_string
 import log
 
+from .version import __version__
 
 logger = log.setup_custom_logger('root')
 app = Flask(__name__)
@@ -59,7 +60,7 @@ def shape_types() -> list:
 @app.context_processor
 def inject_shape_types():
     """ Inject shape_types from .env file into ALL view templates. """
-    return dict(shape_types=shape_types())
+    return dict(shape_types=shape_types(), version=__version__)
 
 
 @app.template_filter('slugify')
