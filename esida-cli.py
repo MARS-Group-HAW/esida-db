@@ -14,12 +14,15 @@ import geopandas
 import pandas as pd
 import sqlalchemy
 import yaml
+from openpyxl import Workbook
+from openpyxl.styles import PatternFill
+from openpyxl.styles.colors import Color
 
 import log
 from dbconf import get_engine, connect, close, get_conn_string
 from parameters import *
 from esida.tiff_parameter import TiffParameter
-from esida.models import Signal
+from esida.models import Signal, Shape
 
 
 logger = log.setup_custom_logger('root')
@@ -377,6 +380,134 @@ def assess_signal(id):
                     break
 
         print("")
+
+
+@cli.command("master-table")
+@click.argument('file', type=click.Path(exists=True))
+def master_table(file):
+
+    with open(file, "r") as stream:
+        try:
+            algorithm = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
+            return
+
+    colors = {
+        'country': Color(rgb='FFC7CE'),
+        'region':  Color(rgb='FCE1C6'),
+        'missing': Color(rgb='FF0000'),
+    }
+
+    wb = Workbook()
+    ws = wb.active
+
+    ws.title = "README"
+
+    ws['A1'].value = "Inferred from country"
+    ws['A1'].fill = PatternFill(fgColor=colors['country'], fill_type = "solid")
+    ws['A2'].value = "Inferred from region"
+    ws['A2'].fill = PatternFill(fgColor=colors['region'], fill_type = "solid")
+    ws['A3'].value = "Missing value"
+    ws['A3'].fill = PatternFill(fgColor=colors['missing'], fill_type = "solid")
+
+    ws['A5'].value = f"Created at {dt.datetime.now().isoformat()}"
+
+    for shape_type in ['country', 'region', 'district']:
+
+        ws = wb.create_sheet(shape_type.capitalize())
+        ws.freeze_panes = "A2" # freeze rows ABOVE A2 -> first row
+        shapes = Shape.query.where(Shape.type == shape_type).order_by(Shape.name.asc()).all()
+
+        col = 1
+        row = 1
+
+        # First row is Type
+        ws.cell(row=row, column=col, value='Type')
+        row += 1
+
+        for s in shapes:
+            d = ws.cell(row=row, column=col, value=s.type)
+            row += 1
+        row = 1
+        col += 1
+
+        # Second row is Name
+        ws.cell(row=row, column=col, value='Name')
+        row += 1
+
+        for s in shapes:
+            d = ws.cell(row=row, column=col, value=s.name)
+            row += 1
+        row = 1
+        col += 1
+
+        # Columns for parents
+        if shape_type == 'district':
+            ws.cell(row=row, column=col, value='Region')
+            row += 1
+
+            for s in shapes:
+                d = ws.cell(row=row, column=col, value=s.parent.name)
+                row += 1
+            row = 1
+            col += 1
+
+        for dl in algorithm['spec']:
+            pm = importlib.import_module(f"parameters.{dl['datalayer']}")
+            pc = getattr(pm, dl['datalayer'])()
+
+            d = ws.cell(row=row, column=col, value=dl['datalayer'])
+            row += 1
+
+            for s in shapes:
+                v = s.get(pc, fallback_parent=True)
+
+
+
+                if v and dl['datalayer'] in v:
+
+                    value = v[dl['datalayer']]
+
+                    # in case the data layer is a count, but we need a proportion
+                    # load the corresponding total data layer
+                    if 'datalayer_total' in dl:
+                        total = s.get(dl['datalayer_total'])
+                        total = total[dl['datalayer_total']]
+
+                        value = value / total * 100
+
+
+                    if pc.is_percent:
+                        if not pc.is_percent100:
+                            value = value * 100
+
+                    if f"{dl['datalayer']}_inferred" in v:
+                        c = ws.cell(row=row, column=col, value=value)
+                        c.fill = PatternFill(fgColor=colors[v['type']], fill_type = "solid")
+                    else:
+                        ws.cell(row=row, column=col, value=value)
+                else:
+                    c = ws.cell(row=row, column=col, value="=NA()")
+
+                row += 1
+
+            row= 1
+            col += 1
+
+        # auto width for all columns
+        if False:
+            dims = {}
+            for row in ws.rows:
+                for cell in row:
+                    if cell.value:
+                        dims[cell.column_letter] = max((dims.get(cell.column_letter, 0), len(str(cell.value))))
+            for col, value in dims.items():
+                ws.column_dimensions[col].width = value
+
+
+    wb.save('DataHub_MASTER.xlsx')
+
 
 
 
