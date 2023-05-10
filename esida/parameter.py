@@ -455,9 +455,8 @@ class BaseParameter():
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame
 
-        sql = f"SELECT {self.parameter_id}.*"
-
-        sql += ", shape.name AS shape_name, shape.type AS shape_type"
+        sql  = f"SELECT {self.parameter_id}.*, "
+        sql += " shape.name AS shape_name, shape.type AS shape_type"
         sql += f" FROM {self.parameter_id}"
         sql += f" JOIN shape ON ({self.parameter_id}.shape_id = shape.id)"
 
@@ -481,6 +480,8 @@ class BaseParameter():
 
         if fallback_previous:
             sql += f" ORDER BY {self.time_col} LIMIT 1"
+        else:
+            sql += " ORDER BY shape.id"
 
         df = pd.read_sql_query(sql, con=get_engine())
 
