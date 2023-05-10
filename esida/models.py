@@ -73,6 +73,7 @@ class Shape(db.Model):
 
         if value is None and fallback_parent and self.parent is not None:
             value = self.parent.get(dl, fallback_parent, when=when)
+            value[f"{dl.parameter_id}_inferred"] = True
 
         return value
 
