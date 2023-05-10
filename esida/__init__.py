@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
+from slugify import slugify
 
 from decouple import config
 from dbconf import get_conn_string
@@ -59,6 +60,15 @@ def shape_types() -> list:
 def inject_shape_types():
     """ Inject shape_types from .env file into ALL view templates. """
     return dict(shape_types=shape_types())
+
+
+@app.template_filter('slugify')
+def _slugify(string):
+    if not string:
+        return ""
+    return slugify(string)
+
+
 
 # import AFTER app, etc. has been declared!
 import esida.models

@@ -207,11 +207,13 @@ def str2bool(v) -> bool:
 @app.route('/api/v1/shapes')
 def api_shapes():
 
-    format = 'csv'
+    output_format = 'csv'
     if 'format' in request.args:
-        format = request.args['format']
+        output_format = request.args['format']
 
-    if 'type' in request.args:
+    if 'shape_id' in request.args:
+        shapes = [Shape.query.get(request.args['shape_id'])]
+    elif 'type' in request.args:
         shapes = Shape.query.where(Shape.type == request.args['type']).all()
     else:
         shapes = Shape.query.where().all()
@@ -233,7 +235,7 @@ def api_shapes():
         data.append(row)
 
 
-    if format == 'json':
+    if output_format == 'json':
         data = {
             'type': "FeatureCollection",
             "features":[]
@@ -251,6 +253,15 @@ def api_shapes():
             }
             data['features'].append(f)
         return jsonify(data)
+
+    if output_format == 'wkt':
+        wkts = ""
+        for s in shapes:
+            wkts += s.geom().wkt + "\n"
+
+        response = make_response(wkts, 200)
+        response.mimetype = "text/plain"
+        return response
 
     df = pd.DataFrame(data)
     return jsonify(
