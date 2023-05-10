@@ -16,27 +16,20 @@ class malariaatlas_traveltimehc(TiffParameter):
 
     def extract(self):
         urls = [
-            "https://data.malariaatlas.org/geoserver/Accessibility/ows?service=CSW&version=2.0.1&request=DirectDownload&ResourceId=Accessibility:202001_Global_Walking_Only_Travel_Time_To_Healthcare",
+            "https://data.malariaatlas.org/geoserver/Accessibility/ows?service=CSW&version=2.0.1&request=DirectDownload&ResourceId=Accessibility:202001_Global_Motorized_Travel_Time_to_Healthcare"
         ]
 
         for url in urls:
-
-            print("wtd")
-            print(url)
             self._save_url_to_file(url)
 
             # Check if file is already unzipped
             a = urlparse(url)
             file_name = os.path.basename(a.path)
 
-            print(file_name)
-
-            if os.path.isfile(self.get_parameter_path() / f"{file_name}.tif"):
+            if os.path.isfile(self.get_parameter_path() / "202001_Global_Motorized_Travel_Time_to_Healthcare_2019.tif"):
                 self.logger.debug("File already unzipped.")
                 return
             try:
-                # cmd syntax didn't work, not sure why
-                #subprocess.check_output('gzip -d ./input/data/chc_chirps/*.gz', shell=True)
                 in_file = self.get_parameter_path() / file_name
                 out_dir = self.get_parameter_path().as_posix()
                 print(f'unzip {in_file} -d {out_dir}')
@@ -49,14 +42,11 @@ class malariaatlas_traveltimehc(TiffParameter):
         x = re.search(r'_([0-9]+)\.tif$', os.path.basename(file))
         year = int(x[1])
 
-        if shape['id'] in [242, 253, 205, 240, 194, 197, 217, 218, 252]:
-            return
-
         self.rows.append({
+            'shape_id': shape['id'],
+            'year':     year,
             f"{self.parameter_id}":         np.nanmean(band),
             f"{self.parameter_id}_min":     np.nanmin(band),
             f"{self.parameter_id}_max":     np.nanmax(band),
-            f"{self.parameter_id}_std_dev": np.nanstd(band),
-            'year': year,
-            'shape_id': shape['id']
+            f"{self.parameter_id}_std_dev": np.nanstd(band)
         })
