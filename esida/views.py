@@ -264,9 +264,10 @@ def api_shapes():
         return response
 
     df = pd.DataFrame(data)
-    return jsonify(
-        data=df.to_dict('records')
-    )
+
+    resp = make_response(df.to_csv(index=False))
+    resp.headers["Content-Type"] = "text/csv"
+    return resp
 
 @app.route('/api/v1/shape/<int:shape_id>')
 def api_data(shape_id):
