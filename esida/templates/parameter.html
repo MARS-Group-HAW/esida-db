@@ -67,7 +67,7 @@
               {% endfor %}
             </select>
           {% else %}
-            <input type="date" class="form-control" id="js-map-date">
+            <input type="date" class="form-control" id="js-map-date" min="{{ parameter.get_first_time() }}" max="{{ parameter.get_last_time() }}">
           {% endif %}
 
           <button id="js-add-to-map" class="btn btn-outline-secondary btn-sm">Load map</button>

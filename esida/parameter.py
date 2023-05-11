@@ -595,6 +595,44 @@ class BaseParameter():
 
         return dreq
 
+    def get_first_time(self):
+
+        if not self.is_loaded():
+            self.logger.warning("get_first_time requested but not loaded")
+            return None
+
+        if self.time_col == 'year':
+            sql = f"SELECT year FROM {self.parameter_id} ORDER BY year ASC LIMIT 1"
+        elif self.time_col == 'date':
+            sql = f"SELECT date FROM {self.parameter_id} ORDER BY date ASC LIMIT 1"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
+
+        con = connect()
+        res = con.execute(sql)
+        req = res.fetchone()
+
+        return req['date']
+
+    def get_last_time(self):
+
+        if not self.is_loaded():
+            self.logger.warning("get_first_time requested but not loaded")
+            return None
+
+        if self.time_col == 'year':
+            sql = f"SELECT year FROM {self.parameter_id} ORDER BY year DESC LIMIT 1"
+        elif self.time_col == 'date':
+            sql = f"SELECT date FROM {self.parameter_id} ORDER BY date DESC LIMIT 1"
+        else:
+            raise ValueError(f"Unknown time_col={self.time_col}")
+
+        con = connect()
+        res = con.execute(sql)
+        req = res.fetchone()
+
+        return req['date']
+
     def years_with_data(self) -> List[int]:
         """ finds all years in which data are available. """
 
