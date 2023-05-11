@@ -65,7 +65,7 @@ def index():
 
 @app.route("/shapes/<string:shape_type>")
 def shape_index(shape_type):
-
+    """ View for all shapes of a given type. """
     if shape_type not in shape_types():
         abort(404)
 
@@ -73,7 +73,8 @@ def shape_index(shape_type):
     return render_template('shape/index.html', shape_type=shape_type, shapes=shapes)
 
 @app.route("/shape/<int:shape_id>")
-def shape(shape_id):
+def shape_show(shape_id):
+    """ View for single shape identified by it's ID. """
     shape = Shape.query.get(shape_id)
 
     if shape is None:

@@ -45,13 +45,13 @@
           <tr>
             <td class="align-middle">
               {% if shape.parent %}
-              <a href="{{ url_for('shape', shape_id=shape.parent_id) }}" class="link-subtle">{{ shape.parent.name }}</a>
+              <a href="{{ url_for('shape_show', shape_id=shape.parent_id) }}" class="link-subtle">{{ shape.parent.name }}</a>
               {% else %}
               -
               {% endif %}
             </td>
             <td class="align-middle">
-              <a href="{{ url_for('shape', shape_id=shape.id) }}" class="link-subtle">{{ shape.name }}</a>
+              <a href="{{ url_for('shape_show', shape_id=shape.id) }}" class="link-subtle">{{ shape.name }}</a>
             </td>
             <td class="align-middle" data-order="{{ shape.area_sqm }}">{{ shape.human_readable_area() }} km<sup>2</sup></td>
             <td>
@@ -65,7 +65,7 @@
                 </a>
 
 
-                <a href="{{ url_for('shape', shape_id=shape.id) }}" class="btn btn-sm btn-link">Details</a>
+                <a href="{{ url_for('shape_show', shape_id=shape.id) }}" class="btn btn-sm btn-link">Details</a>
               </div>
             </td>
           </tr>

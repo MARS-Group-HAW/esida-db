@@ -39,7 +39,7 @@
           {% if shape.parent %}
           <tr>
             <th>Parent</th>
-            <td><a href="{{ url_for('shape', shape_id=shape.parent.id) }}">{{ shape.parent.name }}</a></td>
+            <td><a href="{{ url_for('shape_show', shape_id=shape.parent.id) }}">{{ shape.parent.name }}</a></td>
           </tr>
           {% endif %}
 
@@ -57,7 +57,7 @@
             <th>Children ({{ shape.children|length }})</th>
             <td><ul class="m-0""">{% for child in shape.children %}
 
-              <li><a href="{{ url_for('shape', shape_id=child.id) }}">{{ child.name }}</a></li>
+              <li><a href="{{ url_for('shape_show', shape_id=child.id) }}">{{ child.name }}</a></li>
 
                {% endfor %}</ul></td>
           </tr>
