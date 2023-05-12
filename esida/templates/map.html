@@ -6,6 +6,12 @@
 {% block content %}
   <h1>Map</h1>
 
+  <div class="btn-group mb-3" role="group" aria-label="Load shape types onto map">
+    {% for type in shape_types %}
+    <button type="button" class="btn btn-outline-primary js-load-shape" data-type="{{ type }}">Load {{ type }}</button>
+    {% endfor %}
+  </div>
+
   <div class="mb-3" id="map" style="width: 100%; height: 800px"></div>
 
   <div class="row g-3 align-items-center">
@@ -45,31 +51,14 @@ var hfrIcon = L.icon({
     iconSize:     [16, 16]
 });
 
-
-regions=[]
-{% for region in regions %}
-  var s = L.geoJSON({{ region.geojson()|safe }} )
-  .bindPopup(`{% with shape=region %}{% include 'misc/shape-popup.html' %}{% endwith %}`);
-
-  regions.push(s);
-{% endfor %}
-var group_regions = L.featureGroup(regions);
-
-districts=[]
-{% for district in districts %}
-  var s = L.geoJSON({{ district.geojson()|safe }} )
-  .bindPopup(`{% with shape=district %}{% include 'misc/shape-popup.html' %}{% endwith %}`);
-
-  districts.push(s);
-{% endfor %}
-var group_districts = L.featureGroup(districts).addTo(map);
-
 var layerControl = L.control.layers(null, null, {
   collapsed: false
 }).addTo(map);
 layerControl.addBaseLayer(osm, 'OSM');
-layerControl.addOverlay(group_regions, 'Regions');
-layerControl.addOverlay(group_districts, 'Districts');
+
+$('.js-load-shape').on('click', function(e) {
+  load_shape(map, {'type': $(this).data('type') }, $(this).data('type'), layerControl);
+});
 
 $('#js-load-data').on('click', function(e) {
   dl = {

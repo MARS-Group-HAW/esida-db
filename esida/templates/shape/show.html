@@ -311,18 +311,13 @@ $('#dl_filtered').on('click', function(e) {
   var map_position = {lat: -6, lng: 35, zoom: 10};
 
   var map = L.map('map', {
-    preferCanvas: true
+    preferCanvas: true,
+    loadingControl: true
   }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
-
-  shapes=[]
-  var s = L.geoJSON({{ shape.geojson()|safe }} );
-  shapes.push(s);
-  var group_districts = L.featureGroup(shapes).addTo(map);
-  map.fitBounds(group_districts.getBounds());
-
 
   var layerControl = L.control.layers().addTo(map);
   layerControl.addBaseLayer(osm, 'OSM');
-  layerControl.addOverlay(group_districts, '{{ shape.name}}');
+
+  load_shape(map, {shape_id: {{shape.id}}}, '{{ shape.name}}', layerControl);
 </script>
 {% endblock %}

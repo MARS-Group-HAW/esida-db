@@ -213,11 +213,11 @@ def api_shapes():
         output_format = request.args['format']
 
     if 'shape_id' in request.args:
-        shapes = [Shape.query.get(request.args['shape_id'])]
+        shapes = [Shape.query.options(undefer("geometry")).get(request.args['shape_id'])]
     elif 'type' in request.args:
-        shapes = Shape.query.where(Shape.type == request.args['type']).all()
+        shapes = Shape.query.where(Shape.type == request.args['type']).options(undefer("geometry")).all()
     else:
-        shapes = Shape.query.where().all()
+        shapes = Shape.query.options(undefer("geometry")).all()
 
     data = []
 

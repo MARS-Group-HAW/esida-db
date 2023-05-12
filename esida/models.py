@@ -2,6 +2,7 @@ import importlib
 import importlib.util
 
 from sqlalchemy.sql import func, text
+from sqlalchemy.orm import deferred
 from geoalchemy2.types import Geometry
 from geoalchemy2.shape import to_shape
 
@@ -30,7 +31,7 @@ class Shape(db.Model):
     area_sqm = db.Column(db.Float, nullable=True)
     properties = db.Column(db.JSON, nullable=True)
 
-    geometry = db.Column(Geometry(srid=4326), nullable=False)
+    geometry = deferred(db.Column(Geometry(srid=4326), nullable=False))
 
     parent = db.relationship("Shape", remote_side=[id], viewonly=True)
     children = db.relationship("Shape", order_by="asc(Shape.name)", viewonly=True)

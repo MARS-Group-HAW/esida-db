@@ -1,3 +1,37 @@
+function load_shape(map, query, layer_name, layerControl) {
+  map.fire('dataloading');
+
+  if (!query.hasOwnProperty('format')) {
+    query['format'] = 'json';
+  }
+
+  query_string = new URLSearchParams(query).toString();
+
+  $.getJSON(`/api/v1/shapes?${query_string}`, function(data) {
+
+    var m = L.geoJSON(data, {
+      onEachFeature: function (feature, layer) {
+        const p = feature.properties;
+        layer.bindPopup(`<h5 class="mb-0">${p['name']}</h5>
+        <p class="mt-0">
+          <small class="text-muted">${p['type']}</small>
+        </p>
+        <a href="${p['url']}" class="btn btn-link">Details</a>`);
+      }
+    }).addTo(map);
+    map.fitBounds(m.getBounds());
+
+    if (layerControl) {
+      layerControl.addOverlay(m, layer_name);
+    }
+
+    map.fire('dataload');
+  }).fail(function(data) {
+    alert("Something went wrong during loading the geometry of the shape.");
+    map.fire('dataload');
+  });
+}
+
 function load_data_for_layer(map, dl, layerControl) {
   map.fire('dataloading');
 

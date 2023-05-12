@@ -95,38 +95,34 @@ $(document).ready(function() {
   var osmUrl    = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
   var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
   var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
-  var map_position = {lat: -6, lng: 35, zoom: 5};
+  var map_position = {lat: -6.432897914816578, lng: 34.98810074957101, zoom: 5};
 
   var map = L.map('map', {
-    preferCanvas: true
-  }).addLayer(osm);
+    preferCanvas: true,
+    loadingControl: true
+  }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
 
-  var shapes=[]
-  {% for shape in shapes %}
-    var s = L.geoJSON({{ shape.geojson()|safe }} )
-    .bindPopup(`{% include 'misc/shape-popup.html' %}`);
-    shapes.push(s);
-  {% endfor %}
-  var group_shapes = L.featureGroup(shapes).addTo(map);
-  map.fitBounds(group_shapes.getBounds());
+  load_shape(map, {'type': '{{ shape_type }}'});
 
   function highlightShape(e) {
-    shapes.forEach(function(s) {
-    s.eachLayer(function (layer) {
-      if (layer.feature.properties.id == e) {
+    map.eachLayer(function (layer) {
+      if (!layer.hasOwnProperty('feature')) {
+        return;
+      }
+
+      if (layer.feature.properties.shape_id == e) {
           layer.setStyle({color: '#FF8000'});
           layer.bringToFront();
-
           map.flyToBounds(layer.getBounds());
-
-
-          //return;
       } else {
-        s.resetStyle(layer);
+        // resetStyle() only works on GeoJSON layer and we it not in scope here
+        // so just reset the style to the default blue.
+        layer.setStyle({
+          color: '#3188FF'
+        });
       }
     });
-  });
-}
+  }
 
 $('.js-highlight-shape').on('click', function(e) {
   highlightShape(parseInt($(this).attr('data-shape_id')));
