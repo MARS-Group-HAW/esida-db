@@ -138,9 +138,18 @@ class MeteostatParameter(BaseParameter):
             df = dfxs[0]
         else:
             df = dfxs[0]
-            for i in range(1, len(dfxs)):
-                df = df.merge(dfxs[i], how='outer', on='time')
 
+            for i in range(1, len(dfxs)):
+                # set suffixes manually, for multiple merges, the _x, _y could be duplicate
+                #
+                # First: (mint) x (mint) -> mint_x, mint_y
+                #
+                # Second (mint_x, mint_y) x (mint) -> mint_x, mint_y, mint
+                #
+                # Third merge: (mint_x, mint_y, mint) x (mint) -> error
+                # mint would each get _x and _y suffixes, but those already exists.
+                # That's why we add the i in the suffix.
+                df = df.merge(dfxs[i], how='outer', on='time', suffixes=(f"_x{i}", f"_y{i}"))
         if len(df) == 0:
             self.logger.warning("No data found for stations inside shape")
 
