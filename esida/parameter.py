@@ -407,6 +407,7 @@ class BaseParameter():
             shape_id=None,
             start: Optional[dt.datetime] = None,
             end: Optional[dt.datetime] = None,
+            select_shape_name=True,
             fallback_previous=False,
             fallback_parent=False) -> pd.DataFrame:
         """ Aggregates the download data, but in case there is now value available,
@@ -424,8 +425,10 @@ class BaseParameter():
             for step in temporal_steps:
                 row = shape.get(self, fallback_parent=True, when=step)
                 row.pop('index', None)
-                row['shape_name'] = shape.name
-                row['shape_type'] = shape.type
+
+                if select_shape_name:
+                    row['shape_name'] = shape.name
+                    row['shape_type'] = shape.type
 
                 # in case the value was inferred from a parent shape, the shape_id
                 # is set to this shape, instead of the actual queried shape.
@@ -435,8 +438,14 @@ class BaseParameter():
                 # so the column is unique.
                 inferred_key = f'{self.parameter_id}_inferred_from_shape_id'
                 row[inferred_key] = row['shape_id']
-                row['shape_id'] = shape.id
-                row[f'{self.parameter_id}_inferred'] = (row[inferred_key] != row['shape_id'])
+
+                if not shape_id:
+                    row['shape_id'] = shape.id
+                else:
+                    row.pop('shape_id', None)
+                    row.pop('type', None)
+
+                row[f'{self.parameter_id}_inferred'] = (row[inferred_key] != shape.id)
                 rows.append(row)
 
         print(len(rows))
@@ -448,6 +457,7 @@ class BaseParameter():
             shape_id=None,
             start: Optional[dt.datetime] = None,
             end: Optional[dt.datetime] = None,
+            select_shape_name=True,
             fallback_previous=False) -> pd.DataFrame:
         """ Download all data for given shape id / all shapes. Will ONLY get
         the data stored in the table for the resp. parameter. """
@@ -458,8 +468,11 @@ class BaseParameter():
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame
 
-        sql  = f"SELECT {self.parameter_id}.*, "
-        sql += " shape.name AS shape_name, shape.type AS shape_type"
+        sql  = f"SELECT {self.parameter_id}.* "
+
+        if select_shape_name:
+            sql += ", shape.name AS shape_name, shape.type AS shape_type"
+
         sql += f" FROM {self.parameter_id}"
         sql += f" JOIN shape ON ({self.parameter_id}.shape_id = shape.id)"
 

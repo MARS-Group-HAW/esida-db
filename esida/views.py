@@ -177,7 +177,7 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
         if pc.time_col is not join_col:
             continue
 
-        rdf = pc.download(int(shape_id), start=start_date, end=end_date)
+        rdf = pc.download(int(shape_id), start=start_date, end=end_date, select_shape_name=False)
         if rdf.empty:
             continue
 
