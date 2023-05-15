@@ -180,7 +180,7 @@ The Data Hub was developed within the framework of the ESIDA research and networ
 <sup>3</sup> Unit of Epidemiology and Biostatistics, Heidelberg Institute of Global Health, Heidelberg University Hospital, Heidelberg, Germany  
 <sup>4</sup> Institute of Medical Biometry and Epidemiology, University Medical Center Hamburg-Eppendorf, Hamburg, Germany  
 <sup>5</sup> Department of Infectious Disease Epidemiology, Bernhard Nocht lnstitute for Tropical Medicine, Hamburg, Germany  
-<sup>6</sup> German Center for Infection Research (DZIF), Hamburg, Germany
+<sup>6</sup> German Center for Infection Research (DZIF), Hamburg, Germany  
 <sup>7</sup> School of Computational and Communication Science and Engineering, Nelson Mandela African Institution of Science and Technology, Arusha, Tanzania  
 <sup>8</sup> Department for Microbiology and Biotechnology, Institute for Plant Sciences and Microbiology, University of Hamburg, Hamburg, Germany  
 <sup>9</sup> School of Life Sciences and Bioengineering, Nelson Mandela African Institution of Science and Technology, Arusha, Tanzania  
