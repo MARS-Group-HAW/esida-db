@@ -40,7 +40,7 @@
   </div>
 
   <div class="row">
-    {% if parameter.is_loaded() %}
+    {% if parameter.is_loaded %}
 
     <div class="row">
       <div class="col">
@@ -373,7 +373,7 @@ $('#js-load-data').on('click', function(e) {
 
 
 
-{% if parameter.is_loaded() %}
+{% if parameter.is_loaded %}
 <script>
 $(".js-chosen-select").chosen();
 

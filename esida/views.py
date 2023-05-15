@@ -10,6 +10,7 @@ import time
 from esida import app, params, db, logger
 from flask import render_template, make_response, abort, jsonify, send_file, request, redirect, url_for, send_from_directory
 from slugify import slugify
+from sqlalchemy.orm import undefer
 
 import yaml
 
@@ -84,7 +85,7 @@ def shape_show(shape_id):
     for p in params:
         pm = importlib.import_module('parameters.{}'.format(p))
         pc = getattr(pm, p)()
-        if pc.is_loaded():
+        if pc.is_loaded:
             parameters.append(pc)
 
     return render_template('shape/show.html',
@@ -101,7 +102,7 @@ def map():
     for p in params:
         pm = importlib.import_module('parameters.{}'.format(p))
         pc = getattr(pm, p)()
-        if pc.is_loaded() and pc.has_raw_data():
+        if pc.is_loaded and pc.has_raw_data():
             parameters.append(pc)
 
     return render_template('map.html',
@@ -119,7 +120,7 @@ def download_json(shape_id, parameter_id, column):
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
 
-    if not pc.is_loaded():
+    if not pc.is_loaded:
         logger.warning("JSON Download for %s, but not loaded", parameter_id)
         abort(500)
 
@@ -248,7 +249,8 @@ def api_shapes():
                 "properties": {
                     "name":  s.name,
                     'type': s.type,
-                    "shape_id": s.id
+                    "shape_id": s.id,
+                    "url": url_for('shape_show', shape_id=s.id)
                 },
                 "geometry": shapely.geometry.mapping(s.geom()),
             }
@@ -320,7 +322,7 @@ def api_parameter(parameter_id):
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
 
-    if not pc.is_loaded():
+    if not pc.is_loaded:
         return jsonify(error="Parameter is not loaded"), 503
 
     start_date = request.args.get('start_date')
@@ -373,7 +375,7 @@ def api_parameter_map(parameter_id, shape_type, date):
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
 
-    if not pc.is_loaded():
+    if not pc.is_loaded:
         return jsonify(error="Parameter is not loaded"), 503
 
     date_parts = date.split('-')
@@ -422,7 +424,7 @@ def api_parameter_data_map(parameter_id, date):
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
 
-    if not pc.is_loaded():
+    if not pc.is_loaded:
         return jsonify(error="Parameter is not loaded"), 503
 
     date_parts = date.split('-')
@@ -455,7 +457,7 @@ def api_da_spatial(parameter_id):
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
 
-    if not pc.is_loaded():
+    if not pc.is_loaded:
         return jsonify(error="Parameter is not loaded"), 503
 
     shape_id = None
@@ -501,7 +503,7 @@ def api_parameters():
         row = {
             'parameter_id': p,
             'timelines': pc.time_col,
-            'loaded': pc.is_loaded(),
+            'loaded': pc.is_loaded,
             'raw_data_size': pc.get_raw_data_size(),
 
             'temporal_expected': pc.da_temporal_expected(),
@@ -621,7 +623,7 @@ def parameter_statistics():
         pm = importlib.import_module('parameters.{}'.format(p))
         pc = getattr(pm, p)()
 
-        if not pc.is_loaded():
+        if not pc.is_loaded:
             continue
 
         pars.append(pc)
@@ -665,7 +667,7 @@ def download_parameter(parameter_id):
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
 
-    if not pc.is_loaded():
+    if not pc.is_loaded:
         df = pd.DataFrame([{'Parameter is not loaded': 1}])
     else:
         df = pc.download()

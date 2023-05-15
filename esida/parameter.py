@@ -1,5 +1,6 @@
 import os
 import importlib
+import functools
 from sys import platform
 import datetime as dt
 import logging
@@ -27,6 +28,17 @@ docu_df = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Documentation.csv')
 docu_dict = docu_df[['Abbreviation', 'Category', 'Title', 'ESIDA database unit']].fillna('').set_index('Abbreviation').to_dict('index')
 
 meta_dict = pd.read_csv('./input/meta_data/DB_Meta_Sheet - Metadata.csv').fillna('').rename(columns=str.lower).set_index('abbreviation').to_dict('index')
+
+def get_loaded():
+    """ Get all loaded parameters once to reduce amount of sql queries and
+    increase performance. """
+    con = connect()
+    res = con.execute("SELECT tablename FROM pg_tables WHERE schemaname = 'public'")
+    cache = []
+    for row in res:
+        cache.append(row[0])
+    return cache
+loaded = get_loaded()
 
 class BaseParameter():
     """ Base class for all parameters, implementing necessary functions. """
@@ -218,7 +230,7 @@ class BaseParameter():
 
     def da_count_temporal(self, shape_id=None):
 
-        if not self.is_loaded():
+        if not self.is_loaded:
             return None
 
         if self.time_col == 'year':
@@ -235,7 +247,7 @@ class BaseParameter():
         return res.fetchone()[0]
 
     def da_temporal_date_first(self, shape_id=None):
-        if not self.is_loaded():
+        if not self.is_loaded:
             return None
 
         if self.time_col == 'year':
@@ -257,7 +269,7 @@ class BaseParameter():
             return None
 
     def da_temporal_date_last(self, shape_id=None):
-        if not self.is_loaded():
+        if not self.is_loaded:
             return None
 
         if self.time_col == 'year':
@@ -299,7 +311,7 @@ class BaseParameter():
     def da_temporal(self, shape_id=None):
         """ Determine temporal completeness of data source. """
 
-        if not self.is_loaded():
+        if not self.is_loaded:
             return None
 
         if self.time_col == 'year':
@@ -345,19 +357,10 @@ class BaseParameter():
 
     # ---
 
+    @functools.cached_property
     def is_loaded(self) -> bool:
         """ Check if the parameter has been loaded to the database. """
-        sql = f"SELECT EXISTS ( \
-        SELECT FROM \
-            pg_tables \
-        WHERE \
-            schemaname = 'public' AND \
-            tablename  = '{self.parameter_id}' \
-        );"
-
-        con = connect()
-        res = con.execute(sql)
-        return res.fetchone()[0]
+        return self.parameter_id in loaded
 
     def temporal_steps(self,
             start: Optional[dt.datetime] = None,
@@ -451,7 +454,7 @@ class BaseParameter():
 
         self.logger.debug("Downloading for shape_id=%s", shape_id)
 
-        if not self.is_loaded():
+        if not self.is_loaded:
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame
 
@@ -501,7 +504,7 @@ class BaseParameter():
 
     def get_map(self, shape_type, date):
         """ Get rows for given shape type and date. Contains shape geometry. """
-        if not self.is_loaded():
+        if not self.is_loaded:
             self.logger.warning("Download of data requested but not loaded for parameter_id=%s", self.parameter_id)
             return pd.DataFrame
 
@@ -548,7 +551,7 @@ class BaseParameter():
     def peek(self, shape_id, when=None):
         """ Get the latest known value of the parameter, if available. """
 
-        if not self.is_loaded():
+        if not self.is_loaded:
             self.logger.warning("Peek of data requested but not loaded for shape_id=%s", shape_id)
             return None
 
@@ -570,8 +573,6 @@ class BaseParameter():
                 raise ValueError(f"Unknown time_col={self.time_col}")
 
         sql += f" ORDER BY dl.{self.time_col} DESC LIMIT 1"
-
-
 
         con = connect()
         res = con.execute(sql)
@@ -597,7 +598,7 @@ class BaseParameter():
 
     def get_first_time(self):
 
-        if not self.is_loaded():
+        if not self.is_loaded:
             self.logger.warning("get_first_time requested but not loaded")
             return None
 
@@ -616,7 +617,7 @@ class BaseParameter():
 
     def get_last_time(self):
 
-        if not self.is_loaded():
+        if not self.is_loaded:
             self.logger.warning("get_first_time requested but not loaded")
             return None
 
@@ -636,7 +637,7 @@ class BaseParameter():
     def years_with_data(self) -> List[int]:
         """ finds all years in which data are available. """
 
-        if not self.is_loaded():
+        if not self.is_loaded:
             self.logger.warning("Peek of data requested but not loaded for shape_id=%s", shape_id)
             return []
 
