@@ -69,40 +69,6 @@
           </tr>
         </tbody>
       </table>
-
-      <div class="">
-        <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#latestparametervalues" aria-expanded="false" aria-controls="latestparametervalues">Show latest values per parameter</button>
-
-        <div class="collapse multi-collapse" id="latestparametervalues">
-          <table class="table table-sm caption-top">
-            <caption>Latest value per parameter</caption>
-            <thead>
-              <tr>
-                <th>Parameter</th>
-                <th>Value</th>
-                <th>Unit</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for p in params %}
-              <tr>
-                <th><code><a href="{{ url_for('parameter', parameter_name=p.parameter_id) }}">{{ p.parameter_id }}</a></code></th>
-                {% set peek = p.peek(shape.id) %}
-                {% if peek %}
-                  <td>{{ p.format_value(peek[p.parameter_id]) }}</td>
-                  <td>{{ p.get_unit() }}</td>
-                  <td class="text-nowrap">{{ peek[p.time_col] }}</td>
-                {% else %}
-                  <td colspan="3" class="text-center text-muted text-bg-light small">N/A</td>
-                {% endif %}
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-
-      </div>
     </div>
 
     <div class="col col-md-6">
@@ -110,9 +76,66 @@
     </div>
   </div>
 
+
+  <div class="row mb-3">
+    <div class="col-12">
+
+        <h2>Latest values</h2>
+
+        <p>
+          In the following table for each loaded Data Layer it's corresponding value for this shape is shown.
+        </p>
+
+        <table class="table table-sm caption-top js-datatable">
+          <caption>Latest value per parameter</caption>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Parameter</th>
+              <th>Date</th>
+              <th>Value</th>
+              <th>Unit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in params %}
+            <tr>
+              <td class="align-middle">{{ p.get_category() }}</td>
+
+              <td class="align-middle">
+                <a href="{{ url_for('parameter', parameter_name=p.parameter_id) }}">{{ p.get_title() }}</a>
+                <span class="visually-hidden">{{ p.parameter_id }}</span> <!-- hidden, only for search with DataTables -->
+              </td>
+
+              {% set peek = shape.get(p, obj=True, fallback_parent=True) %}
+              {% if peek.has_value() %}
+                <td class="text-end text-nowrap" style="{% if peek.is_inferred() %} background-color: {{peek.get_color()}}; {% endif %}">
+                  {% if peek.is_inferred() %}
+                    <a role="button" style="float:left" tabindex="0" title="Inferred from parent shape" data-bs-trigger="focus" data-bs-html="true" data-bs-toggle="popover" data-bs-content="This value is not available on this shape and was inferred from <a href='{{ url_for('shape_show', shape_id=peek.get_shape().id) }}'>{{ peek.get_shape().name }}</a> ({{ peek.get_shape().type }}).">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>
+                    </a>
+                  {% endif %}
+
+                  {{ peek.get_time_col() }}
+                </td>
+                <td class="text-end border-end" style="{% if peek.is_inferred() %} background-color: {{peek.get_color()}}; {% endif %}">
+                  {{ p.format_value(peek.get_value()) }}
+                </td>
+              {% else %}
+                <td colspan="2" class="text-center text-muted text-bg-light small">N/A</td>
+                <td style="display: none;"></td> {# DataTable needs a cell... #}
+              {% endif %}
+              <td>{{ p.get_unit() }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-12">
-      <h3>Data visualization</h3>
+      <h2>Data visualization</h2>
       <p>
         Add different parameters by selecting them in the dropdown.
       </p>
@@ -122,12 +145,8 @@
       <div class="mb-3">
         <select class="form-select js-chosen-select" id="series-for-chart" multiple  data-placeholder="Select parameter…">
           {% for p in params %}
-              <optgroup label="{{ p.get_title() }}">
-                {% for pk in p.get_fields(only_numeric=True) %}
-                <option data-param="{{ p.__class__.__name__ }}" value="{{ pk }}">{{ pk | replace("_", " ") }}</option>
-                {% endfor %}
-              </optgroup>
-            {% endfor %}
+            <option value="{{ p.parameter_id }}">{{ p.get_title() }}</option>
+          {% endfor %}
         </select>
       </div>
 
@@ -213,17 +232,7 @@ var chart = Highcharts.chart('chart', {
   }
 });
 
-
-var column_to_parameter = {};
-
-{% for p in params %}
-    {% for pk in p.get_fields() %}
-    column_to_parameter['{{ pk }}'] = '{{ p.__class__.__name__ }}';
-    {% endfor %}
-{% endfor %}
-
 var active = [];
-
 $(".js-chosen-select").on('change', function(e) {
   var selected = $(this).val();
   var done = []
@@ -243,7 +252,7 @@ $(".js-chosen-select").on('change', function(e) {
           options['end_date'] = $("#end_date").val();
         }
 
-        $.getJSON('/shape/{{ shape['id'] }}/' + column_to_parameter[id] + '/' + id + '/json', options, function(data) {
+        $.getJSON('/shape/{{ shape['id'] }}/' + id + '/' + id + '/json', options, function(data) {
           chart.addSeries({
             id: id,
             name: id,

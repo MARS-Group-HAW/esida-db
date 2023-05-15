@@ -63,7 +63,7 @@ class Shape(db.Model):
 
         return op_func(signal, self.id, **params)
 
-    def get(self, dl, fallback_parent=False, when=None):
+    def get(self, dl, fallback_parent=False, when=None, obj=False):
         """ Gets the latest known value for the given data layer on this shape. """
 
         if isinstance(dl, str):
@@ -74,12 +74,48 @@ class Shape(db.Model):
 
         if value is None and fallback_parent and self.parent is not None:
             value = self.parent.get(dl, fallback_parent, when=when)
-            value[f"{dl.parameter_id}_inferred"] = True
+
+            if value:
+               value[f"{dl.parameter_id}_inferred"] = True
+
+        if obj:
+            return DatalayerPeek(dl, value)
 
         return value
 
 
+class DatalayerPeek():
 
+    def __init__(self, dl, peek) -> None:
+        self.dl = dl
+        self.peek = peek
+
+    def has_value(self):
+        return self.peek is not None
+
+    def is_inferred(self) -> bool:
+        return self.peek and f"{self.dl.parameter_id}_inferred" in self.peek
+
+    def get_shape(self) -> Shape:
+        return Shape.query.get(self.peek['shape_id'])
+
+    def get_value(self):
+        return self.peek and self.peek[self.dl.parameter_id]
+
+    def get_time_col(self):
+        return self.peek and self.peek[self.dl.time_col]
+
+    def get_color(self):
+        if self.is_inferred():
+
+            colors = {
+                'region': '#FCE1C6',
+                'country': '#FFC7CE',
+            }
+
+            return colors[self.get_shape().type]
+
+        return None
 
 class Signal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
