@@ -160,3 +160,33 @@ After ingesting data you can calculate the data for an arbitrary region inside t
 This will generate a simulation blueprint with the required input data.
 
 The `--abm` flag can be used to only export the relevant data needed for the MARS agent based model. You can store the Zip-file of your MARS model Box in `./input/data/MARS/`, so the Box will be included in the generated output folder automatically for easy usage.
+
+
+
+## Contributions
+
+Software Originator: Jonathan Ströbele
+
+Operational Development: Jonathan Ströbele, Kristopher Nolte, Juliane Boenecke, Dr Matthias H. Belau, Dr Ulfia A. Lenfers, Prof Dr Thomas Clemen
+
+Supervisor: Prof Dr Thomas Clemen / MARS Group, HAW Hamburg
+
+Conceptual Framework Development: ESIDA Consortium (alphabetic order: Prof Amena Almes Ahmad<sup>1</sup>, Nima Ahmady-Moghaddam<sup>2</sup>, Prof Dr Heiko Becher<sup>3</sup>, Dr Matthias Hans Belau<sup>4</sup>, Juliane Boenecke<sup>1,2,5</sup>, Dr Johanna Brinkel<sup>5,6</sup>, Prof Dr Thomas Clemen<sup>2,7</sup>, Daria Dretvić<sup>8</sup>, Dr Mirko Himmel<sup>8</sup>, Dr Katharina Sophia Kreppel<sup>9,10</sup>, Prof Dr Dr Walter Leal Filho<sup>11,12</sup>, Dr Ulfia Annette Lenfers<sup>2</sup>, Prof Dr Jürgen May<sup>5,6,13</sup>, Ummul-Khair Mustafa<sup>9,14</sup>, Dr Devotha Godfrey Nyambo<sup>7</sup>, Luba Pascoe<sup>7</sup>, Jennifer Louise Pohlmann<sup>11</sup>, Prof Dr Ralf Reintjes<sup>1,15</sup>, Dr Elingarami Sauli<sup>9</sup>, Prof Dr Wolfgang Streit<sup>8</sup>, Jonathan Ströbele<sup>2</sup>)
+
+The Data Hub was developed within the framework of the ESIDA research and network project (Epidemiological Surveillance for Infectious Diseases in Subsaharan Africa). ESIDA received funding from the German Federal Ministry of Education and Research (BMBF 01DU20005) under the CONNECT (connect-education-research-innovation) funding scheme.
+
+<sup>1</sup> Department of Health Sciences, Faculty of Life Sciences, Hamburg University of Applied Sciences, Hamburg, Germany  
+<sup>2</sup> Department of Computer Sciences, Faculty of Engineering and Computer Science, Hamburg University of Applied Sciences, Hamburg, Germany  
+<sup>3</sup> Unit of Epidemiology and Biostatistics, Heidelberg Institute of Global Health, Heidelberg University Hospital, Heidelberg, Germany  
+<sup>4</sup> Institute of Medical Biometry and Epidemiology, University Medical Center Hamburg-Eppendorf, Hamburg, Germany  
+<sup>5</sup> Department of Infectious Disease Epidemiology, Bernhard Nocht lnstitute for Tropical Medicine, Hamburg, Germany  
+<sup>6</sup> German Center for Infection Research (DZIF), Hamburg, Germany
+<sup>7</sup> School of Computational and Communication Science and Engineering, Nelson Mandela African Institution of Science and Technology, Arusha, Tanzania  
+<sup>8</sup> Department for Microbiology and Biotechnology, Institute for Plant Sciences and Microbiology, University of Hamburg, Hamburg, Germany  
+<sup>9</sup> School of Life Sciences and Bioengineering, Nelson Mandela African Institution of Science and Technology, Arusha, Tanzania  
+<sup>10</sup> Department of Public Health, Institute of Tropical Medicine Antwerpen, Antwerpen, Belgium  
+<sup>11</sup> Research and Transfer Centre “Sustainable Development and Climate Change Management” (FTZ-NK), Department of Health Sciences, Faculty of Life Sciences, Hamburg University of Applied Sciences, Hamburg, Germany  
+<sup>12</sup> Manchester Metropolitan University, School of Science and the Environment, Manchester, United Kingdom  
+<sup>13</sup> Department of Tropical Medicine I, University Medical Center Hamburg-Eppendorf (UKE), Hamburg, Germany  
+<sup>14</sup> Department of Biological Sciences, Dar es Salaam University College of Education, Dar es Salaam, Tanzania  
+<sup>15</sup> Health Sciences Unit, Faculty of Social Sciences, Tampere University, Tampere, Finland  
