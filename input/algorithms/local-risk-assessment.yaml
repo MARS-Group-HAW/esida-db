@@ -51,34 +51,19 @@ spec:
       - max: 555
         inclusive: False
         score: 3
-#  - name: HCfacAvail
-#    description: If any healthcare facility is available (dispensary, clinic, health center, hospital) = Y
-#    datalayer:
-#      - thfr_disp
-#      - thfr_clinic
-#      - thfr_hecenter
-#      - thfr_hospital
-#    mode: any
-#    value_yes: 1
-#    value_no: 0
-#    thresholds:
-#      - is: 1
-#        score: 1
-#      - is: 0
-#        score: 3
   - name: Age % 5-39y (morbidity)
     datalayer: worldpop_age_5_39
     datalayer_total: worldpop_popc
     mode: percentage
     thresholds:
-      - min: 0
-        max: 50.2
+      - max: 50.2
         score: 1
+        inclusive: False
       - min: 50.3
         max: 62.8
         score: 2
-      - min: 62.9
-        max: 100
+      - min: 62.8
+        inclusive: False
         score: 3
   - name: Age % <15y (mortality)
     datalayer: worldpop_age_0_14
@@ -123,13 +108,14 @@ spec:
   - name: Population density
     datalayer: worldpop_popd
     thresholds:
-      - min: 0
-        max: 99
+      - max: 100
         score: 1
+        inclusive: False
       - min: 100
         max: 1000
         score: 2
-      - min: 1001
+      - min: 1000
+        inclusive: False
         score: 3
   - name: Household members
     datalayer: statcompiler_household
@@ -210,8 +196,7 @@ spec:
   - name: Quality of air transport infrastructure
     datalayer: osm_airports
     thresholds:
-      - min: 0
-        max: 4.1
+      - max: 4.1
         inclusive: False
         score: 1
       - min: 4.1
@@ -223,8 +208,7 @@ spec:
   - name: Quality of port infrastructure
     datalayer: osm_ferries
     thresholds:
-      - min: 0
-        max: 3.5
+      - max: 3.5
         inclusive: False
         score: 1
       - min: 3.5
@@ -237,8 +221,7 @@ spec:
     datalayer: osm_rail
     thresholds:
     thresholds:
-      - min: 0
-        max: 2.7
+      - max: 2.7
         inclusive: False
         score: 1
       - min: 2.7
@@ -251,8 +234,7 @@ spec:
     datalayer: osm_roads_trunk
     factor: 0.5
     thresholds:
-      - min: 0
-        max: 3.5
+      - max: 3.5
         inclusive: False
         score: 1
       - min: 3.5
@@ -265,8 +247,7 @@ spec:
     datalayer: osm_roads_regional
     factor: 0.5
     thresholds:
-      - min: 0
-        max: 3.5
+      - max: 3.5
         inclusive: False
         score: 1
       - min: 3.5
