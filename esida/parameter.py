@@ -448,8 +448,6 @@ class BaseParameter():
                 row[f'{self.parameter_id}_inferred'] = (row[inferred_key] != shape.id)
                 rows.append(row)
 
-        print(len(rows))
-
         return pd.DataFrame(rows)
 
 
@@ -466,7 +464,7 @@ class BaseParameter():
 
         if not self.is_loaded:
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
-            return pd.DataFrame
+            return pd.DataFrame()
 
         sql  = f"SELECT {self.parameter_id}.* "
 
@@ -807,13 +805,18 @@ class BaseParameter():
         if start:
             start_date = start_date - isodate.parse_duration(start)
 
+
+        if not self.is_loaded:
+            return False, pd.DataFrame()
+
         df = self.download(shape_id, start_date, end_date)
 
         # No data available for signal date
-        if len(df) == 0:
+        print(df)
+        if df is None or len(df) == 0:
             df = self.download(shape_id, None, end_date, fallback_previous=True)
 
-            if len(df) == 0:
+            if df is None or len(df) == 0:
                 print("NO DATA!")
                 return False, pd.DataFrame()
 
