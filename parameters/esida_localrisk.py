@@ -147,12 +147,16 @@ class esida_localrisk(BaseParameter):
 
                 score = None
 
+                factor = 1
+                if "factor" in spec:
+                    factor = spec['factor']
+
                 if matching_thresh is None:
                     print("Datalayer value is outside of all ranges!")
                 else:
                     print(f"matching: {matching_thresh}")
-                    risk_score += matching_thresh['score']
-                    score = matching_thresh['score']
+                    risk_score += matching_thresh['score'] * factor
+                    score = matching_thresh['score'] * factor
                 print("")
 
                 row = {
