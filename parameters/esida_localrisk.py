@@ -21,7 +21,7 @@ class esida_localrisk(BaseParameter):
 
     def load(self, shapes=None, save_output=False):
 
-        with open("input/algorithms/local-risk-assessment.yaml", "r") as stream:
+        with open("input/algorithms/esida-risk-assessment.yaml", "r") as stream:
             try:
                 algorithm = yaml.safe_load(stream)
             except yaml.YAMLError as exc:

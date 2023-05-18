@@ -42,13 +42,13 @@ spec:
   - name: HCfacAvail
     datalayer: malariaatlas_traveltimehc
     thresholds:
-      - max: 141
+      - max: 161.53
         score: 1
         inclusive: False
-      - min: 141
-        max: 555
+      - min: 161.53
+        max: 323.06
         score: 2
-      - max: 555
+      - max: 323.06
         inclusive: False
         score: 3
   - name: Age % 5-39y (morbidity)
@@ -337,7 +337,14 @@ spec:
       - min: 50
         inclusive: False
         score: 3
-
+  - name: Proof of vector abundance (in the country)
+    datalayer: lit_vectabund
+    thresholds:
+      - is: False
+        score: 1
+      - is: True
+        score: 3
+    fallback_score: 3
 
 
 
