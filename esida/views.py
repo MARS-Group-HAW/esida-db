@@ -56,7 +56,7 @@ def index():
 
 
 
-    return render_template('index.html',
+    return render_template('index.html.jinja',
         count_parameters = len(params),
         count_local_data_sources = len(newlist),
         total_size_human = humanize.naturalsize(total_size),
@@ -71,7 +71,7 @@ def shape_index(shape_type):
         abort(404)
 
     shapes = Shape.query.where(Shape.type == shape_type).order_by(Shape.name.asc()).all()
-    return render_template('shape/index.html', shape_type=shape_type, shapes=shapes)
+    return render_template('shape/index.html.jinja', shape_type=shape_type, shapes=shapes)
 
 @app.route("/shape/<int:shape_id>")
 def shape_show(shape_id):
@@ -88,7 +88,7 @@ def shape_show(shape_id):
         if pc.is_loaded:
             parameters.append(pc)
 
-    return render_template('shape/show.html',
+    return render_template('shape/show.html.jinja',
         shape=shape,
         params=parameters
     )
@@ -105,7 +105,7 @@ def map():
         if pc.is_loaded and pc.has_raw_data():
             parameters.append(pc)
 
-    return render_template('map.html',
+    return render_template('map.html.jinja',
         regions=regions,
         districts=districts,
         parameters=parameters,
@@ -604,7 +604,7 @@ def parameters():
             'class': getattr(pm, p)()
         })
 
-    return render_template('parameters.html', parameters=pars)
+    return render_template('parameters.html.jinja', parameters=pars)
 
 @app.route('/parameter-statistics')
 def parameter_statistics():
@@ -628,7 +628,7 @@ def parameter_statistics():
 
         pars.append(pc)
 
-    return render_template('parameter-statistics.html',
+    return render_template('parameter-statistics.html.jinja',
         parameters=pars,
         count=len(pars)
     )
@@ -653,7 +653,7 @@ def parameter(parameter_name):
             'id':   s.id
         })
 
-    return render_template('parameter.html',
+    return render_template('parameter.html.jinja',
         parameter=parameter_class,
         shapes=shapes_dropdown
     )
@@ -685,7 +685,7 @@ def download_parameter(parameter_id):
 @app.route('/signals')
 def signals():
     signals = Signal.query.all()
-    return render_template('signal/index.html', signals=signals)
+    return render_template('signal/index.html.jinja', signals=signals)
 
 @app.route('/signal', methods = ['POST', 'GET'])
 def signal():
@@ -702,7 +702,7 @@ def signal():
 
         return redirect(url_for('signals'))
 
-    return render_template('signal/create.html')
+    return render_template('signal/create.html.jinja')
 
 
 
@@ -773,7 +773,7 @@ def signal_show(signal_id):
             results[shape.id]['steps'].append(r)
 
 
-    return render_template('signal/show.html',
+    return render_template('signal/show.html.jinja',
         signal=signal,
         results=results
     )

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html.jinja' %}
 
 {% block title %}Signal details{% endblock %}
 
@@ -193,7 +193,7 @@ L.marker([{{ signal.point().y}}, {{ signal.point().x}}]).addTo(map);
 var shapes = [];
 {% for shape in signal.shapes() %}
 var s = L.geoJSON({{ shape.geojson()|safe }} )
-  .bindPopup(`{% with shape=shape %}{% include 'misc/shape-popup.html' %}{% endwith %}`);
+  .bindPopup(`{% with shape=shape %}{% include 'misc/shape-popup.html.jinja' %}{% endwith %}`);
 shapes.push(s);
 {% endfor %}
 var group_shapes = L.featureGroup(shapes).addTo(map);
