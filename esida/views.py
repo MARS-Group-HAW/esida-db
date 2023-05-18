@@ -604,7 +604,7 @@ def parameters():
             'class': getattr(pm, p)()
         })
 
-    return render_template('parameters.html.jinja', parameters=pars)
+    return render_template('parameter/index.html.jinja', parameters=pars)
 
 @app.route('/parameter-statistics')
 def parameter_statistics():
@@ -628,7 +628,7 @@ def parameter_statistics():
 
         pars.append(pc)
 
-    return render_template('parameter-statistics.html.jinja',
+    return render_template('parameter/temporal-statistics.html.jinja',
         parameters=pars,
         count=len(pars)
     )
@@ -653,7 +653,7 @@ def parameter(parameter_name):
             'id':   s.id
         })
 
-    return render_template('parameter.html.jinja',
+    return render_template('parameter/show.html.jinja',
         parameter=parameter_class,
         shapes=shapes_dropdown
     )
