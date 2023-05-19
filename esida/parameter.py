@@ -419,6 +419,7 @@ class BaseParameter():
             shape_id=None,
             start: Optional[dt.datetime] = None,
             end: Optional[dt.datetime] = None,
+            shape_type: Optional[str] = None,
             select_shape_name=True,
             fallback_previous=False,
             fallback_parent=False) -> pd.DataFrame:
@@ -427,6 +428,8 @@ class BaseParameter():
 
         if shape_id is not None:
             shapes = [Shape.query.get(shape_id)]
+        elif shape_type is not None:
+            shapes = Shape.query.where(Shape.type == shape_type).all()
         else:
             shapes = Shape.query.all()
 
@@ -471,6 +474,7 @@ class BaseParameter():
             shape_id=None,
             start: Optional[dt.datetime] = None,
             end: Optional[dt.datetime] = None,
+            shape_type: Optional[str] = None,
             select_shape_name=True,
             fallback_previous=False) -> pd.DataFrame:
         """ Download all data for given shape id / all shapes. Will ONLY get
@@ -482,6 +486,7 @@ class BaseParameter():
             self.logger.warning("Download of data requested but not loaded for shape_id=%s", shape_id)
             return pd.DataFrame()
 
+        params = []
         sql  = f"SELECT {self.parameter_id}.* "
 
         if select_shape_name:
@@ -494,6 +499,10 @@ class BaseParameter():
 
         if shape_id:
             sql += f" AND shape_id = {int(shape_id)}"
+
+        if shape_type:
+            sql += " AND shape.type = %s"
+            params.append(shape_type)
 
         if self.time_col == 'year':
             if start:
@@ -513,7 +522,7 @@ class BaseParameter():
         else:
             sql += " ORDER BY shape.id"
 
-        df = pd.read_sql_query(sql, con=get_engine())
+        df = pd.read_sql_query(sql, con=get_engine(), params=tuple(params))
 
         if len(df) == 0:
             self.logger.warning("Download of data requested, is loaded, but empty for shape_id=%s", shape_id)

@@ -667,16 +667,28 @@ def download_parameter(parameter_id):
     pm = importlib.import_module(f'parameters.{parameter_id}')
     pc = getattr(pm, parameter_id)()
 
+    shape_type = request.args.get('shape_type', None)
+
     if not pc.is_loaded:
         df = pd.DataFrame([{'Parameter is not loaded': 1}])
     else:
-        df = pc.download()
+        df = pc.download(shape_type=shape_type)
 
-    filename=f"ESIDA_{parameter_id}.csv"
+    if request.args.get('format', None) == 'excel':
+        filename=f"ESIDA_{parameter_id}.xlsx"
 
-    resp = make_response(df.to_csv(index=False))
-    resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
-    resp.headers["Content-Type"] = "text/csv"
+        with BytesIO() as b:
+            writer = pd.ExcelWriter(b, engine='openpyxl')
+            df.to_excel(writer, index=False, freeze_panes=(1, 1))
+            writer.close()
+            resp = make_response(b.getvalue())
+            resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
+            resp.headers["Content-Type"] = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    else:
+        filename=f"ESIDA_{parameter_id}.csv"
+        resp = make_response(df.to_csv(index=False))
+        resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
+        resp.headers["Content-Type"] = "text/csv"
 
     return resp
 

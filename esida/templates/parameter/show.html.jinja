@@ -35,14 +35,14 @@
                 <span class="visually-hidden">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">All (Excel)</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id, format='excel') }}">All (Excel)</a></li>
                 <li><hr class="dropdown-divider"></li>
                 {% for type in shape_types %}
-                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">Download {{ type.title() }} (CSV)</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id, shape_type=type) }}">Download {{ type.title() }} (CSV)</a></li>
                 {% endfor %}
                 <li><hr class="dropdown-divider"></li>
                 {% for type in shape_types %}
-                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">Download {{ type.title() }} (Excel)</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id, shape_type=type, format='excel') }}">Download {{ type.title() }} (Excel)</a></li>
                 {% endfor %}
             </ul>
         </div>
