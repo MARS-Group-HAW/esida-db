@@ -630,7 +630,7 @@ class BaseParameter():
             return None
 
         if self.time_col == 'year':
-            sql = f"SELECT year FROM {self.parameter_id} ORDER BY year ASC LIMIT 1"
+            sql = f"SELECT year as date FROM {self.parameter_id} ORDER BY year ASC LIMIT 1"
         elif self.time_col == 'date':
             sql = f"SELECT date FROM {self.parameter_id} ORDER BY date ASC LIMIT 1"
         else:
@@ -649,7 +649,7 @@ class BaseParameter():
             return None
 
         if self.time_col == 'year':
-            sql = f"SELECT year FROM {self.parameter_id} ORDER BY year DESC LIMIT 1"
+            sql = f"SELECT year as date FROM {self.parameter_id} ORDER BY year DESC LIMIT 1"
         elif self.time_col == 'date':
             sql = f"SELECT date FROM {self.parameter_id} ORDER BY date DESC LIMIT 1"
         else:
