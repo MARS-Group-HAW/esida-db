@@ -424,6 +424,10 @@ class BaseParameter():
         for shape in shapes:
             for step in temporal_steps:
                 row = shape.get(self, fallback_parent=True, when=step)
+
+                if row is None:
+                    continue
+
                 row.pop('index', None)
 
                 if select_shape_name:
