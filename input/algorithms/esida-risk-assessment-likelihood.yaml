@@ -1,0 +1,283 @@
+apiVersion: v1
+metadata:
+  name: Local Risk-Assessment
+spec:
+  - name: Medical laboratory personnel density
+    datalayer: tnbs_medlabdens
+    thresholds:
+      - max: 1.1
+        score: 3
+        inclusive: False
+      - min: 1.1
+        max: 2.7
+        score: 2
+      - min: 2.7
+        score: 1
+        inclusive: False
+  - name: Population density
+    datalayer: worldpop_popd
+    thresholds:
+      - max: 100
+        score: 1
+        inclusive: False
+      - min: 100
+        max: 1000
+        score: 2
+      - min: 1000
+        inclusive: False
+        score: 3
+  - name: Household members
+    datalayer: statcompiler_household
+    thresholds:
+      - min: 0
+        max: 2
+        inclusive: False
+        score: 1
+      - min: 2
+        max: 3
+        inclusive: True
+        score: 2
+      - min: 3
+        inclusive: False
+        score: 3
+  - name: Proportion of males with less than secondary education
+    datalayer: lit_propseced_m
+    mode: percentage
+    factor: 0.5
+    thresholds:
+      - min: 0
+        max: 4.2
+        inclusive: False
+        score: 1
+      - min: 4.2
+        max: 27.0
+        inclusive: True
+        score: 2
+      - min: 27.0
+        inclusive: False
+        score: 3
+  - name: Proportion of females with less than secondary education
+    datalayer: lit_propseced_f
+    mode: percentage
+    factor: 0.5
+    thresholds:
+      - min: 0
+        max: 2.4
+        inclusive: False
+        score: 1
+      - min: 2.4
+        max: 20.4
+        inclusive: True
+        score: 2
+      - min: 20.4
+        inclusive: False
+        score: 3
+  - name: Gini index / inequality income / wealth
+    datalayer: statcompiler_gini
+    mode: percentage
+    thresholds:
+      - min: 0
+        max: 0.3
+        inclusive: False
+        score: 1
+      - min: 0.3
+        max: 0.4
+        inclusive: True
+        score: 2
+      - min: 0.4
+        inclusive: False
+        score: 3
+  - name: Poverty gap at USD 2.15 a day %
+    datalayer: worldpop_poverty_cons200
+    mode: percentage
+    thresholds:
+      - min: 0
+        max: 0.3
+        inclusive: False
+        score: 1
+      - min: 0.3
+        max: 1.8
+        inclusive: True
+        score: 2
+      - min: 1.8
+        inclusive: False
+        score: 3
+  - name: Quality of air transport infrastructure
+    datalayer: osm_airports
+    thresholds:
+      - max: 4.1
+        inclusive: False
+        score: 1
+      - min: 4.1
+        max: 5.0
+        score: 2
+      - min: 5.0
+        inclusive: False
+        score: 3
+  - name: Quality of port infrastructure
+    datalayer: osm_ferries
+    thresholds:
+      - max: 3.5
+        inclusive: False
+        score: 1
+      - min: 3.5
+        max: 4.5
+        score: 2
+      - min: 4.5
+        inclusive: False
+        score: 3
+  - name: Quality of railroad infrastructure
+    datalayer: osm_rail
+    thresholds:
+    thresholds:
+      - max: 2.7
+        inclusive: False
+        score: 1
+      - min: 2.7
+        max: 3.9
+        score: 2
+      - min: 3.9
+        inclusive: False
+        score: 3
+  - name: Quality of roads (trunk)
+    datalayer: osm_roads_trunk
+    factor: 0.5
+    thresholds:
+      - max: 3.5
+        inclusive: False
+        score: 1
+      - min: 3.5
+        max: 4.5
+        score: 2
+      - min: 4.5
+        inclusive: False
+        score: 3
+  - name: Quality of roads (regional)
+    datalayer: osm_roads_regional
+    factor: 0.5
+    thresholds:
+      - max: 3.5
+        inclusive: False
+        score: 1
+      - min: 3.5
+        max: 4.5
+        score: 2
+      - min: 4.5
+        inclusive: False
+        score: 3
+  - name: Age % 15-49y (mobile population)
+    datalayer: worldpop_age_15_49
+    datalayer_total: worldpop_popc
+    mode: percentage
+    thresholds:
+      - min: 0
+        max: 64.0
+        inclusive: False
+        score: 1
+      - min: 64.0
+        max: 73.4
+        inclusive: True
+        score: 2
+      - min: 73.4
+        inclusive: False
+        score: 3
+  - name: RDT availability (in the country)
+    datalayer: lit_rdtcap
+    factor: 0.5
+    thresholds:
+      - is: True
+        score: 1
+      - is: False
+        score: 3
+    fallback_score: 3
+  - name: Confirmatory diagnostics, e.g. reference lab (in the country)
+    datalayer: lit_conflabcap
+    factor: 0.5
+    thresholds:
+      - is: True
+        score: 1
+      - is: False
+        score: 3
+    fallback_score: 3
+  - name: Safe drink water sources %
+    datalayer: statcompiler_drinkwater
+    mode: percentage
+    thresholds:
+      - min: 96.8
+        max: 100
+        score: 1
+      - min: 66.4
+        max: 96.7
+        score: 2
+      - min: 0
+        max: 66.3
+        score: 3
+  - name: Improved toilet facility %
+    datalayer: statcompiler_sanitation
+    mode: percentage
+    thresholds:
+      - min: 82.1
+        max: 100
+        score: 1
+      - min: 42.5
+        max: 82.0
+        score: 2
+      - min: 0
+        max: 42.4
+        score: 3
+  - name: Waste collection coverage %
+    datalayer: tnbs_garbage
+    mode: percentage
+    thresholds:
+      - min: 94.4
+        max: 100
+        score: 1
+      - min: 67.0
+        max: 94.3
+        inclusive: True
+        score: 2
+      - min: 0
+        max: 66.9
+        score: 3
+  - name: Personal prevention (one ITN per two people)
+    datalayer: statcompiler_mosnet
+    mode: percentage
+    thresholds:
+      - min: 0
+        max: 42.2
+        score: 3
+      - min: 42.3
+        max: 64.5
+        score: 2
+      - min: 64.6
+        score: 1
+  - name: Urban environment / built-up %
+    datalayer: copernicus_built
+    mode: percentage
+    thresholds:
+      - max: 10
+        inclusive: False
+        score: 1
+      - min: 10
+        max: 50
+        score: 2
+      - min: 50
+        inclusive: False
+        score: 3
+  - name: Proof of vector abundance (in the country)
+    datalayer: lit_vectabund
+    factor: 0.5
+    thresholds:
+      - is: False
+        score: 1
+      - is: True
+        score: 3
+    fallback_score: 3
+  - name: Vector control strategies available (in the country)
+    datalayer: lit_veccontrol
+    thresholds:
+      - is: True
+        score: 1
+      - is: False
+        score: 3
+    fallback_score: 3

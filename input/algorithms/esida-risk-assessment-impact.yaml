@@ -1,0 +1,95 @@
+apiVersion: v1
+metadata:
+  name: ESIDA Risk-Assessment Impact (on the population and economy)
+spec:
+  - name: Physician density
+    datalayer: tnbs_physdens
+    thresholds:
+      - max: 8
+        score: 3
+        inclusive: False
+      - min: 8
+        max: 29
+        score: 2
+      - min: 29
+        score: 1
+        inclusive: False
+  - name: Nurses and midwife density
+    datalayer: tnbs_nursmidwdens
+    thresholds:
+      - max: 17
+        score: 3
+        inclusive: False
+      - min: 17
+        max: 71
+        score: 2
+      - min: 71
+        score: 1
+        inclusive: False
+  - name: Hospital beds per 10,000 population
+    datalayer: who_hospbeddens
+    thresholds:
+      - min: 0
+        max: 20
+        score: 3
+        inclusive: False
+      - min: 20
+        max: 40
+        score: 2
+      - min: 40
+        inclusive: False
+        score: 1
+  - name: Healthcare accessibility (optimal travel time to nearest facility)
+    datalayer: malariaatlas_traveltimehc
+    thresholds:
+      - max: 45
+        score: 1
+        inclusive: False
+      - min: 45
+        max: 120
+        score: 2
+      - max: 120
+        inclusive: False
+        score: 3
+  - name: Age % 5-39y (morbidity)
+    datalayer: worldpop_age_5_39
+    datalayer_total: worldpop_popc
+    mode: percentage
+    thresholds:
+      - max: 50.2
+        score: 1
+        inclusive: False
+      - min: 50.3
+        max: 62.8
+        score: 2
+      - min: 62.8
+        inclusive: False
+        score: 3
+  - name: Age % <15y (mortality)
+    datalayer: worldpop_age_0_14
+    datalayer_total: worldpop_popc
+    mode: percentage
+    thresholds:
+      - min: 0
+        max: 20.3
+        score: 1
+      - min: 20.4
+        max: 30.9
+        score: 2
+      - min: 31.0
+        max: 100
+        score: 3
+  - name: Age % 65+y (mortality)
+    datalayer: worldpop_age_65
+    datalayer_total: worldpop_popc
+    mode: percentage
+    thresholds:
+      - min: 0
+        max: 4.8
+        score: 1
+      - min: 4.9
+        max: 10.9
+        score: 2
+      - min: 11.0
+        max: 100
+        score: 3
