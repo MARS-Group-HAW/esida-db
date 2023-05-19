@@ -1,4 +1,5 @@
 import pkgutil
+import json
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth
@@ -68,6 +69,11 @@ def _slugify(string):
     if not string:
         return ""
     return slugify(string)
+
+
+@app.template_filter('to_json')
+def to_json(value):
+    return json.dumps(value)
 
 
 

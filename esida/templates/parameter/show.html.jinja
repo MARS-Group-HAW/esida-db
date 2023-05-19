@@ -21,18 +21,32 @@
   <meta name="DC.coverage"    content="{{ parameter.get_meta('coverage') }}" />
 
   <script>
-    const dl = {
-      id: '{{ parameter.parameter_id }}'
-    }
+    const dl = {{ parameter.get_spec()|to_json}};
   </script>
 {% endblock %}
-
 
 {% block content %}
   <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
 
       <div class="mb-2 mb-md-0">
-        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">Download all data as CSV</a>
+        <div class="btn-group">
+            <a class="btn btn-sm btn-outline-primary" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">Download all data (CSV)</a>
+            <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">All (Excel)</a></li>
+                <li><hr class="dropdown-divider"></li>
+                {% for type in shape_types %}
+                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">Download {{ type.title() }} (CSV)</a></li>
+                {% endfor %}
+                <li><hr class="dropdown-divider"></li>
+                {% for type in shape_types %}
+                <li><a class="dropdown-item" href="{{ url_for('download_parameter', parameter_id=parameter.parameter_id) }}">Download {{ type.title() }} (Excel)</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
         <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#api">API</button>
       </div>
 
@@ -99,6 +113,14 @@
       <div id="chart"></div>
     </div>
     <div class="col-12">
+
+
+        <p>Data layer span:</p>
+        <ul>
+            <li>First: {{ parameter.get_first_time() }}</li>
+            <li>Last: {{ parameter.get_last_time() }}</li>
+        </ul>
+
       <p>Available parameter fields:</p>
       <ul>
       {% for pk in parameter.get_fields(only_numeric=False) %}
@@ -198,18 +220,7 @@ $(document).ready(function() {
 
 
 <script>
-/**
- * https://leafletjs.com/examples/choropleth/
- */
-var osmUrl    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
-var map_position = {lat: -6, lng: 35, zoom: 5};
-
-var map = L.map('map', {
-  preferCanvas: true,
-  loadingControl: true
-}).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
+var map = get_base_map('map')
 
 var url_base = '/api/v1/parameter_map/{{ parameter.parameter_id }}/'
 
@@ -228,28 +239,64 @@ info.update = function (props) {
 };
 info.addTo(map);
 
-function getColor(d) {
-  if (d == null) {
-    return '#808080';
-  }
 
-  return d >   cmap[7] ? '#800026' :
-           d > cmap[6] ? '#BD0026' :
-           d > cmap[5] ? '#E31A1C' :
-           d > cmap[4] ? '#FC4E2A' :
-           d > cmap[3] ? '#FD8D3C' :
-           d > cmap[2] ? '#FEB24C' :
-           d > cmap[1] ? '#FED976' :
-                      '#FFEDA0';
+const choropleth_default = [
+    {
+
+        'color': '#FFEDA0'
+    },
+    {
+        'color': '#DC500'
+    },
+    {
+        'color': '#FFC500'
+    },
+    {
+        'color': '#FF5B00'
+    }
+]
+
+function getColor(d) {
+    if (d == null) {
+        return '#808080';
+    }
+
+    if(dl.choropleth) {
+
+        for (var i = 0; i < dl.choropleth.length; i++) {
+            var range = dl.choropleth[i];
+
+            if (d >= range['from'] && d <= range['to']) {
+                return range['color'];
+            }
+        }
+    }
+
+    return d >   cmap[7] ? '#800026' :
+            d > cmap[6] ? '#BD0026' :
+            d > cmap[5] ? '#E31A1C' :
+            d > cmap[4] ? '#FC4E2A' :
+            d > cmap[3] ? '#FD8D3C' :
+            d > cmap[2] ? '#FEB24C' :
+            d > cmap[1] ? '#FED976' :
+                        '#FFEDA0';
 
     return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
-                      '#FFEDA0';
+            d > 500  ? '#BD0026' :
+            d > 200  ? '#E31A1C' :
+            d > 100  ? '#FC4E2A' :
+            d > 50   ? '#FD8D3C' :
+            d > 20   ? '#FEB24C' :
+            d > 10   ? '#FED976' :
+                        '#FFEDA0';
+}
+
+function getBins() {
+    if(dl.choropleth) {
+        return dl.choropleth.length;
+    }
+
+    return 8;
 }
 
 function style(feature) {
@@ -303,7 +350,9 @@ var legend = false;
 
 $('#js-add-to-map').on('click', function(e) {
   map.fire('dataloading');
+
   $.getJSON( url_base + $('#js-shape_type').val() + "/" + $('#js-map-date').val(), function(data) {
+
     if (on_map) {
       map.removeLayer(on_map);
     }
@@ -311,9 +360,10 @@ $('#js-add-to-map').on('click', function(e) {
     min_value = data.min;
     max_value = data.max;
 
-    var step = (max_value - min_value) / 8;
-    cmap = [0];
-    for (var i = 1; i < 8; i++) {
+    var step = (max_value - min_value) / getBins();
+    cmap = [min_value];
+
+    for (var i = 1; i < getBins(); i++) {
       cmap[i] = min_value + step * i;
     }
 
@@ -322,17 +372,29 @@ $('#js-add-to-map').on('click', function(e) {
     }
 
     legend = L.control({position: 'bottomright'});
+
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend'),
             grades = cmap,
             labels = [];
 
         // loop through our density intervals and generate a label with a colored square for each interval
-        for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +=
-                '<i style="background:' + getColor(grades[i] + (step*0.5)) + '"></i> ' +
-                grades[i].toFixed({{ parameter.precision }}) + (grades[i + 1] ? '&ndash;' + grades[i + 1].toFixed({{ parameter.precision }}) + '<br>' : '+');
+        if (dl.choropleth) {
+            for (var i = 0; i < dl.choropleth.length; i++) {
+                div.innerHTML +=
+                    '<i style="background:' + getColor(dl.choropleth[i]['from']) + '"></i> ' +
+                    dl.choropleth[i]['from'].toFixed(dl.precision) + '&ndash;' + dl.choropleth[i]['to'].toFixed(dl.precision) + '<br>';
+            }
+        } else {
+            for (var i = 0; i < grades.length; i++) {
+                div.innerHTML +=
+                    '<i style="background:' + getColor(grades[i] + (step*0.5)) + '"></i> ' +
+                    grades[i].toFixed({{ parameter.precision }}) + (grades[i + 1] ? '&ndash;' + grades[i + 1].toFixed({{ parameter.precision }}) + '<br>' : '+');
+            }
         }
+
+
+
 
         return div;
     };

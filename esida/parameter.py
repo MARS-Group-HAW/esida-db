@@ -74,6 +74,9 @@ class BaseParameter():
         # Only used in UI for human on the web, API and CSV data are never rounded
         self.precision = 3
 
+
+        self.choropleth = None
+
         # Is the parameter a percentage?
         self.is_percent = False
 
@@ -101,6 +104,15 @@ class BaseParameter():
             return meta_dict[self.parameter_id][key]
 
         return ""
+
+    def get_spec(self) -> dict:
+        spec =  {
+            'id': self.parameter_id,
+            'precision': self.precision,
+            'choropleth': self.choropleth,
+        }
+
+        return spec
 
     def get_description(self) -> str:
         """ Get description / meta information of parameter as HTML formatted

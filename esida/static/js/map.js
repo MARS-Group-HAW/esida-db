@@ -88,3 +88,27 @@ function load_data_for_layer(map, dl, layerControl) {
     map.fire('dataload');
   });
 }
+
+function get_base_map(container) {
+  var osmUrl    = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+  var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+  var map_position = {lat: -6, lng: 35, zoom: 5};
+
+  var map = L.map(container, {
+    preferCanvas: true,
+    loadingControl: true
+  }).setView([map_position.lat, map_position.lng], map_position.zoom).addLayer(osm);
+
+  L.control.scale({imperial: false}).addTo(map);
+
+  return map;
+}
+
+
+/**
+ * https://leafletjs.com/examples/choropleth/
+ */
+function load_choropleth_map(map) {
+
+}
