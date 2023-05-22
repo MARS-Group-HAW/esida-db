@@ -695,7 +695,7 @@ def download_parameter(parameter_id):
 
 
 @app.route('/signals')
-def signals():
+def signal_index():
     signals = Signal.query.all()
     return render_template('signal/index.html.jinja', signals=signals)
 
@@ -712,7 +712,7 @@ def signal():
         db.session.add(signal)
         db.session.commit()
 
-        return redirect(url_for('signals'))
+        return redirect(url_for('signal_index'))
 
     return render_template('signal/create.html.jinja')
 
