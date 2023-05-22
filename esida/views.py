@@ -697,7 +697,16 @@ def download_parameter(parameter_id):
 @app.route('/signals')
 def signal_index():
     signals = Signal.query.all()
-    return render_template('signal/index.html.jinja', signals=signals)
+
+    df = pd.read_sql('SELECT report_date, id FROM signal',  parse_dates=['report_date'], con=get_engine())
+
+    dfx = df.groupby([pd.Grouper(key='report_date', freq='W')]).count()
+    dfx['x'] = dfx.index.astype(np.int64) / int(1e6)
+    dfx['x'] = dfx['x'].astype(int)
+    dfx['y'] = dfx['id']
+    data = dfx[['x', 'y']].values.tolist()
+
+    return render_template('signal/index.html.jinja', signals=signals, data=data)
 
 @app.route('/signal', methods = ['POST', 'GET'])
 def signal():

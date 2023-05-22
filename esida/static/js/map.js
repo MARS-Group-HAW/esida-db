@@ -89,11 +89,18 @@ function load_data_for_layer(map, dl, layerControl) {
   });
 }
 
-function get_base_map(container) {
+function get_base_map(container, options = {}) {
+
+  const config = {
+    'zoom': 5
+  };
+
+  let settings = {...config, ...options};
+
   var osmUrl    = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
   var osmAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
   var osm       = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
-  var map_position = {lat: -6, lng: 35, zoom: 5};
+  var map_position = {lat: -6, lng: 35, zoom: settings.zoom};
 
   var map = L.map(container, {
     preferCanvas: true,
