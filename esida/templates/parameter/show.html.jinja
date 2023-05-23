@@ -349,9 +349,17 @@ var cmap = [];
 var legend = false;
 
 $('#js-add-to-map').on('click', function(e) {
+
+
+    let date = $('#js-map-date').val();
+    if (!date) {
+        alert("Please select da date first.")
+        return;
+    }
+
   map.fire('dataloading');
 
-  $.getJSON( url_base + $('#js-shape_type').val() + "/" + $('#js-map-date').val(), function(data) {
+  $.getJSON( url_base + $('#js-shape_type').val() + "/" + date, function(data) {
 
     if (on_map) {
       map.removeLayer(on_map);
