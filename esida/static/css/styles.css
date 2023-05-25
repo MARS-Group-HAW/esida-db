@@ -69,3 +69,12 @@
 .m-reasoning:last-child::before {
   display: none;
 }
+
+
+.dl-state-pill .rounded-pill {
+  --bs-badge-padding-x: 0.35em;
+}
+
+.dl-state-pill svg {
+  fill: currentColor;
+}

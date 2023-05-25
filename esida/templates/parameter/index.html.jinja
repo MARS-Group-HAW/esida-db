@@ -4,43 +4,47 @@
 
 {% block content %}
   <h1>Parameters</h1>
+	<table class="table table-sm table-striped" id="shapes">
 
-  <table class="table table-sm table-striped" id="shapes">
+	<thead>
+		<tr>
+			<th>Category</th>
+			<th>Title</th>
+			<th>Key</th>
+			<th>State</th>
+			<th class="no-sort text-end">Actions</th>
+		</tr>
+	</thead>
 
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>Title</th>
-        <th>Key</th>
-        <th>State</th>
-        <th class="no-sort text-end">Actions</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for parameter in parameters %}
-      <tr>
-        <td class="align-middle">{{ parameter['class'].get_category() }}</td>
-        <td class="align-middle"><a class="link-subtle" href="{{ url_for('parameter', parameter_name=parameter['name']) }}">{{ parameter['class'].get_title() }}</a></td>
-        <td class="align-middle"><code>{{ parameter['name'] }}</code></td>
-        <td>
-          {% if parameter['class'].is_loaded %}
-          <span class="badge bg-success">Loaded</span>
-
-          {% else %}
-          <span class="badge bg-warning text-dark">Not loaded</span>
-
-          {% endif %}
-
-        </td>
-        <td>
-          <div class="d-flex justify-content-end">
-            <a href="{{ url_for('parameter', parameter_name=parameter['name']) }}"  class="btn btn-sm btn-link">Details</a>
-          </div>
-        </td>
-      </tr>
-    {% endfor %}
-    </tbody>
+	<tbody>
+	{% for parameter in parameters %}
+	<tr>
+		<td class="align-middle">{{ parameter['class'].get_category() }}</td>
+		<td class="align-middle"><a class="link-subtle" href="{{ url_for('parameter', parameter_name=parameter['name']) }}">{{ parameter['class'].get_title() }}</a></td>
+		<td class="align-middle"><code>{{ parameter['name'] }}</code></td>
+		<td class="dl-state-pill" data-order="{{ parameter['class'].is_loaded }}">
+			{% if parameter['class'].is_loaded %}
+			<span class="badge rounded-pill text-bg-success" data-bs-toggle="tooltip" data-bs-title="Loaded">
+				{% include "svg/check-circle.svg" %}
+			</span>
+			{% elif parameter['class'].is_loaded is none %}
+			<span class="badge rounded-pill text-bg-secondary" data-bs-toggle="tooltip" data-bs-title="Can't be loaded">
+				{% include "svg/skip.svg" %}
+			</span>
+			{% else %}
+			<span class="badge rounded-pill text-bg-warning" data-bs-toggle="tooltip" data-bs-title="Not loaded">
+				{% include "svg/x-circle.svg" %}
+			</span>
+			{% endif %}
+		</td>
+		<td>
+			<div class="d-flex justify-content-end">
+				<a href="{{ url_for('parameter', parameter_name=parameter['name']) }}"  class="btn btn-sm btn-link">Details</a>
+			</div>
+		</td>
+	</tr>
+	{% endfor %}
+	</tbody>
 
   </table>
 {% endblock %}
