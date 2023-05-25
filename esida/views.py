@@ -502,6 +502,8 @@ def api_parameters():
 
         row = {
             'parameter_id': p,
+            'category': pc.get_category(),
+            'title': pc.get_title(),
             'timelines': pc.time_col,
             'loaded': pc.is_loaded,
             'raw_data_size': pc.get_raw_data_size(),
@@ -518,6 +520,20 @@ def api_parameters():
         rows.append(row)
 
     df = pd.DataFrame(rows)
+
+
+    if request.args.get('format', None) == 'csv':
+
+        filename = f"ESIDA_parameters.csv"
+
+        resp = make_response(df.to_csv(index=False))
+        resp.headers["Content-Disposition"] = f"attachment; filename={filename}"
+        resp.headers["Content-Type"] = "text/csv"
+        return resp
+
+
+
+
     return jsonify(
         data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records'),
         spatial_details=spatial_details

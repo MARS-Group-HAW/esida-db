@@ -3,7 +3,15 @@
 {% block title %}Parameters{% endblock %}
 
 {% block content %}
+
+<div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
+  <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+    <a class="btn btn-sm btn-outline-primary" href="{{ url_for('api_parameters', format='csv') }}">Download</a>
+  </div>
+
   <h1>Parameters</h1>
+</div>
+
 	<table class="table table-sm table-striped" id="shapes">
 
 	<thead>
