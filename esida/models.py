@@ -63,17 +63,17 @@ class Shape(db.Model):
 
         return op_func(signal, self.id, **params)
 
-    def get(self, dl, fallback_parent=False, when=None, obj=False):
+    def get(self, dl, fallback_parent=False, when=None, retry=False, obj=False):
         """ Gets the latest known value for the given data layer on this shape. """
 
         if isinstance(dl, str):
             pm = importlib.import_module(f'parameters.{dl}')
             dl = getattr(pm, dl)()
 
-        value = dl.peek(self.id, when=when)
+        value = dl.peek(self.id, when=when, retry=retry)
 
         if value is None and fallback_parent and self.parent is not None:
-            value = self.parent.get(dl, fallback_parent, when=when)
+            value = self.parent.get(dl, fallback_parent, when=when, retry=retry)
 
             if value:
                value[f"{dl.parameter_id}_inferred"] = True

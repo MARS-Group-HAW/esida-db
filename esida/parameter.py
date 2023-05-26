@@ -584,41 +584,62 @@ class BaseParameter():
         return df
 
 
-    def peek(self, shape_id, when=None):
+    def peek(self, shape_id, when=None, retry=False, mode='down'):
         """ Get the latest known value of the parameter, if available. """
 
         if not self.is_loaded:
             self.logger.warning("Peek of data requested but not loaded for shape_id=%s", shape_id)
             return None
 
+        # get the wanted compare operator
+        modes = {
+            'exact': '=',  # needs to be exactly the given date
+            'up':    '>=', # same, or next
+            'down':  '<='  # same or previous
+        }
+        if mode not in modes:
+            raise ValueError(f"Unknown mode={mode}")
+
         sql = f"SELECT dl.*, shape.type FROM {self.parameter_id} AS dl"
 
-        sql += f" JOIN shape ON shape.id = dl.shape_id"
-
-
+        sql += " JOIN shape ON shape.id = dl.shape_id"
         sql += f" WHERE dl.shape_id = {shape_id}"
 
-
-
         if when is not None:
+            operator = modes[mode]
+
             if self.time_col == 'year':
-                sql += f" AND dl.year = {when.year}"
+                sql += f" AND dl.year {operator} {when.year}"
             elif self.time_col == 'date':
-                sql += f" AND dl.date = '{str(when)}'"
+                sql += f" AND dl.date {operator} '{str(when)}'"
             else:
                 raise ValueError(f"Unknown time_col={self.time_col}")
 
-        sql += f" ORDER BY dl.{self.time_col} DESC LIMIT 1"
+        sort_operator = 'DESC'
+        if mode == 'up':
+            sort_operator = 'ASC'
+
+        sql += f" ORDER BY dl.{self.time_col} {sort_operator} LIMIT 1"
+
 
         con = connect()
         res = con.execute(sql)
         req = res.fetchone()
 
+
         if req is None:
+            if retry:
+                invert_mode = {
+                    'up': 'down',
+                    'down': 'up',
+                }
+                return self.peek(shape_id, when=when, retry=False, mode=invert_mode[mode])
+
             return None
 
         dreq =  dict(req)
 
+        # TODO: actually no None values should be imported
         if dreq[self.parameter_id] is None:
             return None
 
