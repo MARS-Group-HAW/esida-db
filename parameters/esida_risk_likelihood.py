@@ -9,7 +9,9 @@ class esida_risk_likelihood(AlgorithmParameter):
 
         self.precision = 1
 
-        self.choroplet2 = [
+        self.time_col = 'date'
+
+        self.choropleth = [
             {
                 'from':   22,
                 'to':    30.9,

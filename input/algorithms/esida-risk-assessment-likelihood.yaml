@@ -1,6 +1,10 @@
 apiVersion: v1
 metadata:
   name: Local Risk-Assessment
+  range:
+    interval: MS
+    start: 2010-01-01
+    end: 2023-12-01
 spec:
   - name: Medical laboratory personnel density
     datalayer: tnbs_medlabdens
@@ -273,6 +277,16 @@ spec:
       - is: True
         score: 3
     fallback_score: 3
+  - name: Environmental suitability (in the country)
+    datalayer: _month
+    factor: 0.5
+    thresholds:
+      - is: [1, 2, 6, 7, 8, 9]
+        score: 1
+      - is: [10, 11, 12]
+        score: 2
+      - is: [3, 4, 5]
+        score: 3
   - name: Vector control strategies available (in the country)
     datalayer: lit_veccontrol
     thresholds:
