@@ -46,6 +46,8 @@ class AlgorithmParameter(BaseParameter):
         else:
             steps.append(dt.datetime.now())
 
+        total_shapes = len(shapes)
+        i = 1
         for shape in shapes:
             shpobj = Shape.query.get(shape['id'])
 
@@ -55,9 +57,12 @@ class AlgorithmParameter(BaseParameter):
 
             for when in steps:
                 risk_score = 0
-                print(when)
+
+                print(f"{i}/{total_shapes}: {shpobj.name} {when}")
+
                 for spec in algorithm['spec']:
-                    print(f"Checking: {spec['name']}")
+
+                    #print(f"Checking: {spec['name']}")
 
 
                     if spec['datalayer'] == '_month':
@@ -74,7 +79,7 @@ class AlgorithmParameter(BaseParameter):
                             if value is not None and datalayer in value:
                                 value = value[datalayer]
 
-                            print(datalayer, value)
+                            #print(datalayer, value)
 
                             if value:
                                 datalayer_values.append(value)
@@ -88,12 +93,12 @@ class AlgorithmParameter(BaseParameter):
                         dl = getattr(pm, datalayer)()
 
                         value = shpobj.get(spec['datalayer'], fallback_parent = True, retry=True, when=when)
-                        print(value)
+                        #print(value)
 
                         if value is not None and spec['datalayer'] in value:
                             value = value[spec['datalayer']]
                         else:
-                            print("No data available for shape/layer")
+                            #print("No data available for shape/layer")
                             value = None
                         # in case the data layer is a count, but we need a proportion
                         # load the corresponding total data layer
@@ -107,13 +112,13 @@ class AlgorithmParameter(BaseParameter):
                             if not dl.is_percent100:
                                 value = value * 100
 
-                    print(f"Datalayer value is: {value}")
+                    #print(f"Datalayer value is: {value}")
 
                     matching_thresh = None
                     if value is not None:
                         for thresh in spec['thresholds']:
 
-                            print(thresh)
+                            #print(thresh)
 
                             # Check if is exact match
                             if "is" in thresh:
@@ -176,10 +181,10 @@ class AlgorithmParameter(BaseParameter):
                     if matching_thresh is None:
                         print("Datalayer value is outside of all ranges!")
                     else:
-                        print(f"matching: {matching_thresh}")
+                        #print(f"matching: {matching_thresh}")
                         risk_score += matching_thresh['score'] * factor
                         score = matching_thresh['score'] * factor
-                    print("")
+                    #print("")
 
                     row = {
                         'shape_id': shape['id'],
@@ -198,6 +203,7 @@ class AlgorithmParameter(BaseParameter):
                     f'{time_col}': when,
                     f'{self.parameter_id}': risk_score
                 })
+            i += 1
 
         self.set_output_path(f'output/{self.parameter_id}')
         log_df = pd.DataFrame(log_rows)
