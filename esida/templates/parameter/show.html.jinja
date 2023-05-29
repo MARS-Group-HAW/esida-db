@@ -139,16 +139,7 @@
     {{ parameter.get_description()|safe }}
   </div>
 
-  {% if parameter.has_log() %}
-  <div>
-    <div class="card mb-3">
-      <h5 class="card-header">Log</h5>
-      <div class="card-body">
-        {{ parameter.get_log_html()|safe }}
-      </div>
-    </div>
-  </div>
-  {% endif %}
+
 {% endblock %}
 
 {% block footer %}
