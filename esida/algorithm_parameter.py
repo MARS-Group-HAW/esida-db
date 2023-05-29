@@ -2,9 +2,11 @@ import importlib
 import datetime as dt
 import yaml
 import pandas as pd
+import sqlalchemy
 
 from esida.parameter import BaseParameter
 from esida.models import Shape
+from dbconf import get_engine
 
 class AlgorithmParameter(BaseParameter):
     """ Extends BaseParameter class for YAML-algorithm consumption. """
@@ -12,6 +14,16 @@ class AlgorithmParameter(BaseParameter):
     def __init__(self):
         super().__init__()
         self.algorithm = None
+
+    def step_count(self) -> int:
+        with open(self.algorithm, "r") as stream:
+            try:
+                algorithm = yaml.safe_load(stream)
+            except yaml.YAMLError as exc:
+                print(exc)
+                return
+
+        return len(algorithm['spec'])
 
     def load(self, shapes=None, save_output=False, param_dir=None):
 
@@ -208,5 +220,6 @@ class AlgorithmParameter(BaseParameter):
         self.set_output_path(f'output/{self.parameter_id}')
         log_df = pd.DataFrame(log_rows)
         log_df.to_csv(f"{self.get_output_path()}/{self.parameter_id}.csv")
+        log_df.to_sql(f"log_{self.parameter_id}", get_engine(), if_exists='replace', dtype={'threshold_rule': sqlalchemy.types.JSON})
 
         self.save()

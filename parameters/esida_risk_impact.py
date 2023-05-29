@@ -9,6 +9,8 @@ class esida_risk_impact(AlgorithmParameter):
 
         self.precision = 0
 
+        self.time_col = 'date'
+
         self.choropleth2 = [
             {
                 'from':   7,
