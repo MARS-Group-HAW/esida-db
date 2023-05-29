@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import pandas as pd
+import functools
 
 from esida.parameter import BaseParameter
 
@@ -56,6 +57,10 @@ class cia_worldfactbook(BaseParameter):
     def extract(self):
         # No machine parsable data provided.
         pass
+
+    @functools.cached_property
+    def is_loaded(self):
+        return None
 
 
     def load(self, shapes=None, save_output=False, agent_count = None):
