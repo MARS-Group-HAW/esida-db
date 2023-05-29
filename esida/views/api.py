@@ -1,115 +1,19 @@
+import sys
+import time
+import zipfile
 import importlib
 import datetime as dt
-import sys
-import os
-import json
-import zipfile
 from io import BytesIO
-import time
-
-from esida import app, params, db, logger
-from flask import render_template, make_response, abort, jsonify, send_file, request, redirect, url_for, send_from_directory
-from slugify import slugify
-from sqlalchemy.orm import undefer
-
-import yaml
-
-from dbconf import get_engine, close
-from esida.models import Shape, Signal
-from esida import shape_types
 
 import shapely
-import pandas as pd
 import numpy as np
-import humanize
+import pandas as pd
+from slugify import slugify
+from sqlalchemy.orm import undefer
+from flask import render_template, make_response, abort, jsonify, send_file, request, url_for
 
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                          'images/favicon.ico',mimetype='image/vnd.microsoft.icon')
-
-@app.route("/")
-def index():
-
-    sizes = {}
-    total_size = 0
-    for p in params:
-        pm = importlib.import_module(f'parameters.{p}')
-        pc = getattr(pm, p)()
-
-        base = pc.get_data_path().name
-
-        if base not in sizes:
-            size_in_bytes = pc.get_raw_data_size()
-            total_size += size_in_bytes
-            sizes[base] = {
-                'name': base,
-                'y': size_in_bytes,
-                'human': humanize.naturalsize(size_in_bytes),
-                'parameter_ids': [pc.parameter_id]
-            }
-        else:
-            sizes[base]['parameter_ids'].append(pc.parameter_id)
-
-    newlist = sorted(list(sizes.values()), key=lambda d: d['y'], reverse=True)
-
-
-
-    return render_template('index.html.jinja',
-        count_parameters = len(params),
-        count_local_data_sources = len(newlist),
-        total_size_human = humanize.naturalsize(total_size),
-        sizes=newlist,
-        sizes_json=json.dumps(newlist)
-    )
-
-@app.route("/shapes/<string:shape_type>")
-def shape_index(shape_type):
-    """ View for all shapes of a given type. """
-    if shape_type not in shape_types():
-        abort(404)
-
-    shapes = Shape.query.where(Shape.type == shape_type).order_by(Shape.name.asc()).all()
-    return render_template('shape/index.html.jinja', shape_type=shape_type, shapes=shapes)
-
-@app.route("/shape/<int:shape_id>")
-def shape_show(shape_id):
-    """ View for single shape identified by it's ID. """
-    shape = Shape.query.get(shape_id)
-
-    if shape is None:
-        abort(404)
-
-    parameters = []
-    for p in params:
-        pm = importlib.import_module('parameters.{}'.format(p))
-        pc = getattr(pm, p)()
-        if pc.is_loaded:
-            parameters.append(pc)
-
-    return render_template('shape/show.html.jinja',
-        shape=shape,
-        params=parameters
-    )
-
-@app.route("/map")
-def map():
-    regions = Shape.query.where(Shape.type == "region").all()
-    districts = Shape.query.where(Shape.type == "district").all()
-
-    parameters = []
-    for p in params:
-        pm = importlib.import_module('parameters.{}'.format(p))
-        pc = getattr(pm, p)()
-        if pc.is_loaded and pc.has_raw_data():
-            parameters.append(pc)
-
-    return render_template('map.html.jinja',
-        regions=regions,
-        districts=districts,
-        parameters=parameters,
-    )
+from esida.models import Shape
+from esida import app, params, db, logger, shape_types
 
 @app.route('/shape/<int:shape_id>/<parameter_id>/<column>/json')
 def download_json(shape_id, parameter_id, column):
@@ -164,6 +68,11 @@ def download_json(shape_id, parameter_id, column):
         data=df[['x', 'y']].values.tolist()
     )
 
+
+def str2bool(v) -> bool:
+    """ https://stackoverflow.com/a/715468/723769 """
+    return str(v).lower() in ("yes", "true", "t", "1")
+
 def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None, end_date=None, join_col='year') -> pd.DataFrame:
     dfs = []
 
@@ -178,6 +87,7 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
             continue
 
         rdf = pc.download(int(shape_id), start=start_date, end=end_date, select_shape_name=False)
+
         if rdf.empty:
             continue
 
@@ -201,10 +111,6 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
     df = df.sort_values(by=[join_col]).reset_index(drop=True)
 
     return df
-
-def str2bool(v) -> bool:
-    """ https://stackoverflow.com/a/715468/723769 """
-    return str(v).lower() in ("yes", "true", "t", "1")
 
 @app.route('/api/v1/shapes')
 def api_shapes():
@@ -272,6 +178,10 @@ def api_shapes():
     resp.headers["Content-Type"] = "text/csv"
     return resp
 
+
+
+
+
 @app.route('/api/v1/shape/<int:shape_id>')
 def api_data(shape_id):
     shape = Shape.query.get(shape_id)
@@ -312,7 +222,6 @@ def api_data(shape_id):
     return jsonify(
         data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records')
     )
-
 @app.route('/api/v1/parameter/<string:parameter_id>')
 def api_parameter(parameter_id):
     """ Get data and metadata for single parameter. """
@@ -361,6 +270,7 @@ def api_parameter(parameter_id):
         fields=pc.get_fields(),
         data_quality=data_quality
     )
+
 
 @app.route('/api/v1/parameter_map/<string:parameter_id>/<string:shape_type>/<string:date>')
 def api_parameter_map(parameter_id, shape_type, date):
@@ -414,6 +324,8 @@ def api_parameter_map(parameter_id, shape_type, date):
 
     return jsonify(geojson=data, min=min_value, max=max_value)
 
+
+
 @app.route('/api/v1/parameter_data_map/<string:parameter_id>/<string:date>')
 def api_parameter_data_map(parameter_id, date):
     """ Fetch the raw data for a layer. """
@@ -445,9 +357,6 @@ def api_parameter_data_map(parameter_id, date):
     return response
 
 
-
-
-
 @app.route('/api/v1/da_spatial/<string:parameter_id>')
 def api_da_spatial(parameter_id):
     """ Get data and metadata for single parameter. """
@@ -476,6 +385,8 @@ def api_da_spatial(parameter_id):
         data=d[1],
         data_quality=data_quality
     )
+
+
 
 @app.route('/api/v1/parameters')
 def api_parameters():
@@ -538,6 +449,7 @@ def api_parameters():
         data=df.fillna(np.nan).replace([np.nan], [None]).to_dict('records'),
         spatial_details=spatial_details
     )
+
 
 @app.route('/shape/<int:shape_id>/parameters')
 def download_csv(shape_id):
@@ -608,19 +520,8 @@ def download_csv(shape_id):
     return resp
 
 
-@app.route('/parameter')
-def parameters():
-    pars = []
-    for p in params:
-        pm = importlib.import_module('parameters.{}'.format(p))
 
-        pars.append({
-            'name': pm.__name__.split('.')[1],
-            'description': pm.__doc__,
-            'class': getattr(pm, p)()
-        })
 
-    return render_template('parameter/index.html.jinja', parameters=pars)
 
 @app.route('/parameter-statistics')
 def parameter_statistics():
@@ -647,31 +548,6 @@ def parameter_statistics():
     return render_template('parameter/temporal-statistics.html.jinja',
         parameters=pars,
         count=len(pars)
-    )
-
-
-@app.route("/parameter/<string:parameter_name>")
-def parameter(parameter_name):
-
-    if parameter_name not in params:
-        abort(404)
-
-    parameter_module = importlib.import_module(f'parameters.{parameter_name}')
-    parameter_class  = getattr(parameter_module, parameter_name)()
-
-    shapes = Shape.query.where().all()
-    shapes_dropdown = {}
-    for s in shapes:
-        if s.type not in shapes_dropdown:
-            shapes_dropdown[s.type]  = []
-        shapes_dropdown[s.type].append({
-            'name': s.name,
-            'id':   s.id
-        })
-
-    return render_template('parameter/show.html.jinja',
-        parameter=parameter_class,
-        shapes=shapes_dropdown
     )
 
 @app.route("/download_parameter/<string:parameter_id>")
@@ -707,120 +583,3 @@ def download_parameter(parameter_id):
         resp.headers["Content-Type"] = "text/csv"
 
     return resp
-
-
-
-@app.route('/signals')
-def signal_index():
-    signals = Signal.query.all()
-
-    df = pd.read_sql('SELECT report_date, id FROM signal',  parse_dates=['report_date'], con=get_engine())
-
-    dfx = df.groupby([pd.Grouper(key='report_date', freq='W')]).count()
-    dfx['x'] = dfx.index.astype(np.int64) / int(1e6)
-    dfx['x'] = dfx['x'].astype(int)
-    dfx['y'] = dfx['id']
-    data = dfx[['x', 'y']].values.tolist()
-
-    return render_template('signal/index.html.jinja', signals=signals, data=data)
-
-@app.route('/signal', methods = ['POST', 'GET'])
-def signal():
-    if request.method == 'POST':
-
-        signal = Signal(age=int(request.form['age']),
-            report_date=dt.datetime.strptime(request.form['report_date'], '%Y-%m-%d').date(),
-            sex=request.form['sex'],
-            geometry='POINT({} {})'.format(request.form['lng'], request.form['lat'])
-        )
-
-        db.session.add(signal)
-        db.session.commit()
-
-        return redirect(url_for('signal_index'))
-
-    return render_template('signal/create.html.jinja')
-
-
-
-@app.route("/signal/<int:signal_id>")
-def signal_show(signal_id):
-    signal = Signal.query.get(signal_id)
-
-
-    print(os.getcwd())
-    with open("./input/algorithms/dengue-fever.yml", "r") as stream:
-        try:
-            algorithm = yaml.safe_load(stream)
-
-            for key in algorithm['spec'].keys():
-                algorithm['spec'][key]['key'] = key
-
-        except yaml.YAMLError as exc:
-            print(exc)
-
-    results = {}
-
-    # Process specs
-    for shape in signal.shapes():
-        spec = algorithm['spec'][algorithm['metadata']['start']]
-
-        results[shape.id] = {
-            'summary': None,
-            'steps': []
-        }
-
-        while True:
-            r = {
-                'spec': spec,
-                'ops': []
-            }
-
-            if 'end' in spec:
-                #results[shape.id]['steps'].append(r)
-                results[shape.id]['summary'] = spec
-                break
-
-            dl = spec['datalayer']
-            pm = importlib.import_module(f'parameters.{dl}')
-            pc = getattr(pm, dl)()
-
-            booleans = []
-
-            for op in spec['operators']:
-                b, df = shape.op(signal, pc, op['op'], op['attrs'])
-                booleans.append(b)
-                r['ops'].append({
-                    'op': op,
-                    'result': b,
-                    'data': df,
-                    'data_v': df[spec['datalayer']].to_list()
-                })
-
-            positive = spec['positive']
-            negative = spec['negative']
-
-            if all(booleans):
-                r['result'] = True
-                spec = algorithm['spec'][positive]
-            else:
-                r['result'] = False
-                spec = algorithm['spec'][negative]
-
-            results[shape.id]['steps'].append(r)
-
-
-    return render_template('signal/show.html.jinja',
-        signal=signal,
-        results=results
-    )
-
-
-@app.after_request
-def after_request_callback(response):
-    close()
-    return response
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)

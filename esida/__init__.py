@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from slugify import slugify
 
 from decouple import config
-from dbconf import get_conn_string
+from dbconf import get_conn_string, close
 import log
 
 from .version import __version__
@@ -75,11 +75,15 @@ def _slugify(string):
 def to_json(value):
     return json.dumps(value)
 
+@app.after_request
+def after_request_callback(response):
+    close()
+    return response
 
 
 # import AFTER app, etc. has been declared!
 import esida.models
-import esida.views
+from esida.views import main, shape, parameter, signal, api
 import esida.cli
 
 if __name__ == '__main__':
