@@ -1,6 +1,10 @@
 apiVersion: v1
 metadata:
   name: ESIDA Risk-Assessment Impact (on the population and economy)
+  range:
+    interval: MS
+    start: 2010-01-01
+    end: 2023-12-01
 spec:
   - name: Physician density
     datalayer: tnbs_physdens
