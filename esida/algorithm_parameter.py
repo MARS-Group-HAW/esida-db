@@ -39,6 +39,10 @@ class AlgorithmParameter(BaseParameter):
             if freq != 'Y':
                 time_col = 'date'
 
+            py_steps = []
+            for s in steps:
+                py_steps.append(dt.date(s.year, s.month, s.day))
+            steps = py_steps
         else:
             steps.append(dt.datetime.now())
 
