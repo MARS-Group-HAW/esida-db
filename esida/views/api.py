@@ -91,6 +91,10 @@ def _get_parameters_for_shape(shape_id, filter_parameters=None, start_date=None,
         if rdf.empty:
             continue
 
+        if join_col == 'date' and pd.api.types.is_datetime64_any_dtype(rdf['date']):
+            logger.warning("Had to convert datetime64 column to datetime for %s, probably error for layer during import. timestamp instead date type?", p)
+            rdf['date'] = rdf['date'].dt.date
+
         # we merge data year column, so do not add it to the pool
         # if the column is missing
         if join_col not in rdf:
