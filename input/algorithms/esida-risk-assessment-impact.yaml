@@ -48,7 +48,7 @@ spec:
       - min: 45
         max: 120
         score: 2
-      - max: 120
+      - min: 120
         inclusive: False
         score: 3
   - name: Age % 5-39y (morbidity)
@@ -56,7 +56,7 @@ spec:
     datalayer_total: worldpop_popc
     mode: percentage
     thresholds:
-      - max: 50.2
+      - max: 50.3
         score: 1
         inclusive: False
       - min: 50.3
@@ -70,26 +70,26 @@ spec:
     datalayer_total: worldpop_popc
     mode: percentage
     thresholds:
-      - min: 0
-        max: 20.3
+      - max: 20.4
         score: 1
+        inclusive: False
       - min: 20.4
         max: 30.9
         score: 2
-      - min: 31.0
-        max: 100
+      - min: 30.9
+        inclusive: False
         score: 3
   - name: Age % 65+y (mortality)
     datalayer: worldpop_age_65
     datalayer_total: worldpop_popc
     mode: percentage
     thresholds:
-      - min: 0
-        max: 4.8
+      - max: 4.9
         score: 1
+        inclusive: False
       - min: 4.9
         max: 10.9
         score: 2
-      - min: 11.0
-        max: 100
+      - min: 10.9
+        inclusive: False
         score: 3
