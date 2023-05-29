@@ -1,0 +1,71 @@
+{% extends 'base.html.jinja' %}
+
+{% block title %}ESIDA Risk Matrix{% endblock %}
+
+{% block content %}
+<h1>ESIDA Risk Matrix</h1>
+
+
+
+<div id="scatter"></div>
+
+<p>
+	Based on the latest value for each layer:
+</p>
+<ul>
+	<li><code>esida_risk_impact</code>: {{ dl_impact.get_last_time() }}</li>
+	<li><code>esida_risk_likelihood</code>: {{ dl_likelihood.get_last_time() }}</li>
+</ul>
+
+<hr>
+
+<p>
+	Detailed information for each layer:
+</p>
+
+<div class="input-group mb-3" style="max-width: 400px">
+	<select class="form-select js-chosen-select" id="js-shape">
+		{% for shape in shapes %}
+		<option value="{{ shape.id }}">{{ shape.name }} ({{ shape.type }}</option>
+		{% endfor %}
+	</select>
+
+	<button id="js-add-shape-to-chart" class="btn btn-outline-secondary btn-sm">Go to details</button>
+</div>
+
+
+{% endblock %}
+
+{% block footer %}
+<script>
+$(".js-chosen-select").chosen();
+
+$('#js-add-shape-to-chart').on('click', function() {
+	window.location='/esida-risk/' + $('#js-shape').val();
+});
+
+</script>
+<script>
+
+var data = {{ traces|to_json}};
+
+var layout = {
+  xaxis: {
+	range: [{{ dl_likelihood.step_count() * 1 }}, {{ dl_likelihood.step_count() * 3 }}],
+	title: {
+      text: 'Likelihood',
+	}
+  },
+  yaxis: {
+	range: [{{ dl_impact.step_count() * 1 }}, {{ dl_impact.step_count() * 3 }}],
+	title: {
+      text: 'Impact',
+	}
+  },
+  title:'Distribution of risk per shape type category'
+};
+
+Plotly.newPlot('scatter', data, layout);
+
+</script>
+{% endblock %}

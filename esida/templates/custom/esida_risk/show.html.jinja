@@ -1,0 +1,124 @@
+{% extends 'base.html.jinja' %}
+
+{% block title %}ESIDA Risk for {{ shape.name }}{% endblock %}
+
+{% block content %}
+<h1>ESIDA Risk for {{ shape.name }}</h1>
+
+<div id="temporal"></div>
+
+<p>The black dot is the currently viewed shape, the heatmap shows the the distribution of all shapes with the same type. Be sure to use the autoscale/zoom button of the chart toggles in the upper right when hovering to the chart.</p>
+
+<div id="scatter"></div>
+
+
+<h2>Explain scores</h2>
+
+<form method="get">
+	<div class="input-group">
+		<select class="form-select" name="when">
+			{% for w in whens %}
+			<option value="{{ w }}" {% if w == when %} selected="selected" {% endif %}>{{ w }}</option>
+			{% endfor %}
+		</select>
+		<button type="submit" class="btn btn-sm btn-primary">Show</button>
+	</div>
+</form>
+
+<div id="explain"></div>
+
+<div id="explain_impact"></div>
+
+{% endblock %}
+
+{% block footer %}
+
+<script>
+var data = {{ traces_temporal|to_json}};
+var layout = {
+  xaxis: {
+	title: {
+      text: 'When',
+	}
+  },
+  yaxis: {
+	title: {
+      text: 'Score',
+	}
+  },
+  title:'Score for {{ shape.name }} over time'
+};
+
+Plotly.newPlot('temporal', data, layout);
+</script>
+
+
+
+<script>
+
+var data = {{ traces|to_json}};
+
+var layout = {
+  xaxis: {
+	range: [{{ dl_likelihood.step_count() * 1 }}, {{ dl_likelihood.step_count() * 3 }}],
+	title: {
+      text: 'Likelihood',
+	}
+  },
+  yaxis: {
+	range: [{{ dl_impact.step_count() * 1 }}, {{ dl_impact.step_count() * 3 }}],
+	title: {
+      text: 'Impact',
+	}
+  },
+  title:'Distribution of other shapes in same category ({{ shape.type}})'
+};
+
+Plotly.newPlot('scatter', data, layout);
+
+</script>
+
+
+<script>
+var data = {{ traces2|to_json}};
+var layout = {
+  xaxis: {
+	rangemode: 'nonnegative',
+	title: {
+      text: 'Datalayer',
+	}
+  },
+  yaxis: {
+	rangemode: 'nonnegative',
+	title: {
+      text: 'Score',
+	}
+  },
+  title: 'Likelihood Score development for {{ shape.name }} ({{ when }})'
+};
+
+Plotly.newPlot('explain', data, layout);
+</script>
+
+<script>
+var data = {{ traces_impact|to_json}};
+var layout = {
+  xaxis: {
+	rangemode: 'nonnegative',
+	title: {
+      text: 'Datalayer',
+	}
+  },
+  yaxis: {
+	rangemode: 'nonnegative',
+	title: {
+      text: 'Score',
+	}
+  },
+  title: 'Impact Score development for {{ shape.name }} ({{ when }})'
+};
+
+Plotly.newPlot('explain_impact', data, layout);
+</script>
+
+{% endblock %}

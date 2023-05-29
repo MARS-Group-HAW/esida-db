@@ -83,7 +83,7 @@ def after_request_callback(response):
 
 # import AFTER app, etc. has been declared!
 import esida.models
-from esida.views import main, shape, parameter, signal, api
+from esida.views import main, shape, parameter, signal, api, esida
 import esida.cli
 
 if __name__ == '__main__':
