@@ -414,6 +414,7 @@ class BaseParameter():
 
     def download_inferred(self,
             shape_id=None,
+            when: Optional[dt.datetime] = None,
             start: Optional[dt.datetime] = None,
             end: Optional[dt.datetime] = None,
             shape_type: Optional[str] = None,
@@ -430,7 +431,10 @@ class BaseParameter():
         else:
             shapes = Shape.query.all()
 
-        temporal_steps = self.temporal_steps(start, end)
+        if when:
+            temporal_steps = [when]
+        else:
+            temporal_steps = self.temporal_steps(start, end)
         rows = []
 
         for shape in shapes:
@@ -466,9 +470,9 @@ class BaseParameter():
 
         return pd.DataFrame(rows)
 
-
     def download(self,
             shape_id=None,
+            when: Optional[dt.datetime] = None,
             start: Optional[dt.datetime] = None,
             end: Optional[dt.datetime] = None,
             shape_type: Optional[str] = None,
@@ -506,11 +510,15 @@ class BaseParameter():
                 sql += f" AND year >= {start.year}"
             if end:
                 sql += f" AND year <= {end.year}"
+            if when:
+                sql += f" AND year = {end.year}"
         elif self.time_col == 'date':
             if start:
                 sql += f" AND date >= '{str(start)}'"
             if end:
                 sql += f" AND date <= '{str(end)}'"
+            if when:
+                sql += f" AND date = '{str(when)}'"
         else:
             raise ValueError(f"Unknown time_col={self.time_col}")
 
