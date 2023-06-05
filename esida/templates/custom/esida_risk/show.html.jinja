@@ -7,23 +7,30 @@
 
 <div id="temporal"></div>
 
+<hr>
+
+<form method="get">
+
+	<div class="mb-3">
+		<label for="when" class="form-label">Select time point for below charts:</label>
+
+		<div class="input-group">
+			<select id="when" class="form-select" name="when">
+				{% for w in whens %}
+				<option value="{{ w }}" {% if w == when %} selected="selected" {% endif %}>{{ w }}</option>
+				{% endfor %}
+			</select>
+			<button type="submit" class="btn btn-sm btn-primary">Show</button>
+		</div>
+	</div>
+</form>
+
 <p>The black dot is the currently viewed shape, the heatmap shows the the distribution of all shapes with the same type. Be sure to use the autoscale/zoom button of the chart toggles in the upper right when hovering to the chart.</p>
 
 <div id="scatter"></div>
 
 
 <h2>Explain scores</h2>
-
-<form method="get">
-	<div class="input-group">
-		<select class="form-select" name="when">
-			{% for w in whens %}
-			<option value="{{ w }}" {% if w == when %} selected="selected" {% endif %}>{{ w }}</option>
-			{% endfor %}
-		</select>
-		<button type="submit" class="btn btn-sm btn-primary">Show</button>
-	</div>
-</form>
 
 <div id="explain"></div>
 
@@ -71,7 +78,7 @@ var layout = {
       text: 'Impact',
 	}
   },
-  title:'Distribution of other shapes in same category ({{ shape.type}})'
+  title:'Distribution of other shapes in same category ({{ shape.type}}) ({{ when }})'
 };
 
 Plotly.newPlot('scatter', data, layout);
@@ -80,7 +87,7 @@ Plotly.newPlot('scatter', data, layout);
 
 
 <script>
-var data = {{ traces2|to_json}};
+var data = {{ traces_likelihood|to_json}};
 var layout = {
   xaxis: {
 	rangemode: 'nonnegative',

@@ -5,17 +5,22 @@
 {% block content %}
 <h1>ESIDA Risk Matrix</h1>
 
-
+<div class="row">
+	<div class="col-12 col-sm-6 col-lg-3">
+		<form method="get">
+			<div class="input-group">
+				<select class="form-select" name="when">
+					{% for w in whens %}
+					<option value="{{ w }}" {% if w == when %} selected="selected" {% endif %}>{{ w }}</option>
+					{% endfor %}
+				</select>
+				<button type="submit" class="btn btn-sm btn-primary">Show</button>
+			</div>
+		</form>
+	</div>
+</div>
 
 <div id="scatter"></div>
-
-<p>
-	Based on the latest value for each layer:
-</p>
-<ul>
-	<li><code>esida_risk_impact</code>: {{ dl_impact.get_last_time() }}</li>
-	<li><code>esida_risk_likelihood</code>: {{ dl_likelihood.get_last_time() }}</li>
-</ul>
 
 <hr>
 
@@ -62,7 +67,7 @@ var layout = {
       text: 'Impact',
 	}
   },
-  title:'Distribution of risk per shape type category'
+  title:'Distribution of risk per shape type category for {{ when }}'
 };
 
 Plotly.newPlot('scatter', data, layout);
