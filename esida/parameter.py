@@ -382,7 +382,6 @@ class BaseParameter():
 
         sql = f"SELECT {self.time_col}"
         sql += f" FROM {self.parameter_id}"
-
         sql += " WHERE 1=1"
 
         if self.time_col == 'year':
@@ -398,7 +397,7 @@ class BaseParameter():
         else:
             raise ValueError(f"Unknown time_col={self.time_col}")
 
-        sql += f' GROUP BY "{self.time_col}"'
+        sql += f' GROUP BY "{self.time_col}" ORDER BY "{self.time_col}"'
 
         con = connect()
         res = con.execute(sql)
@@ -410,8 +409,6 @@ class BaseParameter():
                 steps.append(row[0])
             else:
                 raise ValueError(f"Unknown time_col={self.time_col}")
-
-        print(steps)
 
         return steps
 
