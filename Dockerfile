@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-small-3.6.2
+FROM ghcr.io/osgeo/gdal:ubuntu-small-3.7.0
 
 # install pip and postgresql header (libpq-dev) so pycog2 will install.
 #
@@ -24,8 +24,7 @@ COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 
