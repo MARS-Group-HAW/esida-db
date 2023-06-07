@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     rsync \
     wget \
-    postgresql-client
+    postgresql-client \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /app
 
@@ -22,13 +24,13 @@ COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 
-RUN pip install -e .
-RUN export FLASK_APP=esida
+RUN pip install -e . \
+    && export FLASK_APP=esida
 
 EXPOSE 80
 
