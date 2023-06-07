@@ -29,10 +29,9 @@ services:
     volumes:
       - ./:/app/
   # Jupyter Hub wit lot's of gis dependencies installed
-  jupyter:
-    image: gboeing/osmnx:latest
-    ports:
-      - 8888:8888
-    volumes:
-      - ./:/home/jovyan/work
-
+  #jupyter:
+  #  image: gboeing/osmnx:latest
+  #  ports:
+  #    - 8888:8888
+  #  volumes:
+  #    - ./:/home/jovyan/work
