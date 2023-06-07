@@ -1,19 +1,19 @@
 FROM osgeo/gdal:ubuntu-small-3.6.2
 
-# Installs pg_dump/pg_restore used for dumping/importing database backups
-RUN apt-get install -y postgresql-client
-
-# install pip and postgresql binaries so pycog2 will install
+# install pip and postgresql header (libpq-dev) so pycog2 will install.
 #
 # python-rtree was NOT required building on Linux/GitLab CI. If it's missing
 # during build on macOS/M1 the container won't run. Why? Probably due to
 # arm64 emulation thins for the container?
+#
+# postgresql-client: Installs pg_dump/pg_restore used for dumping/importing database backups
 RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-rtree \
     libpq-dev \
     rsync \
-    wget
+    wget \
+    postgresql-client
 
 RUN mkdir -p /app
 
