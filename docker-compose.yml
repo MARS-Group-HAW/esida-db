@@ -25,7 +25,7 @@ services:
       POSTGIS_PORT: 5432
       FLASK_BASIC_AUTH_FORCE: "False"
     ports:
-      - 80:80
+      - ${DATAHUB_PORT:-80}:80
     volumes:
       - ./:/app/
   # Jupyter Hub wit lot's of gis dependencies installed
