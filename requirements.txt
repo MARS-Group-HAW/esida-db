@@ -1,7 +1,7 @@
 Flask==2.3.2
-Flask-SQLAlchemy==2.5.1
+Flask-SQLAlchemy==3.0.3
 Flask-HTTPAuth==4.6.0
-GeoAlchemy2==0.10.2
+GeoAlchemy2==0.13.3
 geopandas==0.12.2
 gunicorn==20.1.0
 Markdown==3.3.6
@@ -13,7 +13,7 @@ rasterio==1.3.4
 rasterstats==0.16.0
 rioxarray==0.10.3
 shapely==2.0.1
-SQLAlchemy==1.4.34
+SQLAlchemy==1.4.48
 meteostat==1.6.1
 python-decouple==3.6
 lxml==4.9.1
