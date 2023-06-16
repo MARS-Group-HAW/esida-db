@@ -16,7 +16,7 @@
 | Source              | Expert knowledge          |
 | Link to Source      | Expert knowledge          |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description               |
 |:-------------|:--------------------------|

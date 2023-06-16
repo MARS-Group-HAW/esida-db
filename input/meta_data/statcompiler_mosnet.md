@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: ML_NETP_H_MOS                                       |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

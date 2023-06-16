@@ -16,7 +16,7 @@
 | Source              | Derived from OpenStreetMap and GlobalEconomy                                                                               |
 | Link to Source      | [https://www.theglobaleconomy.com/rankings/railroad_quality/](https://www.theglobaleconomy.com/rankings/railroad_quality/) |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                             |
 |:-------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

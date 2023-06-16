@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: CO_MOBB_W_MOB , CO_MOBB_M_MOB                       |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

@@ -17,7 +17,7 @@
 | Link to Source      | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
 | Related Sources     | Copernicus                                                                                                       |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                      |
 |:-------------|:-------------------------------------------------|

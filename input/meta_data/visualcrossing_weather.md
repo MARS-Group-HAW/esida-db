@@ -6,7 +6,7 @@
 | Abbreviation | visualcrossing_weather |
 | Necessity    | ABM                    |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description            |
 |:-------------|:-----------------------|

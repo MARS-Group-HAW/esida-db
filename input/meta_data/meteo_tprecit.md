@@ -17,7 +17,7 @@
 | Link to Source      | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
 | Related Sources     | CHIRPS                                                                                                           |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                      |
 |:-------------|:-------------------------------------------------|

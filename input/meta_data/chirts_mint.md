@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.chc.ucsb.edu/data/chirtsdaily](https://www.chc.ucsb.edu/data/chirtsdaily) |
 | Related Sources     | Meteostat                                                                              |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                          |
 |:-------------|:-------------------------------------------------------------------------------------|

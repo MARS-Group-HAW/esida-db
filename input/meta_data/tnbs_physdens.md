@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.nbs.go.tz/index.php/en/census-surveys/population-and-housing-census/164-2012-phc-tanzania-basic-demographic-and-socio-economic-profile%20S.%20202](https://www.nbs.go.tz/index.php/en/census-surveys/population-and-housing-census/164-2012-phc-tanzania-basic-demographic-and-socio-economic-profile%20S.%20202) |
 | Comment             | Data was manually extracted from PDF                                                                                                                                                                                                                                                                                           |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                      |
 |:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|

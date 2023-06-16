@@ -8,7 +8,7 @@
 | Format       | API                                  |
 | Comment      | Exceptional Layer used fot ABM model |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                             |
 |:-------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

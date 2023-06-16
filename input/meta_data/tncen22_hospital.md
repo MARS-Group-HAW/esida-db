@@ -18,7 +18,7 @@
 | Comment             | continuation of THFR                               |
 | Related Sources     | Tanzania Health Facility Register                  |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                      |
 |:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|

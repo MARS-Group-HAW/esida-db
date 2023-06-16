@@ -5,7 +5,7 @@
 | Category     | Health          |
 | Abbreviation | lit_propseced_m |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description     |
 |:-------------|:----------------|

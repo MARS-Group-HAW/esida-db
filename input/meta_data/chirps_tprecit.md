@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.chc.ucsb.edu/data/chirps](https://www.chc.ucsb.edu/data/chirps) |
 | Related Sources     | Meteostat                                                                    |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                    |
 |:-------------|:-------------------------------------------------------------------------------|

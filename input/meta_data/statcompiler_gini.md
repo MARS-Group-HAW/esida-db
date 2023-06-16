@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: HC_WIXQ_P_GNI                                       |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

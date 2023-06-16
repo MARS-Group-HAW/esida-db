@@ -18,7 +18,7 @@
 | Comment             | you can find follow up years under "related identifiers/Continued by"                            |
 | Related Sources     | None                                                                                             |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|

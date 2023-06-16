@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: EM_EMPL_M_EMC, EM_EMPL_M_ENC, EM_EMPL_M_N12, EM_EMPL_W_EMC, EM_EMPL_W_ENC, EM_EMPL_W_N12 |
 | Related Sources     | None                                                                                                      |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

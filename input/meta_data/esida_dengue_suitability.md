@@ -7,7 +7,7 @@
 | Title        | Dengue Suitability Index |
 | Necessity    | required                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description              |
 |:-------------|:-------------------------|

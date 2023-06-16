@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.worldpop.org/project/categories?id=18](https://www.worldpop.org/project/categories?id=18) |
 | Related Sources     | None                                                                                                   |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

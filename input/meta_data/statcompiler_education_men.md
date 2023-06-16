@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: ED_EDUC_M_MYR                                       |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

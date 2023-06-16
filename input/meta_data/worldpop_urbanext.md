@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.worldpop.org/geodata/summary?id=17285](https://www.worldpop.org/geodata/summary?id=17285) |
 | Related Sources     | None                                                                                                   |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                            |
 |:-------------|:---------------------------------------------------------------------------------------|

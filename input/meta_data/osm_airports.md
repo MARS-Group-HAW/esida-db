@@ -16,7 +16,7 @@
 | Source              | Derived from OpenStreetMap and GlobalEconomy                                                                                                       |
 | Link to Source      | [https://www.theglobaleconomy.com/rankings/air_transport_infrastructure/](https://www.theglobaleconomy.com/rankings/air_transport_infrastructure/) |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                             |
 |:-------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

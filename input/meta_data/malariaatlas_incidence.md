@@ -17,7 +17,7 @@
 | Link to Source      | [https://malariaatlas.org/explorer/#/](https://malariaatlas.org/explorer/#/) |
 | Related Sources     | None                                                                         |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                                                                                                |
 |:-------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.who.int/data/gho/data/indicators/indicator-details/GHO/hospital-beds-(per-10-000-population)](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/hospital-beds-(per-10-000-population)) |
 | Related Sources     | None                                                                                                                                                                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                                                                                                                                       |
 |:-------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

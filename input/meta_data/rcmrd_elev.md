@@ -17,7 +17,7 @@
 | Link to Source      | [https://opendata.rcmrd.org/datasets/tanzania-srtm-dem-30-meters/explore?location=-6.645890%2C36.133316%2C6.85](https://opendata.rcmrd.org/datasets/tanzania-srtm-dem-30-meters/explore?location=-6.645890%2C36.133316%2C6.85) |
 | Related Sources     | None                                                                                                                                                                                                                           |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description   |
 |:-------------|:--------------|

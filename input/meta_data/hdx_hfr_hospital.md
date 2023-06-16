@@ -18,7 +18,7 @@
 | Comment             | https://www.nature.com/articles/s41597-019-0142-2#code-availability                                                                                   |
 | Related Sources     | Tanzania Health Facility Register AND Tanzanian Census 2022                                                                                           |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                  |
 |:-------------|:-----------------------------|

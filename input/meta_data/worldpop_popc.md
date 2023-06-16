@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.worldpop.org/geodata/listing?id=69](https://www.worldpop.org/geodata/listing?id=69) |
 | Related Sources     | None                                                                                             |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

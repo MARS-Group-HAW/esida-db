@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: HC_MEMB_H_MNM                                       |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

@@ -15,7 +15,7 @@
 | Timeframe           | 2019                  |
 | Source              | Report-based          |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description           |
 |:-------------|:----------------------|

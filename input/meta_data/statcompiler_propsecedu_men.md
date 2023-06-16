@@ -16,7 +16,7 @@
 | Source              | DHS Program                                                          |
 | Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

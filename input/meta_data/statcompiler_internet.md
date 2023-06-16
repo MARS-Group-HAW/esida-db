@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: CO_INUS_W_U12, CO_INUS_M_U12                        |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

@@ -18,7 +18,7 @@
 | Comment             | format is not supported in data hub                                                                                                                                    |
 | Related Sources     | Meteostat                                                                                                                                                              |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                  |
 |:-------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: HC_ELEC_P_ELC                                       |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

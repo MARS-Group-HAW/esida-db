@@ -17,7 +17,7 @@
 | Link to Source      | [https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#](https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#) |
 | Related Sources     | None                                                                                                                                                             |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                                                    |
 |:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

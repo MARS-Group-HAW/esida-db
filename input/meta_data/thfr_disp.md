@@ -18,7 +18,7 @@
 | Comment             | Excel download was discontinued in 2022 / HFR-PORTAL provides facility density on regional level from 2022 onwards                             |
 | Related Sources     | Tanzanian Census 2022                                                                                                                          |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                       |
 |:-------------|:----------------------------------|

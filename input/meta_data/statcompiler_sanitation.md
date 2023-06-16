@@ -18,7 +18,7 @@
 | Comment             | DHS IndicatorId: WS_TLET_H_IMP                                       |
 | Related Sources     | None                                                                 |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|

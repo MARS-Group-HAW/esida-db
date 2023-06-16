@@ -63,7 +63,7 @@ def write_md(abbrev, dtype_info, dqual_info):
     with open(path / f"{abbrev}.md", 'w') as f:
         f.write("## Data type and processing information \n\n")
         f.write(dtype_info)
-        f.write("\n\n## Data quality information \n\n")
+        f.write("\n\n## Metadata information \n\n")
         f.write(dqual_info)
         f.close()
 

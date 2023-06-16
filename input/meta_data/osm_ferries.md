@@ -16,7 +16,7 @@
 | Source              | Derived from OpenStreetMap and GlobalEconomy                                                                               |
 | Link to Source      | [https://www.theglobaleconomy.com/rankings/seaports_quality/](https://www.theglobaleconomy.com/rankings/seaports_quality/) |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                                                             |
 |:-------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

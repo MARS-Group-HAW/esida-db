@@ -18,7 +18,7 @@
 | Comment             | Data was extracted from Table 12.12 p.159                                                                                                                                                                                                                                                                                      |
 | Related Sources     | None                                                                                                                                                                                                                                                                                                                           |
 
-## Data quality information 
+## Metadata information 
 
 |              | Description                                                                                                                                      |
 |:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
