@@ -68,7 +68,7 @@ class tnbs_medlabdens(BaseParameter):
                     keys = [
                         'HEALTH LABORATORY ASSISTANT',
                         'HEALTH LABORATORY SCIENTIST',
-                        'HEALTH LABORATORY TECHNOLOGISTS'
+                        'HEALTH LABORATORY TECHNOLOGISTS 59'
                     ]
                 else:
                     self.logger.info(f"unknown year {year}")
