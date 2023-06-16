@@ -1,6 +1,6 @@
 {% extends 'base.html.jinja' %}
 
-{% block title %}Parameters{% endblock %}
+{% block title %}Data Layers{% endblock %}
 
 {% block content %}
 
@@ -9,7 +9,7 @@
     <a class="btn btn-sm btn-outline-primary" href="{{ url_for('api_parameters', format='csv') }}">Download</a>
   </div>
 
-  <h1>Parameters</h1>
+  <h1>Data Layers</h1>
 </div>
 
 	<table class="table table-sm table-striped" id="shapes">
@@ -17,7 +17,7 @@
 	<thead>
 		<tr>
 			<th>Category</th>
-			<th>Title</th>
+			<th>Parameter</th>
 			<th>Key</th>
 			<th>State</th>
 			<th class="no-sort text-end">Actions</th>
