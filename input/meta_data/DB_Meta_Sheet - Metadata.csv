@@ -111,5 +111,4 @@ worldpop_popc,Demographic,Worldpop,Population counts,HAW Hamburg,ESIDA,14.06.202
 worldpop_popd,Demographic,Worldpop,Population density,HAW Hamburg,ESIDA,14.06.2023,Dataset,csv,10.5258/SOTON/WP00675,Worldpop,https://doi.org/10.1371/journal.pone.0107043,eng,CC BY 4.0,Tanzania
 worldpop_poverty_cons125,Demographic,Worldpop,Proportion of Population living  <1.25$ income,HAW Hamburg,ESIDA,14.06.2023,Dataset,csv,10.5258/SOTON/WP00290,Worldpop,https://doi.org/10.1098/rsif.2016.0690,eng,CC BY 4.0,Tanzania
 worldpop_poverty_cons200,Demographic,Worldpop,Proportion of Population living  <2$ income,HAW Hamburg,ESIDA,14.06.2023,Dataset,csv,10.5258/SOTON/WP00290,Worldpop,https://doi.org/10.1098/rsif.2016.0690,eng,CC BY 4.0,Tanzania
-worldpop_poverty_mpi,Demographic,Worldpop,Proportion of Poor Population according to MPI,HAW Hamburg,ESIDA,14.06.2023,Dataset,csv,10.5258/SOTON/WP00649,Worldpop,https://doi.org/10.1016/j.rse.2014.09.023,eng,CC BY 4.0,Tanzania
 worldpop_urbanext,Demographic,Worldpop,Urban Settlement Extent,HAW Hamburg,ESIDA,14.06.2023,Dataset,csv,10.5258/SOTON/WP00649,Worldpop,https://doi.org/10.1016/j.rse.2014.09.023,eng,CC BY 4.0,Tanzania
