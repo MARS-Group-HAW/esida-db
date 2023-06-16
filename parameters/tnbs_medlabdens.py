@@ -75,6 +75,7 @@ class tnbs_medlabdens(BaseParameter):
                     continue
 
                 dfx = df[df['HEALTH WORKERS'].isin(keys)]
+                dfx = dfx[dfx['YEAR'] == year]
 
                 if totals[year] == 0:
                     self.logger.info(f"Total pop for {name} ({df_name}) in {year} is 0.")
