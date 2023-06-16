@@ -4,6 +4,7 @@ Reads a meta file in form of a csv file and transform the information into
 markdown file for each parameter.
 """
 
+import os
 import re
 import pathlib
 import numpy as np
@@ -67,6 +68,14 @@ def write_md(abbrev, dtype_info, dqual_info):
         f.close()
 
 def main():
+
+    # remove all currently available md files so, deleted
+    # data layer md files don't stay in the folder
+    for file in os.listdir(path):
+        if file.endswith(".md"):
+            os.remove(path / file)
+
+    # genreate new files
     abbrev_list = check_for_match()
     for i, abbrev in enumerate(abbrev_list):
         dtype_info, dqual_info = documentation(abbrev, i)
