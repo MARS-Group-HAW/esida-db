@@ -28,16 +28,13 @@ Enviromental,koeppen_d,Proportion Cold Climate zone,optional,tiff,Proportion (ar
 Enviromental,koeppen_e,Proportion Polar Climate zone,optional,tiff,Proportion (area of interest/whole area),Categorical,Percentage,1km raster,Cross-sectional,2018,Literature-based,http://www.gloh2o.org/koppen/,,None
 Health,lit_conflabcap,Confirmatory Laboratory Capacity,required,static,None,"binary (0=no, 1=yes)","binary (0=no, 1=yes)",Country,Cross-sectional,2023,Expert knowledge,,Expert knowledge EAC,None
 Health,lit_dengue_herep,Dengue Health Reports,required,csv,None,None,None,Region,Cross-sectional,2019,Report-based,,,
-Health,lit_dengue_out_loc,Dengue outbreak locations,deleted,csv,None,None,None,District,Weekly,2010-2021,Report-based,,,
-Health,lit_dengue_sero,Dengue seroprevalence level,deleted,csv,None,None,None,Region,Cross-sectional,2019,Report-based,,,
 Health,lit_propseced_f,,,,,,,,,,,,,
 Health,lit_propseced_m,,,,,,,,,,,,,
 Health,lit_rdtcap,Rapid Laboratory Capacity,required,static,None,"binary (0=no, 1=yes)","binary (0=no, 1=yes)",Country,Cross-sectional,2023,Expert knowledge,Expert knowledge,,
 Health,lit_veccontrol,Vector Control Capacity,required,static,None,"binary (0=no, 1=yes)","binary (0=no, 1=yes)",Country,Cross-sectional,2023,Expert knowledge,Expert knowledge,,
 Health,lit_vectabund,Vector Abundance,required,static,None,"binary (0=no, 1=yes)","binary (0=no, 1=yes)",Country,Cross-sectional,2023,Expert knowledge,Expert knowledge,,
 Health,malariaatlas_incidence,Annual Malaria (falciparum) Incidence,optional,tiff,mean,Cases per 1000 per year,Cases per 1000 per year,District,Annualy,2000-2020,Malaria Atlas Project,https://malariaatlas.org/explorer/#/,,None
-Health,malariaatlas_mortal,Annual Malaria (falciparum) Mortality,optional,tiff,None,Mortality rate per 10k per year,Mortality rate per 10k per year,District,Annualy,2000-2017,Malaria Atlas Project,https://malariaatlas.org/explorer/#/,,None
-Infrastructure,malariaatlas_traveltimehc,Average time to health care facility,required,tif,mean,Hours,Hours,1km raster,Cross-sectional,2019,Malaria Atlas Project,https://malariaatlas.org/explorer/#/,,None
+Health,malariaatlas_mortal,Annual Malaria (falciparum) Mortality,optional,tiff,None,Mortality rate per 10k per year,Mortality rate per 10k per year,District,Annualy,2000-2017,Malaria Atlas Project,https://malariaatlas.org/explorer/#/,,NoneInfrastructure,malariaatlas_traveltimehc,Average time to health care facility,required,tif,mean,Hours,Hours,1km raster,Cross-sectional,2019,Malaria Atlas Project,https://malariaatlas.org/explorer/#/,,None
 Weather,meteo_ahum,Absolute Humidity,optional,API,mean,avg. percentage/day,avg. percentage/day,Coordinates,Hourly,2010-present,Meteostat,https://dev.meteostat.net/python/stations.html#example,,None
 Weather,meteo_dtr,Diurnal Temporal Range,required,API,range (max-min),Celsius/day,Celsius/day,Coordinates,Hourly,2010-present,Derived from Meteostat,https://dev.meteostat.net/python/stations.html#example,,None
 Weather,meteo_maxt,Maximum Temperature,required,API,max,Celsius/day,Celsius/day,Coordinates,Hourly,2010-present,Meteostat,https://dev.meteostat.net/python/stations.html#example,,Copernicus
