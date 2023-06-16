@@ -5,7 +5,7 @@
 | Category            | Infrastructure                                                                                                                                                             |
 | Abbreviation        | tnhp_nurse                                                                                                                                                                 |
 | Title               | Nurse density                                                                                                                                                              |
-| Necessity           | required                                                                                                                                                                   |
+| Necessity           | deleted                                                                                                                                                                    |
 | Format              | csv                                                                                                                                                                        |
 | Operation           | None                                                                                                                                                                       |
 | Original unit       | None                                                                                                                                                                       |
@@ -14,25 +14,25 @@
 | Temporal details    | Cross-sectional                                                                                                                                                            |
 | Timeframe           | 2018                                                                                                                                                                       |
 | Source              | Tanzanian National Health Portal                                                                                                                                           |
+| Link to Source      | [https://hmisportal.moh.go.tz/hmisportal/#/dashboards/routine/hmisportal_hwJNMC3LrPd](https://hmisportal.moh.go.tz/hmisportal/#/dashboards/routine/hmisportal_hwJNMC3LrPd) |
 | Related Sources     | None                                                                                                                                                                       |
-| Link                | [https://hmisportal.moh.go.tz/hmisportal/#/dashboards/routine/hmisportal_hwJNMC3LrPd](https://hmisportal.moh.go.tz/hmisportal/#/dashboards/routine/hmisportal_hwJNMC3LrPd) |
 
 ## Data quality information 
 
-|              | Description           |
-|:-------------|:----------------------|
-| Abbreviation | tnhp_nurse            |
-| Subject      | Infrastructure        |
-| Creator      | TZ Ministry of Health |
-| Description  | Nurse density         |
-| Publisher    | HAW Hamburg           |
-| Contributor  | ESIDA                 |
-| Date         | 21.06.2022            |
-| Type         | Dataset               |
-| Format       | csv                   |
-| Identifier   | None                  |
-| Source       | TZ Ministry of Health |
-| Citation     | None                  |
-| Language     | eng                   |
-| Rights       | Unkown                |
-| Coverage     | Tanzania              |
+|              | Description                                                                                                                                      |
+|:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
+| Abbreviation | tnhp_nurse                                                                                                                                       |
+| Subject      | Infrastructure                                                                                                                                   |
+| Creator      | TZ Ministry of Health                                                                                                                            |
+| Title        | Nurse density                                                                                                                                    |
+| Publisher    | HAW Hamburg                                                                                                                                      |
+| Contributor  | ESIDA                                                                                                                                            |
+| Date         | 14.06.2023                                                                                                                                       |
+| Type         | Dataset                                                                                                                                          |
+| Format       | csv                                                                                                                                              |
+| Identifier   | None                                                                                                                                             |
+| Source       | Tanzanian National Health Portal                                                                                                                 |
+| Citation     | None                                                                                                                                             |
+| Language     | eng                                                                                                                                              |
+| Rights       | [https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf](https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf) |
+| Coverage     | Tanzania                                                                                                                                         |

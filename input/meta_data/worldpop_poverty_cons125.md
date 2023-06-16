@@ -3,8 +3,8 @@
 |                     | Description                                                                                          |
 |:--------------------|:-----------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                          |
-| Abbreviation        | worldpop_poverty                                                                                     |
-| Title               | Poverty                                                                                              |
+| Abbreviation        | worldpop_poverty_cons125                                                                             |
+| Title               | Proportion of Population living  <1.25$ income                                                       |
 | Necessity           | required                                                                                             |
 | Format              | tiff                                                                                                 |
 | Operation           | mean                                                                                                 |
@@ -14,20 +14,20 @@
 | Temporal details    | Cross-sectional                                                                                      |
 | Timeframe           | 2013                                                                                                 |
 | Source              | Worldpop                                                                                             |
+| Link to Source      | [https://www.worldpop.org/geodata/summary?id=1273](https://www.worldpop.org/geodata/summary?id=1273) |
 | Related Sources     | None                                                                                                 |
-| Link                | [https://www.worldpop.org/geodata/summary?id=1273](https://www.worldpop.org/geodata/summary?id=1273) |
 
 ## Data quality information 
 
 |              | Description                                                                      |
 |:-------------|:---------------------------------------------------------------------------------|
-| Abbreviation | worldpop_poverty                                                                 |
-| Subject      | Demographics                                                                     |
+| Abbreviation | worldpop_poverty_cons125                                                         |
+| Subject      | Demographic                                                                      |
 | Creator      | Worldpop                                                                         |
-| Description  | Poverty                                                                          |
+| Title        | Proportion of Population living  <1.25$ income                                   |
 | Publisher    | HAW Hamburg                                                                      |
 | Contributor  | ESIDA                                                                            |
-| Date         | 02.05.2022                                                                       |
+| Date         | 14.06.2023                                                                       |
 | Type         | Dataset                                                                          |
 | Format       | csv                                                                              |
 | Identifier   | [10.5258/SOTON/WP00290](https://doi.org/10.5258/SOTON/WP00290)                   |

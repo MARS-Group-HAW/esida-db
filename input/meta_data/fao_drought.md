@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                                                                          |
 | Abbreviation        | fao_drought                                                                                                                                                      |
-| Title               | Agricultutral stress index                                                                                                                                       |
+| Title               | Agricultutral Stress Index                                                                                                                                       |
 | Necessity           | required                                                                                                                                                         |
 | Format              | csv                                                                                                                                                              |
 | Operation           | None                                                                                                                                                             |
@@ -14,8 +14,8 @@
 | Temporal details    | Thrice-monthly                                                                                                                                                   |
 | Timeframe           | 1984 - 2021                                                                                                                                                      |
 | Source              | FAO                                                                                                                                                              |
+| Link to Source      | [https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#](https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#) |
 | Related Sources     | None                                                                                                                                                             |
-| Link                | [https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#](https://www.fao.org/giews/earthobservation/country/index.jsp?lang=en&code=TZA#) |
 
 ## Data quality information 
 
@@ -24,10 +24,10 @@
 | Abbreviation | fao_drought                                                                                                                                                                                                    |
 | Subject      | Weather                                                                                                                                                                                                        |
 | Creator      | FAO                                                                                                                                                                                                            |
-| Description  | Agricultural Stress Index                                                                                                                                                                                      |
+| Title        | Agricultutral Stress Index                                                                                                                                                                                     |
 | Publisher    | HAW Hamburg                                                                                                                                                                                                    |
 | Contributor  | ESIDA                                                                                                                                                                                                          |
-| Date         | 07.06.2022                                                                                                                                                                                                     |
+| Date         | 14.06.2023                                                                                                                                                                                                     |
 | Type         | Dataset                                                                                                                                                                                                        |
 | Format       | csv                                                                                                                                                                                                            |
 | Identifier   | [https://io.apps.fao.org/geoserver/wms/ASIS/ASI_D/v1?service=WMS&version=1.3.0&request=GetCapabilities](https://io.apps.fao.org/geoserver/wms/ASIS/ASI_D/v1?service=WMS&version=1.3.0&request=GetCapabilities) |

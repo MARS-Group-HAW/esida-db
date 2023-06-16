@@ -4,7 +4,7 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Demographic                                                          |
 | Abbreviation        | statcompiler_gini                                                    |
-| Title               | Income distribution                                                  |
+| Title               | Income Distribution                                                  |
 | Necessity           | required                                                             |
 | Format              | csv                                                                  |
 | Operation           | None                                                                 |
@@ -14,21 +14,21 @@
 | Temporal details    | Cross-sectional                                                      |
 | Timeframe           | 2011 - 2017                                                          |
 | Source              | DHS Program                                                          |
+| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment             | DHS IndicatorId: HC_WIXQ_P_GNI                                       |
 | Related Sources     | None                                                                 |
-| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1           | HC_WIXQ_P_GNI                                                        |
 
 ## Data quality information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_gini                                                                            |
-| Subject      | Demographics                                                                                 |
-| Creator      | Unkown                                                                                       |
-| Description  | Income                                                                                       |
+| Subject      | Demographic                                                                                  |
+| Creator      | DHS Program                                                                                  |
+| Title        | Income Distribution                                                                          |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
-| Date         | 02.05.2022                                                                                   |
+| Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | None                                                                                         |

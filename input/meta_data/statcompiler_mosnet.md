@@ -4,19 +4,19 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Health                                                               |
 | Abbreviation        | statcompiler_mosnet                                                  |
-| Title               | Mosquito net implementation (bed net)                                |
+| Title               | Mosquito bet net implementation                                      |
 | Necessity           | optional                                                             |
 | Format              | csv                                                                  |
 | Operation           | None                                                                 |
-| Original unit       | Proportion of households with at least one net                       |
+| Original unit       | Percentage of households with at least one net                       |
 | ESIDA database unit | None                                                                 |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
 | Timeframe           | 2017                                                                 |
 | Source              | DHS Program                                                          |
+| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment             | DHS IndicatorId: ML_NETP_H_MOS                                       |
 | Related Sources     | None                                                                 |
-| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1           | ML_NETP_H_MOS                                                        |
 
 ## Data quality information 
 
@@ -25,10 +25,10 @@
 | Abbreviation | statcompiler_mosnet                                                                          |
 | Subject      | Health                                                                                       |
 | Creator      | DHS Program                                                                                  |
-| Description  | Mosquito net implementation (bed net)                                                        |
+| Title        | Mosquito bet net implementation                                                              |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
-| Date         | 02.05.2022                                                                                   |
+| Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | None                                                                                         |

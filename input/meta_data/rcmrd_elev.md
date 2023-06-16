@@ -7,32 +7,32 @@
 | Title               | Elevation                                                                                                                                                                                                                      |
 | Necessity           | optional                                                                                                                                                                                                                       |
 | Format              | tiff                                                                                                                                                                                                                           |
-| Operation           | mean, min, max                                                                                                                                                                                                                 |
+| Operation           | mean                                                                                                                                                                                                                           |
 | Original unit       | meter above sea level                                                                                                                                                                                                          |
 | ESIDA database unit | meter above sea level                                                                                                                                                                                                          |
 | Spatial details     | 0.03km raster                                                                                                                                                                                                                  |
 | Temporal details    | Cross-sectional                                                                                                                                                                                                                |
 | Timeframe           | 2018                                                                                                                                                                                                                           |
 | Source              | RCMRD                                                                                                                                                                                                                          |
+| Link to Source      | [https://opendata.rcmrd.org/datasets/tanzania-srtm-dem-30-meters/explore?location=-6.645890%2C36.133316%2C6.85](https://opendata.rcmrd.org/datasets/tanzania-srtm-dem-30-meters/explore?location=-6.645890%2C36.133316%2C6.85) |
 | Related Sources     | None                                                                                                                                                                                                                           |
-| Link                | [https://opendata.rcmrd.org/datasets/tanzania-srtm-dem-30-meters/explore?location=-6.645890%2C36.133316%2C6.85](https://opendata.rcmrd.org/datasets/tanzania-srtm-dem-30-meters/explore?location=-6.645890%2C36.133316%2C6.85) |
 
 ## Data quality information 
 
 |              | Description   |
 |:-------------|:--------------|
 | Abbreviation | rcmrd_elev    |
-| Subject      | Enviroment    |
+| Subject      | Enviromental  |
 | Creator      | RCMRD         |
-| Description  | Elevation     |
+| Title        | Elevation     |
 | Publisher    | HAW Hamburg   |
 | Contributor  | ESIDA         |
-| Date         | 02.05.2022    |
+| Date         | 14.06.2023    |
 | Type         | Dataset       |
 | Format       | csv           |
 | Identifier   | None          |
 | Source       | RCMRD         |
 | Citation     | None          |
 | Language     | eng           |
-| Rights       | ODbL-1.0      |
+| Rights       | ODbl          |
 | Coverage     | Tanzania      |

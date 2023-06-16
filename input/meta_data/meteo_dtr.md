@@ -8,14 +8,14 @@
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | range (max-min)                                                                                                  |
-| Original unit       | celsius/day                                                                                                      |
-| ESIDA database unit | celsius/day                                                                                                      |
+| Original unit       | Celsius/day                                                                                                      |
+| ESIDA database unit | Celsius/day                                                                                                      |
 | Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
-| Timeframe           | 2010-2020                                                                                                        |
-| Source              | Meteostat                                                                                                        |
+| Timeframe           | 2010-present                                                                                                     |
+| Source              | Derived from Meteostat                                                                                           |
+| Link to Source      | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
 | Related Sources     | None                                                                                                             |
-| Link                | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
 
 ## Data quality information 
 
@@ -24,14 +24,14 @@
 | Abbreviation | meteo_dtr                                        |
 | Subject      | Weather                                          |
 | Creator      | Meteostat                                        |
-| Description  | Diurnal Temporal Range                           |
+| Title        | Diurnal Temporal Range                           |
 | Publisher    | HAW Hamburg                                      |
 | Contributor  | ESIDA                                            |
-| Date         | 02.05.2022                                       |
+| Date         | 14.06.2023                                       |
 | Type         | Dataset                                          |
 | Format       | csv                                              |
 | Identifier   | [https://meteostat.net/](https://meteostat.net/) |
-| Source       | Meteostat                                        |
+| Source       | Derived from Meteostat                           |
 | Citation     | None                                             |
 | Language     | eng                                              |
 | Rights       | CC BY-NC 4.0                                     |

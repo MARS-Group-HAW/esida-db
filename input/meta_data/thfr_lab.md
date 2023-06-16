@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_lab                                                                                                                                       |
-| Title               | Health Lab Density                                                                                                                             |
+| Title               | Number of Medical Labs                                                                                                                         |
 | Necessity           | optional                                                                                                                                       |
 | Format              | xls                                                                                                                                            |
 | Operation           | count                                                                                                                                          |
@@ -14,8 +14,9 @@
 | Temporal details    | Hourly                                                                                                                                         |
 | Timeframe           | 2014 - 2022                                                                                                                                    |
 | Source              | Tanzania Health Facility Register                                                                                                              |
-| Related Sources     | healthsites.io                                                                                                                                 |
-| Link                | [https://hfrportal.moh.go.tz/index.php?r=facilities/homeAdvancedSearch](https://hfrportal.moh.go.tz/index.php?r=facilities/homeAdvancedSearch) |
+| Link to Source      | [https://hfrportal.moh.go.tz/index.php?r=facilities/homeAdvancedSearch](https://hfrportal.moh.go.tz/index.php?r=facilities/homeAdvancedSearch) |
+| Comment             | Excel download was discontinued in 2022 / HFR-PORTAL provides facility density on regional level from 2022 onwards                             |
+| Related Sources     | Tanzanian Census 2022                                                                                                                          |
 
 ## Data quality information 
 
@@ -23,11 +24,11 @@
 |:-------------|:----------------------------------|
 | Abbreviation | thfr_lab                          |
 | Subject      | Infrastructure                    |
-| Creator      | Tanzania Health Facility Register |
-| Description  | Health Lab Density                |
+| Creator      | Tanzanian Ministry of Health      |
+| Title        | Number of Medical Labs            |
 | Publisher    | HAW Hamburg                       |
 | Contributor  | ESIDA                             |
-| Date         | 02.05.2022                        |
+| Date         | 14.06.2023                        |
 | Type         | Dataset                           |
 | Format       | csv                               |
 | Identifier   | None                              |

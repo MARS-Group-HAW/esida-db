@@ -1,21 +1,22 @@
 ## Data type and processing information 
 
-|                     | Description                      |
-|:--------------------|:---------------------------------|
-| Category            | Infrastructure                   |
-| Abbreviation        | statcompiler_household           |
-| Title               | Household members                |
-| Necessity           | optional                         |
-| Format              | csv                              |
-| Operation           | None                             |
-| Original unit       | Mean number of household members |
-| ESIDA database unit | Mean number of household members |
-| Spatial details     | Region                           |
-| Temporal details    | Cross-sectional                  |
-| Timeframe           | 1991 - 2017                      |
-| Source              | DHS Program                      |
-| Related Sources     | None                             |
-| Comment.1           | HC_MEMB_H_MNM                    |
+|                     | Description                                                          |
+|:--------------------|:---------------------------------------------------------------------|
+| Category            | Infrastructure                                                       |
+| Abbreviation        | statcompiler_household                                               |
+| Title               | Household members                                                    |
+| Necessity           | optional                                                             |
+| Format              | csv                                                                  |
+| Operation           | None                                                                 |
+| Original unit       | Mean number of household members                                     |
+| ESIDA database unit | Mean number of household members                                     |
+| Spatial details     | Region                                                               |
+| Temporal details    | Cross-sectional                                                      |
+| Timeframe           | 1991 - 2017                                                          |
+| Source              | DHS Program                                                          |
+| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment             | DHS IndicatorId: HC_MEMB_H_MNM                                       |
+| Related Sources     | None                                                                 |
 
 ## Data quality information 
 
@@ -23,11 +24,11 @@
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_household                                                                       |
 | Subject      | Infrastructure                                                                               |
-| Creator      | Unkown                                                                                       |
-| Description  | Houshold members                                                                             |
+| Creator      | DHS Program                                                                                  |
+| Title        | Household members                                                                            |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
-| Date         | 02.05.2022                                                                                   |
+| Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | None                                                                                         |

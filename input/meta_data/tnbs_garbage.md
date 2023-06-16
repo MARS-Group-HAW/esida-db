@@ -6,29 +6,34 @@
 | Abbreviation        | tnbs_garbage                                                                                                                                                                                                                                                                                                                   |
 | Title               | Garbage collection                                                                                                                                                                                                                                                                                                             |
 | Necessity           | optional                                                                                                                                                                                                                                                                                                                       |
-| Format              | csv                                                                                                                                                                                                                                                                                                                            |
+| Format              | PDF                                                                                                                                                                                                                                                                                                                            |
 | Operation           | sum(garbage collection regular & garbage collection irrelgular)                                                                                                                                                                                                                                                                |
 | Original unit       | categorical                                                                                                                                                                                                                                                                                                                    |
 | ESIDA database unit | percentage garbage collection                                                                                                                                                                                                                                                                                                  |
 | Spatial details     | Region                                                                                                                                                                                                                                                                                                                         |
 | Temporal details    | Cross-sectional                                                                                                                                                                                                                                                                                                                |
 | Timeframe           | 2012                                                                                                                                                                                                                                                                                                                           |
-| Source              | Tanzanian Census                                                                                                                                                                                                                                                                                                               |
+| Source              | Tanzanian Census 2012                                                                                                                                                                                                                                                                                                          |
+| Link to Source      | [https://www.nbs.go.tz/index.php/en/census-surveys/population-and-housing-census/164-2012-phc-tanzania-basic-demographic-and-socio-economic-profile%20S.%20202](https://www.nbs.go.tz/index.php/en/census-surveys/population-and-housing-census/164-2012-phc-tanzania-basic-demographic-and-socio-economic-profile%20S.%20202) |
+| Comment             | Data was extracted from Table 12.12 p.159                                                                                                                                                                                                                                                                                      |
 | Related Sources     | None                                                                                                                                                                                                                                                                                                                           |
-| Link                | [https://www.nbs.go.tz/index.php/en/census-surveys/population-and-housing-census/164-2012-phc-tanzania-basic-demographic-and-socio-economic-profile%20S.%20202](https://www.nbs.go.tz/index.php/en/census-surveys/population-and-housing-census/164-2012-phc-tanzania-basic-demographic-and-socio-economic-profile%20S.%20202) |
 
 ## Data quality information 
 
-|              | Description        |
-|:-------------|:-------------------|
-| Abbreviation | tnbs_garbage       |
-| Subject      | Infrastructure     |
-| Creator      | Unkown             |
-| Description  | Garbage collection |
-| Publisher    | HAW Hamburg        |
-| Contributor  | ESIDA              |
-| Type         | Dataset            |
-| Format       | csv                |
-| Identifier   | None               |
-| Language     | eng                |
-| Coverage     | Tanzania           |
+|              | Description                                                                                                                                      |
+|:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
+| Abbreviation | tnbs_garbage                                                                                                                                     |
+| Subject      | Infrastructure                                                                                                                                   |
+| Creator      | Tanzanian National Bureau of Statistics                                                                                                          |
+| Title        | Garbage collection                                                                                                                               |
+| Publisher    | HAW Hamburg                                                                                                                                      |
+| Contributor  | ESIDA                                                                                                                                            |
+| Date         | 14.06.2023                                                                                                                                       |
+| Type         | Dataset                                                                                                                                          |
+| Format       | csv                                                                                                                                              |
+| Identifier   | None                                                                                                                                             |
+| Source       | Tanzanian Census 2012                                                                                                                            |
+| Citation     | None                                                                                                                                             |
+| Language     | eng                                                                                                                                              |
+| Rights       | [https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf](https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf) |
+| Coverage     | Tanzania                                                                                                                                         |

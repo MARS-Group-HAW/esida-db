@@ -4,19 +4,19 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Infrastructure                                                       |
 | Abbreviation        | statcompiler_electricity                                             |
-| Title               | Electricity (mHealth)                                                |
+| Title               | Electricity access                                                   |
 | Necessity           | optional                                                             |
 | Format              | csv                                                                  |
 | Operation           | None                                                                 |
-| Original unit       | Proportion population with electricty access                         |
+| Original unit       | Percentage population with electricty access                         |
 | ESIDA database unit | Proportion population with electricty access                         |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
-| Timeframe           | up to 2017                                                           |
+| Timeframe           | 1991 - 2016                                                          |
 | Source              | DHS Program                                                          |
+| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment             | DHS IndicatorId: HC_ELEC_P_ELC                                       |
 | Related Sources     | None                                                                 |
-| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1           | HC_ELEC_P_ELC                                                        |
 
 ## Data quality information 
 
@@ -25,10 +25,10 @@
 | Abbreviation | statcompiler_electricity                                                                     |
 | Subject      | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
-| Description  | Electricity (mHealth)                                                                        |
+| Title        | Electricity access                                                                           |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
-| Date         | 02.05.2022                                                                                   |
+| Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | None                                                                                         |

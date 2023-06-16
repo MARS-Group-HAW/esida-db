@@ -14,8 +14,8 @@
 | Temporal details    | Daily                                                                        |
 | Timeframe           | 1981-2020                                                                    |
 | Source              | CHIRPS                                                                       |
+| Link to Source      | [https://www.chc.ucsb.edu/data/chirps](https://www.chc.ucsb.edu/data/chirps) |
 | Related Sources     | Meteostat                                                                    |
-| Link                | [https://www.chc.ucsb.edu/data/chirps](https://www.chc.ucsb.edu/data/chirps) |
 
 ## Data quality information 
 
@@ -23,15 +23,15 @@
 |:-------------|:-------------------------------------------------------------------------------|
 | Abbreviation | chirps_tprecit                                                                 |
 | Subject      | Weather                                                                        |
-| Creator      | CHRIPS                                                                         |
-| Description  | Total precipitation                                                            |
+| Creator      | CHIRPS                                                                         |
+| Title        | Total precipitation                                                            |
 | Publisher    | HAW Hamburg                                                                    |
 | Contributor  | ESIDA                                                                          |
-| Date         | 24.05.2022                                                                     |
+| Date         | 14.06.2023                                                                     |
 | Type         | Dataset                                                                        |
 | Format       | csv                                                                            |
 | Identifier   | [10.1038/sdata.2015.66](https://doi.org/10.1038/sdata.2015.66)                 |
-| Source       | CHRIPS                                                                         |
+| Source       | CHIRPS                                                                         |
 | Citation     | [https://doi.org/10.1038/sdata.2015.66](https://doi.org/10.1038/sdata.2015.66) |
 | Language     | eng                                                                            |
 | Rights       | CC BY 4.0                                                                      |

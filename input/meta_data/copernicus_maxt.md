@@ -5,17 +5,18 @@
 | Category            | Weather                                                                                                                                                                |
 | Abbreviation        | copernicus_maxt                                                                                                                                                        |
 | Title               | Maximum Temperature                                                                                                                                                    |
-| Necessity           | required                                                                                                                                                               |
+| Necessity           | omitted                                                                                                                                                                |
 | Format              | GRIB                                                                                                                                                                   |
 | Operation           | max                                                                                                                                                                    |
-| Original unit       | celsius/day                                                                                                                                                            |
-| ESIDA database unit | celsius/day                                                                                                                                                            |
+| Original unit       | Celsius/day                                                                                                                                                            |
+| ESIDA database unit | Celsius/day                                                                                                                                                            |
 | Spatial details     | 9km raster                                                                                                                                                             |
 | Temporal details    | Hourly                                                                                                                                                                 |
 | Timeframe           | 1950 - present                                                                                                                                                         |
 | Source              | Copernicus                                                                                                                                                             |
+| Link to Source      | [https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form](https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form) |
+| Comment             | format is not supported in data hub                                                                                                                                    |
 | Related Sources     | Meteostat                                                                                                                                                              |
-| Link                | [https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form](https://cds.climate.copernicus.eu/cdsapp#!/dataset/10.24381/cds.e2161bac?tab=form) |
 
 ## Data quality information 
 
@@ -24,10 +25,10 @@
 | Abbreviation | copernicus_maxt                                                                                                                                                              |
 | Subject      | Weather                                                                                                                                                                      |
 | Creator      | Copernicus                                                                                                                                                                   |
-| Description  | Maximum Temperature                                                                                                                                                          |
+| Title        | Maximum Temperature                                                                                                                                                          |
 | Publisher    | HAW Hamburg                                                                                                                                                                  |
 | Contributor  | ESIDA                                                                                                                                                                        |
-| Date         | 24.05.2022                                                                                                                                                                   |
+| Date         | 14.06.2023                                                                                                                                                                   |
 | Type         | Dataset                                                                                                                                                                      |
 | Format       | csv                                                                                                                                                                          |
 | Identifier   | [10.24381/cds.e2161bac](https://doi.org/10.24381/cds.e2161bac)                                                                                                               |

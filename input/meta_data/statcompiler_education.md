@@ -5,7 +5,7 @@
 | Category            | Demographic                                                          |
 | Abbreviation        | statcompiler_education                                               |
 | Title               | Education level                                                      |
-| Necessity           | required                                                             |
+| Necessity           | deleted                                                              |
 | Format              | csv                                                                  |
 | Operation           | mean(men & women)                                                    |
 | Original unit       | Median years of education                                            |
@@ -14,21 +14,20 @@
 | Temporal details    | Cross-sectional                                                      |
 | Timeframe           | up to 2016                                                           |
 | Source              | DHS Program                                                          |
+| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
 | Related Sources     | None                                                                 |
-| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1           | ED_EDUC_W_MYR, ED_EDUC_M_MYR                                         |
 
 ## Data quality information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_education                                                                       |
-| Subject      | Demographics                                                                                 |
+| Subject      | Demographic                                                                                  |
 | Creator      | DHS Program                                                                                  |
-| Description  | Education level                                                                              |
+| Title        | Education level                                                                              |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
-| Date         | 02.05.2022                                                                                   |
+| Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | None                                                                                         |

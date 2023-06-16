@@ -32,7 +32,7 @@ def make_md_link(text):
 
     return text
 
-df_dtype['Link'] = df_dtype['Link'].apply(make_md_link)
+df_dtype['Link to Source'] = df_dtype['Link to Source'].apply(make_md_link)
 
 df_dqual['Identifier'] = df_dqual['Identifier'].apply(make_md_link)
 df_dqual['Citation']   = df_dqual['Citation'].apply(make_md_link)

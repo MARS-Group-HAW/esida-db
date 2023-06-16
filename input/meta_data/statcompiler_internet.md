@@ -4,19 +4,19 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Infrastructure                                                       |
 | Abbreviation        | statcompiler_internet                                                |
-| Title               | Internet usage (mHealth)                                             |
+| Title               | Internet usage                                                       |
 | Necessity           | optional                                                             |
 | Format              | csv                                                                  |
 | Operation           | mean(men & women)                                                    |
-| Original unit       | Proportion of population who used the internet in the past 12 months |
+| Original unit       | Percentage of population who used the internet in the past 12 months |
 | ESIDA database unit | Proportion of population who used the internet in the past 12 months |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
-| Timeframe           | up to 2016                                                           |
+| Timeframe           | 2016                                                                 |
 | Source              | DHS Program                                                          |
+| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+| Comment             | DHS IndicatorId: CO_INUS_W_U12, CO_INUS_M_U12                        |
 | Related Sources     | None                                                                 |
-| Link                | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment.1           | CO_INUS_W_U12, CO_INUS_M_U12                                         |
 
 ## Data quality information 
 
@@ -25,10 +25,10 @@
 | Abbreviation | statcompiler_internet                                                                        |
 | Subject      | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
-| Description  | Internet usage (mHealth)                                                                     |
+| Title        | Internet usage                                                                               |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
-| Date         | 02.05.2022                                                                                   |
+| Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | None                                                                                         |

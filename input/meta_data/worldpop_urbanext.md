@@ -14,20 +14,20 @@
 | Temporal details    | Cross-sectional                                                                                        |
 | Timeframe           | 2020, 2010                                                                                             |
 | Source              | Worldpop                                                                                               |
+| Link to Source      | [https://www.worldpop.org/geodata/summary?id=17285](https://www.worldpop.org/geodata/summary?id=17285) |
 | Related Sources     | None                                                                                                   |
-| Link                | [https://www.worldpop.org/geodata/summary?id=17285](https://www.worldpop.org/geodata/summary?id=17285) |
 
 ## Data quality information 
 
 |              | Description                                                                            |
 |:-------------|:---------------------------------------------------------------------------------------|
 | Abbreviation | worldpop_urbanext                                                                      |
-| Subject      | Demographics                                                                           |
+| Subject      | Demographic                                                                            |
 | Creator      | Worldpop                                                                               |
-| Description  | Urban Settlement Extent                                                                |
+| Title        | Urban Settlement Extent                                                                |
 | Publisher    | HAW Hamburg                                                                            |
 | Contributor  | ESIDA                                                                                  |
-| Date         | 02.05.2022                                                                             |
+| Date         | 14.06.2023                                                                             |
 | Type         | Dataset                                                                                |
 | Format       | csv                                                                                    |
 | Identifier   | [10.5258/SOTON/WP00649](https://doi.org/10.5258/SOTON/WP00649)                         |

@@ -4,15 +4,15 @@
 |:--------------------|:----------------------|
 | Category            | Health                |
 | Abbreviation        | lit_dengue_herep      |
-| Title               | Dengue health reports |
+| Title               | Dengue Health Reports |
 | Necessity           | required              |
 | Format              | csv                   |
 | Operation           | None                  |
 | Original unit       | None                  |
 | ESIDA database unit | None                  |
-| Spatial details     | Administrative levels |
+| Spatial details     | Region                |
 | Temporal details    | Cross-sectional       |
-| Timeframe           | Unkown                |
+| Timeframe           | 2019                  |
 | Source              | Report-based          |
 
 ## Data quality information 
@@ -22,13 +22,14 @@
 | Abbreviation | lit_dengue_herep      |
 | Subject      | Health                |
 | Creator      | ESIDA                 |
-| Description  | Dengue health reports |
+| Title        | Dengue Health Reports |
 | Publisher    | HAW Hamburg           |
 | Contributor  | ESIDA                 |
+| Date         | 14.06.2023            |
 | Type         | Dataset               |
 | Format       | csv                   |
 | Identifier   | None                  |
-| Source       | Official authorities  |
+| Source       | Report-based          |
 | Citation     | None                  |
 | Language     | eng                   |
 | Rights       | None                  |

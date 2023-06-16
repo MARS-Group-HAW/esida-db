@@ -8,26 +8,26 @@
 | Necessity           | required                                                                                               |
 | Format              | tiff                                                                                                   |
 | Operation           | mean                                                                                                   |
-| Original unit       | population per m^2                                                                                     |
-| ESIDA database unit | population per m^2                                                                                     |
+| Original unit       | population per km^2                                                                                    |
+| ESIDA database unit | population per km^2                                                                                    |
 | Spatial details     | 1km raster                                                                                             |
 | Temporal details    | Annualy                                                                                                |
 | Timeframe           | 2000-2020                                                                                              |
 | Source              | Worldpop                                                                                               |
+| Link to Source      | [https://www.worldpop.org/project/categories?id=18](https://www.worldpop.org/project/categories?id=18) |
 | Related Sources     | None                                                                                                   |
-| Link                | [https://www.worldpop.org/project/categories?id=18](https://www.worldpop.org/project/categories?id=18) |
 
 ## Data quality information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | worldpop_popd                                                                                |
-| Subject      | Demographics                                                                                 |
+| Subject      | Demographic                                                                                  |
 | Creator      | Worldpop                                                                                     |
-| Description  | Population density                                                                           |
+| Title        | Population density                                                                           |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
-| Date         | 02.05.2022                                                                                   |
+| Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
 | Format       | csv                                                                                          |
 | Identifier   | [10.5258/SOTON/WP00675](https://doi.org/10.5258/SOTON/WP00675)                               |

@@ -5,18 +5,34 @@
 | Category            | Weather                                                                                |
 | Abbreviation        | chirts_mint                                                                            |
 | Title               | Minimum Temperature                                                                    |
+| Necessity           | required                                                                               |
 | Format              | tiff                                                                                   |
 | Operation           | mean                                                                                   |
-| Original unit       | celsius/day                                                                            |
-| ESIDA database unit | celsius/day                                                                            |
+| Original unit       | Celsius/day                                                                            |
+| ESIDA database unit | Celsius/day                                                                            |
 | Spatial details     | 5km raster                                                                             |
 | Temporal details    | Daily                                                                                  |
 | Timeframe           | 1983-2016                                                                              |
-| Link                | [https://www.chc.ucsb.edu/data/chirtsdaily](https://www.chc.ucsb.edu/data/chirtsdaily) |
+| Source              | CHIRTS                                                                                 |
+| Link to Source      | [https://www.chc.ucsb.edu/data/chirtsdaily](https://www.chc.ucsb.edu/data/chirtsdaily) |
+| Related Sources     | Meteostat                                                                              |
 
 ## Data quality information 
 
-|              | Description   |
-|:-------------|:--------------|
-| Abbreviation | chirts_mint   |
-| Subject      | Weather       |
+|              | Description                                                                          |
+|:-------------|:-------------------------------------------------------------------------------------|
+| Abbreviation | chirts_mint                                                                          |
+| Subject      | Weather                                                                              |
+| Creator      | CHIRTS                                                                               |
+| Title        | Minimum Temperature                                                                  |
+| Publisher    | HAW Hamburg                                                                          |
+| Contributor  | ESIDA                                                                                |
+| Date         | 14.06.2023                                                                           |
+| Type         | Dataset                                                                              |
+| Format       | csv                                                                                  |
+| Identifier   | [https://doi.org/10.15780/G2008H](https://doi.org/10.15780/G2008H)                   |
+| Source       | CHIRTS                                                                               |
+| Citation     | [https://doi.org/10.1175/JCLI-D-18-0698.1](https://doi.org/10.1175/JCLI-D-18-0698.1) |
+| Language     | eng                                                                                  |
+| Rights       | CC0 1.0                                                                              |
+| Coverage     | Tanzania                                                                             |

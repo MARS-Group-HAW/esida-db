@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_ahum                                                                                                       |
-| Title               | Absolute humidity                                                                                                |
+| Title               | Absolute Humidity                                                                                                |
 | Necessity           | optional                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | mean                                                                                                             |
@@ -12,10 +12,10 @@
 | ESIDA database unit | avg. percentage/day                                                                                              |
 | Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
-| Timeframe           | 2010-2020                                                                                                        |
+| Timeframe           | 2010-present                                                                                                     |
 | Source              | Meteostat                                                                                                        |
+| Link to Source      | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
 | Related Sources     | None                                                                                                             |
-| Link                | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
 
 ## Data quality information 
 
@@ -24,10 +24,10 @@
 | Abbreviation | meteo_ahum                                       |
 | Subject      | Weather                                          |
 | Creator      | Meteostat                                        |
-| Description  | Absolute humidtiy                                |
+| Title        | Absolute Humidity                                |
 | Publisher    | HAW Hamburg                                      |
 | Contributor  | ESIDA                                            |
-| Date         | 02.05.2022                                       |
+| Date         | 14.06.2023                                       |
 | Type         | Dataset                                          |
 | Format       | csv                                              |
 | Identifier   | [https://meteostat.net/](https://meteostat.net/) |
