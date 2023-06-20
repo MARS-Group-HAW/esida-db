@@ -169,6 +169,9 @@ class StatcompilerParameter(BaseParameter):
         if name == "Mbeya (since 2016)":
             return "Mbeya"
 
+        if name == "Mbeya (before 2016)":
+            return "Mbeya"
+
         return name
 
     def fetch_from_stat_compiler(self, indicators, breakdown='subnational') -> pd.DataFrame:
@@ -215,6 +218,13 @@ class StatcompilerParameter(BaseParameter):
                     f'{self.parameter_id}_survey': sid,
                 }
 
+                search_name = r['name']
+
+                # Songwe was created in 2016 from the western part of Mbeya.
+                # Until 2016 we assume the Mbeya value for Songwe.
+                if year < 2016 and search_name == 'Songwe':
+                    search_name = 'Mbeya'
+
                 for i in indicators:
 
                     # note absence of indicator in any case!
@@ -228,10 +238,10 @@ class StatcompilerParameter(BaseParameter):
                         continue
 
                     # indicator for region
-                    sri = dfxx.loc[dfxx['CharacteristicLabel'] == r['name']]
+                    sri = dfxx.loc[dfxx['CharacteristicLabel'] == search_name]
 
                     if len(sri) == 0:
-                        self.logger.info('for this region no value exists: "%s"', r['name'])
+                        self.logger.info('for this region no value exists: "%s" (actual region: %s)', search_name, r['name'])
                         # for this region no value exists
                         continue
 
