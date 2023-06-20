@@ -45,35 +45,33 @@ spec:
         inclusive: False
         score: 3
   - name: Proportion of males with less than secondary education
-    datalayer: lit_propseced_m
+    datalayer: statcompiler_propsecedu_men
     mode: percentage
     factor: 0.5
     thresholds:
-      - min: 0
-        max: 4.2
+      - min: 95.8
         inclusive: False
         score: 1
-      - min: 4.2
-        max: 27.0
+      - min: 73
+        max: 95.8
         inclusive: True
         score: 2
-      - min: 27.0
+      - max: 73.0
         inclusive: False
         score: 3
   - name: Proportion of females with less than secondary education
-    datalayer: lit_propseced_f
+    datalayer: statcompiler_propsecedu_women
     mode: percentage
     factor: 0.5
     thresholds:
-      - min: 0
-        max: 2.4
+      - min: 97.6
         inclusive: False
         score: 1
-      - min: 2.4
-        max: 20.4
+      - min: 79.6
+        max: 97.6
         inclusive: True
         score: 2
-      - min: 20.4
+      - max: 79.6
         inclusive: False
         score: 3
   - name: Gini index / inequality income / wealth
