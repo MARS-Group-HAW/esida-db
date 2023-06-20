@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_rhum                                                                                                       |
-| Title               | Relative Humidity                                                                                                |
+| Title               | Relative humidity                                                                                                |
 | Necessity           | optional                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | mean                                                                                                             |
@@ -22,14 +22,14 @@
 |              | Description                                      |
 |:-------------|:-------------------------------------------------|
 | Abbreviation | meteo_rhum                                       |
-| Subject      | Weather                                          |
+| Category     | Weather                                          |
 | Creator      | Meteostat                                        |
-| Title        | Relative Humidity                                |
+| Title        | Relative humidity                                |
 | Publisher    | HAW Hamburg                                      |
 | Contributor  | ESIDA                                            |
 | Date         | 14.06.2023                                       |
 | Type         | Dataset                                          |
-| Format       | csv                                              |
+| Format       | CSV                                              |
 | Identifier   | [https://meteostat.net/](https://meteostat.net/) |
 | Source       | Meteostat                                        |
 | Citation     | None                                             |

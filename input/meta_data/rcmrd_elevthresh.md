@@ -4,9 +4,9 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                                                                                                                                                   |
 | Abbreviation        | rcmrd_elevthresh                                                                                                                                                                                                               |
-| Title               | Elevation Proportion below 1600m                                                                                                                                                                                               |
+| Title               | Elevation below 1600m                                                                                                                                                                                                          |
 | Necessity           | optional                                                                                                                                                                                                                       |
-| Format              | tiff                                                                                                                                                                                                                           |
+| Format              | TIFF                                                                                                                                                                                                                           |
 | Operation           | Proportion (area of interest/whole area)                                                                                                                                                                                       |
 | Original unit       | meter above sea level                                                                                                                                                                                                          |
 | ESIDA database unit | percentage of area under 1600m                                                                                                                                                                                                 |
@@ -19,20 +19,20 @@
 
 ## Metadata information 
 
-|              | Description                      |
-|:-------------|:---------------------------------|
-| Abbreviation | rcmrd_elevthresh                 |
-| Subject      | Enviromental                     |
-| Creator      | RCMRD                            |
-| Title        | Elevation Proportion below 1600m |
-| Publisher    | HAW Hamburg                      |
-| Contributor  | ESIDA                            |
-| Date         | 14.06.2023                       |
-| Type         | Dataset                          |
-| Format       | csv                              |
-| Identifier   | None                             |
-| Source       | Derived from RCMRD               |
-| Citation     | None                             |
-| Language     | eng                              |
-| Rights       | ODbl                             |
-| Coverage     | Tanzania                         |
+|              | Description           |
+|:-------------|:----------------------|
+| Abbreviation | rcmrd_elevthresh      |
+| Category     | Enviromental          |
+| Creator      | RCMRD                 |
+| Title        | Elevation below 1600m |
+| Publisher    | HAW Hamburg           |
+| Contributor  | ESIDA                 |
+| Date         | 14.06.2023            |
+| Type         | Dataset               |
+| Format       | CSV                   |
+| Identifier   | None                  |
+| Source       | Derived from RCMRD    |
+| Citation     | None                  |
+| Language     | eng                   |
+| Rights       | ODbl                  |
+| Coverage     | Tanzania              |

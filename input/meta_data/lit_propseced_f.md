@@ -10,12 +10,12 @@
 |              | Description     |
 |:-------------|:----------------|
 | Abbreviation | lit_propseced_f |
-| Subject      | Health          |
+| Category     | Health          |
 | Creator      | ESIDA           |
 | Publisher    | HAW Hamburg     |
 | Contributor  | ESIDA           |
 | Date         | 14.06.2023      |
 | Type         | Dataset         |
-| Format       | csv             |
+| Format       | CSV             |
 | Language     | eng             |
 | Coverage     | Tanzania        |

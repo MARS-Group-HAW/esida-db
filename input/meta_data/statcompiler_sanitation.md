@@ -4,9 +4,9 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Infrastructure                                                       |
 | Abbreviation        | statcompiler_sanitation                                              |
-| Title               | Proportion improved Sanitation                                       |
+| Title               | Proportion improved sanitation                                       |
 | Necessity           | optional                                                             |
-| Format              | csv                                                                  |
+| Format              | CSV                                                                  |
 | Operation           | None                                                                 |
 | Original unit       | Percentage of households with an improved sanitation facility        |
 | ESIDA database unit | Percentage of households with an improved sanitation facility        |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_sanitation                                                                      |
-| Subject      | Infrastructure                                                                               |
+| Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
-| Title        | Proportion improved Sanitation                                                               |
+| Title        | Proportion improved sanitation                                                               |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

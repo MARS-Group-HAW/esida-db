@@ -6,7 +6,7 @@
 | Abbreviation        | worldpop_popc                                                                                    |
 | Title               | Population counts                                                                                |
 | Necessity           | required                                                                                         |
-| Format              | tiff                                                                                             |
+| Format              | TIFF                                                                                             |
 | Operation           | sum                                                                                              |
 | Original unit       | total amount                                                                                     |
 | ESIDA database unit | total number                                                                                     |
@@ -22,14 +22,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | worldpop_popc                                                                                |
-| Subject      | Demographic                                                                                  |
+| Category     | Demographic                                                                                  |
 | Creator      | Worldpop                                                                                     |
 | Title        | Population counts                                                                            |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | [10.5258/SOTON/WP00660](https://doi.org/10.5258/SOTON/WP00660)                               |
 | Source       | Worldpop                                                                                     |
 | Citation     | [https://doi.org/10.1371/journal.pone.0107042](https://doi.org/10.1371/journal.pone.0107042) |

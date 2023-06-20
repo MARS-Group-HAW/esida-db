@@ -6,7 +6,7 @@
 | Abbreviation        | rcmrd_elev                                                                                                                                                                                                                     |
 | Title               | Elevation                                                                                                                                                                                                                      |
 | Necessity           | optional                                                                                                                                                                                                                       |
-| Format              | tiff                                                                                                                                                                                                                           |
+| Format              | TIFF                                                                                                                                                                                                                           |
 | Operation           | mean                                                                                                                                                                                                                           |
 | Original unit       | meter above sea level                                                                                                                                                                                                          |
 | ESIDA database unit | meter above sea level                                                                                                                                                                                                          |
@@ -22,14 +22,14 @@
 |              | Description   |
 |:-------------|:--------------|
 | Abbreviation | rcmrd_elev    |
-| Subject      | Enviromental  |
+| Category     | Enviromental  |
 | Creator      | RCMRD         |
 | Title        | Elevation     |
 | Publisher    | HAW Hamburg   |
 | Contributor  | ESIDA         |
 | Date         | 14.06.2023    |
 | Type         | Dataset       |
-| Format       | csv           |
+| Format       | CSV           |
 | Identifier   | None          |
 | Source       | RCMRD         |
 | Citation     | None          |

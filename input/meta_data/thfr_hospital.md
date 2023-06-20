@@ -4,9 +4,9 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_hospital                                                                                                                                  |
-| Title               | Number of Hospitals                                                                                                                            |
+| Title               | Number of hospitals                                                                                                                            |
 | Necessity           | required                                                                                                                                       |
-| Format              | xls                                                                                                                                            |
+| Format              | XLS                                                                                                                                            |
 | Operation           | count                                                                                                                                          |
 | Original unit       | None                                                                                                                                           |
 | ESIDA database unit | Facilities per area                                                                                                                            |
@@ -23,14 +23,14 @@
 |              | Description                       |
 |:-------------|:----------------------------------|
 | Abbreviation | thfr_hospital                     |
-| Subject      | Infrastructure                    |
+| Category     | Infrastructure                    |
 | Creator      | Tanzanian Ministry of Health      |
-| Title        | Number of Hospitals               |
+| Title        | Number of hospitals               |
 | Publisher    | HAW Hamburg                       |
 | Contributor  | ESIDA                             |
 | Date         | 14.06.2023                        |
 | Type         | Dataset                           |
-| Format       | csv                               |
+| Format       | CSV                               |
 | Identifier   | None                              |
 | Source       | Tanzania Health Facility Register |
 | Citation     | None                              |

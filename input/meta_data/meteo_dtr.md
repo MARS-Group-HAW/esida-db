@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_dtr                                                                                                        |
-| Title               | Diurnal Temporal Range                                                                                           |
+| Title               | Diurnal temporal range                                                                                           |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | range (max-min)                                                                                                  |
@@ -22,14 +22,14 @@
 |              | Description                                      |
 |:-------------|:-------------------------------------------------|
 | Abbreviation | meteo_dtr                                        |
-| Subject      | Weather                                          |
+| Category     | Weather                                          |
 | Creator      | Meteostat                                        |
-| Title        | Diurnal Temporal Range                           |
+| Title        | Diurnal temporal range                           |
 | Publisher    | HAW Hamburg                                      |
 | Contributor  | ESIDA                                            |
 | Date         | 14.06.2023                                       |
 | Type         | Dataset                                          |
-| Format       | csv                                              |
+| Format       | CSV                                              |
 | Identifier   | [https://meteostat.net/](https://meteostat.net/) |
 | Source       | Derived from Meteostat                           |
 | Citation     | None                                             |

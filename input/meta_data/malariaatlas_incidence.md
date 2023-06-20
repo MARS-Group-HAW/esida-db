@@ -4,9 +4,9 @@
 |:--------------------|:-----------------------------------------------------------------------------|
 | Category            | Health                                                                       |
 | Abbreviation        | malariaatlas_incidence                                                       |
-| Title               | Annual Malaria (falciparum) Incidence                                        |
+| Title               | Annual malaria (falciparum) incidence                                        |
 | Necessity           | optional                                                                     |
-| Format              | tiff                                                                         |
+| Format              | TIFF                                                                         |
 | Operation           | mean                                                                         |
 | Original unit       | Cases per 1000 per year                                                      |
 | ESIDA database unit | Cases per 1000 per year                                                      |
@@ -22,14 +22,14 @@
 |              | Description                                                                                                                                                                                                                                                |
 |:-------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | malariaatlas_incidence                                                                                                                                                                                                                                     |
-| Subject      | Health                                                                                                                                                                                                                                                     |
+| Category     | Health                                                                                                                                                                                                                                                     |
 | Creator      | Malaria Atlas Project                                                                                                                                                                                                                                      |
-| Title        | Annual Malaria (falciparum) Incidence                                                                                                                                                                                                                      |
+| Title        | Annual malaria (falciparum) incidence                                                                                                                                                                                                                      |
 | Publisher    | HAW Hamburg                                                                                                                                                                                                                                                |
 | Contributor  | ESIDA                                                                                                                                                                                                                                                      |
 | Date         | 14.06.2023                                                                                                                                                                                                                                                 |
 | Type         | Dataset                                                                                                                                                                                                                                                    |
-| Format       | csv                                                                                                                                                                                                                                                        |
+| Format       | CSV                                                                                                                                                                                                                                                        |
 | Identifier   | [https://doi.org/10.1186/s12936-018-2500-5](https://doi.org/10.1186/s12936-018-2500-5)                                                                                                                                                                     |
 | Source       | Malaria Atlas Project                                                                                                                                                                                                                                      |
 | Citation     | Pfeffer, D.A., Lucas, T.C.D., May, D. et al. malariaAtlas: an R interface to global malariometric data hosted by the Malaria Atlas Project. Malar J 17, 352 (2018). [https://doi.org/10.1186/s12936-018-2500-5](https://doi.org/10.1186/s12936-018-2500-5) |

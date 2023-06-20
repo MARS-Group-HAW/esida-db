@@ -4,9 +4,9 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Demographic                                                          |
 | Abbreviation        | statcompiler_education_women                                         |
-| Title               | Education level Women                                                |
+| Title               | Education level women                                                |
 | Necessity           | required                                                             |
-| Format              | csv                                                                  |
+| Format              | CSV                                                                  |
 | Operation           | None                                                                 |
 | Original unit       | Median years of education                                            |
 | ESIDA database unit | Median years of education                                            |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_education_women                                                                 |
-| Subject      | Demographic                                                                                  |
+| Category     | Demographic                                                                                  |
 | Creator      | DHS Program                                                                                  |
-| Title        | Education level Women                                                                        |
+| Title        | Education level women                                                                        |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

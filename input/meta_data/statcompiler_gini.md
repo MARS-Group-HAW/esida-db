@@ -4,9 +4,9 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Demographic                                                          |
 | Abbreviation        | statcompiler_gini                                                    |
-| Title               | Income Distribution                                                  |
+| Title               | Income distribution                                                  |
 | Necessity           | required                                                             |
-| Format              | csv                                                                  |
+| Format              | CSV                                                                  |
 | Operation           | None                                                                 |
 | Original unit       | Gini index                                                           |
 | ESIDA database unit | Gini index                                                           |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_gini                                                                            |
-| Subject      | Demographic                                                                                  |
+| Category     | Demographic                                                                                  |
 | Creator      | DHS Program                                                                                  |
-| Title        | Income Distribution                                                                          |
+| Title        | Income distribution                                                                          |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

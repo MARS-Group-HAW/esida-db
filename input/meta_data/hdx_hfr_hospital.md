@@ -4,9 +4,9 @@
 |:--------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Health                                                                                                                                                |
 | Abbreviation        | hdx_hfr_hospital                                                                                                                                      |
-| Title               | Number of Hospitals                                                                                                                                   |
+| Title               | Number of hospitals                                                                                                                                   |
 | Necessity           | required                                                                                                                                              |
-| Format              | xls                                                                                                                                                   |
+| Format              | XLS                                                                                                                                                   |
 | Operation           | count                                                                                                                                                 |
 | Original unit       | None                                                                                                                                                  |
 | ESIDA database unit | Amount                                                                                                                                                |
@@ -23,14 +23,14 @@
 |              | Description                  |
 |:-------------|:-----------------------------|
 | Abbreviation | hdx_hfr_hospital             |
-| Subject      | Health                       |
+| Category     | Health                       |
 | Creator      | Tanzanian Ministry of Health |
-| Title        | Number of Hospitals          |
+| Title        | Number of hospitals          |
 | Publisher    | HAW Hamburg                  |
 | Contributor  | ESIDA                        |
 | Date         | 14.06.2023                   |
 | Type         | Dataset                      |
-| Format       | csv                          |
+| Format       | CSV                          |
 | Identifier   | None                         |
 | Source       | Literature-based             |
 | Citation     | None                         |

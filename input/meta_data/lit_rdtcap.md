@@ -4,7 +4,7 @@
 |:--------------------|:--------------------------|
 | Category            | Health                    |
 | Abbreviation        | lit_rdtcap                |
-| Title               | Rapid Laboratory Capacity |
+| Title               | Rapid laboratory capacity |
 | Necessity           | required                  |
 | Format              | static                    |
 | Operation           | None                      |
@@ -21,14 +21,14 @@
 |              | Description               |
 |:-------------|:--------------------------|
 | Abbreviation | lit_rdtcap                |
-| Subject      | Health                    |
+| Category     | Health                    |
 | Creator      | ESIDA                     |
-| Title        | Rapid Laboratory Capacity |
+| Title        | Rapid laboratory capacity |
 | Publisher    | HAW Hamburg               |
 | Contributor  | ESIDA                     |
 | Date         | 14.06.2023                |
 | Type         | Dataset                   |
-| Format       | csv                       |
+| Format       | CSV                       |
 | Identifier   | None                      |
 | Source       | Expert knowledge          |
 | Citation     | None                      |

@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                                                                                |
 | Abbreviation        | copernicus_mint                                                                                                                                                        |
-| Title               | Minumum Temperature                                                                                                                                                    |
+| Title               | Minumum temperature                                                                                                                                                    |
 | Necessity           | omitted                                                                                                                                                                |
 | Format              | GRIB                                                                                                                                                                   |
 | Operation           | min                                                                                                                                                                    |
@@ -23,14 +23,14 @@
 |              | Description                                                                                                                                                                  |
 |:-------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | copernicus_mint                                                                                                                                                              |
-| Subject      | Weather                                                                                                                                                                      |
+| Category     | Weather                                                                                                                                                                      |
 | Creator      | Copernicus                                                                                                                                                                   |
-| Title        | Minumum Temperature                                                                                                                                                          |
+| Title        | Minumum temperature                                                                                                                                                          |
 | Publisher    | HAW Hamburg                                                                                                                                                                  |
 | Contributor  | ESIDA                                                                                                                                                                        |
 | Date         | 14.06.2023                                                                                                                                                                   |
 | Type         | Dataset                                                                                                                                                                      |
-| Format       | csv                                                                                                                                                                          |
+| Format       | CSV                                                                                                                                                                          |
 | Identifier   | [10.24381/cds.e2161bac](https://doi.org/10.24381/cds.e2161bac)                                                                                                               |
 | Source       | Copernicus                                                                                                                                                                   |
 | Citation     | [doi.org/10.1002/qj.3803](doi.org/10.1002/qj.3803)                                                                                                                           |

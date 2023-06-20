@@ -12,12 +12,12 @@
 |              | Description       |
 |:-------------|:------------------|
 | Abbreviation | cia_worldfactbook |
-| Subject      | Demographic       |
+| Category     | Demographic       |
 | Creator      | CIA               |
 | Publisher    | HAW Hamburg       |
 | Contributor  | ESIDA             |
 | Date         | 14.06.2023        |
 | Type         | Dataset           |
-| Format       | csv               |
+| Format       | CSV               |
 | Language     | eng               |
 | Coverage     | Tanzania          |

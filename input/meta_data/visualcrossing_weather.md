@@ -11,12 +11,5 @@
 |              | Description            |
 |:-------------|:-----------------------|
 | Abbreviation | visualcrossing_weather |
-| Subject      | Weather                |
+| Category     | Weather                |
 | Creator      | Visual Crossing        |
-| Publisher    | HAW Hamburg            |
-| Contributor  | ESIDA                  |
-| Date         | 14.06.2023             |
-| Type         | Dataset                |
-| Format       | csv                    |
-| Language     | eng                    |
-| Coverage     | Tanzania               |

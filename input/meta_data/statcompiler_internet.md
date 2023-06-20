@@ -6,7 +6,7 @@
 | Abbreviation        | statcompiler_internet                                                |
 | Title               | Internet usage                                                       |
 | Necessity           | optional                                                             |
-| Format              | csv                                                                  |
+| Format              | CSV                                                                  |
 | Operation           | mean(men & women)                                                    |
 | Original unit       | Percentage of population who used the internet in the past 12 months |
 | ESIDA database unit | Proportion of population who used the internet in the past 12 months |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_internet                                                                        |
-| Subject      | Infrastructure                                                                               |
+| Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
 | Title        | Internet usage                                                                               |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

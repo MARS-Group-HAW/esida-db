@@ -4,9 +4,9 @@
 |:--------------------|:-----------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                     |
 | Abbreviation        | statcompiler_drinkwater                                                            |
-| Title               | Access to clean Drinking water                                                     |
+| Title               | Access to clean drinking water                                                     |
 | Necessity           | optional                                                                           |
-| Format              | csv                                                                                |
+| Format              | CSV                                                                                |
 | Operation           | None                                                                               |
 | Original unit       | Percentage of households whose main source of drinking water is an improved source |
 | ESIDA database unit | Percentage of households whose main source of drinking water is an improved source |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_drinkwater                                                                      |
-| Subject      | Infrastructure                                                                               |
+| Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
-| Title        | Access to clean Drinking water                                                               |
+| Title        | Access to clean drinking water                                                               |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

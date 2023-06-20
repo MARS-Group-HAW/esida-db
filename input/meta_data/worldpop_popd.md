@@ -6,7 +6,7 @@
 | Abbreviation        | worldpop_popd                                                                                          |
 | Title               | Population density                                                                                     |
 | Necessity           | required                                                                                               |
-| Format              | tiff                                                                                                   |
+| Format              | TIFF                                                                                                   |
 | Operation           | mean                                                                                                   |
 | Original unit       | population per km^2                                                                                    |
 | ESIDA database unit | population per km^2                                                                                    |
@@ -22,14 +22,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | worldpop_popd                                                                                |
-| Subject      | Demographic                                                                                  |
+| Category     | Demographic                                                                                  |
 | Creator      | Worldpop                                                                                     |
 | Title        | Population density                                                                           |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | [10.5258/SOTON/WP00675](https://doi.org/10.5258/SOTON/WP00675)                               |
 | Source       | Worldpop                                                                                     |
 | Citation     | [https://doi.org/10.1371/journal.pone.0107043](https://doi.org/10.1371/journal.pone.0107043) |

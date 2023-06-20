@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_maxt                                                                                                       |
-| Title               | Maximum Temperature                                                                                              |
+| Title               | Maximum temperature                                                                                              |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | max                                                                                                              |
@@ -22,14 +22,14 @@
 |              | Description                                      |
 |:-------------|:-------------------------------------------------|
 | Abbreviation | meteo_maxt                                       |
-| Subject      | Weather                                          |
+| Category     | Weather                                          |
 | Creator      | Meteostat                                        |
-| Title        | Maximum Temperature                              |
+| Title        | Maximum temperature                              |
 | Publisher    | HAW Hamburg                                      |
 | Contributor  | ESIDA                                            |
 | Date         | 14.06.2023                                       |
 | Type         | Dataset                                          |
-| Format       | csv                                              |
+| Format       | CSV                                              |
 | Identifier   | [https://meteostat.net/](https://meteostat.net/) |
 | Source       | Meteostat                                        |
 | Citation     | None                                             |

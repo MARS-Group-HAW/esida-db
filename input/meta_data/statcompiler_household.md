@@ -6,7 +6,7 @@
 | Abbreviation        | statcompiler_household                                               |
 | Title               | Household members                                                    |
 | Necessity           | optional                                                             |
-| Format              | csv                                                                  |
+| Format              | CSV                                                                  |
 | Operation           | None                                                                 |
 | Original unit       | Mean number of household members                                     |
 | ESIDA database unit | Mean number of household members                                     |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_household                                                                       |
-| Subject      | Infrastructure                                                                               |
+| Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
 | Title        | Household members                                                                            |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

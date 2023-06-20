@@ -4,11 +4,11 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Health                                                               |
 | Abbreviation        | statcompiler_mosnet                                                  |
-| Title               | Mosquito bet net implementation                                      |
-| Necessity           | optional                                                             |
-| Format              | csv                                                                  |
+| Title               | Insecticide treated bednet (ITN) use                                 |
+| Necessity           | required                                                             |
+| Format              | CSV                                                                  |
 | Operation           | None                                                                 |
-| Original unit       | Percentage of households with at least one net                       |
+| Original unit       | Percentage of households with at least one ITN                       |
 | ESIDA database unit | None                                                                 |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_mosnet                                                                          |
-| Subject      | Health                                                                                       |
+| Category     | Health                                                                                       |
 | Creator      | DHS Program                                                                                  |
-| Title        | Mosquito bet net implementation                                                              |
+| Title        | Insecticide treated bednet (ITN) use                                                         |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

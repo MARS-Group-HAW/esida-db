@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                                                                                |
 | Abbreviation        | copernicus_maxt                                                                                                                                                        |
-| Title               | Maximum Temperature                                                                                                                                                    |
+| Title               | Maximum temperature                                                                                                                                                    |
 | Necessity           | omitted                                                                                                                                                                |
 | Format              | GRIB                                                                                                                                                                   |
 | Operation           | max                                                                                                                                                                    |
@@ -23,14 +23,14 @@
 |              | Description                                                                                                                                                                  |
 |:-------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | copernicus_maxt                                                                                                                                                              |
-| Subject      | Weather                                                                                                                                                                      |
+| Category     | Weather                                                                                                                                                                      |
 | Creator      | Copernicus                                                                                                                                                                   |
-| Title        | Maximum Temperature                                                                                                                                                          |
+| Title        | Maximum temperature                                                                                                                                                          |
 | Publisher    | HAW Hamburg                                                                                                                                                                  |
 | Contributor  | ESIDA                                                                                                                                                                        |
 | Date         | 14.06.2023                                                                                                                                                                   |
 | Type         | Dataset                                                                                                                                                                      |
-| Format       | csv                                                                                                                                                                          |
+| Format       | CSV                                                                                                                                                                          |
 | Identifier   | [10.24381/cds.e2161bac](https://doi.org/10.24381/cds.e2161bac)                                                                                                               |
 | Source       | Copernicus                                                                                                                                                                   |
 | Citation     | [doi.org/10.1002/qj.3803](doi.org/10.1002/qj.3803)                                                                                                                           |

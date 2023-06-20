@@ -4,7 +4,7 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_mint                                                                                                       |
-| Title               | Minimum Temperature                                                                                              |
+| Title               | Minimum temperature                                                                                              |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
 | Operation           | min                                                                                                              |
@@ -22,14 +22,14 @@
 |              | Description                                      |
 |:-------------|:-------------------------------------------------|
 | Abbreviation | meteo_mint                                       |
-| Subject      | Weather                                          |
+| Category     | Weather                                          |
 | Creator      | Meteostat                                        |
-| Title        | Minimum Temperature                              |
+| Title        | Minimum temperature                              |
 | Publisher    | HAW Hamburg                                      |
 | Contributor  | ESIDA                                            |
 | Date         | 14.06.2023                                       |
 | Type         | Dataset                                          |
-| Format       | csv                                              |
+| Format       | CSV                                              |
 | Identifier   | [https://meteostat.net/](https://meteostat.net/) |
 | Source       | Meteostat                                        |
 | Citation     | None                                             |

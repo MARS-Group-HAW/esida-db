@@ -4,9 +4,9 @@
 |:--------------------|:---------------------------------------------------------------|
 | Category            | Enviromental                                                   |
 | Abbreviation        | koeppen_e                                                      |
-| Title               | Proportion Polar Climate zone                                  |
+| Title               | Proportion polar climate zone                                  |
 | Necessity           | optional                                                       |
-| Format              | tiff                                                           |
+| Format              | TIFF                                                           |
 | Operation           | Proportion (area of interest/whole area)                       |
 | Original unit       | Categorical                                                    |
 | ESIDA database unit | Percentage                                                     |
@@ -22,14 +22,14 @@
 |              | Description                                                                                                                                                                                                                               |
 |:-------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | koeppen_e                                                                                                                                                                                                                                 |
-| Subject      | Enviromental                                                                                                                                                                                                                              |
+| Category     | Enviromental                                                                                                                                                                                                                              |
 | Creator      | Beck et al., 2018                                                                                                                                                                                                                         |
-| Title        | Proportion Polar Climate zone                                                                                                                                                                                                             |
+| Title        | Proportion polar climate zone                                                                                                                                                                                                             |
 | Publisher    | HAW Hamburg                                                                                                                                                                                                                               |
 | Contributor  | ESIDA                                                                                                                                                                                                                                     |
 | Date         | 14.06.2023                                                                                                                                                                                                                                |
 | Type         | Dataset                                                                                                                                                                                                                                   |
-| Format       | csv                                                                                                                                                                                                                                       |
+| Format       | CSV                                                                                                                                                                                                                                       |
 | Identifier   | [10.1038/sdata.2018.214](https://doi.org/10.1038/sdata.2018.214)                                                                                                                                                                          |
 | Source       | Literature-based                                                                                                                                                                                                                          |
 | Citation     | Beck, H., Zimmermann, N., McVicar, T. et al. Present and future Köppen-Geiger climate classification maps at 1-km resolution. Sci Data 5, 180214 (2018). [https://doi.org/10.1038/sdata.2018.214](https://doi.org/10.1038/sdata.2018.214) |

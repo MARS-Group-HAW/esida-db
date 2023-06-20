@@ -4,7 +4,7 @@
 |:-------------|:-------------------------|
 | Category     | Enviromental             |
 | Abbreviation | esida_dengue_suitability |
-| Title        | Dengue Suitability Index |
+| Title        | Dengue suitability index |
 | Necessity    | required                 |
 
 ## Metadata information 
@@ -12,14 +12,14 @@
 |              | Description              |
 |:-------------|:-------------------------|
 | Abbreviation | esida_dengue_suitability |
-| Subject      | Enviromental             |
+| Category     | Enviromental             |
 | Creator      | ESIDA                    |
-| Title        | Dengue Suitability Index |
+| Title        | Dengue suitability index |
 | Publisher    | HAW Hamburg              |
 | Contributor  | ESIDA                    |
 | Date         | 14.06.2023               |
 | Type         | Dataset                  |
-| Format       | csv                      |
+| Format       | CSV                      |
 | Identifier   | None                     |
 | Source       | Expert knowledge         |
 | Citation     | None                     |

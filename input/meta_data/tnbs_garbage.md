@@ -23,14 +23,14 @@
 |              | Description                                                                                                                                      |
 |:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | tnbs_garbage                                                                                                                                     |
-| Subject      | Infrastructure                                                                                                                                   |
+| Category     | Infrastructure                                                                                                                                   |
 | Creator      | Tanzanian National Bureau of Statistics                                                                                                          |
 | Title        | Garbage collection                                                                                                                               |
 | Publisher    | HAW Hamburg                                                                                                                                      |
 | Contributor  | ESIDA                                                                                                                                            |
 | Date         | 14.06.2023                                                                                                                                       |
 | Type         | Dataset                                                                                                                                          |
-| Format       | csv                                                                                                                                              |
+| Format       | CSV                                                                                                                                              |
 | Identifier   | None                                                                                                                                             |
 | Source       | Tanzanian Census 2012                                                                                                                            |
 | Citation     | None                                                                                                                                             |

@@ -4,9 +4,9 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                          |
 | Abbreviation        | worldpop_poverty_cons125                                                                             |
-| Title               | Proportion of Population living  <1.25$ income                                                       |
+| Title               | Proportion of population living  <1.25$ income                                                       |
 | Necessity           | required                                                                                             |
-| Format              | tiff                                                                                                 |
+| Format              | TIFF                                                                                                 |
 | Operation           | mean                                                                                                 |
 | Original unit       | proportion of people per grid cell living with less than 2 dollar per day                            |
 | ESIDA database unit | proportion (0 to 1)                                                                                  |
@@ -22,14 +22,14 @@
 |              | Description                                                                      |
 |:-------------|:---------------------------------------------------------------------------------|
 | Abbreviation | worldpop_poverty_cons125                                                         |
-| Subject      | Demographic                                                                      |
+| Category     | Demographic                                                                      |
 | Creator      | Worldpop                                                                         |
-| Title        | Proportion of Population living  <1.25$ income                                   |
+| Title        | Proportion of population living  <1.25$ income                                   |
 | Publisher    | HAW Hamburg                                                                      |
 | Contributor  | ESIDA                                                                            |
 | Date         | 14.06.2023                                                                       |
 | Type         | Dataset                                                                          |
-| Format       | csv                                                                              |
+| Format       | CSV                                                                              |
 | Identifier   | [10.5258/SOTON/WP00290](https://doi.org/10.5258/SOTON/WP00290)                   |
 | Source       | Worldpop                                                                         |
 | Citation     | [https://doi.org/10.1098/rsif.2016.0690](https://doi.org/10.1098/rsif.2016.0690) |

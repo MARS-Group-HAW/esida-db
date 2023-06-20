@@ -4,9 +4,9 @@
 |:--------------------|:---------------------------------------------------------------------------------------|
 | Category            | Weather                                                                                |
 | Abbreviation        | chirts_maxt                                                                            |
-| Title               | Maximum Temperature                                                                    |
+| Title               | Maximum temperature                                                                    |
 | Necessity           | required                                                                               |
-| Format              | tiff                                                                                   |
+| Format              | TIFF                                                                                   |
 | Operation           | mean                                                                                   |
 | Original unit       | Celsius/day                                                                            |
 | ESIDA database unit | Celsius/day                                                                            |
@@ -22,14 +22,14 @@
 |              | Description                                                                          |
 |:-------------|:-------------------------------------------------------------------------------------|
 | Abbreviation | chirts_maxt                                                                          |
-| Subject      | Weather                                                                              |
+| Category     | Weather                                                                              |
 | Creator      | CHIRTS                                                                               |
-| Title        | Maximum Temperature                                                                  |
+| Title        | Maximum temperature                                                                  |
 | Publisher    | HAW Hamburg                                                                          |
 | Contributor  | ESIDA                                                                                |
 | Date         | 14.06.2023                                                                           |
 | Type         | Dataset                                                                              |
-| Format       | csv                                                                                  |
+| Format       | CSV                                                                                  |
 | Identifier   | [https://doi.org/10.15780/G2008H](https://doi.org/10.15780/G2008H)                   |
 | Source       | CHIRTS                                                                               |
 | Citation     | [https://doi.org/10.1175/JCLI-D-18-0698.1](https://doi.org/10.1175/JCLI-D-18-0698.1) |

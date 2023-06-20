@@ -4,9 +4,9 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Demographic                                                          |
 | Abbreviation        | statcompiler_propsecedu_women                                        |
-| Title               | Proportion completed Secondary Education Women                       |
+| Title               | Proportion completed secondary education women                       |
 | Necessity           | required                                                             |
-| Format              | csv                                                                  |
+| Format              | CSV                                                                  |
 | Operation           | None                                                                 |
 | Original unit       | Female population age 6 and over with completed secondary education  |
 | ESIDA database unit | Percentage of female population who completed secondary education    |
@@ -21,14 +21,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_propsecedu_women                                                                |
-| Subject      | Demographic                                                                                  |
+| Category     | Demographic                                                                                  |
 | Creator      | DHS Program                                                                                  |
-| Title        | Proportion completed Secondary Education Women                                               |
+| Title        | Proportion completed secondary education women                                               |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

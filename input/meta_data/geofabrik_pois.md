@@ -12,12 +12,12 @@
 |              | Description    |
 |:-------------|:---------------|
 | Abbreviation | geofabrik_pois |
-| Subject      | Infrastructure |
+| Category     | Infrastructure |
 | Creator      | OpenStreetMap  |
 | Publisher    | HAW Hamburg    |
 | Contributor  | ESIDA          |
 | Date         | 14.06.2023     |
 | Type         | Dataset        |
-| Format       | csv            |
+| Format       | CSV            |
 | Language     | eng            |
 | Coverage     | Tanzania       |

@@ -4,7 +4,7 @@
 |:--------------------|:---------------------------------------------------|
 | Category            | Health                                             |
 | Abbreviation        | tncen22_hecenter                                   |
-| Title               | Number of Health Center                            |
+| Title               | Number of health center                            |
 | Necessity           | optional                                           |
 | Format              | PDF                                                |
 | Operation           | None                                               |
@@ -23,14 +23,14 @@
 |              | Description                                                                                                                                      |
 |:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | tncen22_hecenter                                                                                                                                 |
-| Subject      | Health                                                                                                                                           |
+| Category     | Health                                                                                                                                           |
 | Creator      | Tanzanian National Bureau of Statistics                                                                                                          |
-| Title        | Number of Health Center                                                                                                                          |
+| Title        | Number of health center                                                                                                                          |
 | Publisher    | HAW Hamburg                                                                                                                                      |
 | Contributor  | ESIDA                                                                                                                                            |
 | Date         | 14.06.2023                                                                                                                                       |
 | Type         | Dataset                                                                                                                                          |
-| Format       | csv                                                                                                                                              |
+| Format       | CSV                                                                                                                                              |
 | Identifier   | None                                                                                                                                             |
 | Source       | Tanzanian Census 2022                                                                                                                            |
 | Citation     | None                                                                                                                                             |

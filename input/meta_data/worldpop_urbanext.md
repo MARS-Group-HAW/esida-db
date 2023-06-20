@@ -4,9 +4,9 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                            |
 | Abbreviation        | worldpop_urbanext                                                                                      |
-| Title               | Urban Settlement Extent                                                                                |
+| Title               | Urban settlement extent                                                                                |
 | Necessity           | optional                                                                                               |
-| Format              | tiff                                                                                                   |
+| Format              | TIFF                                                                                                   |
 | Operation           | Proportion (area of interest/whole area)                                                               |
 | Original unit       | binary (0=not urban, 1=urban)                                                                          |
 | ESIDA database unit | proportion (0 to 1)                                                                                    |
@@ -22,14 +22,14 @@
 |              | Description                                                                            |
 |:-------------|:---------------------------------------------------------------------------------------|
 | Abbreviation | worldpop_urbanext                                                                      |
-| Subject      | Demographic                                                                            |
+| Category     | Demographic                                                                            |
 | Creator      | Worldpop                                                                               |
-| Title        | Urban Settlement Extent                                                                |
+| Title        | Urban settlement extent                                                                |
 | Publisher    | HAW Hamburg                                                                            |
 | Contributor  | ESIDA                                                                                  |
 | Date         | 14.06.2023                                                                             |
 | Type         | Dataset                                                                                |
-| Format       | csv                                                                                    |
+| Format       | CSV                                                                                    |
 | Identifier   | [10.5258/SOTON/WP00649](https://doi.org/10.5258/SOTON/WP00649)                         |
 | Source       | Worldpop                                                                               |
 | Citation     | [https://doi.org/10.1016/j.rse.2014.09.023](https://doi.org/10.1016/j.rse.2014.09.023) |

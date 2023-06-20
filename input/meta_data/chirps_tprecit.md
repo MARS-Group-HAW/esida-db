@@ -6,7 +6,7 @@
 | Abbreviation        | chirps_tprecit                                                               |
 | Title               | Total precipitation                                                          |
 | Necessity           | required                                                                     |
-| Format              | tiff                                                                         |
+| Format              | TIFF                                                                         |
 | Operation           | mean                                                                         |
 | Original unit       | mm/day                                                                       |
 | ESIDA database unit | mm/day                                                                       |
@@ -22,14 +22,14 @@
 |              | Description                                                                    |
 |:-------------|:-------------------------------------------------------------------------------|
 | Abbreviation | chirps_tprecit                                                                 |
-| Subject      | Weather                                                                        |
+| Category     | Weather                                                                        |
 | Creator      | CHIRPS                                                                         |
 | Title        | Total precipitation                                                            |
 | Publisher    | HAW Hamburg                                                                    |
 | Contributor  | ESIDA                                                                          |
 | Date         | 14.06.2023                                                                     |
 | Type         | Dataset                                                                        |
-| Format       | csv                                                                            |
+| Format       | CSV                                                                            |
 | Identifier   | [10.1038/sdata.2015.66](https://doi.org/10.1038/sdata.2015.66)                 |
 | Source       | CHIRPS                                                                         |
 | Citation     | [https://doi.org/10.1038/sdata.2015.66](https://doi.org/10.1038/sdata.2015.66) |

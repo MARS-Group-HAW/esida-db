@@ -10,19 +10,8 @@
 
 ## Metadata information 
 
-|              | Description                                                                                                                                                                             |
-|:-------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Abbreviation | osm_landuse                                                                                                                                                                             |
-| Subject      | Infrastructure                                                                                                                                                                          |
-| Creator      | OpenStreetMap                                                                                                                                                                           |
-| Publisher    | HAW Hamburg                                                                                                                                                                             |
-| Contributor  | ESIDA                                                                                                                                                                                   |
-| Date         | 14.06.2023                                                                                                                                                                              |
-| Type         | Dataset                                                                                                                                                                                 |
-| Format       | csv                                                                                                                                                                                     |
-| Identifier   | None                                                                                                                                                                                    |
-| Source       | Derived from OpenStreetMap and GlobalEconomy                                                                                                                                            |
-| Citation     | Map data copyrighted from OpenStreetMap contributors and available from [openstreetmap.org](openstreetmap.org) AND [https://www.theglobaleconomy.com](https://www.theglobaleconomy.com) |
-| Language     | eng                                                                                                                                                                                     |
-| Rights       | ODbl AND Unknown                                                                                                                                                                        |
-| Coverage     | Tanzania                                                                                                                                                                                |
+|              | Description    |
+|:-------------|:---------------|
+| Abbreviation | osm_landuse    |
+| Category     | Infrastructure |
+| Creator      | OpenStreetMap  |

@@ -4,9 +4,9 @@
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Infrastructure                                                       |
 | Abbreviation        | statcompiler_cellphone                                               |
-| Title               | Cellphone                                                            |
+| Title               | Cellphone usage                                                      |
 | Necessity           | optional                                                             |
-| Format              | csv                                                                  |
+| Format              | CSV                                                                  |
 | Operation           | mean(men & women)                                                    |
 | Original unit       | Percentage people who own a mobile phone                             |
 | ESIDA database unit | Percentage people who own a mobile phone                             |
@@ -23,14 +23,14 @@
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
 | Abbreviation | statcompiler_cellphone                                                                       |
-| Subject      | Infrastructure                                                                               |
+| Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
-| Title        | Cellphone                                                                                    |
+| Title        | Cellphone usage                                                                              |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |
 | Type         | Dataset                                                                                      |
-| Format       | csv                                                                                          |
+| Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
 | Source       | DHS Program                                                                                  |
 | Citation     | None                                                                                         |

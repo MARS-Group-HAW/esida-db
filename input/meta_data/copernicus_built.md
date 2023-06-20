@@ -4,9 +4,9 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_built                                                                                 |
-| Title               | Proportion Built-up                                                                              |
+| Title               | Proportion built-up                                                                              |
 | Necessity           | required                                                                                         |
-| Format              | tiff                                                                                             |
+| Format              | TIFF                                                                                             |
 | Operation           | Proportion (area of interest/whole area)                                                         |
 | Original unit       | binary (0=no, 1=yes)                                                                             |
 | ESIDA database unit | Percentage                                                                                       |
@@ -23,14 +23,14 @@
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
 | Abbreviation | copernicus_built                                                 |
-| Subject      | Enviromental                                                     |
+| Category     | Enviromental                                                     |
 | Creator      | Copernicus Land Cover                                            |
-| Title        | Proportion Built-up                                              |
+| Title        | Proportion built-up                                              |
 | Publisher    | HAW Hamburg                                                      |
 | Contributor  | ESIDA                                                            |
 | Date         | 14.06.2023                                                       |
 | Type         | Dataset                                                          |
-| Format       | csv                                                              |
+| Format       | CSV                                                              |
 | Identifier   | [10.5281/zenodo.3939038](https://doi.org/10.5281/zenodo.3939038) |
 | Source       | Copernicus                                                       |
 | Citation     | [10.3390/rs12061044](https://doi.org/10.3390/rs12061044)         |

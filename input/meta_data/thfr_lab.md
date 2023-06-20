@@ -4,9 +4,9 @@
 |:--------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_lab                                                                                                                                       |
-| Title               | Number of Medical Labs                                                                                                                         |
+| Title               | Number of medical laboratories                                                                                                                 |
 | Necessity           | optional                                                                                                                                       |
-| Format              | xls                                                                                                                                            |
+| Format              | XLS                                                                                                                                            |
 | Operation           | count                                                                                                                                          |
 | Original unit       | None                                                                                                                                           |
 | ESIDA database unit | Facilities per area                                                                                                                            |
@@ -23,14 +23,14 @@
 |              | Description                       |
 |:-------------|:----------------------------------|
 | Abbreviation | thfr_lab                          |
-| Subject      | Infrastructure                    |
+| Category     | Infrastructure                    |
 | Creator      | Tanzanian Ministry of Health      |
-| Title        | Number of Medical Labs            |
+| Title        | Number of medical laboratories    |
 | Publisher    | HAW Hamburg                       |
 | Contributor  | ESIDA                             |
 | Date         | 14.06.2023                        |
 | Type         | Dataset                           |
-| Format       | csv                               |
+| Format       | CSV                               |
 | Identifier   | None                              |
 | Source       | Tanzania Health Facility Register |
 | Citation     | None                              |
