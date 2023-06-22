@@ -34,7 +34,72 @@
 
 <div id="explain"></div>
 
+<div>
+	<details>
+		<summary>Details</summary>
+
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th>Data Layer</th>
+					<th>Score</th>
+					<th>Value</th>
+					<th>Selected from</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for row in log_likelihood_df.to_dict('records') %}
+				<tr>
+					<td><a href="{{ url_for('parameter', parameter_name=row['datalayer']) }}">{{ row['datalayer'] }}</a></td>
+					<td>{{ row['current_score'] }} (+&nbsp;{{row['threshold_score'] }})</td>
+					<td>{{ row['value'] }}</td>
+					<td>
+						{{ row['actual_value']['year'] }}
+						{{ row['actual_value']['date'] }}
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</details>
+</div>
+
+
 <div id="explain_impact"></div>
+
+
+<div>
+	<details>
+		<summary>Details</summary>
+
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th>Data Layer</th>
+					<th>Score</th>
+					<th>Value</th>
+					<th>Selected from</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for row in log_impact_df.to_dict('records') %}
+				<tr>
+					<td><a href="{{ url_for('parameter', parameter_name=row['datalayer']) }}">{{ row['datalayer'] }}</a></td>
+					<td>{{ row['current_score'] }} (+&nbsp;{{row['threshold_score'] }})</td>
+					<td>{{ row['value'] }}</td>
+					<td>
+						{{ row['actual_value']['year'] }}
+						{{ row['actual_value']['date'] }}
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</details>
+</div>
+
 
 {% endblock %}
 

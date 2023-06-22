@@ -76,6 +76,7 @@ class AlgorithmParameter(BaseParameter):
 
                     #print(f"Checking: {spec['name']}")
 
+                    actual_value = None
 
                     if spec['datalayer'] == '_month':
                         value = when.month
@@ -105,7 +106,7 @@ class AlgorithmParameter(BaseParameter):
                         dl = getattr(pm, datalayer)()
 
                         value = shpobj.get(spec['datalayer'], fallback_parent = True, retry=True, when=when)
-                        #print(value)
+                        actual_value = value.copy()
 
                         if value is not None and spec['datalayer'] in value:
                             value = value[spec['datalayer']]
@@ -204,6 +205,7 @@ class AlgorithmParameter(BaseParameter):
                         'shape_name': shape.get("name", ""),
                         'datalayer': spec['datalayer'],
                         'value': value,
+                        'actual_value': actual_value,
                         'threshold_rule': matching_thresh,
                         'threshold_score': score,
                         'current_score': risk_score,
@@ -220,6 +222,12 @@ class AlgorithmParameter(BaseParameter):
         self.set_output_path(f'output/{self.parameter_id}')
         log_df = pd.DataFrame(log_rows)
         log_df.to_csv(f"{self.get_output_path()}/{self.parameter_id}.csv")
-        log_df.to_sql(f"log_{self.parameter_id}", get_engine(), if_exists='replace', dtype={'threshold_rule': sqlalchemy.types.JSON})
+
+        log_df.to_sql(f"log_{self.parameter_id}", get_engine(), if_exists='replace',
+                      dtype={
+                          'threshold_rule': sqlalchemy.types.JSON,
+                          'actual_value': sqlalchemy.types.JSON,
+                             }
+                      )
 
         self.save()

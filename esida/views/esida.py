@@ -173,7 +173,7 @@ def esida_risk_show(shape_id):
     }
 
     # explain likelihood
-    log_likelihood_df = pd.read_sql('SELECT datalayer, current_score, threshold_score FROM log_esida_risk_likelihood WHERE shape_id = %s AND "when" = %s ORDER BY index ASC',
+    log_likelihood_df = pd.read_sql('SELECT datalayer, current_score, threshold_score, value, actual_value FROM log_esida_risk_likelihood WHERE shape_id = %s AND "when" = %s ORDER BY index ASC',
                      con=get_engine(),
                      params=tuple([shape.id, when]))
 
@@ -199,7 +199,7 @@ def esida_risk_show(shape_id):
     }]
 
     # explain impact
-    log_impact_df = pd.read_sql('SELECT datalayer, current_score, threshold_score FROM log_esida_risk_impact WHERE shape_id = %s AND "when" = %s ORDER BY index ASC',
+    log_impact_df = pd.read_sql('SELECT datalayer, current_score, threshold_score, value, actual_value FROM log_esida_risk_impact WHERE shape_id = %s AND "when" = %s ORDER BY index ASC',
                      con=get_engine(),
                      params=tuple([shape.id, when]));
     traces_impact = [{
@@ -228,6 +228,8 @@ def esida_risk_show(shape_id):
                            dl_impact = dl_impact,
                            traces_temporal=traces_temporal,
                            traces_likelihood=traces_likelihood,
+                           log_likelihood_df=log_likelihood_df,
+                           log_impact_df=log_impact_df,
                            traces_impact=traces_impact,
                            shape=shape,
                            whens=whens,
