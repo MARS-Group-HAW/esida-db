@@ -132,8 +132,8 @@ def esida_risk_show(shape_id):
 
     for s in shapes:
         shape_type = s.type
-        impact     = int(impact_df[(impact_df['shape_id'] == s.id)]['esida_risk_impact'].iloc[0])
-        likelihood = int(likelihood_df[(likelihood_df['shape_id'] == s.id)]['esida_risk_likelihood'].iloc[0])
+        impact     = float(impact_df[(impact_df['shape_id'] == s.id)]['esida_risk_impact'].iloc[0])
+        likelihood = float(likelihood_df[(likelihood_df['shape_id'] == s.id)]['esida_risk_likelihood'].iloc[0])
         label      = f"{s.name} {s.type}"
 
         if shape_type not in traces:
