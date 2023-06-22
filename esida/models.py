@@ -122,8 +122,9 @@ class Signal(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     edited_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    age = db.Column(db.Integer, nullable=False)
     report_date = db.Column(db.Date, nullable=False)
+    health_outcome = db.Column(db.String(255), nullable=False)
+    age = db.Column(db.Integer, nullable=False)
     sex = db.Column(db.String(255), nullable=False)
     geometry = db.Column(Geometry('POINT', srid=4326), nullable=False)
 
@@ -138,5 +139,4 @@ class Signal(db.Model):
         return shapes
 
     def report_date_ts(self) -> int:
-
         return int(self.report_date.replace(tzinfo=dt.timezone.utc).timestamp()) * 1000

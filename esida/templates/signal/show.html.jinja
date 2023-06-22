@@ -17,21 +17,23 @@
         </thead>
         <tbody>
           <tr>
-            <th>Date</th>
+            <th>Reported</th>
             <td>{{ signal.report_date }}</td>
           </tr>
           <tr>
-            <th>Age</th>
-            <td>{{ signal.age }}</td>
+            <th>Health outcome</th>
+            <td>{{ signal.health_outcome }}</td>
           </tr>
           <tr>
             <th>Sex</th>
             <td>{{ signal.sex }}</td>
           </tr>
+          <tr>
+            <th>Age</th>
+            <td>{{ signal.age }}</td>
+          </tr>
         </tbody>
-
       </table>
-
 
       <p>This signal intersects with in the following areas:</p>
 
@@ -79,8 +81,6 @@
 
                 <span class="text-muted ps-2">(<a href="{{ url_for('parameter', parameter_name=result['spec']['datalayer']) }}">{{ result['spec']['datalayer'] }}</a>)</span>
               </div>
-
-
 
               <div class="collapse" id="c_{{ shape.id }}_{{ result['spec']['key'] }}">
               {% for op in result['ops'] %}

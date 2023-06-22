@@ -15,22 +15,42 @@ from dbconf import get_engine
 def signal_index():
     signals = Signal.query.all()
 
-    df = pd.read_sql('SELECT report_date, id FROM signal',  parse_dates=['report_date'], con=get_engine())
+    df = pd.read_sql("SELECT report_date, id, health_outcome FROM signal",  parse_dates=['report_date'], con=get_engine())
 
-    dfx = df.groupby([pd.Grouper(key='report_date', freq='W')]).count()
-    dfx['x'] = dfx.index.astype(np.int64) / int(1e6)
-    dfx['x'] = dfx['x'].astype(int)
-    dfx['y'] = dfx['id']
-    data = dfx[['x', 'y']].values.tolist()
+    dfx1 = df[df['health_outcome'].isin(['Suspected haemorrhagic fever', 'Suspected dengue haemorrhagic fever'])]
+    dfx2 = df[~df['health_outcome'].isin(['Suspected haemorrhagic fever', 'Suspected dengue haemorrhagic fever'])]
 
-    return render_template('signal/index.html.jinja', signals=signals, data=data)
+
+    dfx1 = dfx1.groupby([pd.Grouper(key='report_date', freq='W')]).count().reset_index()
+    dfx1['x'] = dfx1['report_date'].astype(str)
+
+    dfx2 = dfx2.groupby([pd.Grouper(key='report_date', freq='W')]).count().reset_index()
+    dfx2['x'] = dfx2['report_date'].astype(str)
+
+    trace = [{
+        'x': dfx1['x'].values.tolist(),
+        'y': dfx1['id'].values.tolist(),
+        'type': 'bar',
+        'name': 'Suspected',
+    }, {
+        'x': dfx2['x'].values.tolist(),
+        'y': dfx2['id'].values.tolist(),
+        'type': 'bar',
+        'name': 'Unsuspected',
+        'marker': {
+            'color': 'rgb(200, 200, 200)',
+        }
+    }]
+
+    return render_template('signal/index.html.jinja', signals=signals, trace=trace)
 
 @app.route('/signal', methods = ['POST', 'GET'])
-def signal():
+def signal_create():
     if request.method == 'POST':
-
-        signal = Signal(age=int(request.form['age']),
+        signal = Signal(
             report_date=dt.datetime.strptime(request.form['report_date'], '%Y-%m-%d').date(),
+            health_outcome=request.form['health_outcome'],
+            age=int(request.form['age']),
             sex=request.form['sex'],
             geometry='POINT({} {})'.format(request.form['lng'], request.form['lat'])
         )
