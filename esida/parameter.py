@@ -860,12 +860,11 @@ class BaseParameter():
         if not self.is_loaded:
             return False, pd.DataFrame()
 
-        df = self.download(shape_id, start_date, end_date)
+        df = self.download(shape_id, start=start_date, end=end_date)
 
-        # No data available for signal date
-        print(df)
+        # No data available for signal date, search for all previous data
         if df is None or len(df) == 0:
-            df = self.download(shape_id, None, end_date, fallback_previous=True)
+            df = self.download(shape_id, end=end_date, fallback_previous=True)
 
             if df is None or len(df) == 0:
                 print("NO DATA!")
