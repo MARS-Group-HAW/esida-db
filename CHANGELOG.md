@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/MARS-Group-HAW/esida-db/compare/v0.2.1...v0.2.2) (2023-06-22)
+
+
+### Features
+
+* allow download of exact time point ([0fdf9db](https://github.com/MARS-Group-HAW/esida-db/commit/0fdf9db053c8d9d9b0378262225da426cc2946a6))
+* **malariaatalas_mosnet:** implement new data layer ([909e85e](https://github.com/MARS-Group-HAW/esida-db/commit/909e85e953c5ea478b90700eb6761d88dbd13a4d))
+* new propsecedu values, inverse to before ([6b60a19](https://github.com/MARS-Group-HAW/esida-db/commit/6b60a19c5e8432c6d2e7ba238bf6163b8e79dffe))
+* signal input and overview ([33b69e6](https://github.com/MARS-Group-HAW/esida-db/commit/33b69e66d9fe2e3f94bc32e5ba9f8280627ea872))
+
+
+### Bug Fixes
+
+* **docker:** install postgresql-client after apt-get update ([76180f5](https://github.com/MARS-Group-HAW/esida-db/commit/76180f524f01b2e630cd48fc46e2efc1dbeb78b3))
+* get time points orderd ([8d9ba6a](https://github.com/MARS-Group-HAW/esida-db/commit/8d9ba6a67d00c7380e46bbab3925446c75c6d8c2))
+* **statcompiler_household:** manually append 2022 preliminary results ([ccea406](https://github.com/MARS-Group-HAW/esida-db/commit/ccea4064d3080293e2d7717f0b44b13360cbc5f9))
+* **statcompiler:** use Mbeya values pre 2016 for Songwe ([91b380c](https://github.com/MARS-Group-HAW/esida-db/commit/91b380cc269dcc88400dab1a98c684f3c1d72f9d))
+* **tnbs_medlabdens:** make sure only actual year is selected ([5aa9061](https://github.com/MARS-Group-HAW/esida-db/commit/5aa9061b5bb0fe3b917a95b9781cc10282675c4b))
+* **tnbs_medlabdens:** wrong column name for technologists ([aeb5b98](https://github.com/MARS-Group-HAW/esida-db/commit/aeb5b988673f01fe2c38e4022eda4111f91d2923))
+* wrong casting of ESIDA risk coordinates ([859e086](https://github.com/MARS-Group-HAW/esida-db/commit/859e0864a3eac52167b61a0e66bc948e4e955e6b))
+* wrong parameter order ([f819419](https://github.com/MARS-Group-HAW/esida-db/commit/f8194199645b53785586164e8901dfaa1d98ae9d))
+
 ### [0.2.1](https://github.com/MARS-Group-HAW/esida-db/compare/v0.2.0...v0.2.1) (2023-05-29)
 
 
