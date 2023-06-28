@@ -9,7 +9,7 @@
 | Format              | CSV                                                                  |
 | Operation           | Indicator-based scoring algorithm                                    |
 | Original unit       | None                                                                 |
-| ESIDA database unit | risk score                                                           |
+| ESIDA database unit | Risk score                                                           |
 | Spatial details     | Dynamic                                                              |
 | Temporal details    | Monthly                                                              |
 | Timeframe           | 2010-2023                                                            |
@@ -33,5 +33,5 @@
 | Source       | ESIDA                                                            |
 | Citation     | [10.5281/zenodo.7322396](https://doi.org/10.5281/zenodo.7322396) |
 | Language     | eng                                                              |
-| Rights       | CC BY 4.0                                                        |
+| License      | CC BY 4.0                                                        |
 | Coverage     | Tanzania                                                         |

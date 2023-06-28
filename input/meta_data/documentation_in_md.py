@@ -37,7 +37,7 @@ df_dtype['Link to Source'] = df_dtype['Link to Source'].apply(make_md_link)
 
 df_dqual['Identifier'] = df_dqual['Identifier'].apply(make_md_link)
 df_dqual['Citation']   = df_dqual['Citation'].apply(make_md_link)
-df_dqual['Rights']     = df_dqual['Rights'].apply(make_md_link)
+df_dqual['License']    = df_dqual['License'].apply(make_md_link)
 
 def check_for_match():
     """ Checks if both list have identical entry. Raises Error if not else

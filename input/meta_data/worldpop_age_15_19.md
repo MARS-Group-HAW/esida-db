@@ -4,12 +4,12 @@
 |:--------------------|:-------------------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                                      |
 | Abbreviation        | worldpop_age_15_19                                                                               |
-| Title               | Number of people on age group 15 to 19                                                           |
+| Title               | Population count age group 15 to 19                                                              |
 | Necessity           | required                                                                                         |
 | Format              | TIFF                                                                                             |
-| Operation           | sum(men & women)                                                                                 |
-| Original unit       | Total number of people per grid                                                                  |
-| ESIDA database unit | Number of people per area                                                                        |
+| Operation           | Sum (men, women) per 5 year interval                                                             |
+| Original unit       | Population count per grid                                                                        |
+| ESIDA database unit | Population count per area                                                                        |
 | Spatial details     | 0.1km raster                                                                                     |
 | Temporal details    | Anually                                                                                          |
 | Timeframe           | 2000-2020                                                                                        |
@@ -34,5 +34,5 @@
 | Source       | Worldpop                                                                                                                                                                                                                                                                                                                                                                    |
 | Citation     | Bondarenko M., Kerr D., Sorichetta A., and Tatem, A.J. 2020. Estimates of total number of people per grid square, adjusted to match the corresponding UNPD 2020 estimates and broken down by gender and age groupings, produced using [Ecopia.AI](Ecopia.AI) and Maxar Technologies building footprints. WorldPop, University of Southampton, UK. doi:10.5258/SOTON/WP00699 |
 | Language     | eng                                                                                                                                                                                                                                                                                                                                                                         |
-| Rights       | CC BY 4.0                                                                                                                                                                                                                                                                                                                                                                   |
+| License      | CC BY 4.0                                                                                                                                                                                                                                                                                                                                                                   |
 | Coverage     | Tanzania                                                                                                                                                                                                                                                                                                                                                                    |

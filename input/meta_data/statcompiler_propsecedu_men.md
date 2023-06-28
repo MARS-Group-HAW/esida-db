@@ -1,20 +1,20 @@
 ## Data type and processing information 
 
-|                     | Description                                                          |
-|:--------------------|:---------------------------------------------------------------------|
-| Category            | Demographic                                                          |
-| Abbreviation        | statcompiler_propsecedu_men                                          |
-| Title               | Proportion completed secondary education men                         |
-| Necessity           | required                                                             |
-| Format              | CSV                                                                  |
-| Operation           | None                                                                 |
-| Original unit       | Male population age 6 and over with completed secondary education    |
-| ESIDA database unit | Percentage of male population who completed secondary education      |
-| Spatial details     | Region                                                               |
-| Temporal details    | Cross-sectional                                                      |
-| Timeframe           | 1991 - 2016                                                          |
-| Source              | DHS Program                                                          |
-| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
+|                     | Description                                                                            |
+|:--------------------|:---------------------------------------------------------------------------------------|
+| Category            | Demographic                                                                            |
+| Abbreviation        | statcompiler_propsecedu_men                                                            |
+| Title               | Proportion completed secondary education men                                           |
+| Necessity           | required                                                                               |
+| Format              | CSV                                                                                    |
+| Operation           | Sum (ID: males with 'some' &'completed' & 'more than sec education')                   |
+| Original unit       | Proportion of male population age 6+ with some/completed/more than secondary education |
+| ESIDA database unit | Proportion of male population with some, completed or more than secondary education    |
+| Spatial details     | Region                                                                                 |
+| Temporal details    | Cross-sectional                                                                        |
+| Timeframe           | 1991 - 2016                                                                            |
+| Source              | DHS Program (STATcompiler)                                                             |
+| Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)                   |
 
 ## Metadata information 
 
@@ -30,8 +30,8 @@
 | Type         | Dataset                                                                                      |
 | Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
-| Source       | DHS Program                                                                                  |
+| Source       | DHS Program (STATcompiler)                                                                   |
 | Citation     | None                                                                                         |
 | Language     | eng                                                                                          |
-| Rights       | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
+| License      | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
 | Coverage     | Tanzania                                                                                     |

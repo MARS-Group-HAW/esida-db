@@ -7,9 +7,9 @@
 | Title               | Proportion of population living  <2.00$ income                                                       |
 | Necessity           | required                                                                                             |
 | Format              | TIFF                                                                                                 |
-| Operation           | mean                                                                                                 |
-| Original unit       | proportion of people per grid cell living with less than 2 dollar per day                            |
-| ESIDA database unit | proportion (0 to 1)                                                                                  |
+| Operation           | Mean                                                                                                 |
+| Original unit       | Proportion of people per grid cell living with less than 2 dollar per day                            |
+| ESIDA database unit | Proportion                                                                                           |
 | Spatial details     | 1km raster                                                                                           |
 | Temporal details    | Cross-sectional                                                                                      |
 | Timeframe           | 2013                                                                                                 |
@@ -34,5 +34,5 @@
 | Source       | Worldpop                                                                         |
 | Citation     | [https://doi.org/10.1098/rsif.2016.0690](https://doi.org/10.1098/rsif.2016.0690) |
 | Language     | eng                                                                              |
-| Rights       | CC BY 4.0                                                                        |
+| License      | CC BY 4.0                                                                        |
 | Coverage     | Tanzania                                                                         |

@@ -7,9 +7,9 @@
 | Title               | Annual malaria (falciparum) incidence                                        |
 | Necessity           | optional                                                                     |
 | Format              | TIFF                                                                         |
-| Operation           | mean                                                                         |
-| Original unit       | Cases per 1000 per year                                                      |
-| ESIDA database unit | Cases per 1000 per year                                                      |
+| Operation           | Mean                                                                         |
+| Original unit       | Cases per 1,000 population per year                                          |
+| ESIDA database unit | Cases per 1,000 population per year                                          |
 | Spatial details     | District                                                                     |
 | Temporal details    | Annualy                                                                      |
 | Timeframe           | 2000-2020                                                                    |
@@ -34,5 +34,5 @@
 | Source       | Malaria Atlas Project                                                                                                                                                                                                                                      |
 | Citation     | Pfeffer, D.A., Lucas, T.C.D., May, D. et al. malariaAtlas: an R interface to global malariometric data hosted by the Malaria Atlas Project. Malar J 17, 352 (2018). [https://doi.org/10.1186/s12936-018-2500-5](https://doi.org/10.1186/s12936-018-2500-5) |
 | Language     | eng                                                                                                                                                                                                                                                        |
-| Rights       | CC BY 3.0                                                                                                                                                                                                                                                  |
+| License      | CC BY 3.0                                                                                                                                                                                                                                                  |
 | Coverage     | Tanzania                                                                                                                                                                                                                                                   |

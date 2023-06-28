@@ -5,10 +5,10 @@
 | Category            | Enviromental                                                                                     |
 | Abbreviation        | copernicus_herbwet                                                                               |
 | Title               | Proportion permanent herbaceous wetland                                                          |
-| Necessity           | required                                                                                         |
+| Necessity           | optional                                                                                         |
 | Format              | TIFF                                                                                             |
-| Operation           | Proportion (area of interest/whole area)                                                         |
-| Original unit       | binary (0=no, 1=yes)                                                                             |
+| Operation           | Proportion within the area of interest                                                           |
+| Original unit       | Binary (0=no, 1=yes)                                                                             |
 | ESIDA database unit | Percentage                                                                                       |
 | Spatial details     | 0.1km raster                                                                                     |
 | Temporal details    | Annualy                                                                                          |
@@ -35,5 +35,5 @@
 | Source       | Copernicus                                                       |
 | Citation     | [10.3390/rs12061044](https://doi.org/10.3390/rs12061044)         |
 | Language     | eng                                                              |
-| Rights       | CC BY 4.0                                                        |
+| License      | CC BY 4.0                                                        |
 | Coverage     | Tanzania                                                         |

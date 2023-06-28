@@ -7,9 +7,9 @@
 | Title               | Total precipitation                                                          |
 | Necessity           | required                                                                     |
 | Format              | TIFF                                                                         |
-| Operation           | mean                                                                         |
-| Original unit       | mm/day                                                                       |
-| ESIDA database unit | mm/day                                                                       |
+| Operation           | Mean                                                                         |
+| Original unit       | mm per day                                                                   |
+| ESIDA database unit | mm per day                                                                   |
 | Spatial details     | 5km raster                                                                   |
 | Temporal details    | Daily                                                                        |
 | Timeframe           | 1981-2020                                                                    |
@@ -34,5 +34,5 @@
 | Source       | CHIRPS                                                                         |
 | Citation     | [https://doi.org/10.1038/sdata.2015.66](https://doi.org/10.1038/sdata.2015.66) |
 | Language     | eng                                                                            |
-| Rights       | CC BY 4.0                                                                      |
+| License      | CC BY 4.0                                                                      |
 | Coverage     | Tanzania                                                                       |

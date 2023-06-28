@@ -7,9 +7,9 @@
 | Title               | Population density                                                                                     |
 | Necessity           | required                                                                                               |
 | Format              | TIFF                                                                                                   |
-| Operation           | mean                                                                                                   |
-| Original unit       | population per km^2                                                                                    |
-| ESIDA database unit | population per km^2                                                                                    |
+| Operation           | Mean                                                                                                   |
+| Original unit       | Population count per km^2                                                                              |
+| ESIDA database unit | Population count per area                                                                              |
 | Spatial details     | 1km raster                                                                                             |
 | Temporal details    | Annualy                                                                                                |
 | Timeframe           | 2000-2020                                                                                              |
@@ -34,5 +34,5 @@
 | Source       | Worldpop                                                                                     |
 | Citation     | [https://doi.org/10.1371/journal.pone.0107043](https://doi.org/10.1371/journal.pone.0107043) |
 | Language     | eng                                                                                          |
-| Rights       | CC BY 4.0                                                                                    |
+| License      | CC BY 4.0                                                                                    |
 | Coverage     | Tanzania                                                                                     |

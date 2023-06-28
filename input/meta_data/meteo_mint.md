@@ -7,9 +7,9 @@
 | Title               | Minimum temperature                                                                                              |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
-| Operation           | min                                                                                                              |
-| Original unit       | Celsius/day                                                                                                      |
-| ESIDA database unit | Celsius/day                                                                                                      |
+| Operation           | Minimum                                                                                                          |
+| Original unit       | Celsius per day                                                                                                  |
+| ESIDA database unit | Celsius per day                                                                                                  |
 | Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
 | Timeframe           | 2010-present                                                                                                     |
@@ -34,5 +34,5 @@
 | Source       | Meteostat                                        |
 | Citation     | None                                             |
 | Language     | eng                                              |
-| Rights       | CC BY-NC 4.0                                     |
+| License      | CC BY-NC 4.0                                     |
 | Coverage     | Tanzania                                         |

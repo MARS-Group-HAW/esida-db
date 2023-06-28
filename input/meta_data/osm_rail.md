@@ -7,9 +7,9 @@
 | Title               | Rail infrastructure quality index                                                                                          |
 | Necessity           | required                                                                                                                   |
 | Format              | API                                                                                                                        |
-| Operation           | binary*weight                                                                                                              |
-| Original unit       | None                                                                                                                       |
-| ESIDA database unit | None                                                                                                                       |
+| Operation           | Binary*Index                                                                                                               |
+| Original unit       | (a) Presence of the infrastructure (binary (0=no, 1=yes), (b) Infrastructure quality index (numeric)                       |
+| ESIDA database unit | Infrastructure quality index if infrastructure present                                                                     |
 | Spatial details     | Coordinates                                                                                                                |
 | Temporal details    | Cross-sectional                                                                                                            |
 | Timeframe           | Most recent (2023)                                                                                                         |
@@ -33,5 +33,5 @@
 | Source       | Derived from OpenStreetMap and GlobalEconomy                                                                                                                                            |
 | Citation     | Map data copyrighted from OpenStreetMap contributors and available from [openstreetmap.org](openstreetmap.org) AND [https://www.theglobaleconomy.com](https://www.theglobaleconomy.com) |
 | Language     | eng                                                                                                                                                                                     |
-| Rights       | ODbl AND Unknown                                                                                                                                                                        |
+| License      | ODbl AND Unknown                                                                                                                                                                        |
 | Coverage     | Tanzania                                                                                                                                                                                |

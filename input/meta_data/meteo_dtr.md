@@ -5,11 +5,11 @@
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_dtr                                                                                                        |
 | Title               | Diurnal temporal range                                                                                           |
-| Necessity           | required                                                                                                         |
+| Necessity           | optional                                                                                                         |
 | Format              | API                                                                                                              |
-| Operation           | range (max-min)                                                                                                  |
-| Original unit       | Celsius/day                                                                                                      |
-| ESIDA database unit | Celsius/day                                                                                                      |
+| Operation           | Range (max-min)                                                                                                  |
+| Original unit       | Celsius per day                                                                                                  |
+| ESIDA database unit | Celsius per day                                                                                                  |
 | Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
 | Timeframe           | 2010-present                                                                                                     |
@@ -34,5 +34,5 @@
 | Source       | Derived from Meteostat                           |
 | Citation     | None                                             |
 | Language     | eng                                              |
-| Rights       | CC BY-NC 4.0                                     |
+| License      | CC BY-NC 4.0                                     |
 | Coverage     | Tanzania                                         |

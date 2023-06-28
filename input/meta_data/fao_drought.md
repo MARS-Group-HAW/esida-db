@@ -5,11 +5,11 @@
 | Category            | Weather                                                                                                                                                          |
 | Abbreviation        | fao_drought                                                                                                                                                      |
 | Title               | Agricultutral stress index                                                                                                                                       |
-| Necessity           | required                                                                                                                                                         |
+| Necessity           | optional                                                                                                                                                         |
 | Format              | CSV                                                                                                                                                              |
-| Operation           | None                                                                                                                                                             |
-| Original unit       | % of area with Mean VHI below 35                                                                                                                                 |
-| ESIDA database unit | % of area with Mean VHI below 35                                                                                                                                 |
+| Operation           | Proportion within the area of interest                                                                                                                           |
+| Original unit       | Proportion of area with mean Vegetation Health Index (VHI) below 35                                                                                              |
+| ESIDA database unit | Proportion                                                                                                                                                       |
 | Spatial details     | Region                                                                                                                                                           |
 | Temporal details    | Thrice-monthly                                                                                                                                                   |
 | Timeframe           | 1984 - 2021                                                                                                                                                      |
@@ -34,5 +34,5 @@
 | Source       | FAO                                                                                                                                                                                                            |
 | Citation     | FAO - Agricultrual Stress Index System (ASIS), [http://www.fao.org/giews/earthobservation/](http://www.fao.org/giews/earthobservation/)                                                                        |
 | Language     | eng                                                                                                                                                                                                            |
-| Rights       | CC BY-NC-SA 3.0 IGO                                                                                                                                                                                            |
+| License      | CC BY-NC-SA 3.0 IGO                                                                                                                                                                                            |
 | Coverage     | Tanzania                                                                                                                                                                                                       |

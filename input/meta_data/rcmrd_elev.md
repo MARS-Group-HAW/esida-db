@@ -5,11 +5,11 @@
 | Category            | Enviromental                                                                                                                                                                                                                   |
 | Abbreviation        | rcmrd_elev                                                                                                                                                                                                                     |
 | Title               | Elevation                                                                                                                                                                                                                      |
-| Necessity           | optional                                                                                                                                                                                                                       |
+| Necessity           | required                                                                                                                                                                                                                       |
 | Format              | TIFF                                                                                                                                                                                                                           |
-| Operation           | mean                                                                                                                                                                                                                           |
-| Original unit       | meter above sea level                                                                                                                                                                                                          |
-| ESIDA database unit | meter above sea level                                                                                                                                                                                                          |
+| Operation           | Mean                                                                                                                                                                                                                           |
+| Original unit       | Meter above sea level                                                                                                                                                                                                          |
+| ESIDA database unit | Meter above sea level                                                                                                                                                                                                          |
 | Spatial details     | 0.03km raster                                                                                                                                                                                                                  |
 | Temporal details    | Cross-sectional                                                                                                                                                                                                                |
 | Timeframe           | 2018                                                                                                                                                                                                                           |
@@ -34,5 +34,5 @@
 | Source       | RCMRD         |
 | Citation     | None          |
 | Language     | eng           |
-| Rights       | ODbl          |
+| License      | ODbl          |
 | Coverage     | Tanzania      |

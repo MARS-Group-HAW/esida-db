@@ -5,11 +5,11 @@
 | Category            | Health                                                                       |
 | Abbreviation        | malariaatlas_mosnet                                                          |
 | Title               | Insecticide treated bednet (ITN) use (beta)                                  |
-| Necessity           | required                                                                     |
+| Necessity           | optional                                                                     |
 | Format              | TIFF                                                                         |
-| Operation           | None                                                                         |
-| Original unit       | Percentage of ITN use where malaria is endemic                               |
-| ESIDA database unit | None                                                                         |
+| Operation           | Mean                                                                         |
+| Original unit       | Proportion of ITN use where malaria is endemic                               |
+| ESIDA database unit | Proportion of ITN use where malaria is endemic                               |
 | Spatial details     | To be published soon                                                         |
 | Temporal details    | Annualy                                                                      |
 | Timeframe           | 2000-2019                                                                    |
@@ -33,5 +33,5 @@
 | Source       | Malaria Atlas Project                       |
 | Citation     | To be published soon                        |
 | Language     | eng                                         |
-| Rights       | CC BY 3.0                                   |
+| License      | CC BY 3.0                                   |
 | Coverage     | Tanzania                                    |

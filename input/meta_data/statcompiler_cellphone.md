@@ -7,15 +7,15 @@
 | Title               | Cellphone usage                                                      |
 | Necessity           | optional                                                             |
 | Format              | CSV                                                                  |
-| Operation           | mean(men & women)                                                    |
-| Original unit       | Percentage people who own a mobile phone                             |
-| ESIDA database unit | Percentage people who own a mobile phone                             |
+| Operation           | Mean                                                                 |
+| Original unit       | Proportion of population who own a mobile phone (men & women)        |
+| ESIDA database unit | Proportion of population who own a mobile phone                      |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
 | Timeframe           | 2016                                                                 |
-| Source              | DHS Program                                                          |
+| Source              | DHS Program (STATcompiler)                                           |
 | Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment             | DHS IndicatorId: CO_MOBB_W_MOB , CO_MOBB_M_MOB                       |
+| Comment             | DHS Indicator ID: CO_MOBB_W_MOB , CO_MOBB_M_MOB                      |
 | Related Sources     | None                                                                 |
 
 ## Metadata information 
@@ -32,8 +32,8 @@
 | Type         | Dataset                                                                                      |
 | Format       | CSV                                                                                          |
 | Identifier   | None                                                                                         |
-| Source       | DHS Program                                                                                  |
+| Source       | DHS Program (STATcompiler)                                                                   |
 | Citation     | None                                                                                         |
 | Language     | eng                                                                                          |
-| Rights       | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
+| License      | [https://dhsprogram.com/data/terms-of-use.cfm](https://dhsprogram.com/data/terms-of-use.cfm) |
 | Coverage     | Tanzania                                                                                     |

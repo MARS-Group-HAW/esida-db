@@ -5,15 +5,15 @@
 | Category            | Health                                                                                                                                                |
 | Abbreviation        | hdx_hfr_hospital                                                                                                                                      |
 | Title               | Number of hospitals                                                                                                                                   |
-| Necessity           | required                                                                                                                                              |
+| Necessity           | optional                                                                                                                                              |
 | Format              | XLS                                                                                                                                                   |
-| Operation           | count                                                                                                                                                 |
-| Original unit       | None                                                                                                                                                  |
-| ESIDA database unit | Amount                                                                                                                                                |
+| Operation           | None                                                                                                                                                  |
+| Original unit       | Facility count                                                                                                                                        |
+| ESIDA database unit | Count                                                                                                                                                 |
 | Spatial details     | Coordinates                                                                                                                                           |
 | Temporal details    | Cross-sectional                                                                                                                                       |
 | Timeframe           | 2022                                                                                                                                                  |
-| Source              | Literature-based                                                                                                                                      |
+| Source              | The Humanitarian Data Exchange                                                                                                                        |
 | Link to Source      | [https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa](https://data.humdata.org/dataset/health-facilities-in-sub-saharan-africa)? |
 | Comment             | https://www.nature.com/articles/s41597-019-0142-2#code-availability                                                                                   |
 | Related Sources     | Tanzania Health Facility Register AND Tanzanian Census 2022                                                                                           |
@@ -35,5 +35,5 @@
 | Source       | Literature-based             |
 | Citation     | None                         |
 | Language     | eng                          |
-| Rights       | CC BY                        |
+| License      | CC BY                        |
 | Coverage     | Tanzania                     |

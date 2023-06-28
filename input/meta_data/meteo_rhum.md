@@ -5,11 +5,11 @@
 | Category            | Weather                                                                                                          |
 | Abbreviation        | meteo_rhum                                                                                                       |
 | Title               | Relative humidity                                                                                                |
-| Necessity           | optional                                                                                                         |
+| Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
-| Operation           | mean                                                                                                             |
-| Original unit       | avg. percentage/day                                                                                              |
-| ESIDA database unit | avg. percentage/day                                                                                              |
+| Operation           | Mean                                                                                                             |
+| Original unit       | Mean percent per day                                                                                             |
+| ESIDA database unit | Mean percent per day                                                                                             |
 | Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
 | Timeframe           | 2010-present                                                                                                     |
@@ -34,5 +34,5 @@
 | Source       | Meteostat                                        |
 | Citation     | None                                             |
 | Language     | eng                                              |
-| Rights       | CC BY-NC 4.0                                     |
+| License      | CC BY-NC 4.0                                     |
 | Coverage     | Tanzania                                         |

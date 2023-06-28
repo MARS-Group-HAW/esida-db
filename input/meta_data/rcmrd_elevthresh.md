@@ -7,9 +7,9 @@
 | Title               | Elevation below 1600m                                                                                                                                                                                                          |
 | Necessity           | optional                                                                                                                                                                                                                       |
 | Format              | TIFF                                                                                                                                                                                                                           |
-| Operation           | Proportion (area of interest/whole area)                                                                                                                                                                                       |
-| Original unit       | meter above sea level                                                                                                                                                                                                          |
-| ESIDA database unit | percentage of area under 1600m                                                                                                                                                                                                 |
+| Operation           | Proportion within the area of interest                                                                                                                                                                                         |
+| Original unit       | Meter above sea level                                                                                                                                                                                                          |
+| ESIDA database unit | Proportion of area with elevantion less than 1600m                                                                                                                                                                             |
 | Spatial details     | 0.03km raster                                                                                                                                                                                                                  |
 | Temporal details    | Cross-sectional                                                                                                                                                                                                                |
 | Timeframe           | 2018                                                                                                                                                                                                                           |
@@ -34,5 +34,5 @@
 | Source       | Derived from RCMRD    |
 | Citation     | None                  |
 | Language     | eng                   |
-| Rights       | ODbl                  |
+| License      | ODbl                  |
 | Coverage     | Tanzania              |

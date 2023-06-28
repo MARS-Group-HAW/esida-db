@@ -8,8 +8,8 @@
 | Necessity           | optional                                           |
 | Format              | PDF                                                |
 | Operation           | None                                               |
-| Original unit       | Number of Hospitals                                |
-| ESIDA database unit | Number of Hospitals                                |
+| Original unit       | Facility count                                     |
+| ESIDA database unit | Facilities per area                                |
 | Spatial details     | Region                                             |
 | Temporal details    | Cross-sectional                                    |
 | Timeframe           | 2022                                               |
@@ -35,5 +35,5 @@
 | Source       | Tanzanian Census 2022                                                                                                                            |
 | Citation     | None                                                                                                                                             |
 | Language     | eng                                                                                                                                              |
-| Rights       | [https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf](https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf) |
+| License      | [https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf](https://www.nbs.go.tz/nbs/takwimu/references/Licence-Agreement-NBS.pdf) |
 | Coverage     | Tanzania                                                                                                                                         |

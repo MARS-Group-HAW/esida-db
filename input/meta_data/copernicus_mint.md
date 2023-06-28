@@ -7,9 +7,9 @@
 | Title               | Minumum temperature                                                                                                                                                    |
 | Necessity           | omitted                                                                                                                                                                |
 | Format              | GRIB                                                                                                                                                                   |
-| Operation           | min                                                                                                                                                                    |
-| Original unit       | Celsius/day                                                                                                                                                            |
-| ESIDA database unit | Celsius/day                                                                                                                                                            |
+| Operation           | Minimum                                                                                                                                                                |
+| Original unit       | Celsius per day                                                                                                                                                        |
+| ESIDA database unit | Celsius per day                                                                                                                                                        |
 | Spatial details     | 9km raster                                                                                                                                                             |
 | Temporal details    | Hourly                                                                                                                                                                 |
 | Timeframe           | 1950 - present                                                                                                                                                         |
@@ -35,5 +35,5 @@
 | Source       | Copernicus                                                                                                                                                                   |
 | Citation     | [doi.org/10.1002/qj.3803](doi.org/10.1002/qj.3803)                                                                                                                           |
 | Language     | eng                                                                                                                                                                          |
-| Rights       | [https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview) |
+| License      | [https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land?tab=overview) |
 | Coverage     | Tanzania                                                                                                                                                                     |

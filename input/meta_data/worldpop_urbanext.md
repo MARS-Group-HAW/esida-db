@@ -7,9 +7,9 @@
 | Title               | Urban settlement extent                                                                                |
 | Necessity           | optional                                                                                               |
 | Format              | TIFF                                                                                                   |
-| Operation           | Proportion (area of interest/whole area)                                                               |
-| Original unit       | binary (0=not urban, 1=urban)                                                                          |
-| ESIDA database unit | proportion (0 to 1)                                                                                    |
+| Operation           | Proportion within the area of interest                                                                 |
+| Original unit       | Binary (0=not urban, 1=urban)                                                                          |
+| ESIDA database unit | Proportion                                                                                             |
 | Spatial details     | 0.1km raster                                                                                           |
 | Temporal details    | Cross-sectional                                                                                        |
 | Timeframe           | 2020, 2010                                                                                             |
@@ -34,5 +34,5 @@
 | Source       | Worldpop                                                                               |
 | Citation     | [https://doi.org/10.1016/j.rse.2014.09.023](https://doi.org/10.1016/j.rse.2014.09.023) |
 | Language     | eng                                                                                    |
-| Rights       | CC BY 4.0                                                                              |
+| License      | CC BY 4.0                                                                              |
 | Coverage     | Tanzania                                                                               |

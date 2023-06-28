@@ -6,6 +6,7 @@
 | Abbreviation | esida_dengue_suitability |
 | Title        | Dengue suitability index |
 | Necessity    | required                 |
+| Source       | ESIDA                    |
 
 ## Metadata information 
 
@@ -24,5 +25,5 @@
 | Source       | Expert knowledge         |
 | Citation     | None                     |
 | Language     | eng                      |
-| Rights       | None                     |
+| License      | None                     |
 | Coverage     | Tanzania                 |

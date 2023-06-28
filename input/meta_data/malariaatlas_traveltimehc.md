@@ -7,7 +7,7 @@
 | Title               | Average time to health care facility                                         |
 | Necessity           | required                                                                     |
 | Format              | TIFF                                                                         |
-| Operation           | mean                                                                         |
+| Operation           | Mean                                                                         |
 | Original unit       | Hours                                                                        |
 | ESIDA database unit | Hours                                                                        |
 | Spatial details     | 1km raster                                                                   |
@@ -34,5 +34,5 @@
 | Source       | Malaria Atlas Project                                                                                                                                                                                                                                      |
 | Citation     | Pfeffer, D.A., Lucas, T.C.D., May, D. et al. malariaAtlas: an R interface to global malariometric data hosted by the Malaria Atlas Project. Malar J 17, 352 (2018). [https://doi.org/10.1186/s12936-018-2500-5](https://doi.org/10.1186/s12936-018-2500-5) |
 | Language     | eng                                                                                                                                                                                                                                                        |
-| Rights       | CC BY 3.0                                                                                                                                                                                                                                                  |
+| License      | CC BY 3.0                                                                                                                                                                                                                                                  |
 | Coverage     | Tanzania                                                                                                                                                                                                                                                   |

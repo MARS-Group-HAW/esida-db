@@ -7,9 +7,9 @@
 | Title               | Total precipitation                                                                                              |
 | Necessity           | required                                                                                                         |
 | Format              | API                                                                                                              |
-| Operation           | sum                                                                                                              |
-| Original unit       | mm/day                                                                                                           |
-| ESIDA database unit | mm/day                                                                                                           |
+| Operation           | Sum                                                                                                              |
+| Original unit       | mm per day                                                                                                       |
+| ESIDA database unit | mm per day                                                                                                       |
 | Spatial details     | Coordinates                                                                                                      |
 | Temporal details    | Hourly                                                                                                           |
 | Timeframe           | 2010-present                                                                                                     |
@@ -34,5 +34,5 @@
 | Source       | Meteostat                                        |
 | Citation     | None                                             |
 | Language     | eng                                              |
-| Rights       | CC BY-NC 4.0                                     |
+| License      | CC BY-NC 4.0                                     |
 | Coverage     | Tanzania                                         |

@@ -7,9 +7,9 @@
 | Title               | Maximum temperature                                                                    |
 | Necessity           | required                                                                               |
 | Format              | TIFF                                                                                   |
-| Operation           | mean                                                                                   |
-| Original unit       | Celsius/day                                                                            |
-| ESIDA database unit | Celsius/day                                                                            |
+| Operation           | Mean                                                                                   |
+| Original unit       | Celsius per day                                                                        |
+| ESIDA database unit | Celsius per day                                                                        |
 | Spatial details     | 5km raster                                                                             |
 | Temporal details    | Daily                                                                                  |
 | Timeframe           | 1983-2016                                                                              |
@@ -34,5 +34,5 @@
 | Source       | CHIRTS                                                                               |
 | Citation     | [https://doi.org/10.1175/JCLI-D-18-0698.1](https://doi.org/10.1175/JCLI-D-18-0698.1) |
 | Language     | eng                                                                                  |
-| Rights       | CC0 1.0                                                                              |
+| License      | CC0 1.0                                                                              |
 | Coverage     | Tanzania                                                                             |

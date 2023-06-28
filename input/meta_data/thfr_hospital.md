@@ -5,10 +5,10 @@
 | Category            | Infrastructure                                                                                                                                 |
 | Abbreviation        | thfr_hospital                                                                                                                                  |
 | Title               | Number of hospitals                                                                                                                            |
-| Necessity           | required                                                                                                                                       |
+| Necessity           | optional                                                                                                                                       |
 | Format              | XLS                                                                                                                                            |
-| Operation           | count                                                                                                                                          |
-| Original unit       | None                                                                                                                                           |
+| Operation           | None                                                                                                                                           |
+| Original unit       | Facility count                                                                                                                                 |
 | ESIDA database unit | Facilities per area                                                                                                                            |
 | Spatial details     | Coordinates                                                                                                                                    |
 | Temporal details    | Hourly                                                                                                                                         |
@@ -35,5 +35,5 @@
 | Source       | Tanzania Health Facility Register |
 | Citation     | None                              |
 | Language     | eng                               |
-| Rights       | Unkown                            |
+| License      | Unkown                            |
 | Coverage     | Tanzania                          |
