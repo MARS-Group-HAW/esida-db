@@ -10,6 +10,7 @@ class esida_risk_impact(AlgorithmParameter):
         self.precision = 0
 
         self.time_col = 'date'
+        self.date_picker = 'month'
 
         self.choropleth2 = [
             {

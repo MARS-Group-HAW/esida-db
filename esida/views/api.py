@@ -295,6 +295,8 @@ def api_parameter_map(parameter_id, shape_type, date):
     date_parts = date.split('-')
     if (len(date_parts) == 3):
         date_obj = dt.datetime(year=int(date_parts[0]), month=int(date_parts[1]), day=int(date_parts[2]))
+    elif (len(date_parts) == 2):
+        date_obj = dt.datetime(year=int(date_parts[0]), month=int(date_parts[1]), day=1)
     else:
         date_obj = dt.datetime(year=int(date), month=1, day=1)
 

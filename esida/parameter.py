@@ -53,6 +53,10 @@ class BaseParameter():
 
         self.time_col = 'year'
 
+        # In combination with time_col = date this can be set to 'month'
+        # to show a month date picker in the frontend.
+        self.date_picker = None
+
         self.output = 'db'
 
 
@@ -658,7 +662,7 @@ class BaseParameter():
 
         return dreq
 
-    def get_first_time(self):
+    def get_first_time(self, date_format=None):
 
         if not self.is_loaded:
             self.logger.warning("get_first_time requested but not loaded")
@@ -675,9 +679,12 @@ class BaseParameter():
         res = con.execute(sql)
         req = res.fetchone()
 
+        if date_format:
+            return req['date'].strftime(date_format)
+
         return req['date']
 
-    def get_last_time(self):
+    def get_last_time(self, date_format=None):
 
         if not self.is_loaded:
             self.logger.warning("get_first_time requested but not loaded")
@@ -693,6 +700,9 @@ class BaseParameter():
         con = connect()
         res = con.execute(sql)
         req = res.fetchone()
+
+        if date_format:
+            return req['date'].strftime(date_format)
 
         return req['date']
 
