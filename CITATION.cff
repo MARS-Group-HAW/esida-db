@@ -13,6 +13,7 @@ authors:
     orcid: 'https://orcid.org/0000-0002-9757-8030'
   - given-names: Kristopher
     family-names: Nolte
+    orcid: 'https://orcid.org/0000-0003-3444-7380'
   - given-names: Juliane
     family-names: Boenecke
     orcid: 'https://orcid.org/0000-0002-6327-8152'
@@ -25,6 +26,7 @@ authors:
   - given-names: Thomas
     family-names: Clemen
     orcid: 'https://orcid.org/0000-0002-8200-5141'
+  - affiliation: ESIDA Consortium
 repository-code: 'https://github.com/MARS-Group-HAW/esida-db'
 license: MIT
 version: 0.2.2
