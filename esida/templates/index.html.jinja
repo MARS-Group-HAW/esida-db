@@ -4,25 +4,23 @@
 
 
 {% block content %}
-  <div class="clearfix">
-  <img class="float-end ps-3 pb-3" width="250" src="{{ url_for('static', filename='images/Logo_Projekt_ESIDA2021.png') }}" alt="ESIDA spelled out in the logo">
-
-  <h1>ESIDA Data Hub</h1>
+<div class="clearfix">
+	<img class="float-end ps-3 pb-3" width="250" src="{{ url_for('static', filename='images/Logo_Projekt_ESIDA2021.png') }}" alt="ESIDA spelled out in the logo">
+	<h1>ESIDA Data Hub</h1>
 </div>
-  <div class="row">
-    <div class="col-12 col-sm-6">
 
-      <h2>Data sources</h2>
-      <p>
-        In the database there are {{ count_parameters }} Data Layers with {{ count_local_data_sources }} locally saved data sources (some Data Layers are derived from the same data source).
-        In total that are <b>{{ total_size_human }}</b> on storage. This number is a bit larger than the actual raw data, since in some cases raw data need to be transformed and duplicated or compressed source files are still on the file system and counted as well.
-      </p>
-      <p>
-        More explanations and documentation can be accessed for each Data Layer on its <a href="{{ url_for('parameters') }}">documentation page</a>.
-      </p>
-    </div>
-    <div class="col-12 col-sm-6">
+<div class="row">
+	<div class="col-12 col-sm-6">
+		<h2>Data sources</h2>
 
+		<p>
+			The ESIDA Data Hub is a spatio-temporal information system (pre-prototype) that integrates {{ count_parameters }} Data Layers available for Tanzania across five categories (socio-demographic, environmental, meteorological, health, and infrastructure), derived from {{ count_local_data_sources }} locally stored data sources (some Data Layers are derived from the same data source). In total, the Data Hub hosts <b>{{ total_size_human }}</b> of data. This is slightly larger than the volume of the original raw data, because for some Data Layers the original data is processed, and duplicated or compressed source files are stored in the ESIDA file system, which add to the total data volume.
+		</p>
+		<p>
+			More details and in-depth documentation of each Data Layer can be accessed via its <a href="{{ url_for('parameters') }}">documentation page</a> (including metadata information).
+		</p>
+	</div>
+    <div class="col-12 col-sm-6">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="chart-tab" data-bs-toggle="tab" data-bs-target="#chart-tab-pane" type="button" role="tab" aria-controls="chart-tab-pane" aria-selected="true">Chart</button>
@@ -61,50 +59,50 @@
           </table>
         </div>
       </div>
+	</div>
+</div>
 
-    </div>
-  </div>
+<h2>Data access</h2>
 
-  <h2>Data access</h2>
-
-  <p>
-    To access the gathered open data sources you can browse them via the <a href="{{ url_for('shape_index', shape_type='region') }}">Region</a> and <a href="{{ url_for('shape_index', shape_type='district') }}">District</a> listings or the <a href="{{ url_for('map') }}">interactive map</a>. After selecting an area of interest you can select your wanted data via a download configurator, a minimal preview of the data is provided as well.
-  </p>
-  <p>
-    Additionally a simple API access is possible. Use the provided Jupyter Notebook (<a download href="{{ url_for('static', filename='ESIDA DB Demo.ipynb') }}"><code>ESIDA DB Demo.ipynb</code></a>) with Python code for example on how to query and use the data.
-  </p>
-
-  {#
-  <p>
-    Regarding data quality metrics also a notebook is provided: <a download href="{{ url_for('static', filename='ESIDA DB Data Quality.ipynb') }}"><code>ESIDA DB Data Quality.ipynb</code></a> (<span class="text-muted">Due to long-running queries for the spatial coverage of data layers, this notebook should be used with a locally hosted instance of the database.</span>)
-  </p>
-  #}
+<p>
+	To access the gathered open data sources you can browse them via the <a href="{{ url_for('shape_index', shape_type='region') }}">Region</a> and <a href="{{ url_for('shape_index', shape_type='district') }}">District</a> listings or the <a href="{{ url_for('map') }}">interactive map</a>. After selecting an area of interest you can select your wanted data via a download configurator, a minimal preview of the data is provided as well.
+</p>
+<p>
+	Additionally a simple API access is possible. Use the provided Jupyter Notebook (<a download href="{{ url_for('static', filename='ESIDA DB Demo.ipynb') }}"><code>ESIDA DB Demo.ipynb</code></a>) with Python code for example on how to query and use the data.
+</p>
 
 
-  <div class="d-sm-flex mt-5 justify-content-between">
-    <div class="text-center text-sm-start">
-      <span class="text-muted small">Produced by:</span>
-      <div class="d-sm-flex align-items-center h-100">
-        <a class="mx-3" href="https://www.mars-group.org/"><img src="{{ url_for('static', filename='images/mars-group.svg') }}" width="200" alt="MARS Group"></a>
-        <a class="mx-3" href="https://www.haw-hamburg.de/forschung/forschungsprojekte-detail/project/project/show/esida/"><img src="{{ url_for('static', filename='images/HAW_Marke_RGB_300dpi.jpeg') }}" width="200" alt="HAW Hamburg"></a>
-      </div>
-   </div>
+<h2>Data Hub Terms of Use</h2>
 
-    <div class="text-center text-sm-end">
-      <span class="text-muted small">Funded by:</span>
-      <div class="d-sm-flex align-items-center h-100">
-        <a class="mx-3 text-center" href="https://www.connect-education-research-innovation.de/en/esida.html">
-          <img src="{{ url_for('static', filename='images/connect-logo-en.jpeg') }}" width="200" alt="Logo Connect">
-        </a>
-        <a class="mx-3 d-block" style="text-decoration: none;" href="https://www.bmbf.de/bmbf/en/home/home_node.html">
-          <img src="{{ url_for('static', filename='images/BMBF_gefoerdert_2017_en.svg') }}" width="100" alt="Federal Ministry of Education and Research">
-          <small class="text-muted py-1 d-block" style="font-size: 10px;">(ID 01DU20005)</small>
-        </a>
-      </div>
-    </div>
-  </div>
+<p>
+	The ESIDA Data Hub hosts datasets under a wide range of licenses to meet the specific intellectual property protection requirements of the different datasets. As part of ESIDA, some datasets have been spatially and temporally processed according to the needs of potential user groups. By accessing datasets through the ESIDA Data Hub and/or the original source, users implicitly agree to abide by the terms of the applicable license specific to each dataset, as described in the dataset's metadata. This includes that when using content from the dataset, the data custodian shall be credited in the manner specified in the applicable license and that relevant copyright provisions shall be complied with. In addition, the ESIDA Data Hub shall be cited as contributing service as follows:
+</p>
+<p class="ps-3 text-muted" style="border-left: 3px solid #ccc; font-style: italic;">
+	Jonathan Ströbele, Kristopher Nolte, Juliane Boenecke, Matthias H Belau, Ulfia A Lenfers, Thomas Clemen, ESIDA Consortium, 2023. ESIDA Data Hub (v{{ version}}, MIT license), GitHub repository. <a href="https://github.com/MARS-Group-HAW/esida-db">https://github.com/MARS-Group-HAW/esida-db</a>
+</p>
 
+<div class="d-sm-flex mt-5 justify-content-between">
+	<div class="text-center text-sm-start">
+		<span class="text-muted small">Produced by:</span>
+		<div class="d-sm-flex align-items-center h-100">
+			<a class="mx-3" href="https://www.mars-group.org/"><img src="{{ url_for('static', filename='images/mars-group.svg') }}" width="200" alt="MARS Group"></a>
+			<a class="mx-3" href="https://www.haw-hamburg.de/forschung/forschungsprojekte-detail/project/project/show/esida/"><img src="{{ url_for('static', filename='images/HAW_Marke_RGB_300dpi.jpeg') }}" width="200" alt="HAW Hamburg"></a>
+		</div>
+	</div>
 
+	<div class="text-center text-sm-end">
+		<span class="text-muted small">Funded by:</span>
+		<div class="d-sm-flex align-items-center h-100">
+			<a class="mx-3 text-center" href="https://www.connect-education-research-innovation.de/en/esida.html">
+				<img src="{{ url_for('static', filename='images/connect-logo-en.jpeg') }}" width="200" alt="Logo Connect">
+			</a>
+			<a class="mx-3 d-block" style="text-decoration: none;" href="https://www.bmbf.de/bmbf/en/home/home_node.html">
+				<img src="{{ url_for('static', filename='images/BMBF_gefoerdert_2017_en.svg') }}" width="100" alt="Federal Ministry of Education and Research">
+				<small class="text-muted py-1 d-block" style="font-size: 10px;">(ID 01DU20005)</small>
+			</a>
+		</div>
+	</div>
+</div>
 {% endblock %}
 
 {% block footer %}
