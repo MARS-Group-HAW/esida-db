@@ -18,28 +18,14 @@ def signal_index():
     df = pd.read_sql("SELECT report_date, id, health_outcome FROM signal",  parse_dates=['report_date'], con=get_engine())
 
     dfx1 = df[df['health_outcome'].isin(['Suspected haemorrhagic fever', 'Suspected dengue haemorrhagic fever'])]
-    dfx2 = df[~df['health_outcome'].isin(['Suspected haemorrhagic fever', 'Suspected dengue haemorrhagic fever'])]
-
-
     dfx1 = dfx1.groupby([pd.Grouper(key='report_date', freq='W')]).count().reset_index()
     dfx1['x'] = dfx1['report_date'].astype(str)
-
-    dfx2 = dfx2.groupby([pd.Grouper(key='report_date', freq='W')]).count().reset_index()
-    dfx2['x'] = dfx2['report_date'].astype(str)
 
     trace = [{
         'x': dfx1['x'].values.tolist(),
         'y': dfx1['id'].values.tolist(),
         'type': 'bar',
         'name': 'Suspected',
-    }, {
-        'x': dfx2['x'].values.tolist(),
-        'y': dfx2['id'].values.tolist(),
-        'type': 'bar',
-        'name': 'Unsuspected',
-        'marker': {
-            'color': 'rgb(200, 200, 200)',
-        }
     }]
 
     return render_template('signal/index.html.jinja', signals=signals, trace=trace)
