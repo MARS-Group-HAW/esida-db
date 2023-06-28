@@ -33,15 +33,18 @@ Build and start the containers:
 The Data Hub is now available at [http://localhost/](http://localhost/) - though it is empty at the moment and not everything works. To set it up follow these steps: Open a CLI inside the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands to create the database schema and import initial data. Those are only required to be run after the first setup.
 
 ````
-$ docker-compose exec esida flask create-db          # setup required database columns
+# setup required database columns
+$ docker-compose exec esida flask create-db          
 
-$ docker-compose exec esida python ./esida-cli.py init # import Tanzania region/district shape files into db
+# import Tanzania region/district shape files into db
+$ docker-compose exec esida python ./esida-cli.py load-shapes ./input/shapes/esida_tza.gpkg
 
-$ docker-compose exec esida python ./esida-cli.py param meteo_tprecit extract # download and process precipitation data from Meteostat
+# download and process precipitation data from Meteostat
+$ docker-compose exec esida python ./esida-cli.py param meteo_tprecit extract
 $ docker-compose exec esida python ./esida-cli.py param meteo_tprecit load
 ````
 
-Further parameters can be loaded with the following commands, see `parameters/` folder or the [listing in the web-frontend](http://localhost/parameters) for available parameter `key`s. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder [`./notebooks/ESIDA DB Demo.ipynb`](notebooks/ESIDA%20DB%20Demo.ipynb)).
+Further Data Layers can be loaded with the following commands, see `parameters/` folder or the [listing in the web-frontend](http://localhost/parameters) for available parameter `key`s. After loading, you can use the download function for each shape or use the API to get the data (see Jupyter Notebook in folder [`./notebooks/ESIDA DB Demo.ipynb`](notebooks/ESIDA%20DB%20Demo.ipynb)).
 
 ```
 $ docker-compose exec esida python ./esida-cli.py param <key> extract # downloads files from source

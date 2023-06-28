@@ -31,48 +31,6 @@ logger = log.setup_custom_logger('root')
 def cli():
     pass
 
-@cli.command()
-def init():
-    """ Init database, by creating database and importing district/region shapes. """
-
-    # regions first, so foreign-keys exist
-    regions_gdf = geopandas.read_file('./input/shapes/Districts_Shapefiles_2019/Regions Based on Districts.shp')
-    regions_gdf = regions_gdf.rename(columns={
-        "Region_Nam": "name",
-        "Region_Cod": "region_code",
-    })
-    regions_gdf['type'] = 'region'
-    regions_gdf = regions_gdf.sort_values(by=['region_code'])
-    regions_gdf[['name', 'geometry', 'type']].to_postgis('shape', connect(), if_exists='append')
-
-    imported_regions_gdf = geopandas.GeoDataFrame.from_postgis("SELECT * FROM shape WHERE type= 'region'", connect(), geom_col='geometry')
-
-    def find_pk_if_region(name):
-        for _, row in imported_regions_gdf.iterrows():
-            if (row['name'] == name):
-                return row['id']
-        raise ValueError(f"No parent region id found for region ({name})")
-
-    districts_gdf = geopandas.read_file('./input/shapes/Districts_Shapefiles_2019/Districts and TC as 2020 FIXED.shp')
-    districts_gdf = districts_gdf.rename(columns={
-        "NewDist20":  "name",
-        "Region_Nam": "region_name",
-        "Region_Cod": "region_code",
-        "District_C": "district_c"
-    })
-    districts_gdf['type'] = 'district'
-    districts_gdf['parent_id'] = districts_gdf['region_name'].apply(find_pk_if_region)
-    districts_gdf = districts_gdf.sort_values(by=['region_code', 'district_c'])
-    districts_gdf[['name', 'parent_id', 'type', 'geometry']].to_postgis('shape', connect(), if_exists='append')
-
-    # calculate district area
-    # Date are in ESPG:4326 (deg based), so for ST_Area() to produce m2
-    # we need to convert to a meters based system. With utmzone() we identify
-    # the resp. used UTM Zone that is m based.
-    con = connect()
-    con.execute('UPDATE shape SET area_sqm = \
-        ST_Area(ST_Transform(geometry, utmzone(ST_Centroid(geometry))))')
-
 @cli.command("load-shapes")
 @click.argument('file', type=click.Path(exists=True))
 def load_shapes(file):
@@ -88,8 +46,6 @@ def load_shapes(file):
     for col in required_cols:
         if col not in gdf.columns:
             raise click.UsageError(f"{col} column is required")
-
-
 
     # In Geopandas/Pandas there is no None/Null value for Integers. So our
     # parent_id column with the int reference is of type float (b/c upper most
