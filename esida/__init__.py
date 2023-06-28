@@ -54,7 +54,7 @@ params  = [name for _, name, _ in pkgutil.iter_modules(['parameters'])]
 
 def shape_types() -> list:
     """ Return available shape types for hierarchical area of interests. """
-    types = config('DATAHUB_SHAPE_TYPES', default="region district", cast=str)
+    types = config('DATAHUB_SHAPE_TYPES', default="country region district", cast=str)
     return types.split(" ")
 
 
