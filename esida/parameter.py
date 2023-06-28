@@ -573,8 +573,14 @@ class BaseParameter():
         res = con.execute(sql, (shape_type, ))
         rows = []
         for row in res:
+
+            value = row[0]
+
+            if type(value) is bool:
+                value = int(value)
+
             rows.append({
-                'value': row[0],
+                'value': value,
                 'shape_id': row[1],
                 'name': row[2],
                 'geometry':  shapely.wkb.loads(row[3], hex=True)
