@@ -26,7 +26,7 @@ authors:
   - given-names: Thomas
     family-names: Clemen
     orcid: 'https://orcid.org/0000-0002-8200-5141'
-  - affiliation: ESIDA Consortium
+  - family-names: ESIDA Consortium
 repository-code: 'https://github.com/MARS-Group-HAW/esida-db'
 license: MIT
 version: 0.2.2
