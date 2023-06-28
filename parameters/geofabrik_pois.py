@@ -1,9 +1,14 @@
 import geopandas
 import pandas as pd
+import functools
 
 from esida.geofabrik_parameter import GeofabrikParameter
 
 class geofabrik_pois(GeofabrikParameter):
+
+    @functools.cached_property
+    def is_loaded(self):
+        return None
 
     def load(self, shapes=None, save_output=False):
         pofw_gdf = geopandas.read_file(self.get_data_path() / 'gis_osm_pofw_free_1.shp')

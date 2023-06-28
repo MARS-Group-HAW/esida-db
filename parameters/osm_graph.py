@@ -1,3 +1,4 @@
+import functools
 import osmnx as ox
 from osmnx import io
 
@@ -5,6 +6,9 @@ from esida.parameter import BaseParameter
 
 class osm_graph(BaseParameter):
 
+    @functools.cached_property
+    def is_loaded(self):
+        return None
 
     def load(self, shapes=None, save_output=False):
         ox.settings.log_console=True

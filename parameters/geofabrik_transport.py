@@ -1,8 +1,14 @@
+import functools
+
 import geopandas
 
 from esida.geofabrik_parameter import GeofabrikParameter
 
 class geofabrik_transport(GeofabrikParameter):
+
+    @functools.cached_property
+    def is_loaded(self):
+        return None
 
     def load(self, shapes=None, save_output=False):
         gdf = geopandas.read_file(self.get_data_path() / 'gis_osm_transport_free_1.shp')

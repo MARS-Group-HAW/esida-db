@@ -1,10 +1,7 @@
-import os
-import subprocess
-from urllib.parse import urlparse
+import functools
 import datetime as dt
 
 import fiona
-import geopandas
 import pandas as pd
 from decouple import config
 
@@ -17,6 +14,10 @@ class visualcrossing_weather(BaseParameter):
     def __init__(self):
         super().__init__()
         self.time_col = 'date'
+
+    @functools.cached_property
+    def is_loaded(self):
+        return None
 
     def extract(self):
         url = "https://www.fao.org/giews/earthobservation/asis/data/country/TZA/MAP_ASI/DATA/ASI_Dekad_Season1_data.csv"
