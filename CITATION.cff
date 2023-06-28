@@ -1,0 +1,31 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: ESIDA Data Hub
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Jonathan
+    family-names: Ströbele
+    orcid: 'https://orcid.org/0000-0002-9757-8030'
+  - given-names: Kristopher
+    family-names: Nolte
+  - given-names: Juliane
+    family-names: Boenecke
+    orcid: 'https://orcid.org/0000-0002-6327-8152'
+  - given-names: Matthias H
+    family-names: Belau
+    orcid: 'https://orcid.org/0000-0003-2141-2162'
+  - given-names: ' Ulfia A'
+    family-names: Lenfers
+    orcid: 'https://orcid.org/0000-0002-4425-7241'
+  - given-names: Thomas
+    family-names: Clemen
+    orcid: 'https://orcid.org/0000-0002-8200-5141'
+repository-code: 'https://github.com/MARS-Group-HAW/esida-db'
+license: MIT
+version: 0.2.2
+date-released: '2023-06-22'
