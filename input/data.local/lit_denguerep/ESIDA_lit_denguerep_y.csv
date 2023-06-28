@@ -1,0 +1,289 @@
+﻿year;shape_id;dengue_susp;dengue_conf;dengue_fat;dengue_loc;type;shape_name;shape_type
+2010;2;0;0;0;0;region;Arusha;region
+2010;3;0;40;0;1;region;Dar-es-salaam;region
+2010;4;0;0;0;0;region;Dodoma;region
+2010;5;0;0;0;0;region;Geita;region
+2010;6;0;0;0;0;region;Iringa;region
+2010;7;0;0;0;0;region;Kagera;region
+2010;8;0;0;0;0;region;Kaskazini Pemba;region
+2010;9;0;0;0;1;region;Kaskazini Unguja;region
+2010;10;0;0;0;0;region;Katavi;region
+2010;11;0;0;0;0;region;Kigoma;region
+2010;12;0;0;0;0;region;Kilimanjaro;region
+2010;13;0;0;0;0;region;Kusini Pemba;region
+2010;14;0;0;0;1;region;Kusini Unguja;region
+2010;15;0;0;0;0;region;Lindi;region
+2010;16;0;0;0;0;region;Manyara;region
+2010;17;0;0;0;0;region;Mara;region
+2010;18;0;0;0;0;region;Mbeya;region
+2010;19;0;0;0;1;region;Mjini Magharibi;region
+2010;20;0;0;0;0;region;Morogoro;region
+2010;21;0;0;0;0;region;Mtwara;region
+2010;22;0;0;0;0;region;Mwanza;region
+2010;23;0;0;0;0;region;Njombe;region
+2010;24;0;0;0;0;region;Pwani;region
+2010;25;0;0;0;0;region;Rukwa;region
+2010;26;0;0;0;0;region;Ruvuma;region
+2010;27;0;0;0;0;region;Shinyanga;region
+2010;28;0;0;0;0;region;Simiyu;region
+2010;29;0;0;0;0;region;Singida;region
+2010;30;0;0;0;0;region;Songwe;region
+2010;31;0;0;0;0;region;Tabora;region
+2010;32;0;0;0;0;region;Tanga;region
+2010;1;0;60;0;1;country;Tanzania;country
+2012;2;0;0;0;0;region;Arusha;region
+2012;3;0;0;0;0;region;Dar-es-salaam;region
+2012;4;0;0;0;0;region;Dodoma;region
+2012;5;0;0;0;0;region;Geita;region
+2012;6;0;0;0;0;region;Iringa;region
+2012;7;0;0;0;0;region;Kagera;region
+2012;8;0;0;0;0;region;Kaskazini Pemba;region
+2012;9;0;0;0;0;region;Kaskazini Unguja;region
+2012;10;0;0;0;0;region;Katavi;region
+2012;11;0;0;0;0;region;Kigoma;region
+2012;12;0;0;0;0;region;Kilimanjaro;region
+2012;13;0;0;0;0;region;Kusini Pemba;region
+2012;14;0;0;0;0;region;Kusini Unguja;region
+2012;15;0;0;0;0;region;Lindi;region
+2012;16;0;0;0;0;region;Manyara;region
+2012;17;0;0;0;0;region;Mara;region
+2012;18;0;0;0;0;region;Mbeya;region
+2012;19;0;0;0;0;region;Mjini Magharibi;region
+2012;20;0;0;0;0;region;Morogoro;region
+2012;21;0;0;0;0;region;Mtwara;region
+2012;22;0;0;0;0;region;Mwanza;region
+2012;23;0;0;0;0;region;Njombe;region
+2012;24;0;0;0;0;region;Pwani;region
+2012;25;0;0;0;0;region;Rukwa;region
+2012;26;0;0;0;0;region;Ruvuma;region
+2012;27;0;0;0;0;region;Shinyanga;region
+2012;28;0;0;0;0;region;Simiyu;region
+2012;29;0;0;0;0;region;Singida;region
+2012;30;0;0;0;0;region;Songwe;region
+2012;31;0;0;0;0;region;Tabora;region
+2012;32;0;0;0;0;region;Tanga;region
+2012;1;0;0;0;1;country;Tanzania;country
+2013;2;0;0;0;0;region;Arusha;region
+2013;3;0;0;0;1;region;Dar-es-salaam;region
+2013;4;0;0;0;0;region;Dodoma;region
+2013;5;0;0;0;0;region;Geita;region
+2013;6;0;0;0;0;region;Iringa;region
+2013;7;0;0;0;0;region;Kagera;region
+2013;8;0;0;0;0;region;Kaskazini Pemba;region
+2013;9;0;0;0;0;region;Kaskazini Unguja;region
+2013;10;0;0;0;0;region;Katavi;region
+2013;11;0;0;0;0;region;Kigoma;region
+2013;12;0;0;0;0;region;Kilimanjaro;region
+2013;13;0;0;0;0;region;Kusini Pemba;region
+2013;14;0;0;0;0;region;Kusini Unguja;region
+2013;15;0;0;0;0;region;Lindi;region
+2013;16;0;0;0;0;region;Manyara;region
+2013;17;0;0;0;0;region;Mara;region
+2013;18;0;0;0;0;region;Mbeya;region
+2013;19;0;0;0;0;region;Mjini Magharibi;region
+2013;20;0;0;0;0;region;Morogoro;region
+2013;21;0;0;0;0;region;Mtwara;region
+2013;22;0;0;0;0;region;Mwanza;region
+2013;23;0;0;0;0;region;Njombe;region
+2013;24;0;0;0;0;region;Pwani;region
+2013;25;0;0;0;0;region;Rukwa;region
+2013;26;0;0;0;0;region;Ruvuma;region
+2013;27;0;0;0;0;region;Shinyanga;region
+2013;28;0;0;0;0;region;Simiyu;region
+2013;29;0;0;0;0;region;Singida;region
+2013;30;0;0;0;0;region;Songwe;region
+2013;31;0;0;0;0;region;Tabora;region
+2013;32;0;0;0;0;region;Tanga;region
+2013;1;0;172;5;1;country;Tanzania;country
+2014;2;0;0;0;0;region;Arusha;region
+2014;3;0;0;0;1;region;Dar-es-salaam;region
+2014;4;0;0;0;0;region;Dodoma;region
+2014;5;0;0;0;0;region;Geita;region
+2014;6;0;0;0;0;region;Iringa;region
+2014;7;0;0;0;0;region;Kagera;region
+2014;8;0;0;0;0;region;Kaskazini Pemba;region
+2014;9;0;0;0;1;region;Kaskazini Unguja;region
+2014;10;0;0;0;0;region;Katavi;region
+2014;11;0;0;0;1;region;Kigoma;region
+2014;12;0;0;0;1;region;Kilimanjaro;region
+2014;13;0;0;0;0;region;Kusini Pemba;region
+2014;14;0;0;0;1;region;Kusini Unguja;region
+2014;15;0;0;0;0;region;Lindi;region
+2014;16;0;0;0;0;region;Manyara;region
+2014;17;0;0;0;0;region;Mara;region
+2014;18;0;0;0;1;region;Mbeya;region
+2014;19;0;0;0;1;region;Mjini Magharibi;region
+2014;20;0;0;0;0;region;Morogoro;region
+2014;21;0;0;0;0;region;Mtwara;region
+2014;22;0;0;0;1;region;Mwanza;region
+2014;23;0;0;0;0;region;Njombe;region
+2014;24;0;0;0;0;region;Pwani;region
+2014;25;0;0;0;0;region;Rukwa;region
+2014;26;0;0;0;0;region;Ruvuma;region
+2014;27;0;0;0;0;region;Shinyanga;region
+2014;28;0;0;0;0;region;Simiyu;region
+2014;29;0;0;0;0;region;Singida;region
+2014;30;0;0;0;0;region;Songwe;region
+2014;31;0;0;0;0;region;Tabora;region
+2014;32;0;0;0;0;region;Tanga;region
+2014;1;2121;1017;4;1;country;Tanzania;country
+2018;2;0;0;0;0;region;Arusha;region
+2018;3;0;0;0;1;region;Dar-es-salaam;region
+2018;4;0;0;0;0;region;Dodoma;region
+2018;5;0;0;0;0;region;Geita;region
+2018;6;0;0;0;0;region;Iringa;region
+2018;7;0;0;0;0;region;Kagera;region
+2018;8;0;0;0;0;region;Kaskazini Pemba;region
+2018;9;0;0;0;0;region;Kaskazini Unguja;region
+2018;10;0;0;0;0;region;Katavi;region
+2018;11;0;0;0;0;region;Kigoma;region
+2018;12;0;0;0;0;region;Kilimanjaro;region
+2018;13;0;0;0;0;region;Kusini Pemba;region
+2018;14;0;0;0;0;region;Kusini Unguja;region
+2018;15;0;0;0;0;region;Lindi;region
+2018;16;0;0;0;0;region;Manyara;region
+2018;17;0;0;0;0;region;Mara;region
+2018;18;0;0;0;0;region;Mbeya;region
+2018;19;0;0;0;0;region;Mjini Magharibi;region
+2018;20;0;0;0;0;region;Morogoro;region
+2018;21;0;0;0;0;region;Mtwara;region
+2018;22;0;0;0;0;region;Mwanza;region
+2018;23;0;0;0;0;region;Njombe;region
+2018;24;0;0;0;0;region;Pwani;region
+2018;25;0;0;0;0;region;Rukwa;region
+2018;26;0;0;0;0;region;Ruvuma;region
+2018;27;0;0;0;0;region;Shinyanga;region
+2018;28;0;0;0;0;region;Simiyu;region
+2018;29;0;0;0;0;region;Singida;region
+2018;30;0;0;0;0;region;Songwe;region
+2018;31;0;0;0;0;region;Tabora;region
+2018;32;0;0;0;1;region;Tanga;region
+2018;1;0;11;0;1;country;Tanzania;country
+2019;2;0;8;0;1;region;Arusha;region
+2019;3;0;6272;11;1;region;Dar-es-salaam;region
+2019;4;0;3;1;1;region;Dodoma;region
+2019;5;0;0;0;0;region;Geita;region
+2019;6;0;0;0;0;region;Iringa;region
+2019;7;0;2;0;1;region;Kagera;region
+2019;8;0;0;0;0;region;Kaskazini Pemba;region
+2019;9;0;0;0;0;region;Kaskazini Unguja;region
+2019;10;0;0;0;0;region;Katavi;region
+2019;11;0;0;0;0;region;Kigoma;region
+2019;12;0;1;0;1;region;Kilimanjaro;region
+2019;13;0;0;0;0;region;Kusini Pemba;region
+2019;14;0;0;0;0;region;Kusini Unguja;region
+2019;15;0;12;0;1;region;Lindi;region
+2019;16;0;0;0;0;region;Manyara;region
+2019;17;0;0;0;0;region;Mara;region
+2019;18;0;0;0;0;region;Mbeya;region
+2019;19;0;0;0;0;region;Mjini Magharibi;region
+2019;20;0;22;0;1;region;Morogoro;region
+2019;21;0;1;0;1;region;Mtwara;region
+2019;22;0;0;0;0;region;Mwanza;region
+2019;23;0;0;0;0;region;Njombe;region
+2019;24;0;101;0;1;region;Pwani;region
+2019;25;0;0;0;0;region;Rukwa;region
+2019;26;0;1;0;1;region;Ruvuma;region
+2019;27;0;0;0;0;region;Shinyanga;region
+2019;28;0;0;0;0;region;Simiyu;region
+2019;29;0;3;0;1;region;Singida;region
+2019;30;0;0;0;0;region;Songwe;region
+2019;31;0;0;0;0;region;Tabora;region
+2019;32;0;369;1;1;region;Tanga;region
+2019;1;0;6795;13;1;country;Tanzania;country
+2020;2;0;0;0;0;region;Arusha;region
+2020;3;0;1;0;1;region;Dar-es-salaam;region
+2020;4;0;0;0;0;region;Dodoma;region
+2020;5;0;0;0;0;region;Geita;region
+2020;6;0;0;0;0;region;Iringa;region
+2020;7;0;0;0;0;region;Kagera;region
+2020;8;0;0;0;0;region;Kaskazini Pemba;region
+2020;9;0;0;0;0;region;Kaskazini Unguja;region
+2020;10;0;0;0;0;region;Katavi;region
+2020;11;0;0;0;0;region;Kigoma;region
+2020;12;0;0;0;0;region;Kilimanjaro;region
+2020;13;0;0;0;0;region;Kusini Pemba;region
+2020;14;0;0;0;0;region;Kusini Unguja;region
+2020;15;0;0;0;0;region;Lindi;region
+2020;16;0;0;0;0;region;Manyara;region
+2020;17;0;0;0;0;region;Mara;region
+2020;18;0;0;0;0;region;Mbeya;region
+2020;19;0;0;0;0;region;Mjini Magharibi;region
+2020;20;0;0;0;0;region;Morogoro;region
+2020;21;0;0;0;0;region;Mtwara;region
+2020;22;0;0;0;0;region;Mwanza;region
+2020;23;0;0;0;0;region;Njombe;region
+2020;24;0;0;0;0;region;Pwani;region
+2020;25;0;0;0;0;region;Rukwa;region
+2020;26;0;0;0;0;region;Ruvuma;region
+2020;27;0;0;0;0;region;Shinyanga;region
+2020;28;0;0;0;0;region;Simiyu;region
+2020;29;0;0;0;0;region;Singida;region
+2020;30;0;0;0;0;region;Songwe;region
+2020;31;0;0;0;0;region;Tabora;region
+2020;32;0;6;0;1;region;Tanga;region
+2020;1;0;7;0;1;country;Tanzania;country
+2021;2;0;0;0;0;region;Arusha;region
+2021;3;0;19;0;1;region;Dar-es-salaam;region
+2021;4;0;0;0;0;region;Dodoma;region
+2021;5;0;0;0;0;region;Geita;region
+2021;6;0;0;0;0;region;Iringa;region
+2021;7;0;0;0;0;region;Kagera;region
+2021;8;0;0;0;0;region;Kaskazini Pemba;region
+2021;9;0;0;0;0;region;Kaskazini Unguja;region
+2021;10;0;0;0;0;region;Katavi;region
+2021;11;0;0;0;0;region;Kigoma;region
+2021;12;0;0;0;0;region;Kilimanjaro;region
+2021;13;0;0;0;0;region;Kusini Pemba;region
+2021;14;0;0;0;0;region;Kusini Unguja;region
+2021;15;0;0;0;0;region;Lindi;region
+2021;16;0;0;0;0;region;Manyara;region
+2021;17;0;0;0;0;region;Mara;region
+2021;18;0;0;0;0;region;Mbeya;region
+2021;19;0;0;0;0;region;Mjini Magharibi;region
+2021;20;0;0;0;0;region;Morogoro;region
+2021;21;0;0;0;0;region;Mtwara;region
+2021;22;0;0;0;0;region;Mwanza;region
+2021;23;0;0;0;0;region;Njombe;region
+2021;24;0;0;0;0;region;Pwani;region
+2021;25;0;0;0;0;region;Rukwa;region
+2021;26;0;0;0;0;region;Ruvuma;region
+2021;27;0;0;0;0;region;Shinyanga;region
+2021;28;0;0;0;0;region;Simiyu;region
+2021;29;0;0;0;0;region;Singida;region
+2021;30;0;0;0;0;region;Songwe;region
+2021;31;0;0;0;0;region;Tabora;region
+2021;32;0;1;0;0;region;Tanga;region
+2021;1;0;20;0;1;country;Tanzania;country
+2022;2;0;0;0;0;region;Arusha;region
+2022;3;0;0;0;0;region;Dar-es-salaam;region
+2022;4;0;0;0;0;region;Dodoma;region
+2022;5;0;0;0;0;region;Geita;region
+2022;6;0;0;0;0;region;Iringa;region
+2022;7;0;0;0;0;region;Kagera;region
+2022;8;0;0;0;0;region;Kaskazini Pemba;region
+2022;9;0;0;0;0;region;Kaskazini Unguja;region
+2022;10;0;0;0;0;region;Katavi;region
+2022;11;0;0;0;0;region;Kigoma;region
+2022;12;0;0;0;0;region;Kilimanjaro;region
+2022;13;0;0;0;0;region;Kusini Pemba;region
+2022;14;0;0;0;0;region;Kusini Unguja;region
+2022;15;0;0;0;0;region;Lindi;region
+2022;16;0;0;0;0;region;Manyara;region
+2022;17;0;0;0;0;region;Mara;region
+2022;18;0;0;0;0;region;Mbeya;region
+2022;19;0;0;0;0;region;Mjini Magharibi;region
+2022;20;0;0;0;0;region;Morogoro;region
+2022;21;0;0;0;0;region;Mtwara;region
+2022;22;0;0;0;0;region;Mwanza;region
+2022;23;0;0;0;0;region;Njombe;region
+2022;24;0;0;0;0;region;Pwani;region
+2022;25;0;0;0;0;region;Rukwa;region
+2022;26;0;0;0;0;region;Ruvuma;region
+2022;27;0;0;0;0;region;Shinyanga;region
+2022;28;0;0;0;0;region;Simiyu;region
+2022;29;0;0;0;0;region;Singida;region
+2022;30;0;0;0;0;region;Songwe;region
+2022;31;0;0;0;0;region;Tabora;region
+2022;32;0;0;0;0;region;Tanga;region
+2022;1;0;0;0;0;country;Tanzania;country

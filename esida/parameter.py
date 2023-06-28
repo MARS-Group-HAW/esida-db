@@ -760,6 +760,7 @@ class BaseParameter():
         for _, row in gdf.iterrows():
             shapes.append({
                 'id':       row['id'],
+                'type':     row['type'],
                 'name':     row['name'],
                 'geometry': row['geometry'],
             })
