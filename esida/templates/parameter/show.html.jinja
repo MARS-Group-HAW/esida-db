@@ -81,7 +81,12 @@
               {% endfor %}
             </select>
           {% else %}
-            <input type="date" class="form-control" id="js-map-date" min="{{ parameter.get_first_time() }}" max="{{ parameter.get_last_time() }}">
+
+			{% if parameter.date_picker == 'month' %}
+            	<input type="month" class="form-control" id="js-map-date" min="{{ parameter.get_first_time('%Y-%m') }}" max="{{ parameter.get_last_time('%Y-%m') }}">
+			{% else %}
+            	<input type="date" class="form-control" id="js-map-date" min="{{ parameter.get_first_time() }}" max="{{ parameter.get_last_time() }}">
+			{% endif %}
           {% endif %}
 
           <button id="js-add-to-map" class="btn btn-outline-secondary btn-sm">Load map</button>
@@ -341,10 +346,9 @@ var legend = false;
 
 $('#js-add-to-map').on('click', function(e) {
 
-
     let date = $('#js-map-date').val();
     if (!date) {
-        alert("Please select da date first.")
+        alert("Please select a date first.")
         return;
     }
 

@@ -25,13 +25,13 @@
 <hr>
 
 <p>
-	Detailed information for each layer:
+	Detailed information for each shape:
 </p>
 
 <div class="input-group mb-3" style="max-width: 400px">
 	<select class="form-select js-chosen-select" id="js-shape">
 		{% for shape in shapes %}
-		<option value="{{ shape.id }}">{{ shape.name }} ({{ shape.type }}</option>
+		<option value="{{ shape.id }}">{{ shape.name }} ({{ shape.type }})</option>
 		{% endfor %}
 	</select>
 
