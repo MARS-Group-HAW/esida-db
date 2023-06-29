@@ -120,7 +120,6 @@ class MeteostatParameter(BaseParameter):
 
         if len(station_ids) == 0:
             self.logger.warning("No stations found for shape")
-
             return pd.DataFrame()
 
         dfxs = []
@@ -130,8 +129,9 @@ class MeteostatParameter(BaseParameter):
             if self.meteo_mode == 'hourly':
                 column = 'meteostat_hourly'
 
-            dfxs.append(pd.read_sql('SELECT * FROM ' + column + ' \
-                WHERE meteostat_station_id = ' + str(sid), con=connect()))
+            dfx = pd.read_sql(f'SELECT * FROM ' + column + ' \
+                WHERE meteostat_station_id = ' + str(sid), con=connect())
+            dfxs.append(dfx)
 
         df = pd.DataFrame()
         if len(dfxs) == 1:
@@ -153,7 +153,6 @@ class MeteostatParameter(BaseParameter):
         if len(df) == 0:
             self.logger.warning("No data found for stations inside shape")
 
-
         return df
 
     def load(self, shapes=None, save_output=False):
@@ -172,6 +171,12 @@ class MeteostatParameter(BaseParameter):
             else:
                 raise ValueError("No geometry found for given shape.")
 
+            # for hourly values on ahum/rhum data layers on a country level (lots of stations)
+            # the script crashes on the amount of data. since the value is probably
+            # not useful anyway, we skip country level for now.
+            if self.parameter_id in ['meteo_ahum', 'meteo_rhum'] and shape['type'] == 'country':
+                continue
+
             df = self.get_station_data_for_shape(mask[0])
 
             if len(df) == 0:
@@ -187,7 +192,6 @@ class MeteostatParameter(BaseParameter):
             dfns.append(dfn)
 
         self.df = pd.concat(dfns)
-
         self.save()
 
     def consume(self, df, shape):

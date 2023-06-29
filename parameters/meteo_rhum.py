@@ -12,7 +12,7 @@ class meteo_rhum(MeteostatParameter):
     def consume(self, df, shape):
 
         # resample hourly values to one day
-        df = df.resample('d', on='time').mean().dropna(how='all')
+        df = df.resample('d', on='time').mean(numeric_only=True).dropna(how='all')
         df = df.reset_index()
 
         # create mean for column of interest over all identified stations
