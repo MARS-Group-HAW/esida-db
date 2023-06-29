@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/MARS-Group-HAW/esida-db/compare/v0.2.2...v0.3.0) (2023-06-29)
+
+
+### Features
+
+* lit_denugerep layers ([8d5d9a0](https://github.com/MARS-Group-HAW/esida-db/commit/8d5d9a0e56d9639d94382f162bda110e4d5d0674))
+* show licenses of algorithm data layer ([939dcff](https://github.com/MARS-Group-HAW/esida-db/commit/939dcffab86a9409fbf03857854a299a836ccd7a))
+
+
+### Bug Fixes
+
+* highlight un-loadbale data layers ([8f18da0](https://github.com/MARS-Group-HAW/esida-db/commit/8f18da000da2f973465f1db05b7542c7d088ab15))
+* month selector for data layers with only one value per month ([97af1f5](https://github.com/MARS-Group-HAW/esida-db/commit/97af1f5157a781bb30cf8a12953ad1223ad33d28))
+* run ahum/rhum meteo not on country due to large data-sets ([95fd6ba](https://github.com/MARS-Group-HAW/esida-db/commit/95fd6ba78dab2529d968a25eb76e3a1af1884db1))
+* show binary data layers on map chart casted to 0/1 ([7aadea9](https://github.com/MARS-Group-HAW/esida-db/commit/7aadea9b7845860bd2e44c1867b9b72a46f3efac))
+* update index page with usage ([7b669f8](https://github.com/MARS-Group-HAW/esida-db/commit/7b669f842ab266dfbc6ac2d6243fd14d00d81f55))
+
 ### [0.2.2](https://github.com/MARS-Group-HAW/esida-db/compare/v0.2.1...v0.2.2) (2023-06-22)
 
 

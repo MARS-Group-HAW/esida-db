@@ -29,5 +29,5 @@ authors:
   - family-names: ESIDA Consortium
 repository-code: 'https://github.com/MARS-Group-HAW/esida-db'
 license: MIT
-version: 0.2.2
-date-released: '2023-06-22'
+version: 0.3.0
+date-released: '2023-06-29'
