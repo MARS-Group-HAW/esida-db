@@ -231,3 +231,32 @@ class AlgorithmParameter(BaseParameter):
                       )
 
         self.save()
+
+    def data_licenses(self) -> int:
+        with open(self.algorithm, "r") as stream:
+            try:
+                algorithm = yaml.safe_load(stream)
+            except yaml.YAMLError as exc:
+                print(exc)
+                return
+
+        licenses=[]
+
+        for spec in algorithm['spec']:
+
+            if 'datalayer' not in spec:
+                continue
+
+            if spec['datalayer'][0] == "_":
+                continue
+
+            datalayer = spec['datalayer']
+            pm = importlib.import_module(f'parameters.{datalayer}')
+            dl = getattr(pm, datalayer)()
+
+            licenses.append({
+                'datalayer': spec['datalayer'],
+                'license': dl.get_meta('license')
+            })
+
+        return licenses

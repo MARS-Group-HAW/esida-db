@@ -39,6 +39,49 @@
 </div>
 
 
+<h2>Licenses</h2>
+
+<p>Licenses of the data used in the algorithm for the scores:</p>
+
+<details class="mb-3">
+	<summary>Likelihood</summary>
+	<table class="table table-sm">
+		<thead>
+			<tr>
+				<th>Data Layer</th>
+				<th>License</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in dl_likelihood.data_licenses() %}
+			<tr>
+				<td>{{ row['datalayer'] }}</td>
+				<td>{{ row['license'] }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</details>
+
+<details class="mb-3">
+	<summary>Impact</summary>
+	<table class="table table-sm">
+		<thead>
+			<tr>
+				<th>Data Layer</th>
+				<th>License</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in dl_impact.data_licenses() %}
+			<tr>
+				<td>{{ row['datalayer'] }}</td>
+				<td>{{ row['license'] }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</details>
 {% endblock %}
 
 {% block footer %}
