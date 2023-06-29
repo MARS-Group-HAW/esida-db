@@ -3,6 +3,10 @@
     {
       "filename": "esida/version.py",
       "updater": "python-version-updater.js"
+    },
+    {
+      "filename": "CITATION.cff",
+      "updater": "cff-version-updater.js"
     }
   ]
 }
