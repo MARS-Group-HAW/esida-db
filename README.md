@@ -30,7 +30,7 @@ Build and start the containers:
 
     $ docker-compose up -d
 
-The Data Hub is now available at [http://localhost/](http://localhost/) - though it is empty at the moment and not everything works. To set it up follow these steps: Open a CLI inside the Docker container (Docker GUI CLI or `$ docker-compose exec esida bash`) and run the following commands to create the database schema and import initial data. Those are only required to be run after the first setup.
+The Data Hub is now available at [http://localhost/](http://localhost/) - though it is empty at the moment and not everything works. To set it up follow these steps:
 
 ````
 # setup required database columns
