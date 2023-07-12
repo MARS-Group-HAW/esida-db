@@ -1,1 +1,2 @@
 notebooks/*.ipynb linguist-documentation
+*.sh text eol=lf
