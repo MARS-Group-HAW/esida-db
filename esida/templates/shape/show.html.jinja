@@ -300,7 +300,7 @@ $('#dl_filtered').on('click', function(e) {
 
   pars = [];
   active.forEach(function(el) {
-    pars.push(column_to_parameter[el]);
+    pars.push(el);
   })
   options['filter_parameters'] = [...new Set(pars)];
 
