@@ -3,7 +3,7 @@
 |                     | Description                                                                              |
 |:--------------------|:-----------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                           |
-| Abbreviation        | statcompiler_drinkwater                                                                  |
+| Abbreviation        | dhs_drinkwater                                                                           |
 | Title               | Access to clean drinking water                                                           |
 | Necessity           | optional                                                                                 |
 | Format              | CSV                                                                                      |
@@ -22,7 +22,7 @@
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_drinkwater                                                                      |
+| Abbreviation | dhs_drinkwater                                                                               |
 | Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
 | Title        | Access to clean drinking water                                                               |

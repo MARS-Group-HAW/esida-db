@@ -3,7 +3,7 @@
 |                     | Description                                                          |
 |:--------------------|:---------------------------------------------------------------------|
 | Category            | Infrastructure                                                       |
-| Abbreviation        | statcompiler_cellphone                                               |
+| Abbreviation        | dhs_cellphone                                                        |
 | Title               | Cellphone usage                                                      |
 | Necessity           | optional                                                             |
 | Format              | CSV                                                                  |
@@ -22,7 +22,7 @@
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_cellphone                                                                       |
+| Abbreviation | dhs_cellphone                                                                                |
 | Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
 | Title        | Cellphone usage                                                                              |

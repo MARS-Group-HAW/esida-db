@@ -1,9 +1,9 @@
-from esida.statcompiler_parameter import StatcompilerParameter
+from esida.dhs_parameter import DHSParameter
 
-class statcompiler_education_women(StatcompilerParameter):
+class dhs_education_men(DHSParameter):
 
     def get_indicators(self):
-        return ['ED_EDUC_W_MYR']
+        return ['ED_EDUC_M_MYR']
 
     def consume(self, df):
         df[f'{self.parameter_id}'] = df[self.get_indicators()].mean(axis=1)

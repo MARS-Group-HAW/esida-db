@@ -3,10 +3,10 @@ import re
 import numpy as np
 import pandas as pd
 
-from esida.statcompiler_parameter import StatcompilerParameter
+from esida.dhs_parameter import DHSParameter
 from dbconf import get_engine
 
-class statcompiler_internet(StatcompilerParameter):
+class dhs_internet(DHSParameter):
 
     def get_indicators(self):
         return ['CO_INUS_W_U12', 'CO_INUS_M_U12']

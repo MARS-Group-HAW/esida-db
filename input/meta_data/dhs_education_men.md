@@ -3,7 +3,7 @@
 |                     | Description                                                                  |
 |:--------------------|:-----------------------------------------------------------------------------|
 | Category            | Demographic                                                                  |
-| Abbreviation        | statcompiler_education_men                                                   |
+| Abbreviation        | dhs_education_men                                                            |
 | Title               | Education level men                                                          |
 | Necessity           | optional                                                                     |
 | Format              | CSV                                                                          |
@@ -22,7 +22,7 @@
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_education_men                                                                   |
+| Abbreviation | dhs_education_men                                                                            |
 | Category     | Demographic                                                                                  |
 | Creator      | DHS Program                                                                                  |
 | Title        | Education level men                                                                          |

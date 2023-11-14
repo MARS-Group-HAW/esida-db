@@ -8,8 +8,8 @@ import pandas as pd
 from dbconf import get_engine
 from esida.parameter import BaseParameter
 
-class StatcompilerParameter(BaseParameter):
-    """ Extends BaseParameter class for STATcompiler API consumption. """
+class DHSParameter(BaseParameter):
+    """ Extends BaseParameter class for DHS/STATcompiler API consumption. """
 
     def __init__(self):
         super().__init__()
@@ -192,12 +192,16 @@ class StatcompilerParameter(BaseParameter):
 
         data_url = 'https://api.dhsprogram.com/rest/dhs/data/?' + urlencode(params)
 
+        print(data_url)
+
         # Obtain and Parse the list into a Python Object.
         req = urlopen(data_url)
         resp = json.loads(req.read())
         my_data = resp['Data']
 
         df = pd.DataFrame(my_data)
+
+        print(df)
 
         return df
 

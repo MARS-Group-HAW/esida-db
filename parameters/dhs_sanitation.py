@@ -3,10 +3,10 @@ import re
 import numpy as np
 import pandas as pd
 
-from esida.statcompiler_parameter import StatcompilerParameter
+from esida.dhs_parameter import DHSParameter
 from dbconf import get_engine
 
-class statcompiler_sanitation(StatcompilerParameter):
+class dhs_sanitation(DHSParameter):
 
     def get_indicators(self):
         return ['WS_TLET_H_IMP' ]

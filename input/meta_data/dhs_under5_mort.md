@@ -3,7 +3,7 @@
 |                     | Description                                                                                                                         |
 |:--------------------|:------------------------------------------------------------------------------------------------------------------------------------|
 | Category            | Health                                                                                                                              |
-| Abbreviation        | statcompiler_under5_mort                                                                                                            |
+| Abbreviation        | dhs_under5_mort                                                                                                                     |
 | Title               | Under 5 mortality rate                                                                                                              |
 | Necessity           | required                                                                                                                            |
 | Format              | CSV                                                                                                                                 |
@@ -19,7 +19,7 @@
 
 |              | Description                |
 |:-------------|:---------------------------|
-| Abbreviation | statcompiler_under5_mort   |
+| Abbreviation | dhs_under5_mort            |
 | Category     | Health                     |
 | Creator      | DHS Program                |
 | Title        | Under 5 mortality rate     |

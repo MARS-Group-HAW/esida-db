@@ -1,12 +1,12 @@
 import pandas as pd
 
+from esida.dhs_parameter import DHSParameter
 from dbconf import get_engine
-from esida.statcompiler_parameter import StatcompilerParameter
 
-class statcompiler_household(StatcompilerParameter):
+class dhs_mosnet(DHSParameter):
 
     def get_indicators(self):
-        return ['HC_MEMB_H_MNM']
+        return ['ML_NETP_H_MOS' ]
 
     def append_preliminary2022(self):
         """
@@ -21,7 +21,7 @@ class statcompiler_household(StatcompilerParameter):
         API results for the previous surveys.
         """
 
-        df = pd.read_csv(self.get_data_path() / 'TZ2022DHS_Preliminary_Household.csv')
+        df = pd.read_csv(self.get_data_path() / 'TZ2022DHS_Preliminary_Insecticide_treated_nets.csv')
         df['region'] = df['region'].apply(self.map_region_name_to_tz_stat_names)
 
         regions_df = pd.read_sql_query("SELECT id, name FROM shape WHERE type='region' ORDER by name", con=get_engine())
@@ -41,14 +41,15 @@ class statcompiler_household(StatcompilerParameter):
                 'year': 2022,
                 'shape_id': r['id'],
                 f'{self.parameter_id}_survey': "TZ2022DHS_Preliminary",
-                f'{self.parameter_id}': sri.at[0, 'HousMemb'],
-                'ML_NETP_H_MOS': sri.at[0, 'HousMemb']
+                f'{self.parameter_id}': sri.at[0, 'percentage_of_households_with_itn'],
+                'ML_NETP_H_MOS': sri.at[0, 'percentage_of_households_with_itn']
             })
 
         return pd.DataFrame(rows)
 
+
     def consume(self, df):
-        df[self.parameter_id] = df[self.get_indicators()[0]]
+        df[f'{self.parameter_id}'] = df[self.get_indicators()].mean(axis=1)
         self.df = df
 
-        self.df = pd.concat([self.df, self.append_preliminary2022()])
+        #self.df = pd.concat([self.df, self.append_preliminary2022()])

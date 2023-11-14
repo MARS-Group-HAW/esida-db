@@ -2,30 +2,30 @@
 
 |                     | Description                                                          |
 |:--------------------|:---------------------------------------------------------------------|
-| Category            | Demographic                                                          |
-| Abbreviation        | statcompiler_gini                                                    |
-| Title               | Income distribution                                                  |
+| Category            | Health                                                               |
+| Abbreviation        | dhs_mosnet                                                           |
+| Title               | Insecticide treated bednet (ITN) use                                 |
 | Necessity           | required                                                             |
 | Format              | CSV                                                                  |
 | Operation           | None                                                                 |
-| Original unit       | Gini index                                                           |
-| ESIDA database unit | Gini index                                                           |
+| Original unit       | Proportion of households with at least one ITN                       |
+| ESIDA database unit | Proportion of households with at least one ITN                       |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
-| Timeframe           | 2011/12; 2015/16; 2017; 2022                                         |
+| Timeframe           | 2004/05; 2007/08; 2010; 2011/12; 2015/16; 2017; 2022                 |
 | Source              | DHS Program (STATcompiler)                                           |
 | Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
-| Comment             | DHS Indicator ID: HC_WIXQ_P_GNI                                      |
+| Comment             | DHS Indicator ID: ML_NETP_H_MOS                                      |
 | Related Sources     | None                                                                 |
 
 ## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_gini                                                                            |
-| Category     | Demographic                                                                                  |
+| Abbreviation | dhs_mosnet                                                                                   |
+| Category     | Health                                                                                       |
 | Creator      | DHS Program                                                                                  |
-| Title        | Income distribution                                                                          |
+| Title        | Insecticide treated bednet (ITN) use                                                         |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |

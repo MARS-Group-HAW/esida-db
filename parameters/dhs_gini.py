@@ -1,6 +1,6 @@
-from esida.statcompiler_parameter import StatcompilerParameter
+from esida.dhs_parameter import DHSParameter
 
-class statcompiler_gini(StatcompilerParameter):
+class dhs_gini(DHSParameter):
 
     def get_indicators(self):
         return ['HC_WIXQ_P_GNI']

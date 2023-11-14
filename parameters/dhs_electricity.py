@@ -3,13 +3,13 @@ import re
 import numpy as np
 import pandas as pd
 
-from esida.statcompiler_parameter import StatcompilerParameter
+from esida.dhs_parameter import DHSParameter
 from dbconf import get_engine
 
-class statcompiler_drinkwater(StatcompilerParameter):
+class dhs_electricity(DHSParameter):
 
     def get_indicators(self):
-        return ['WS_SRCE_H_IMP']
+        return ['HC_ELEC_P_ELC']
 
     def consume(self, df):
         df[self.parameter_id] = df[self.get_indicators()[0]]

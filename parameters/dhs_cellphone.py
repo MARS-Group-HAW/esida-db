@@ -1,9 +1,9 @@
 """
 STATcompiler Cellphone usage.
 """
-from esida.statcompiler_parameter import StatcompilerParameter
+from esida.dhs_parameter import DHSParameter
 
-class statcompiler_cellphone(StatcompilerParameter):
+class dhs_cellphone(DHSParameter):
 
     def get_indicators(self):
         return ['CO_MOBB_W_MOB', 'CO_MOBB_M_MOB']

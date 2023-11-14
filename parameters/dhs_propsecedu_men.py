@@ -1,6 +1,6 @@
-from esida.statcompiler_parameter import StatcompilerParameter
+from esida.dhs_parameter import DHSParameter
 
-class statcompiler_propsecedu_men(StatcompilerParameter):
+class dhs_propsecedu_men(DHSParameter):
 
     def get_indicators(self):
         return ['ED_EDUC_M_SSC', 'ED_EDUC_M_CSC', 'ED_EDUC_M_HGH']

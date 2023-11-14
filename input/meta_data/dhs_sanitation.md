@@ -2,30 +2,30 @@
 
 |                     | Description                                                                        |
 |:--------------------|:-----------------------------------------------------------------------------------|
-| Category            | Demographic                                                                        |
-| Abbreviation        | statcompiler_education_women                                                       |
-| Title               | Education level women                                                              |
-| Necessity           | optional                                                                           |
+| Category            | Infrastructure                                                                     |
+| Abbreviation        | dhs_sanitation                                                                     |
+| Title               | Proportion improved sanitation                                                     |
+| Necessity           | required                                                                           |
 | Format              | CSV                                                                                |
 | Operation           | None                                                                               |
-| Original unit       | Median years of education                                                          |
-| ESIDA database unit | Median years of education                                                          |
+| Original unit       | Proportion of households with improved sanitation                                  |
+| ESIDA database unit | Proportion of households with improved sanitation                                  |
 | Spatial details     | Region                                                                             |
 | Temporal details    | Cross-sectional                                                                    |
 | Timeframe           | 1991/92; 1996; 1999; 2003/04; 2004/05; 2007/08; 2010; 2011/12; 2015/16; 2017; 2022 |
 | Source              | DHS Program (STATcompiler)                                                         |
 | Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)               |
-| Comment             | DHS Indicator ID: ED_EDUC_W_MYR                                                    |
+| Comment             | DHS IndicatorId: WS_TLET_H_IMP                                                     |
 | Related Sources     | None                                                                               |
 
 ## Metadata information 
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_education_women                                                                 |
-| Category     | Demographic                                                                                  |
+| Abbreviation | dhs_sanitation                                                                               |
+| Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
-| Title        | Education level women                                                                        |
+| Title        | Proportion improved sanitation                                                               |
 | Publisher    | HAW Hamburg                                                                                  |
 | Contributor  | ESIDA                                                                                        |
 | Date         | 14.06.2023                                                                                   |

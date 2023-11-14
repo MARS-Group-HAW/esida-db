@@ -3,7 +3,7 @@
 |                     | Description                                                                                                         |
 |:--------------------|:--------------------------------------------------------------------------------------------------------------------|
 | Category            | Infrastructure                                                                                                      |
-| Abbreviation        | statcompiler_employment                                                                                             |
+| Abbreviation        | dhs_employment                                                                                                      |
 | Title               | Unemployment                                                                                                        |
 | Necessity           | optional                                                                                                            |
 | Format              | CSV                                                                                                                 |
@@ -22,7 +22,7 @@
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_employment                                                                      |
+| Abbreviation | dhs_employment                                                                               |
 | Category     | Infrastructure                                                                               |
 | Creator      | DHS Program                                                                                  |
 | Title        | Unemployment                                                                                 |

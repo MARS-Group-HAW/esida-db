@@ -3,7 +3,7 @@
 |                     | Description                                                                              |
 |:--------------------|:-----------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                              |
-| Abbreviation        | statcompiler_propsecedu_women                                                            |
+| Abbreviation        | dhs_propsecedu_women                                                                     |
 | Title               | Proportion completed secondary education women                                           |
 | Necessity           | required                                                                                 |
 | Format              | CSV                                                                                      |
@@ -20,7 +20,7 @@
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_propsecedu_women                                                                |
+| Abbreviation | dhs_propsecedu_women                                                                         |
 | Category     | Demographic                                                                                  |
 | Creator      | DHS Program                                                                                  |
 | Title        | Proportion completed secondary education women                                               |

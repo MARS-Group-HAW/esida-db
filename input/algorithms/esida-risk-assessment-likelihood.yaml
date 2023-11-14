@@ -31,7 +31,7 @@ spec:
         inclusive: False
         score: 3
   - name: Household members
-    datalayer: statcompiler_household
+    datalayer: dhs_household
     thresholds:
       - min: 0
         max: 2
@@ -45,7 +45,7 @@ spec:
         inclusive: False
         score: 3
   - name: Proportion of males with less than secondary education
-    datalayer: statcompiler_propsecedu_men
+    datalayer: dhs_propsecedu_men
     mode: percentage
     factor: 0.5
     thresholds:
@@ -60,7 +60,7 @@ spec:
         inclusive: False
         score: 3
   - name: Proportion of females with less than secondary education
-    datalayer: statcompiler_propsecedu_women
+    datalayer: dhs_propsecedu_women
     mode: percentage
     factor: 0.5
     thresholds:
@@ -75,7 +75,7 @@ spec:
         inclusive: False
         score: 3
   - name: Gini index / inequality income / wealth
-    datalayer: statcompiler_gini
+    datalayer: dhs_gini
     mode: percentage
     thresholds:
       - min: 0
@@ -202,7 +202,7 @@ spec:
         score: 3
     fallback_score: 3
   - name: Safe drink water sources %
-    datalayer: statcompiler_drinkwater
+    datalayer: dhs_drinkwater
     mode: percentage
     thresholds:
       - min: 96.8
@@ -215,7 +215,7 @@ spec:
         max: 66.3
         score: 3
   - name: Improved toilet facility %
-    datalayer: statcompiler_sanitation
+    datalayer: dhs_sanitation
     mode: percentage
     thresholds:
       - min: 82.1
@@ -242,7 +242,7 @@ spec:
         max: 66.9
         score: 3
   - name: Personal prevention (one ITN per two people)
-    datalayer: statcompiler_mosnet
+    datalayer: dhs_mosnet
     mode: percentage
     thresholds:
       - min: 0

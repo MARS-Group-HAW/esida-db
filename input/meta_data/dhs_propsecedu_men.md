@@ -3,7 +3,7 @@
 |                     | Description                                                                            |
 |:--------------------|:---------------------------------------------------------------------------------------|
 | Category            | Demographic                                                                            |
-| Abbreviation        | statcompiler_propsecedu_men                                                            |
+| Abbreviation        | dhs_propsecedu_men                                                                     |
 | Title               | Proportion completed secondary education men                                           |
 | Necessity           | required                                                                               |
 | Format              | CSV                                                                                    |
@@ -20,7 +20,7 @@
 
 |              | Description                                                                                  |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| Abbreviation | statcompiler_propsecedu_men                                                                  |
+| Abbreviation | dhs_propsecedu_men                                                                           |
 | Category     | Demographic                                                                                  |
 | Creator      | DHS Program                                                                                  |
 | Title        | Proportion completed secondary education men                                                 |
