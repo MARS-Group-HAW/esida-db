@@ -2,7 +2,7 @@
 
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
-| Category            | Enviromental                                                                                     |
+| Category            | Environmental                                                                                    |
 | Abbreviation        | copernicus_forest                                                                                |
 | Title               | Proportion forest                                                                                |
 | Necessity           | optional                                                                                         |
@@ -23,7 +23,7 @@
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
 | Abbreviation | copernicus_forest                                                |
-| Category     | Enviromental                                                     |
+| Category     | Environmental                                                    |
 | Creator      | Copernicus Land Cover                                            |
 | Title        | Proportion forest                                                |
 | Publisher    | HAW Hamburg                                                      |

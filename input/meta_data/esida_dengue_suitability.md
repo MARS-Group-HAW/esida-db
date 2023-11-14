@@ -2,7 +2,7 @@
 
 |              | Description              |
 |:-------------|:-------------------------|
-| Category     | Enviromental             |
+| Category     | Environmental            |
 | Abbreviation | esida_dengue_suitability |
 | Title        | Dengue suitability index |
 | Necessity    | required                 |
@@ -13,7 +13,7 @@
 |              | Description              |
 |:-------------|:-------------------------|
 | Abbreviation | esida_dengue_suitability |
-| Category     | Enviromental             |
+| Category     | Environmental            |
 | Creator      | ESIDA                    |
 | Title        | Dengue suitability index |
 | Publisher    | HAW Hamburg              |

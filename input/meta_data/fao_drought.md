@@ -9,7 +9,7 @@
 | Format              | CSV                                                                                                                                                              |
 | Operation           | Proportion within the area of interest                                                                                                                           |
 | Original unit       | Proportion of area with mean Vegetation Health Index (VHI) below 35                                                                                              |
-| ESIDA database unit | Proportion                                                                                                                                                       |
+| ESIDA database unit | Percentage                                                                                                                                                       |
 | Spatial details     | Region                                                                                                                                                           |
 | Temporal details    | Thrice-monthly                                                                                                                                                   |
 | Timeframe           | 1984 - 2021                                                                                                                                                      |

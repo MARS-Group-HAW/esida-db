@@ -2,7 +2,7 @@
 
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
-| Category            | Enviromental                                                                                     |
+| Category            | Environmental                                                                                    |
 | Abbreviation        | copernicus_moss                                                                                  |
 | Title               | Proportion moss and litchen                                                                      |
 | Necessity           | optional                                                                                         |
@@ -23,7 +23,7 @@
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
 | Abbreviation | copernicus_moss                                                  |
-| Category     | Enviromental                                                     |
+| Category     | Environmental                                                    |
 | Creator      | Copernicus Land Cover                                            |
 | Title        | Proportion moss and litchen                                      |
 | Publisher    | HAW Hamburg                                                      |

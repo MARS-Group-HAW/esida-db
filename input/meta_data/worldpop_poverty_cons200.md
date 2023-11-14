@@ -12,7 +12,7 @@
 | ESIDA database unit | Proportion                                                                                           |
 | Spatial details     | 1km raster                                                                                           |
 | Temporal details    | Cross-sectional                                                                                      |
-| Timeframe           | 2013                                                                                                 |
+| Timeframe           | 2010                                                                                                 |
 | Source              | Worldpop                                                                                             |
 | Link to Source      | [https://www.worldpop.org/geodata/summary?id=1273](https://www.worldpop.org/geodata/summary?id=1273) |
 | Related Sources     | None                                                                                                 |

@@ -26,7 +26,7 @@
 | Title        | ESIDA outbreak evolution estimate                                |
 | Publisher    | HAW Hamburg                                                      |
 | Contributor  | ESIDA                                                            |
-| Date         | 16.06.2024                                                       |
+| Date         | 16.06.2023                                                       |
 | Type         | Dataset                                                          |
 | Format       | CSV                                                              |
 | Identifier   | Beta                                                             |

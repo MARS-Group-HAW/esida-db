@@ -2,7 +2,7 @@
 
 |                     | Description                                                    |
 |:--------------------|:---------------------------------------------------------------|
-| Category            | Enviromental                                                   |
+| Category            | Environmental                                                  |
 | Abbreviation        | koeppen_b                                                      |
 | Title               | Proportion arid climate zone                                   |
 | Necessity           | optional                                                       |
@@ -22,7 +22,7 @@
 |              | Description                                                                                                                                                                                                                               |
 |:-------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | koeppen_b                                                                                                                                                                                                                                 |
-| Category     | Enviromental                                                                                                                                                                                                                              |
+| Category     | Environmental                                                                                                                                                                                                                             |
 | Creator      | Beck et al., 2018                                                                                                                                                                                                                         |
 | Title        | Proportion arid climate zone                                                                                                                                                                                                              |
 | Publisher    | HAW Hamburg                                                                                                                                                                                                                               |

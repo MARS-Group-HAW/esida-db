@@ -12,7 +12,7 @@
 | ESIDA database unit | Proportion of population who own a mobile phone                      |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
-| Timeframe           | 2016                                                                 |
+| Timeframe           | 2016; 2022                                                           |
 | Source              | DHS Program (STATcompiler)                                           |
 | Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
 | Comment             | DHS Indicator ID: CO_MOBB_W_MOB , CO_MOBB_M_MOB                      |

@@ -2,7 +2,7 @@
 
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
-| Category            | Enviromental                                                                                     |
+| Category            | Environmental                                                                                    |
 | Abbreviation        | copernicus_sparse                                                                                |
 | Title               | Proportion bare and sparse                                                                       |
 | Necessity           | optional                                                                                         |
@@ -23,7 +23,7 @@
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
 | Abbreviation | copernicus_sparse                                                |
-| Category     | Enviromental                                                     |
+| Category     | Environmental                                                    |
 | Creator      | Copernicus Land Cover                                            |
 | Title        | Proportion bare and sparse                                       |
 | Publisher    | HAW Hamburg                                                      |

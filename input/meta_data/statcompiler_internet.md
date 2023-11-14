@@ -12,7 +12,7 @@
 | ESIDA database unit | Proportion of population who used the internet in the past 12 months               |
 | Spatial details     | Region                                                                             |
 | Temporal details    | Cross-sectional                                                                    |
-| Timeframe           | 2016                                                                               |
+| Timeframe           | 2015/16; 2022                                                                      |
 | Source              | DHS Program (STATcompiler)                                                         |
 | Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/)               |
 | Comment             | DHS Indicator ID: CO_INUS_W_U12, CO_INUS_M_U12                                     |

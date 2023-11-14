@@ -2,7 +2,7 @@
 
 |                     | Description                                                                                                                                                                                                                    |
 |:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Category            | Enviromental                                                                                                                                                                                                                   |
+| Category            | Environmental                                                                                                                                                                                                                  |
 | Abbreviation        | rcmrd_elev                                                                                                                                                                                                                     |
 | Title               | Elevation                                                                                                                                                                                                                      |
 | Necessity           | required                                                                                                                                                                                                                       |
@@ -22,7 +22,7 @@
 |              | Description   |
 |:-------------|:--------------|
 | Abbreviation | rcmrd_elev    |
-| Category     | Enviromental  |
+| Category     | Environmental |
 | Creator      | RCMRD         |
 | Title        | Elevation     |
 | Publisher    | HAW Hamburg   |

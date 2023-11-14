@@ -2,7 +2,7 @@
 
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
-| Category            | Enviromental                                                                                     |
+| Category            | Environmental                                                                                    |
 | Abbreviation        | copernicus_built                                                                                 |
 | Title               | Proportion built-up                                                                              |
 | Necessity           | required                                                                                         |
@@ -23,7 +23,7 @@
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
 | Abbreviation | copernicus_built                                                 |
-| Category     | Enviromental                                                     |
+| Category     | Environmental                                                    |
 | Creator      | Copernicus Land Cover                                            |
 | Title        | Proportion built-up                                              |
 | Publisher    | HAW Hamburg                                                      |

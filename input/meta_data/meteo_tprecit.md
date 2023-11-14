@@ -1,21 +1,21 @@
 ## Data type and processing information 
 
-|                     | Description                                                                                                      |
-|:--------------------|:-----------------------------------------------------------------------------------------------------------------|
-| Category            | Weather                                                                                                          |
-| Abbreviation        | meteo_tprecit                                                                                                    |
-| Title               | Total precipitation                                                                                              |
-| Necessity           | required                                                                                                         |
-| Format              | API                                                                                                              |
-| Operation           | Sum                                                                                                              |
-| Original unit       | mm per day                                                                                                       |
-| ESIDA database unit | mm per day                                                                                                       |
-| Spatial details     | Coordinates                                                                                                      |
-| Temporal details    | Hourly                                                                                                           |
-| Timeframe           | 2010-present                                                                                                     |
-| Source              | Meteostat                                                                                                        |
-| Link to Source      | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
-| Related Sources     | CHIRPS                                                                                                           |
+|                     | Description                                                                                      |
+|:--------------------|:-------------------------------------------------------------------------------------------------|
+| Category            | Weather                                                                                          |
+| Abbreviation        | meteo_tprecit                                                                                    |
+| Title               | Total precipitation                                                                              |
+| Necessity           | required                                                                                         |
+| Format              | API                                                                                              |
+| Operation           | Sum                                                                                              |
+| Original unit       | mm per day                                                                                       |
+| ESIDA database unit | mm per day                                                                                       |
+| Spatial details     | Coordinates                                                                                      |
+| Temporal details    | Hourly                                                                                           |
+| Timeframe           | 2010-present                                                                                     |
+| Source              | Meteostat                                                                                        |
+| Link to Source      | [https://dev.meteostat.net/python/stations.html](https://dev.meteostat.net/python/stations.html) |
+| Related Sources     | CHIRPS                                                                                           |
 
 ## Metadata information 
 

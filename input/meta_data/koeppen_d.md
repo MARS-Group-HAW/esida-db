@@ -2,7 +2,7 @@
 
 |                     | Description                                                    |
 |:--------------------|:---------------------------------------------------------------|
-| Category            | Enviromental                                                   |
+| Category            | Environmental                                                  |
 | Abbreviation        | koeppen_d                                                      |
 | Title               | Proportion cold climate zone                                   |
 | Necessity           | optional                                                       |
@@ -22,7 +22,7 @@
 |              | Description                                                                                                                                                                                                                               |
 |:-------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | koeppen_d                                                                                                                                                                                                                                 |
-| Category     | Enviromental                                                                                                                                                                                                                              |
+| Category     | Environmental                                                                                                                                                                                                                             |
 | Creator      | Beck et al., 2018                                                                                                                                                                                                                         |
 | Title        | Proportion cold climate zone                                                                                                                                                                                                              |
 | Publisher    | HAW Hamburg                                                                                                                                                                                                                               |

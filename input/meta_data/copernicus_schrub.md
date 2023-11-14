@@ -2,7 +2,7 @@
 
 |                     | Description                                                                                      |
 |:--------------------|:-------------------------------------------------------------------------------------------------|
-| Category            | Enviromental                                                                                     |
+| Category            | Environmental                                                                                    |
 | Abbreviation        | copernicus_schrub                                                                                |
 | Title               | Proportion shrubland                                                                             |
 | Necessity           | optional                                                                                         |
@@ -23,7 +23,7 @@
 |              | Description                                                      |
 |:-------------|:-----------------------------------------------------------------|
 | Abbreviation | copernicus_schrub                                                |
-| Category     | Enviromental                                                     |
+| Category     | Environmental                                                    |
 | Creator      | Copernicus Land Cover                                            |
 | Title        | Proportion shrubland                                             |
 | Publisher    | HAW Hamburg                                                      |

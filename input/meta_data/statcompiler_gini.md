@@ -12,7 +12,7 @@
 | ESIDA database unit | Gini index                                                           |
 | Spatial details     | Region                                                               |
 | Temporal details    | Cross-sectional                                                      |
-| Timeframe           | 2011 - 2017                                                          |
+| Timeframe           | 2011/12; 2015/16; 2017; 2022                                         |
 | Source              | DHS Program (STATcompiler)                                           |
 | Link to Source      | [https://www.statcompiler.com/en/](https://www.statcompiler.com/en/) |
 | Comment             | DHS Indicator ID: HC_WIXQ_P_GNI                                      |

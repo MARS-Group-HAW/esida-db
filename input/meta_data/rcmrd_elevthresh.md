@@ -2,7 +2,7 @@
 
 |                     | Description                                                                                                                                                                                                                    |
 |:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Category            | Enviromental                                                                                                                                                                                                                   |
+| Category            | Environmental                                                                                                                                                                                                                  |
 | Abbreviation        | rcmrd_elevthresh                                                                                                                                                                                                               |
 | Title               | Elevation below 1600m                                                                                                                                                                                                          |
 | Necessity           | optional                                                                                                                                                                                                                       |
@@ -22,7 +22,7 @@
 |              | Description           |
 |:-------------|:----------------------|
 | Abbreviation | rcmrd_elevthresh      |
-| Category     | Enviromental          |
+| Category     | Environmental         |
 | Creator      | RCMRD                 |
 | Title        | Elevation below 1600m |
 | Publisher    | HAW Hamburg           |

@@ -35,5 +35,5 @@
 | Source       | Tanzania Health Facility Register |
 | Citation     | None                              |
 | Language     | eng                               |
-| License      | Unkown                            |
+| License      | Unknown                           |
 | Coverage     | Tanzania                          |

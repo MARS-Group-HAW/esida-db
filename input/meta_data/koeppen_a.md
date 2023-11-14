@@ -2,7 +2,7 @@
 
 |                     | Description                                                    |
 |:--------------------|:---------------------------------------------------------------|
-| Category            | Enviromental                                                   |
+| Category            | Environmental                                                  |
 | Abbreviation        | koeppen_a                                                      |
 | Title               | Proportion tropical climate zone                               |
 | Necessity           | optional                                                       |
@@ -22,7 +22,7 @@
 |              | Description                                                                                                                                                                                                                               |
 |:-------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | koeppen_a                                                                                                                                                                                                                                 |
-| Category     | Enviromental                                                                                                                                                                                                                              |
+| Category     | Environmental                                                                                                                                                                                                                             |
 | Creator      | Beck et al., 2018                                                                                                                                                                                                                         |
 | Title        | Proportion tropical climate zone                                                                                                                                                                                                          |
 | Publisher    | HAW Hamburg                                                                                                                                                                                                                               |

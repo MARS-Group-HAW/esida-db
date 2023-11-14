@@ -2,7 +2,7 @@
 
 |                     | Description                                                    |
 |:--------------------|:---------------------------------------------------------------|
-| Category            | Enviromental                                                   |
+| Category            | Environmental                                                  |
 | Abbreviation        | koeppen_e                                                      |
 | Title               | Proportion polar climate zone                                  |
 | Necessity           | optional                                                       |
@@ -22,7 +22,7 @@
 |              | Description                                                                                                                                                                                                                               |
 |:-------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abbreviation | koeppen_e                                                                                                                                                                                                                                 |
-| Category     | Enviromental                                                                                                                                                                                                                              |
+| Category     | Environmental                                                                                                                                                                                                                             |
 | Creator      | Beck et al., 2018                                                                                                                                                                                                                         |
 | Title        | Proportion polar climate zone                                                                                                                                                                                                             |
 | Publisher    | HAW Hamburg                                                                                                                                                                                                                               |

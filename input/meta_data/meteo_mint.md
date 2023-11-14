@@ -1,21 +1,21 @@
 ## Data type and processing information 
 
-|                     | Description                                                                                                      |
-|:--------------------|:-----------------------------------------------------------------------------------------------------------------|
-| Category            | Weather                                                                                                          |
-| Abbreviation        | meteo_mint                                                                                                       |
-| Title               | Minimum temperature                                                                                              |
-| Necessity           | required                                                                                                         |
-| Format              | API                                                                                                              |
-| Operation           | Minimum                                                                                                          |
-| Original unit       | Celsius per day                                                                                                  |
-| ESIDA database unit | Celsius per day                                                                                                  |
-| Spatial details     | Coordinates                                                                                                      |
-| Temporal details    | Hourly                                                                                                           |
-| Timeframe           | 2010-present                                                                                                     |
-| Source              | Meteostat                                                                                                        |
-| Link to Source      | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
-| Related Sources     | Copernicus                                                                                                       |
+|                     | Description                                                                                      |
+|:--------------------|:-------------------------------------------------------------------------------------------------|
+| Category            | Weather                                                                                          |
+| Abbreviation        | meteo_mint                                                                                       |
+| Title               | Minimum temperature                                                                              |
+| Necessity           | required                                                                                         |
+| Format              | API                                                                                              |
+| Operation           | Minimum                                                                                          |
+| Original unit       | Celsius per day                                                                                  |
+| ESIDA database unit | Celsius per day                                                                                  |
+| Spatial details     | Coordinates                                                                                      |
+| Temporal details    | Hourly                                                                                           |
+| Timeframe           | 2010-present                                                                                     |
+| Source              | Meteostat                                                                                        |
+| Link to Source      | [https://dev.meteostat.net/python/stations.html](https://dev.meteostat.net/python/stations.html) |
+| Related Sources     | Copernicus                                                                                       |
 
 ## Metadata information 
 

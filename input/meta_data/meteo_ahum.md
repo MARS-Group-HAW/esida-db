@@ -1,21 +1,21 @@
 ## Data type and processing information 
 
-|                     | Description                                                                                                      |
-|:--------------------|:-----------------------------------------------------------------------------------------------------------------|
-| Category            | Weather                                                                                                          |
-| Abbreviation        | meteo_ahum                                                                                                       |
-| Title               | Absolute humidity                                                                                                |
-| Necessity           | optional                                                                                                         |
-| Format              | API                                                                                                              |
-| Operation           | Mean                                                                                                             |
-| Original unit       | Mean percent per day                                                                                             |
-| ESIDA database unit | Mean percent per day                                                                                             |
-| Spatial details     | Coordinates                                                                                                      |
-| Temporal details    | Hourly                                                                                                           |
-| Timeframe           | 2010-present                                                                                                     |
-| Source              | Meteostat                                                                                                        |
-| Link to Source      | [https://dev.meteostat.net/python/stations.html#example](https://dev.meteostat.net/python/stations.html#example) |
-| Related Sources     | None                                                                                                             |
+|                     | Description                                                                                      |
+|:--------------------|:-------------------------------------------------------------------------------------------------|
+| Category            | Weather                                                                                          |
+| Abbreviation        | meteo_ahum                                                                                       |
+| Title               | Absolute humidity                                                                                |
+| Necessity           | optional                                                                                         |
+| Format              | API                                                                                              |
+| Operation           | Mean                                                                                             |
+| Original unit       | Mean percent per day                                                                             |
+| ESIDA database unit | Mean percent per day                                                                             |
+| Spatial details     | Coordinates                                                                                      |
+| Temporal details    | Hourly                                                                                           |
+| Timeframe           | 2010-present                                                                                     |
+| Source              | Meteostat                                                                                        |
+| Link to Source      | [https://dev.meteostat.net/python/stations.html](https://dev.meteostat.net/python/stations.html) |
+| Related Sources     | None                                                                                             |
 
 ## Metadata information 
 
