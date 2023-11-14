@@ -7,6 +7,8 @@
 <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
   <div class="d-grid gap-1 d-md-flex justify-content-md-end">
     <a class="btn btn-sm btn-outline-primary" href="{{ url_for('api_parameters', format='csv') }}">Download</a>
+
+    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#api">API</button>
   </div>
 
   <h1>Data Layers</h1>
@@ -58,6 +60,57 @@
 {% endblock %}
 
 {% block footer %}
+
+
+<div class="modal fade" id="api" tabindex="-1" aria-labelledby="api-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="api-modal-title">API</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+<li class="nav-item" role="presentation">
+<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#api-python-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Pyton</button>
+</li>
+<li class="nav-item" role="presentation">
+<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#api-r-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">R</button>
+</li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="api-python-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+
+<pre><code>import requests
+from urllib.parse import urlencode
+from requests.auth import HTTPBasicAuth
+
+import pandas as pd
+import geopandas
+
+# Run for local database
+HOST = '{{ url_for('index', _external=True) }}'
+auth = None
+
+q = {}
+d = requests.get(f"{HOST}/api/v1/parameters?{urlencode(q)}", auth=auth).json()
+df = pd.DataFrame(d['data'])
+</code></pre>
+
+
+  </div>
+  <div class="tab-pane fade" id="api-r-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">Comming soon ;)</div>
+</div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 $(document).ready(function() {
     $('#shapes').DataTable({
