@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/MARS-Group-HAW/esida-db/compare/v0.3.0...v0.3.1) (2023-11-22)
+
+
+### Bug Fixes
+
+* download for date range ([3fa1ae3](https://github.com/MARS-Group-HAW/esida-db/commit/3fa1ae32ba3fb1abd12ba3e366122fba46997145))
+* parameter overview API infos ([da6c429](https://github.com/MARS-Group-HAW/esida-db/commit/da6c42909482f617f1fa3fde1553caad6c26c161))
+
 ## [0.3.0](https://github.com/MARS-Group-HAW/esida-db/compare/v0.2.2...v0.3.0) (2023-06-29)
 
 
