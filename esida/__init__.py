@@ -35,6 +35,8 @@ users = {
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
 
+app.app_context().push()
+
 @auth.verify_password
 def verify_password(username, password):
     """ Verify given password with known users. """

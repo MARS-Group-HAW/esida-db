@@ -26,7 +26,7 @@ class SexageParameter(TiffParameter):
     def extract(self):
         base_url = 'https://data.worldpop.org/GIS/AgeSex_structures/Global_2000_2020/{year}/TZA/tza_{sex}_{age}_{year}.tif'
 
-        for year in range(2000, 2020+1):
+        for year in range(2010, 2020+1):
             for sex in ['f', 'm']:
                 for age in [0, 1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]:
                     url = base_url.format(year=year, age=age, sex=sex)
